@@ -1,4 +1,6 @@
-public class program1{
+package ru.stqa.pft.sandbox;
+
+public class program1 {
 
 	public static void main(String[] args) { 
 		System.out.println("Hello, world!!!");
