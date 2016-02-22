@@ -18,22 +18,14 @@ public class Program1 {
     Point p1 = new Point(0, 0);
     Point p2 = new Point(3, 4);
 
-    System.out.println("Расстояние между точками p1(" + p1.x + "," + p1.y + ") и p2(" + p2.x + ", " + p2.y + ") равно " + distance(p1, p2));
+    System.out.println("Расстояние между точками p1(" + p1.x + "," + p1.y + ") и p2(" + p2.x + ", " + p2.y + ") равно " + p1.distance(p1, p2));
 
+    System.out.println("Расстояние между точками p1(" + p1.x + "," + p1.y + ") и p2(" + p2.x + ", " + p2.y + ") равно " + p2.distance(p1, p2));
 
   }
 
   public static void hello(String someb) {
 
     System.out.println("Hello, " + someb + "!!!");
-  }
-
-
-  public static double distance(Point p1, Point p2) {
-    double dx = p1.x - p2.x;
-    double dy = p1.y - p2.y;
-    double sq = dx*dx + dy*dy;
-
-    return Math.sqrt(sq);
   }
 }
