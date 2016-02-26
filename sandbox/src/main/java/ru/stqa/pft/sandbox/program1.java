@@ -15,6 +15,10 @@ public class Program1 {
 
     System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " равна " + r.area());
 
+    System.out.println("Периметр прямоугольника со сторонами " + r.a + " и " + r.b + " равен " + r.perimeter());
+
+    System.out.println("Периметр квадрата со стороной " + s.l + " равен " + s.perimeter());
+
     Point p1 = new Point(0, 0);
     Point p2 = new Point(3, 4);
 
