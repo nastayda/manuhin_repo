@@ -23,17 +23,33 @@ public class GroupCreationTests {
 
   @Test
   public void testGroupCreationTests() throws Exception {
-    driver.get(baseUrl + "/addressbookv4.1.4/");
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
+    createNewGroup();
+    fillGroupForm();
+    submit();
+    goToGroup();
+  }
+
+  private void goToGroup() {
+    driver.findElement(By.linkText("group page")).click();
+  }
+
+  private void submit() {
+    driver.findElement(By.name("submit")).click();
+  }
+
+  private void fillGroupForm() {
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys("test1");
     driver.findElement(By.name("group_header")).clear();
     driver.findElement(By.name("group_header")).sendKeys("test2");
     driver.findElement(By.name("group_footer")).clear();
     driver.findElement(By.name("group_footer")).sendKeys("test3");
-    driver.findElement(By.name("submit")).click();
-    driver.findElement(By.linkText("group page")).click();
+  }
+
+  private void createNewGroup() {
+    driver.get(baseUrl + "/addressbookv4.1.4/");
+    driver.findElement(By.linkText("groups")).click();
+    driver.findElement(By.name("new")).click();
   }
 
   @AfterClass(alwaysRun = true)
