@@ -1,12 +1,10 @@
 package ru.stqa.pft.addressbook;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class GroupCreationTests {
   private WebDriver driver;
@@ -24,7 +22,7 @@ public class GroupCreationTests {
   @Test
   public void testGroupCreationTests() throws Exception {
     createNewGroup();
-    fillGroupForm();
+    fillGroupForm(new GroupData("test1", "test2", "test3"));
     submit();
     goToGroup();
   }
@@ -37,13 +35,13 @@ public class GroupCreationTests {
     driver.findElement(By.name("submit")).click();
   }
 
-  private void fillGroupForm() {
+  private void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys("test1");
+    driver.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
     driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys("test2");
+    driver.findElement(By.name("group_header")).sendKeys(groupData.getGroupHeader());
     driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys("test3");
+    driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
   }
 
   private void createNewGroup() {
