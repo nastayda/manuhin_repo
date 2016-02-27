@@ -1,9 +1,9 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import ru.stqa.pft.addressbook.tests.ContactData;
+import ru.stqa.pft.addressbook.tests.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,20 +12,19 @@ import static org.testng.Assert.fail;
 /**
  * Created by Юрий on 27.02.2016.
  */
-public class TestBase {
+public class ApplicationManager {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-  @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void start() {
     driver = new FirefoxDriver();
     baseUrl = "http://localhost/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
-  protected void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData) {
     driver.findElement(By.linkText("add new")).click();
     driver.findElement(By.name("firstname")).clear();
     driver.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
@@ -49,20 +48,19 @@ public class TestBase {
     driver.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
   }
 
-  protected void home() {
+  public void home() {
     driver.findElement(By.linkText("home page")).click();
   }
 
-  protected void submit() {
+  public void submit() {
     driver.findElement(By.name("submit")).click();
   }
 
-  protected void url() {
+  public void url() {
     driver.get(baseUrl + "/addressbookv4.1.4/");
   }
 
-  @AfterClass(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
@@ -70,7 +68,7 @@ public class TestBase {
     }
   }
 
-  private boolean isElementPresent(By by) {
+  public boolean isElementPresent(By by) {
     try {
       driver.findElement(by);
       return true;
@@ -103,11 +101,11 @@ public class TestBase {
     }
   }
 
-  protected void goToGroup() {
+  public void goToGroup() {
     driver.findElement(By.linkText("group page")).click();
   }
 
-  protected void fillGroupForm(GroupData groupData) {
+  public void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
     driver.findElement(By.name("group_header")).clear();
@@ -116,7 +114,7 @@ public class TestBase {
     driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
   }
 
-  protected void createNewGroup() {
+  public void createNewGroup() {
     driver.get(baseUrl + "/addressbookv4.1.4/");
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
