@@ -6,15 +6,14 @@ import ru.stqa.pft.addressbook.model.TestBase;
 /**
  * Created by Юрий on 28.02.2016.
  */
-public class GroupModificationTests extends TestBase {
+public class GroupDeletingTests extends TestBase {
 
   @Test
-  public void testGroupModification() {
+  public void testGroupDeleting() {
+
     app.getGroupHelper().selectGroups();
     app.getGroupHelper().selectGroup();
-    app.getGroupHelper().modifyGroup();
-    app.getGroupHelper().fillGroupForm(new GroupData("test11", "test21", "test31"));
-    app.getNavigationHelper().update();
+    app.getGroupHelper().deleteGroup();
     app.getNavigationHelper().goToGroup();
 
   }
