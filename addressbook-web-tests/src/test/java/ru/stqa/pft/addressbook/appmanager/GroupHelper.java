@@ -23,7 +23,7 @@ public class GroupHelper {
     driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
   }
 
-  public void navigateNewGroup() {
+  public void createNewGroup() {
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
   }

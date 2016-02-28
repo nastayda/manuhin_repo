@@ -14,6 +14,7 @@ import static org.testng.Assert.fail;
 public class ApplicationManager {
   WebDriver driver;
 
+  private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private String baseUrl;
   private String bd;
@@ -25,6 +26,7 @@ public class ApplicationManager {
     baseUrl = "http://localhost/";
     bd = "/addressbookv4.1.4/";
     groupHelper = new GroupHelper(driver);
+    navigationHelper = new NavigationHelper(driver);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     url();
   }
@@ -109,11 +111,11 @@ public class ApplicationManager {
     }
   }
 
-  public void goToGroup() {
-    driver.findElement(By.linkText("group page")).click();
-  }
-
   public GroupHelper getGroupHelper() {
     return groupHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
