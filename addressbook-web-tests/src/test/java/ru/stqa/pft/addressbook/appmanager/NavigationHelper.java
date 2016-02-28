@@ -28,4 +28,8 @@ public class NavigationHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public void delete() {
+    click(By.xpath("(.//*[@id='content']/form[2]/input[2])[1]"));
+
+  }
 }
