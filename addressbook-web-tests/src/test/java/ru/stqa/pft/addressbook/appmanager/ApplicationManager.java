@@ -18,7 +18,6 @@ public class ApplicationManager {
   private GroupHelper groupHelper;
   private String baseUrl;
   private String bd;
-  private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
   public void start() {
@@ -30,10 +29,6 @@ public class ApplicationManager {
     contactHelper = new ContactHelper(driver);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     url();
-  }
-
-  public void submit() {
-    driver.findElement(By.name("submit")).click();
   }
 
   public void url() {
@@ -48,38 +43,6 @@ public class ApplicationManager {
     }
   }
 
-  public boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
