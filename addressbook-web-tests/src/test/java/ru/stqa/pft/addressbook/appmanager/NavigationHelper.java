@@ -19,4 +19,13 @@ public class NavigationHelper extends HelperBase {
   public void goToHome() {
     click(By.linkText("home page"));
   }
+
+  public void submit() {
+    click(By.name("submit"));
+  }
+
+  public void update() {
+    click(By.name("update"));
+  }
+
 }

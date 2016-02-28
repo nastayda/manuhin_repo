@@ -24,10 +24,14 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getPhone2());
-    click(By.name("submit"));
   }
 
   public void createNewContact() {
+
     click(By.linkText("add new"));
+  }
+
+  public void editContact() {
+    click(By.xpath("(//img[@alt='Edit'])[1]"));
   }
 }
