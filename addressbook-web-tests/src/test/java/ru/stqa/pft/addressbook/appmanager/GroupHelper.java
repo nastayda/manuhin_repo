@@ -15,16 +15,22 @@ public class GroupHelper {
   }
 
   public void fillGroupForm(GroupData groupData) {
-    driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
-    driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys(groupData.getGroupHeader());
-    driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
+    type(By.name("group_name"), groupData.getGroupName());
+    type(By.name("group_header"), groupData.getGroupHeader());
+    type(By.name("group_footer"), groupData.getGroupFooter());
+  }
+
+  private void type(By locator, String text) {
+    driver.findElement(locator).clear();
+    driver.findElement(locator).sendKeys(text);
   }
 
   public void createNewGroup() {
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
+    click(By.linkText("groups"));
+    click(By.name("new"));
+  }
+
+  private void click(By locator) {
+    driver.findElement(locator).click();
   }
 }
