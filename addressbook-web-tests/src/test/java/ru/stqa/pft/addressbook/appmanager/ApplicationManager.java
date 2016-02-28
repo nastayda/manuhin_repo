@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.tests.ContactData;
-import ru.stqa.pft.addressbook.tests.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,8 +11,10 @@ import static org.testng.Assert.fail;
 /**
  * Created by Юрий on 27.02.2016.
  */
-public class ApplicationManager extends GroupHelper {
-  private WebDriver driver;
+public class ApplicationManager {
+  WebDriver driver;
+
+  private GroupHelper groupHelper;
   private String baseUrl;
   private String bd;
   private boolean acceptNextAlert = true;
@@ -23,6 +24,7 @@ public class ApplicationManager extends GroupHelper {
     driver = new FirefoxDriver();
     baseUrl = "http://localhost/";
     bd = "/addressbookv4.1.4/";
+    groupHelper = new GroupHelper(driver);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     url();
   }
@@ -111,17 +113,7 @@ public class ApplicationManager extends GroupHelper {
     driver.findElement(By.linkText("group page")).click();
   }
 
-  public void fillGroupForm(GroupData groupData) {
-    driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
-    driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys(groupData.getGroupHeader());
-    driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
-  }
-
-  public void navigateNewGroup() {
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
   }
 }
