@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.tests.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +13,7 @@ import static org.testng.Assert.fail;
 public class ApplicationManager {
   WebDriver driver;
 
+  private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private String baseUrl;
@@ -27,39 +27,9 @@ public class ApplicationManager {
     bd = "/addressbookv4.1.4/";
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
+    contactHelper = new ContactHelper(driver);
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     url();
-  }
-
-  public void fillContactForm(ContactData contactData) {
-    driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    driver.findElement(By.name("address")).clear();
-    driver.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    driver.findElement(By.name("home")).clear();
-    driver.findElement(By.name("home")).sendKeys(contactData.getHome());
-    driver.findElement(By.name("mobile")).clear();
-    driver.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
-    driver.findElement(By.name("work")).clear();
-    driver.findElement(By.name("work")).sendKeys(contactData.getWork());
-    driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys(contactData.getEmail());
-    driver.findElement(By.name("email2")).clear();
-    driver.findElement(By.name("email2")).sendKeys(contactData.getEmail2());
-    driver.findElement(By.name("address2")).clear();
-    driver.findElement(By.name("address2")).sendKeys(contactData.getAddress2());
-    driver.findElement(By.name("phone2")).clear();
-    driver.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
-  }
-
-  public void navigateNewContact() {
-    driver.findElement(By.linkText("add new")).click();
-  }
-
-  public void goToHome() {
-    driver.findElement(By.linkText("home page")).click();
   }
 
   public void submit() {
@@ -117,5 +87,9 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
