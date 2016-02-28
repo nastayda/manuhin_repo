@@ -7,37 +7,26 @@ import ru.stqa.pft.addressbook.tests.ContactData;
 /**
  * Created by Юрий on 28.02.2016.
  */
-public class ContactHelper {
-  private WebDriver driver;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
   }
 
   public void fillContactForm(ContactData contactData) {
-    driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
-    driver.findElement(By.name("address")).clear();
-    driver.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    driver.findElement(By.name("home")).clear();
-    driver.findElement(By.name("home")).sendKeys(contactData.getHome());
-    driver.findElement(By.name("mobile")).clear();
-    driver.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
-    driver.findElement(By.name("work")).clear();
-    driver.findElement(By.name("work")).sendKeys(contactData.getWork());
-    driver.findElement(By.name("email")).clear();
-    driver.findElement(By.name("email")).sendKeys(contactData.getEmail());
-    driver.findElement(By.name("email2")).clear();
-    driver.findElement(By.name("email2")).sendKeys(contactData.getEmail2());
-    driver.findElement(By.name("address2")).clear();
-    driver.findElement(By.name("address2")).sendKeys(contactData.getAddress2());
-    driver.findElement(By.name("phone2")).clear();
-    driver.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
+    type(By.name("firstname"), contactData.getFirstName());
+    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHome());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("work"), contactData.getWork());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("address2"), contactData.getAddress2());
+    type(By.name("phone2"), contactData.getPhone2());
   }
 
   public void createNewContact() {
-    driver.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 }
