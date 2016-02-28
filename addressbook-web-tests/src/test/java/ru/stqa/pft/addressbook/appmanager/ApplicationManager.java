@@ -12,20 +12,22 @@ import static org.testng.Assert.fail;
 /**
  * Created by Юрий on 27.02.2016.
  */
-public class ApplicationManager {
+public class ApplicationManager extends GroupHelper {
   private WebDriver driver;
   private String baseUrl;
+  private String bd;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
   public void start() {
     driver = new FirefoxDriver();
     baseUrl = "http://localhost/";
+    bd = "/addressbookv4.1.4/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    url();
   }
 
   public void fillContactForm(ContactData contactData) {
-    driver.findElement(By.linkText("add new")).click();
     driver.findElement(By.name("firstname")).clear();
     driver.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
     driver.findElement(By.name("lastname")).clear();
@@ -48,7 +50,11 @@ public class ApplicationManager {
     driver.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
   }
 
-  public void home() {
+  public void navigateNewContact() {
+    driver.findElement(By.linkText("add new")).click();
+  }
+
+  public void goToHome() {
     driver.findElement(By.linkText("home page")).click();
   }
 
@@ -57,7 +63,7 @@ public class ApplicationManager {
   }
 
   public void url() {
-    driver.get(baseUrl + "/addressbookv4.1.4/");
+    driver.get(baseUrl + bd);
   }
 
   public void stop() {
@@ -114,8 +120,7 @@ public class ApplicationManager {
     driver.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
   }
 
-  public void createNewGroup() {
-    driver.get(baseUrl + "/addressbookv4.1.4/");
+  public void navigateNewGroup() {
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
   }
