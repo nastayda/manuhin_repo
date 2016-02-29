@@ -1,8 +1,8 @@
-package ru.stqa.pft.addressbook.model;
+package ru.stqa.pft.addressbook414.model;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook414.appmanager.ApplicationManager;
 
 /**
  * Created by Юрий on 27.02.2016.

@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.appmanager;
+package ru.stqa.pft.addressbook414.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;

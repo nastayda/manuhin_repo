@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook414.tests;
 
 public class ContactData {
   private final String firstName;

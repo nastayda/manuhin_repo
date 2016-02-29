@@ -1,8 +1,8 @@
-package ru.stqa.pft.addressbook.appmanager;
+package ru.stqa.pft.addressbook414.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.tests.GroupData;
+import ru.stqa.pft.addressbook414.tests.GroupData;
 
 /**
  * Created by Юрий on 28.02.2016.
