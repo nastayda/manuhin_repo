@@ -31,7 +31,7 @@ public class GroupCreationTests {
   }
 
   @Test
-    public void GroupCreationTests() {
+    public void testGroupCreation() {
       goToGroup();
       initGroupCreation();
       fillGroupForm(new GroupData("11", "22", "33"));
