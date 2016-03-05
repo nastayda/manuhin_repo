@@ -14,7 +14,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void returnToContacts() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.xpath("(.//*[@id='nav']/ul/li[1]/a)"));
   }
 
   public void submitContactCreation() {
@@ -43,5 +43,13 @@ public class ContactHelper extends HelperBase {
 
   public void chooseContactDeletion(final int i) {
     click(By.xpath("(.//*[@type='checkbox'])[" + i + "]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("(.//*[@id='maintable']/tbody/tr[3]/td[8]/a/img)"));
+  }
+
+  public void submitContactModificstion() {
+    click(By.xpath("(.//*[@id='content']/form[1]/input[1])"));
   }
 }
