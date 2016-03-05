@@ -10,7 +10,7 @@ public class ContactCreationTests extends TestBase {
         app.initContactCreation();
         app.fillContactForm(new ContactData("11", "22", "33", "44", "11.22@55"));
         app.submitContactCreation();
-        app.goToContacts();
+        app.returnToContacts();
     }
 
 

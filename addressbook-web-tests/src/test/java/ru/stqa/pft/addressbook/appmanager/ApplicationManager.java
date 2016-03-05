@@ -81,7 +81,7 @@ public class ApplicationManager {
       wd.findElement(By.name("selected[]")).click();
   }
 
-  public void goToContacts() {
+  public void returnToContacts() {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
@@ -112,5 +112,25 @@ public class ApplicationManager {
   public void initContactCreation() {
     wd.findElement(By.linkText("add new")).click();
   }
+
+  public void alertContactDeletion() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void submitContactDeletion() {
+    wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+  }
+
+  public void chooseContactDeletion(String num) {
+    if (!wd.findElement(By.id(num)).isSelected()) {
+      wd.findElement(By.id(num)).click();
+    }
+  }
+
+  public void goToContacts() {
+    wd.findElement(By.cssSelector("body")).click();
+    wd.findElement(By.linkText("home")).click();
+  }
+
 
 }
