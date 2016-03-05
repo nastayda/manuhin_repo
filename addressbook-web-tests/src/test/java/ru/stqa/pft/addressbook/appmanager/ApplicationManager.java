@@ -121,10 +121,8 @@ public class ApplicationManager {
     wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
   }
 
-  public void chooseContactDeletion(String num) {
-    if (!wd.findElement(By.id(num)).isSelected()) {
-      wd.findElement(By.id(num)).click();
-    }
+  public void chooseContactDeletion(final int i) {
+      wd.findElement(By.xpath("(.//*[@type='checkbox'])[" + i + "]")).click();
   }
 
   public void goToContacts() {
