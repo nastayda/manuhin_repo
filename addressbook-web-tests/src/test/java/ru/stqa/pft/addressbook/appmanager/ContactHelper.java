@@ -19,7 +19,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.name("address2")).click();
+    wd.findElement(By.name("submit")).click();
   }
 
   public void fillContactForm(ContactData contactData) {
