@@ -57,10 +57,22 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactModification() {
-    click(By.xpath("(.//*[@id='maintable']/tbody/tr[3]/td[8]/a/img)"));
+    click(By.xpath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img)"));
   }
 
   public void submitContactModificstion() {
     click(By.xpath("(.//*[@id='content']/form[1]/input[1])"));
   }
+
+  public boolean isThereAContact(final int i) {
+    return isElementPresent(By.xpath("(.//*[@type='checkbox'])[" + i + "]"));
+  }
+
+  public void createContact(ContactData contactData, boolean creation) {
+    initContactCreation();
+    fillContactForm(contactData, creation);
+    submitContactCreation();
+    returnToContacts();
+  }
+
 }
