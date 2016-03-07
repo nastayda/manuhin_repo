@@ -10,6 +10,7 @@ public class ContactDeletionTests extends TestBase {
     public void testContactDeletion() {
         app.getNavigationHelper().goToContacts();
         if (! app.getContactHelper().isThereAContact(2)) {
+            app.getNavigationHelper().goToGroup();
             if (! app.getGroupHelper().isThereAGroup()) {
                 app.getNavigationHelper().goToGroup();
                 app.getGroupHelper().createGroup(new GroupData("11", "22", "33"));
