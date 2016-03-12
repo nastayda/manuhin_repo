@@ -75,4 +75,7 @@ public class ContactHelper extends HelperBase {
     returnToContacts();
   }
 
+  public int getContactCount() {
+    return wd.findElements(By.xpath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img)")).size();
+  }
 }
