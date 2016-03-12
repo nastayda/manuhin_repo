@@ -56,8 +56,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(.//*[@type='checkbox'])[" + i + "]"));
   }
 
-  public void initContactModification() {
-    click(By.xpath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img)"));
+  public void initContactModification(int index) {
+    wd.findElements(By.xpath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img)")).get(index).click();
   }
 
   public void submitContactModificstion() {
