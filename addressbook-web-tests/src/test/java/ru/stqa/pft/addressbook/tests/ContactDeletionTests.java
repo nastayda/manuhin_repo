@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
@@ -13,7 +14,8 @@ public class ContactDeletionTests extends TestBase {
     public void testContactDeletion() {
         app.getNavigationHelper().goToContacts();
         List<ContactData> before = app.getContactHelper().getContactList();
-        if (! app.getContactHelper().isThereAContact(2)) {
+        int indexOfDeletion = before.size() - 1;
+        if (! app.getContactHelper().isThereAContact(indexOfDeletion)) {
             app.getNavigationHelper().goToGroup();
             if (! app.getGroupHelper().isThereAGroup()) {
                 app.getNavigationHelper().goToGroup();
@@ -21,15 +23,15 @@ public class ContactDeletionTests extends TestBase {
             }
             app.getContactHelper().createContact(new ContactData("11", "22", "33", "44", "11.22@55", "11"), true);
         }
-        app.getContactHelper().chooseContactDeletion(2);
+        app.getContactHelper().chooseContactDeletion(indexOfDeletion + 1);
         app.getContactHelper().submitContactDeletion();
         app.getContactHelper().alertContactDeletion();
         app.getNavigationHelper().goToContacts();
         List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size() - 1);
+        Assert.assertEquals(after.size(), indexOfDeletion);
 
-        before.remove(before.size() - 1);
-        Assert.assertEquals(after, before);
+        before.remove(indexOfDeletion);
+        Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
 
     }
 }
