@@ -86,14 +86,13 @@ public class ContactHelper extends HelperBase {
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));
-    //List<WebElement> elements = wd.findElements(By.xpath("//*[@type='checkbox' and @name='selected[]']"));
     for (WebElement row: rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
-      WebElement cell: cells;
-        if String fullString = cell.getText();
-        String firstname = fullString.has;
-      }
-      ContactData contact = new ContactData(id, firstname, null, null, null, null, null);
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      String id = row.findElement(By.tagName("input")).getAttribute("value");
+
+      ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;

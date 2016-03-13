@@ -8,22 +8,6 @@ public class ContactData {
   private final String email;
   private final String id;
 
-  public String getId() {
-    return id;
-  }
-
-  private String group;
-
-  public ContactData(String id, String firstname, String lastname, String address, String mobile, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.mobile = mobile;
-    this.email = email;
-    this.group = group;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -48,10 +32,26 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
+            "firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", id='" + id + '\'' +
             '}';
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  private String group;
+
+  public ContactData(String id, String firstname, String lastname, String address, String mobile, String email, String group) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.address = address;
+    this.mobile = mobile;
+    this.email = email;
+    this.group = group;
   }
 
   public ContactData(String firstname, String lastname, String address, String mobile, String email, String group) {
