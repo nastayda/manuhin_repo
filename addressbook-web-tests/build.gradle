@@ -1,10 +1,12 @@
 apply plugin: 'java'
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
+    url "http://repo1.maven.org/maven2"
 }
 
 dependencies {
     compile 'org.testng:testng:6.9.10'
     compile 'org.seleniumhq.selenium:selenium-java:2.52.0'
+    compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/selenium-server-standalone-2.52.0.jar')
 }
