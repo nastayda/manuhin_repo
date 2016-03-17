@@ -12,17 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class VitrinaOpenAndFind {
+public class VitrinaOpenAndFindTests extends TestBase {
   FirefoxDriver wd;
 
   @BeforeMethod
   public void setUp() throws Exception {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
-
-  @Test
-  public void testVitrinaOpenAndFind() throws Exception {
     wd.get("https://vm-082-as-gge.mdi.ru/auth/login.action");
     wd.findElement(By.id("content")).click();
     wd.findElement(By.id("username")).click();
@@ -31,24 +27,41 @@ public class VitrinaOpenAndFind {
     wd.findElement(By.id("password")).click();
     wd.findElement(By.id("password")).sendKeys("21");
     wd.findElement(By.id("submitBtn")).click();
+  }
 
-    waitLoadPage();
-    waitElement(By.linkText("Экспертиза"));
-    wd.findElement(By.linkText("Экспертиза")).click();
+  @Test
+  public void testVitrinaOpenAndFind() throws Exception {
 
-    waitLoadPage();
-    waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
-    wd.findElement(By.id("0E0CADA75DC448959686DFC63BD2178A")).click();
+    selectRazdel();
+    vizovRasshPoisk();
+    fillFiltrAddress();
+    buttonFind();
 
+  }
+
+  private void buttonFind() throws InterruptedException {
+    waitElement(By.xpath("//div[@class='form']/input"));
+    wd.findElement(By.xpath("//div[@class='form']/input")).click();
+  }
+
+  private void fillFiltrAddress() throws InterruptedException {
     waitLoadPage();
     waitElement(By.xpath("//div[@class='form']/div[2]/span/input"));
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).click();
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).clear();
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).sendKeys("ав");
+  }
 
-    waitElement(By.xpath("//div[@class='form']/input"));
-    wd.findElement(By.xpath("//div[@class='form']/input")).click();
+  private void vizovRasshPoisk() throws InterruptedException {
+    waitLoadPage();
+    waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
+    wd.findElement(By.id("0E0CADA75DC448959686DFC63BD2178A")).click();
+  }
 
+  private void selectRazdel() throws InterruptedException {
+    waitLoadPage();
+    waitElement(By.linkText("Экспертиза"));
+    wd.findElement(By.linkText("Экспертиза")).click();
   }
 
   private void waitLoadPage() throws InterruptedException {
