@@ -32,21 +32,28 @@ public class VitrinaOpenAndFindTests extends TestBase {
   @Test
   public void testVitrinaOpenAndFind() throws Exception {
 
-    selectRazdel();
-
-    waitLoadPage();
-    waitElement(By.xpath("//div[@id='secondMenu']/ul/li/a"));
-    wd.findElement(By.xpath("//div[@id='secondMenu']/ul/li/a")).click();
-
-    waitElement(By.xpath("//a[contains(text(),'Новые обращения')]"));
-    wd.findElement(By.xpath("//a[contains(text(),'Новые обращения')]")).click();
-//    wd.findElement(By.cssSelector("div.closeBtn.btSearchStyle")).click();
-
-
+    selectVitrina();
     vizovRasshPoisk();
     fillAllFilters();
     buttonFind();
 
+  }
+
+  private void selectVitrina() throws InterruptedException {
+    selectRazdel();
+    selectMenuVitrin();
+    selectPodMenuVitrina();
+  }
+
+  private void selectPodMenuVitrina() throws InterruptedException {
+    waitElement(By.xpath("//a[contains(text(),'Новые обращения')]"));
+    wd.findElement(By.xpath("//a[contains(text(),'Новые обращения')]")).click();
+  }
+
+  private void selectMenuVitrin() throws InterruptedException {
+    waitLoadPage();
+    waitElement(By.xpath("//div[@id='secondMenu']/ul/li/a"));
+    wd.findElement(By.xpath("//div[@id='secondMenu']/ul/li/a")).click();
   }
 
   private void fillAllFilters() throws InterruptedException {
@@ -73,8 +80,8 @@ public class VitrinaOpenAndFindTests extends TestBase {
   }
 
   private void selectRazdel() throws InterruptedException {
-    waitLoadPage();
     waitElement(By.linkText("Экспертиза"));
+    waitLoadPage();
     wd.findElement(By.linkText("Экспертиза")).click();
   }
 
