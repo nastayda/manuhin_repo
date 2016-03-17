@@ -33,10 +33,25 @@ public class VitrinaOpenAndFindTests extends TestBase {
   public void testVitrinaOpenAndFind() throws Exception {
 
     selectRazdel();
+
+    waitLoadPage();
+    waitElement(By.xpath("//div[@id='secondMenu']/ul/li/a"));
+    wd.findElement(By.xpath("//div[@id='secondMenu']/ul/li/a")).click();
+
+    waitElement(By.xpath("//a[contains(text(),'Новые обращения')]"));
+    wd.findElement(By.xpath("//a[contains(text(),'Новые обращения')]")).click();
+//    wd.findElement(By.cssSelector("div.closeBtn.btSearchStyle")).click();
+
+
     vizovRasshPoisk();
-    fillFiltrAddress();
+    fillAllFilters();
     buttonFind();
 
+  }
+
+  private void fillAllFilters() throws InterruptedException {
+    waitLoadPage();
+    fillFiltrAddress();
   }
 
   private void buttonFind() throws InterruptedException {
@@ -45,7 +60,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
   }
 
   private void fillFiltrAddress() throws InterruptedException {
-    waitLoadPage();
     waitElement(By.xpath("//div[@class='form']/div[2]/span/input"));
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).click();
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).clear();
@@ -53,8 +67,8 @@ public class VitrinaOpenAndFindTests extends TestBase {
   }
 
   private void vizovRasshPoisk() throws InterruptedException {
-    waitLoadPage();
     waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
+    waitLoadPage();
     wd.findElement(By.id("0E0CADA75DC448959686DFC63BD2178A")).click();
   }
 
@@ -69,7 +83,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
   }
 
   private void waitElement(By locator) throws InterruptedException {
-    Thread.sleep(3000);
     for (int second = 0;; second++) {
       if (second >= 60) {
         fail("timeout");
