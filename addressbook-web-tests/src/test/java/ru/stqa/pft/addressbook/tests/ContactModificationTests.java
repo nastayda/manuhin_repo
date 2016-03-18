@@ -15,13 +15,13 @@ public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification(){
-    app.getNavigationHelper().goToContacts();
+    app.goTo().goToContacts();
     List<ContactData> before = app.getContactHelper().getContactList();
     if (! app.getContactHelper().isThereAContact(2)) {
-      app.getNavigationHelper().goToGroup();
-      if (! app.getGroupHelper().isThereAGroup()) {
-        app.getNavigationHelper().goToGroup();
-        app.getGroupHelper().createGroup(new GroupData("11", "22", "33"));
+      app.goTo().groups();
+      if (! app.group().isThereAGroup()) {
+        app.goTo().groups();
+        app.group().create(new GroupData("11", "22", "33"));
       }
       app.getContactHelper().createContact(new ContactData("11", "22", "33", "44", "11.22@55", "11"), true);
     }

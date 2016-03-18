@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,20 +11,20 @@ public class GroupDeletionTests extends TestBase {
 
     @BeforeMethod
     public void preConditions() {
-        app.getNavigationHelper().goToGroup();
-        if (! app.getGroupHelper().isThereAGroup()) {
-            app.getGroupHelper().createGroup(new GroupData("11", "22", "33"));
+        app.goTo().groups();
+        if (app.group().list().size() == 0) {
+            app.group().create(new GroupData("11", "22", "33"));
         }
     }
 
     @Test
     public void testGroupDeletion() {
-        List<GroupData> before = app.getGroupHelper().getGroupList();
+        List<GroupData> before = app.group().list();
         int index = before.size() - 1;
-        app.getGroupHelper().selectGroup(index);
-        app.getGroupHelper().deleteSelectedGroups();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList();
+        app.group().select(index);
+        app.group().delete();
+        app.group().toGroups();
+        List<GroupData> after = app.group().list();
         Assert.assertEquals(after.size(), index);
 
         before.remove(index);

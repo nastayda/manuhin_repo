@@ -17,7 +17,7 @@ public class GroupHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToGroupPage() {
+  public void toGroups() {
     click(By.linkText("group page"));
   }
 
@@ -25,7 +25,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillGroupForm(GroupData groupData) {
+  public void fillForm(GroupData groupData) {
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getHeader());
     type(By.name("group_footer"), groupData.getFooter());
@@ -35,19 +35,19 @@ public class GroupHelper extends HelperBase {
     click(By.name("new"));
   }
 
-  public void deleteSelectedGroups() {
+  public void delete() {
     click(By.name("delete"));
   }
 
-  public void selectGroup(int index) {
+  public void select(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initGroupModification() {
+  public void modify() {
     click(By.name("edit"));
   }
 
-  public void submitGroupModification() {
+  public void submitModification() {
     click(By.name("update"));
   }
 
@@ -55,18 +55,18 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createGroup(GroupData groupData) {
+  public void create(GroupData groupData) {
     initGroupCreation();
-    fillGroupForm(groupData);
+    fillForm(groupData);
     submitGroupCreation();
-    returnToGroupPage();
+    toGroups();
   }
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element: elements) {

@@ -13,7 +13,7 @@ public class NavigationHelper extends HelperBase {
     super(wd);
   }
 
-  public void goToGroup() {
+  public void groups() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.linkText("groups")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {

@@ -13,15 +13,15 @@ public class ContactCreationTests extends TestBase {
 
   @BeforeMethod
   public void preConditions() {
-    app.getNavigationHelper().goToGroup();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("11", "22", "33"));
+    app.goTo().groups();
+    if (! app.group().isThereAGroup()) {
+      app.group().create(new GroupData("11", "22", "33"));
     }
   }
 
   @Test
   public void testContactCreation() {
-    app.getNavigationHelper().goToContacts();
+    app.goTo().goToContacts();
     List<ContactData> before = app.getContactHelper().getContactList();
 
     ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "11", "22", "33", "44", "11.22@55", "11");
