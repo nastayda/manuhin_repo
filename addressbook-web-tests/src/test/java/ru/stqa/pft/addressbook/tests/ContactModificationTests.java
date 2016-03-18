@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
       app.goTo().groups();
       if (app.group().list().size() == 0) {
         app.goTo().groups();
-        app.group().create(new GroupData("11", "22", "33"));
+        app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
       }
       app.contact().create(new ContactData("11", "22", "33", "44", "11.22@55", "11"), true);
     }

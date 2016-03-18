@@ -17,7 +17,7 @@ public class GroupModificationTests extends TestBase {
   public void preConditions() {
     app.goTo().groups();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("11", "22", "33"));
+      app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
     }
   }
 
@@ -28,7 +28,7 @@ public class GroupModificationTests extends TestBase {
     app.group().select(index);
     app.group().modify();
 
-    GroupData group = new GroupData(before.get(index).getId(), "111", "222", "333");
+    GroupData group = new GroupData().withId(before.get(index).getId()).withName("111").withFooter("222").withHeader("333");
     app.group().fillForm(group);
     app.group().submitModification();
     app.group().toGroups();
