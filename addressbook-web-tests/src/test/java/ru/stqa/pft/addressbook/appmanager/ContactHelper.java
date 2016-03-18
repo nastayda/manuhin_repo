@@ -25,7 +25,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(.//*[@id='nav']/ul/li[1]/a)"));
   }
 
-  public void submitContactCreation() {
+  public void submitCreation() {
     wd.findElement(By.name("submit")).click();
   }
 
@@ -43,7 +43,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void initContactCreation() {
+  public void initCreation() {
     click(By.linkText("add new"));
   }
 
@@ -68,9 +68,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public void create(ContactData contactData, boolean creation) {
-    initContactCreation();
+    initCreation();
     fillForm(contactData, creation);
-    submitContactCreation();
+    submitCreation();
     toContacts();
   }
 
