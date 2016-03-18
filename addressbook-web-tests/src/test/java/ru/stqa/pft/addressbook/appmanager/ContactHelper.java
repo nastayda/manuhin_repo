@@ -21,7 +21,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToContacts() {
+  public void toContacts() {
     click(By.xpath("(.//*[@id='nav']/ul/li[1]/a)"));
   }
 
@@ -29,7 +29,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("submit")).click();
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+  public void fillForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("address"), contactData.getAddress());
@@ -47,42 +47,34 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void alertContactDeletion() {
+  public void alertDeletion() {
     wd.switchTo().alert().accept();
   }
 
-  public void submitContactDeletion() {
+  public void submitDeletion() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void chooseContactDeletion(final int i) {
+  public void select(final int i) {
     click(By.xpath("(.//*[@type='checkbox'])[" + i + "]"));
   }
 
-  public void initContactModification(int index) {
+  public void modify(int index) {
     wd.findElements(By.xpath("(.//*[@id='maintable']/tbody/tr/td[8]/a/img)")).get(index).click();
   }
 
-  public void submitContactModificstion() {
+  public void submitModificstion() {
     click(By.xpath("(.//*[@id='content']/form[1]/input[1])"));
   }
 
-  public boolean isThereAContact(final int i) {
-    return isElementPresent(By.xpath("(.//*[@type='checkbox'])[" + i + "]"));
-  }
-
-  public void createContact(ContactData contactData, boolean creation) {
+  public void create(ContactData contactData, boolean creation) {
     initContactCreation();
-    fillContactForm(contactData, creation);
+    fillForm(contactData, creation);
     submitContactCreation();
-    returnToContacts();
+    toContacts();
   }
 
-  public int getContactCount() {
-    return wd.findElements(By.xpath("(.//*[@id='maintable']/tbody/tr[2]/td[8]/a/img)")).size();
-  }
-
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row: rows) {

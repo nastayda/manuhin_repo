@@ -51,19 +51,11 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
-  }
-
   public void create(GroupData groupData) {
     initGroupCreation();
     fillForm(groupData);
     submitGroupCreation();
     toGroups();
-  }
-
-  public int getGroupCount() {
-    return wd.findElements(By.name("selected[]")).size();
   }
 
   public List<GroupData> list() {

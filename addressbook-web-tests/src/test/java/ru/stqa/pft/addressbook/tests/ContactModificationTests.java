@@ -15,25 +15,25 @@ public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification(){
-    app.goTo().goToContacts();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    if (! app.getContactHelper().isThereAContact(2)) {
+    app.goTo().contacts();
+    List<ContactData> before = app.contact().list();
+    if (app.contact().list().size() == 0) {
       app.goTo().groups();
-      if (! app.group().isThereAGroup()) {
+      if (app.group().list().size() == 0) {
         app.goTo().groups();
         app.group().create(new GroupData("11", "22", "33"));
       }
-      app.getContactHelper().createContact(new ContactData("11", "22", "33", "44", "11.22@55", "11"), true);
+      app.contact().create(new ContactData("11", "22", "33", "44", "11.22@55", "11"), true);
     }
 
     int index = before.size() - 1;
-    app.getContactHelper().initContactModification(index);
+    app.contact().modify(index);
 
     ContactData contact = new ContactData(before.get(index).getId(), "11", "22", null, null, null, null);
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModificstion();
-    app.getContactHelper().returnToContacts();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().fillForm(contact, false);
+    app.contact().submitModificstion();
+    app.contact().toContacts();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);

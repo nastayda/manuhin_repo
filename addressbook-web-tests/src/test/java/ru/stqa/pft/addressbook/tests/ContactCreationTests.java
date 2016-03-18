@@ -14,19 +14,19 @@ public class ContactCreationTests extends TestBase {
   @BeforeMethod
   public void preConditions() {
     app.goTo().groups();
-    if (! app.group().isThereAGroup()) {
+    if (app.group().list().size() == 0) {
       app.group().create(new GroupData("11", "22", "33"));
     }
   }
 
   @Test
   public void testContactCreation() {
-    app.goTo().goToContacts();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    app.goTo().contacts();
+    List<ContactData> before = app.contact().list();
 
     ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "11", "22", "33", "44", "11.22@55", "11");
-    app.getContactHelper().createContact(contact, true);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact, true);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(contact);
