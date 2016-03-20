@@ -20,6 +20,7 @@ public class GroupData {
   }
 
   public int getId() {
+
     return id;
   }
 
@@ -58,15 +59,15 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (name != null ? !name.equals(groupData.name) : groupData.name != null) return false;
+    if (id != groupData.id) return false;
+    return name != null ? name.equals(groupData.name) : groupData.name == null;
 
-    return true;
   }
 
   @Override
   public int hashCode() {
-    return name != null ? name.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
   }
-
-
 }
