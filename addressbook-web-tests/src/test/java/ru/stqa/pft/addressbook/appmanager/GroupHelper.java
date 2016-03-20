@@ -64,18 +64,6 @@ public class GroupHelper extends HelperBase {
     toGroups();
   }
 
-  public List<GroupData> list() {
-    List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element: elements) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData().withId(id).withName(name);
-      groups.add(group);
-    }
-    return groups;
-  }
-
   public Set<GroupData> all() {
     Set<GroupData> groups = new HashSet<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
@@ -86,12 +74,6 @@ public class GroupHelper extends HelperBase {
       groups.add(group);
     }
     return groups;
-  }
-
-  public void delete(int index) {
-    select(index);
-    delete();
-    toGroups();
   }
 
   public void delete(GroupData group) {

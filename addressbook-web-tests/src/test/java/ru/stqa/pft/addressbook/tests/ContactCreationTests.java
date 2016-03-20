@@ -14,7 +14,7 @@ public class ContactCreationTests extends TestBase {
   @BeforeMethod
   public void preConditions() {
     app.goTo().groups();
-    if (app.group().list().size() == 0) {
+    if (app.group().all().size() == 0) {
       app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
     }
   }

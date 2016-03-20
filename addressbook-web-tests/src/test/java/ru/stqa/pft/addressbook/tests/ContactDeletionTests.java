@@ -17,7 +17,7 @@ public class ContactDeletionTests extends TestBase {
         int index = before.size() - 1;
         if (app.contact().list().size() == 0) {
             app.goTo().groups();
-            if (app.group().list().size() == 0) {
+            if (app.group().all().size() == 0) {
                 app.goTo().groups();
                 app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
             }

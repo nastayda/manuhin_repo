@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
     List<ContactData> before = app.contact().list();
     if (app.contact().list().size() == 0) {
       app.goTo().groups();
-      if (app.group().list().size() == 0) {
+      if (app.group().all().size() == 0) {
         app.goTo().groups();
         app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
       }
