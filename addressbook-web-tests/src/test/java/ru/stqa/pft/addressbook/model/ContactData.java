@@ -1,37 +1,17 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String mobile;
-  private final String email;
-  private int id;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+
+  private String address;
+  private String mobile;
+  private String email;
+  private String group;
 
   public int getId() {
     return id;
-  }
-
-  private String group;
-
-  public ContactData(int id, String firstname, String lastname, String address, String mobile, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.mobile = mobile;
-    this.email = email;
-    this.group = group;
-  }
-
-  public ContactData(String firstname, String lastname, String address, String mobile, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.mobile = mobile;
-    this.email = email;
-    this.group = group;
   }
 
   public String getFirstname() {
@@ -58,8 +38,39 @@ public class ContactData {
     return group;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override
