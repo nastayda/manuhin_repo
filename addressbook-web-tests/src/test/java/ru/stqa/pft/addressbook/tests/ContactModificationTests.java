@@ -33,20 +33,14 @@ public class ContactModificationTests extends TestBase {
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("11").withLastname("22");
 
     app.contact().modify(contact);
-
-    app.contact().fillForm(contact, false);
-    app.contact().submitModificstion();
-    app.contact().toContacts();
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedContact);
     before.add(contact);
 
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(after, before);
   }
+
 
 }
