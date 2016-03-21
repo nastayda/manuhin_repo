@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Юрий on 05.03.2016.
@@ -16,8 +17,8 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification(){
     app.goTo().contacts();
-    List<ContactData> before = app.contact().list();
-    if (app.contact().list().size() == 0) {
+    Set<ContactData> before = app.contact().all();
+    if (app.contact().all().size() == 0) {
       app.goTo().groups();
       if (app.group().all().size() == 0) {
         app.goTo().groups();
@@ -27,10 +28,12 @@ public class ContactModificationTests extends TestBase {
               withAddress("33").withMobile("44").withEmail("11.22@55").withGroup("11"), true);
     }
 
-    int index = before.size() - 1;
-    app.contact().modify(index);
+    ContactData modifiedContact = before.iterator().next();
 
-    ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("11").withLastname("22");
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("11").withLastname("22");
+
+    app.contact().modify(contact);
+
     app.contact().fillForm(contact, false);
     app.contact().submitModificstion();
     app.contact().toContacts();
