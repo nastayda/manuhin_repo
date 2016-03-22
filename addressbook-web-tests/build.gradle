@@ -10,6 +10,6 @@ dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:2.52.0'
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
     compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/selenium-server-standalone-2.52.0.jar')
-    //compile files('c:/Program Files (x86)/JetBrains/IntelliJ IDEA Community Edition 15.0.3/lib/java-hamcrest-2.0.0.0-javadoc.jar')
+    compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/java-hamcrest-2.0.0.0-javadoc.jar')
 
 }
