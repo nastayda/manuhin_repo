@@ -134,4 +134,7 @@ public class ContactHelper extends HelperBase {
     toContacts();
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
