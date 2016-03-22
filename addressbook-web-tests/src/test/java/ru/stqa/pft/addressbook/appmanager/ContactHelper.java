@@ -93,11 +93,11 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = row.findElements(By.tagName("td"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allphones = cells.get(5).getText();
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
 
       contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+              .withAllphones(allphones));
     }
     return new Contacts(contactCache);
   }
