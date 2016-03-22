@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+
 import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
@@ -20,5 +21,8 @@ public class GroupCreationTests extends TestBase {
       group.withId(after.stream().mapToInt((g) -> (g.getId())).max().getAsInt());
       before.add(group);
       Assert.assertEquals(after, before);
+
+      Matcher
+
   }
 }
