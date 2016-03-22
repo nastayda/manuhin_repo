@@ -24,7 +24,7 @@ public class ContactModificationTests extends TestBase {
         app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
       }
       app.contact().create(new ContactData().withFirstname("11").withLastname("22").
-              withAddress("33").withMobile("44").withEmail("11.22@55").withGroup("11"), true);
+              withAddress("33").withMobilePhone("44").withEmail("11.22@55").withGroup("11"), true);
     }
 
     ContactData modifiedContact = before.iterator().next();
