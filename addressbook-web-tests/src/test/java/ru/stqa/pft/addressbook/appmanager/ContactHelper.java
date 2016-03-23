@@ -151,11 +151,17 @@ public class ContactHelper extends HelperBase {
   public ContactData infoFromDetails(ContactData contact) {
     initDetailsById(contact.getId());
     String fio = wd.findElement(By.xpath("//*[@id='content']/b")).getText();
+    String alldetails = wd.findElement(By.xpath("//*[@id='content']")).getText();
+    String minusdetails = wd.findElement(By.xpath("//*[@id='content']/i")).getText();
+    String neaddetails = alldetails.replace(minusdetails,"");
+    String cleardetails = neaddetails.replaceAll("[(www)]]","");
+
+
     WebElement content = wd.findElement(By.xpath("//*[@id='content']"));
     List<WebElement> br = content.findElements(By.tagName("br"));
+    String details = "";
     for (WebElement b:br) {
-      String details = b.getText();
-
+      details = details + b.getText();
     }
     // cells.get(7).findElement(By.tagName("a")).click();
     String home = wd.findElement(By.name("home")).getAttribute("value");
