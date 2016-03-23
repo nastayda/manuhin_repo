@@ -8,7 +8,6 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -94,10 +93,11 @@ public class ContactHelper extends HelperBase {
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String allphones = cells.get(5).getText();
+      String address = cells.get(3).getText();
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
 
       contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withAllphones(allphones));
+              .withAllphones(allphones).withAddress(address));
     }
     return new Contacts(contactCache);
   }
@@ -132,9 +132,10 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.xpath(".//*[@id='content']//textarea[1]")).getText();
     wd.navigate().back();
     return new ContactData().
             withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withMobilePhone(mobile)
-            .withHomePhone(home).withWorkPhone(work);
+            .withHomePhone(home).withWorkPhone(work).withAddress(address);
   }
 }
