@@ -47,7 +47,10 @@ public class ContactData {
   }
 
   public String getFio() {
-    return fio;
+
+    return fio = getFirstname() + " "
+            + getMiddlename()+ " "
+            + getLastname();
   }
 
   public String getAddress() {

@@ -19,23 +19,28 @@ public class ContactDetailTests extends TestBase {
     app.goTo().contacts();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    ContactData contactInfoFromDetails = app.contact().infoFromDetails(contact);
+    String contactInfoFromDetails = app.contact().infoFromDetails(contact);
 
-    assertThat(mergeFromEditForm(contactInfoFromEditForm), equalTo(mergeDetails(contactInfoFromDetails)));
-  }
-
-  private String mergeDetails(ContactData contact) {
-    return asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-            .stream().filter((s) -> ! s.equals(""))
-            .map(ContactPhoneTests::cleaned)
-            .collect(Collectors.joining("\n"));
+    assertThat(mergeFromEditForm(contactInfoFromEditForm), equalTo(contactInfoFromDetails));
   }
 
   private String mergeFromEditForm(ContactData contact) {
-    return asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-            .stream().filter((s) -> ! s.equals(""))
-            .map(ContactPhoneTests::cleaned)
-            .collect(Collectors.joining("\n"));
+    String homePhone = contact.getHomePhone();
+    String mobilePhone = contact.getMobilePhone();
+    String workPhone = contact.getWorkPhone();
+    if (homePhone != "") {
+      homePhone = "H: " + homePhone;
+    }
+    if (mobilePhone != "") {
+      mobilePhone = "M: " + mobilePhone;
+    }
+    if (workPhone != "") {
+      workPhone = "W: " + workPhone;
+    }
+    return asList(contact.getFio(), contact.getAddress(), "",
+            homePhone, mobilePhone, workPhone, "",
+            contact.getEmail(), contact.getEmail2(), contact.getEmail3(), "\n\n")
+            .stream().collect(Collectors.joining("\n"));
   }
 
 }

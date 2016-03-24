@@ -148,37 +148,14 @@ public class ContactHelper extends HelperBase {
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  public ContactData infoFromDetails(ContactData contact) {
+  public String infoFromDetails(ContactData contact) {
     initDetailsById(contact.getId());
-    String fio = wd.findElement(By.xpath("//*[@id='content']/b")).getText();
     String alldetails = wd.findElement(By.xpath("//*[@id='content']")).getText();
     String minusdetails = wd.findElement(By.xpath("//*[@id='content']/i")).getText();
     String neaddetails = alldetails.replace(minusdetails,"");
-    String cleardetails = neaddetails.replaceAll("[(www)]]","");
+    String cleardetails = neaddetails.replaceAll("\\s*\\(www\\..*?\\)", "");
 
-
-    WebElement content = wd.findElement(By.xpath("//*[@id='content']"));
-    List<WebElement> br = content.findElements(By.tagName("br"));
-    String details = "";
-    for (WebElement b:br) {
-      details = details + b.getText();
-    }
-    // cells.get(7).findElement(By.tagName("a")).click();
-    String home = wd.findElement(By.name("home")).getAttribute("value");
-    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-    String work = wd.findElement(By.name("work")).getAttribute("value");
-    String address = wd.findElement(By.xpath(".//*[@id='content']//textarea[1]")).getText();
-    String email = wd.findElement(By.name("email")).getAttribute("value");
-    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
-    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
-
-    wd.navigate().back();
-    return new ContactData().
-            withId(contact.getId())
-            .withFio(fio)
-            .withMobilePhone(mobile).withHomePhone(home).withWorkPhone(work)
-            .withAddress(address)
-            .withEmail(email).withEmail2(email2).withEmail3(email3);
+    return cleardetails;
   }
 
   private void initDetailsById(int id) {
