@@ -26,7 +26,7 @@ public class ContactCreationTests extends TestBase {
     app.goTo().contacts();
     Contacts before = app.contact().all();
 
-    File photo = new File("");
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData().withFirstname("11").withLastname("22").
             withAddress("33").withMobilePhone("44").withEmail("11.22@55").withGroup("11").withPhoto(photo);
     app.contact().create(contact, true);
@@ -38,9 +38,12 @@ public class ContactCreationTests extends TestBase {
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> (c.getId())).max().getAsInt()))));
   }
 
-  @Test
+  @Test(enabled = false)
   public void restCurrentDir() {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
+    File photo = new File("src/test/resources/stru.png");
+    System.out.println(photo.getAbsolutePath());
+    System.out.println(photo.exists());
   }
 }
