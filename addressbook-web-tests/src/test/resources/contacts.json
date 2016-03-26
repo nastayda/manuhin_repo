@@ -10,7 +10,7 @@
     "email": "email 0",
     "email2": "email2 0",
     "email3": "email3 0",
-    "group": "group 0"
+    "group": "11"
   },
   {
     "firstname": "firstname 1",
@@ -23,7 +23,7 @@
     "email": "email 1",
     "email2": "email2 1",
     "email3": "email3 1",
-    "group": "group 1"
+    "group": "11"
   },
   {
     "firstname": "firstname 2",
@@ -36,7 +36,7 @@
     "email": "email 2",
     "email2": "email2 2",
     "email3": "email3 2",
-    "group": "group 2"
+    "group": "11"
   },
   {
     "firstname": "firstname 3",
@@ -49,6 +49,6 @@
     "email": "email 3",
     "email2": "email2 3",
     "email3": "email3 3",
-    "group": "group 3"
+    "group": "11"
   }
 ]
