@@ -18,3 +18,16 @@ dependencies {
     //compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/xstream-1.4.9.jar')
 
 }
+
+task testGroups(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-groups.xml'
+    }
+}
+
+task testContacts(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+
+}
