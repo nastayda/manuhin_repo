@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testContactDeletion() {
     app.goTo().contacts();
     Contacts before = app.contact().all();
