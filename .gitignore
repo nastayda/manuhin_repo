@@ -17,3 +17,4 @@ gradle-app.setting
 *.xml
 .idea/gradle.xml
 .idea/gradle.xml
+*.log
