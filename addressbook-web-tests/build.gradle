@@ -3,6 +3,10 @@ apply plugin: 'java'
 repositories {
     mavenCentral()
     //url "http://repo1.maven.org/maven2"
+    maven  {
+        url "http://repo1.maven.org/maven2"
+    }
+
 }
 
 dependencies {
@@ -13,9 +17,9 @@ dependencies {
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'ch.qos.logback:logback-classic:1.1.6'
-    compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/selenium-server-standalone-2.53.0.jar')
-    compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/java-hamcrest-2.0.0.0-javadoc.jar')
-    compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/jcommander-1.48-javadoc.jar')
+   // compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/selenium-server-standalone-2.53.0.jar')
+   // compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/java-hamcrest-2.0.0.0-javadoc.jar')
+   // compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/jcommander-1.48-javadoc.jar')
     //compile files('d:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/xstream-1.4.9.jar')
 
 }

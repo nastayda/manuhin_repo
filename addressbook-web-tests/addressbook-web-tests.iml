@@ -9,8 +9,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -45,7 +43,7 @@
     <orderEntry type="module-library">
       <library name="Gradle: selenium-server-standalone-2.53.0">
         <CLASSES>
-          <root url="jar://D:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/selenium-server-standalone-2.53.0.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/selenium-server-standalone-2.53.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -54,7 +52,7 @@
     <orderEntry type="module-library">
       <library name="Gradle: java-hamcrest-2.0.0.0-javadoc">
         <CLASSES>
-          <root url="jar://D:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/java-hamcrest-2.0.0.0-javadoc.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/java-hamcrest-2.0.0.0-javadoc.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -63,7 +61,7 @@
     <orderEntry type="module-library">
       <library name="Gradle: jcommander-1.48-javadoc">
         <CLASSES>
-          <root url="jar://D:/Program Files (x86)/JetBrains/IntelliJ IDEA 14.0.3/lib/jcommander-1.48-javadoc.jar!/" />
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/jcommander-1.48-javadoc.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
