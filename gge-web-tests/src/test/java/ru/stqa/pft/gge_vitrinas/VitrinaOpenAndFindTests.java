@@ -1,4 +1,4 @@
-package test.java.ru.stqa.pft.gge_vitrinas;
+package ru.stqa.pft.gge_vitrinas;
 
 import org.testng.annotations.Test;
 
