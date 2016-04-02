@@ -5,12 +5,16 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-tests" />
+<<<<<<< HEAD
         <option name="gradleHome" value="D:/Tools/gradle-2.11" />
+=======
+>>>>>>> origin/master
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/addressbook-web-tests" />
           </set>
         </option>
+<<<<<<< HEAD
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
@@ -19,6 +23,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/gge-web-tests" />
+=======
+        <option name="useAutoImport" value="true" />
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$/addressbook-web-tests" />
+>>>>>>> origin/master
           </set>
         </option>
       </GradleProjectSettings>
@@ -32,6 +42,11 @@
           </set>
         </option>
         <option name="useAutoImport" value="true" />
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$/sandbox" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
