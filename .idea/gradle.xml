@@ -3,13 +3,34 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-tests" />
-        <option name="useAutoImport" value="true" />
+        <option name="gradleHome" value="D:/Tools/gradle-2.11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/addressbook-web-tests" />
+          </set>
+        </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/gge-web-tests" />
+        <option name="gradleHome" value="D:/Tools/gradle-2.11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/gge-web-tests" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/sandbox" />
+          </set>
+        </option>
         <option name="useAutoImport" value="true" />
       </GradleProjectSettings>
     </option>
