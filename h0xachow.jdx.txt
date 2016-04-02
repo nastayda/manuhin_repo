@@ -1,0 +1,20 @@
+﻿Revert "Merge remote-tracking branch 'origin/master'"
+
+This reverts commit 1306daa4045045f40dc53572c88e5e1797b1cbba, reversing
+changes made to a928ae017f87e86d0eff5dc4981aab8437ddfb41.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .idea/gradle.xml
+#	modified:   addressbook-web-tests/build.gradle
+#	deleted:    addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/DbConnetionTest.java
+#	modified:   addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/GroupCreationTests.java
+#	modified:   addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/TestBase.java
+#	modified:   sandbox/sandbox.iml
+#
+
