@@ -71,6 +71,7 @@ public class ContactDataGenerator {
   }
 
   private List<ContactData> generateContacts(int count) {
+    System.out.println(new File(".").getAbsolutePath());
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(String.format("firstname %s", i))

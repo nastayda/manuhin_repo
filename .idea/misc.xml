@@ -43,6 +43,8 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/addressbook-web-tests" />
+    <file type="web" url="file://$PROJECT_DIR$/gge-web-tests" />
+    <file type="web" url="file://$PROJECT_DIR$/sandbox" />
   </component>
   <component name="IdProvider" IDEtalkID="0B59F40AFCB168B68D1A421C729C8EDD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">

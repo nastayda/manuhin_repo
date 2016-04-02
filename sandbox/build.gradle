@@ -2,12 +2,9 @@ apply plugin: 'java'
 apply plugin: 'application'
 mainClassName = "ru.stqa.pft.sandbox.Program1"
 
-repositories {
+repositories{
+    mavenLocal()
     mavenCentral()
-    //url "http://repo1.maven.org/maven2"
-    maven  {
-        url "http://repo1.maven.org/maven2"
-    }
 }
 
 dependencies {
