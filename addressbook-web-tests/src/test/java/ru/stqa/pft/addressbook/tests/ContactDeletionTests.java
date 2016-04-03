@@ -12,24 +12,26 @@ public class ContactDeletionTests extends TestBase {
 
   @Test(enabled = true)
   public void testContactDeletion() {
-    app.goTo().contacts();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
 
-    if (app.contact().all().size() == 0) {
-      app.goTo().groups();
-      if (app.group().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      if (app.db().groups().size() == 0) {
         app.goTo().groups();
         app.group().create(new GroupData().withName("11").withFooter("22").withHeader("33"));
       }
-      app.contact().create(new ContactData().withFirstname("11").withLastname("22").
-              withAddress("33").withMobilePhone("44").withEmail("11.22@55").withGroup("11"), true);
+      app.goTo().contacts();
+      app.contact().create(new ContactData().withFirstname("11").withLastname("22").withMiddlename("33")
+              .withAddress("a").withMobilePhone("+7123").withHomePhone("+7234").withWorkPhone("+7345")
+              .withEmail("1@2").withEmail2("2@3").withEmail3("3@4"), true);
     }
+
+    app.goTo().contacts();
     app.contact().delete(deletedContact);
     app.goTo().contacts();
     assertThat(app.contact().count(), equalTo(before.size() - 1));
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(before.without(deletedContact)));
 }
