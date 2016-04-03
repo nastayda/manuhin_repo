@@ -17,7 +17,6 @@ public class ContactModificationTests extends TestBase {
 
   @Test
   public void testContactModification(){
-    Contacts before = app.db().contacts();
     if (app.db().contacts().size() == 0) {
       if (app.db().groups().size() == 0) {
         app.goTo().groups();
@@ -28,6 +27,7 @@ public class ContactModificationTests extends TestBase {
               .withAddress("a").withMobilePhone("+7123").withHomePhone("+7234").withWorkPhone("+7345")
               .withEmail("1@2").withEmail2("2@3").withEmail3("3@4"), true);
     }
+    Contacts before = app.db().contacts();
 
     ContactData modifiedContact = before.iterator().next();
 
