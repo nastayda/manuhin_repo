@@ -1,0 +1,10 @@
+19880 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test restCurrentDir
+25642 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test restCurrentDir
+25788 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactCreation
+32880 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactCreation
+32883 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactCreation
+46021 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactCreation
+46022 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactCreation
+69715 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactCreation
+69716 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactCreation
+85561 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactCreation

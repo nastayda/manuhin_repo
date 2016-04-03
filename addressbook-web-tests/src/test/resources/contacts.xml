@@ -1,0 +1,54 @@
+<list>
+  <contact>
+    <firstname>firstname 0</firstname>
+    <lastname>lastname 0</lastname>
+    <middlename>middlename 0</middlename>
+    <address>address 0</address>
+    <mobile>M: 0</mobile>
+    <home>H: 0</home>
+    <work>W: 0</work>
+    <email>email 0</email>
+    <email2>email2 0</email2>
+    <email3>email3 0</email3>
+    <group>11</group>
+  </contact>
+  <contact>
+    <firstname>firstname 1</firstname>
+    <lastname>lastname 1</lastname>
+    <middlename>middlename 1</middlename>
+    <address>address 1</address>
+    <mobile>M: 1</mobile>
+    <home>H: 1</home>
+    <work>W: 1</work>
+    <email>email 1</email>
+    <email2>email2 1</email2>
+    <email3>email3 1</email3>
+    <group>11</group>
+  </contact>
+  <contact>
+    <firstname>firstname 2</firstname>
+    <lastname>lastname 2</lastname>
+    <middlename>middlename 2</middlename>
+    <address>address 2</address>
+    <mobile>M: 2</mobile>
+    <home>H: 2</home>
+    <work>W: 2</work>
+    <email>email 2</email>
+    <email2>email2 2</email2>
+    <email3>email3 2</email3>
+    <group>11</group>
+  </contact>
+  <contact>
+    <firstname>firstname 3</firstname>
+    <lastname>lastname 3</lastname>
+    <middlename>middlename 3</middlename>
+    <address>address 3</address>
+    <mobile>M: 3</mobile>
+    <home>H: 3</home>
+    <work>W: 3</work>
+    <email>email 3</email>
+    <email2>email2 3</email2>
+    <email3>email3 3</email3>
+    <group>11</group>
+  </contact>
+</list>
