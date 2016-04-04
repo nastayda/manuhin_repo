@@ -1656,3 +1656,4 @@
 25417 [main] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 25417 [main] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
 25417 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.ContactData{email3=3@4, email2=2@3, firstname=11, address=a, work=+7345, mobile=+7123, middlename=22, id=152, email=1@2, home=+7234, lastname=22}
+468554 [pool-1-thread-1] DEBUG o.h.e.j.c.i.DriverManagerConnectionProviderImpl - Connection pool now considered primed; min-size will be maintained

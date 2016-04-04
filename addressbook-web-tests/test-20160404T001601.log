@@ -3297,3 +3297,5 @@
 191065 [main] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
 191065 [main] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
 191066 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.ContactData{email3=3@4, email2=2@3, firstname=11, address=a, work=+7345, mobile=+7123, middlename=22, id=152, email=1@2, home=+7234, lastname=22}
+9717071 [pool-1-thread-1] DEBUG o.h.e.j.c.i.DriverManagerConnectionProviderImpl - Removing 1 Connections from the pool
+9732831 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactCreation with parameters [ContactData{firstname='firstname 4', lastname='lastname 4', id='2147483647'}]
