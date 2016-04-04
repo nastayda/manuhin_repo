@@ -1,4 +1,0 @@
-738  [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation with parameters [GroupData{id='2147483647', name='test 0'}]
-746  [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation with parameters [GroupData{id='2147483647', name='test 1'}]
-748  [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation with parameters [GroupData{id='2147483647', name='test 2'}]
-749  [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation with parameters [GroupData{id='2147483647', name='test 3'}]
