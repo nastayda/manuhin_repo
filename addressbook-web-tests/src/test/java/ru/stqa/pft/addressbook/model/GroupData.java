@@ -4,11 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
+import org.hibernate.mapping.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
 
 @XStreamAlias("group")
 @Entity
@@ -32,6 +31,13 @@ public class GroupData {
   @Column(name = "group_footer")
   @Type(type = "text")
   private String footer;
+
+  @ManyToMany(mappedBy = "groups")
+  private java.util.Set<ContactData> contacts = new HashSet<ContactData>();
+
+  public java.util.Set<ContactData> getContacts() {
+    return contacts;
+  }
 
   public String getName() {
     return name;
