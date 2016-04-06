@@ -1,11 +1,20 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,5 +53,26 @@ public class ContactModificationTests extends TestBase {
 
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     verifyContactListInUI();
+  }
+
+  @Test
+  public void testContactToGroup(){
+
+    Contacts beforeContacts = app.db().contacts();
+    Groups beforeGroups = app.db().groups();
+
+
+    for (ContactData contact : (Set<ContactData>) beforeContacts ) {
+      System.out.println(contact);
+      System.out.println(contact.getGroups());
+     // System.out.println(contact.getGroups().size() + "<" + app.db().groups().size());
+     // System.out.println();
+
+      if (contact.getGroups().size() < app.db().groups().size()) {
+        System.out.println(contact);
+        System.out.println(contact.getGroups());
+      }
+    }
+
   }
 }
