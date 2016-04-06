@@ -59,7 +59,7 @@ public class ContactModificationTests extends TestBase {
               .withEmail("1@2").withEmail2("2@3").withEmail3("3@4"), true);
     }
     Contacts beforeContacts = app.db().contacts();
-    
+
 
     ContactData modifiedContact = before.iterator().next();
 
