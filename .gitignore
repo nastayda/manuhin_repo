@@ -12,3 +12,4 @@ gradle-app.setting
 *.gradle
 
 
+.idea/workspace.xml
