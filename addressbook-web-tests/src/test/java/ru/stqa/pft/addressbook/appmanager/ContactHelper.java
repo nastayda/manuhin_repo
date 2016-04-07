@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -113,6 +114,28 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 
+  public Contacts inGroup() {
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row: rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      String allphones = cells.get(5).getText();
+      String address = cells.get(3).getText();
+      String allemails = cells.get(4).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withAllphones(allphones).withAddress(address).withAllmails(allemails));
+    }
+    return new Contacts(contactCache);
+  }
+
   public void delete(ContactData contact) {
     selectById(contact.getId());
     submitDeletion();
@@ -170,5 +193,22 @@ public class ContactHelper extends HelperBase {
 
   private void initDetailsById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
+
+  public void toGroupButton() {
+    click(By.xpath("//*[@id='content']/form[2]/div[4]/input"));
+
+  }
+
+  public void addToGroup(ContactData contact, GroupData group) {
+    selectById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+    toGroupButton();
+    contactCache = null;
+    toContacts();
+  }
+
+  public void groupButton(GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
   }
 }
