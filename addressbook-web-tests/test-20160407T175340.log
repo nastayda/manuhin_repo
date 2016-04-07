@@ -1867,3 +1867,4 @@
 19686 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.ContactData{email3=, email2=, firstname=firstname 8, address=address 8, work=, mobile=M: 8, groups=[ru.stqa.pft.addressbook.model.GroupData#17], middlename=, id=57, email=email8, home=, lastname=lastname 8}
 19686 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.GroupData{footer=footer 2, name=test 2, header=header 2, id=17, contacts=[ru.stqa.pft.addressbook.model.ContactData#78, ru.stqa.pft.addressbook.model.ContactData#76, ru.stqa.pft.addressbook.model.ContactData#57]}
 34994 [pool-1-thread-1] DEBUG o.h.e.j.c.i.DriverManagerConnectionProviderImpl - Connection pool now considered primed; min-size will be maintained
+3890410 [main] DEBUG o.h.e.t.internal.TransactionImpl - begin
