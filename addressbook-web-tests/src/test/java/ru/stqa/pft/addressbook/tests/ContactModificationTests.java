@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -79,9 +81,7 @@ public class ContactModificationTests extends TestBase {
 
     Contacts beforeContacts = app.db().contacts();
     Groups beforeGroups = app.db().groups();
-
     Boolean flagNotEmptyGroup = false;
-
     for (ContactData contactInFor : beforeContacts ) {
       if (contactInFor.getGroups().size() < app.db().groups().size()) {
         flagNotEmptyGroup = true;
@@ -91,6 +91,7 @@ public class ContactModificationTests extends TestBase {
             System.out.println(groupInFor);
             System.out.println("БИНГО !!!!!");
             app.contact().addToGroup(contactInFor, groupInFor);
+            break;
           }
         }
       }
@@ -103,8 +104,9 @@ public class ContactModificationTests extends TestBase {
       ContactData contactAny = beforeContacts.iterator().next();
       app.goTo().contacts();
       app.contact().addToGroup(contactAny, newGroup);
+      flagNotEmptyGroup = true;
     }
 
-    Assert.assertTrue(flagNotEmptyGroup);
+    assertThat(flagNotEmptyGroup, is(true));
   }
 }
