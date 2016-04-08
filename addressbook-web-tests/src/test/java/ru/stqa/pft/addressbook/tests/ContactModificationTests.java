@@ -1,10 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,19 +14,13 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-
-import static org.hamcrest.CoreMatchers.equalToObject;
-import static org.hamcrest.CoreMatchers.is;
-import org.hamcrest.CoreMatchers;
 
 import java.io.File;
 import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -81,14 +77,11 @@ public class ContactModificationTests extends TestBase {
   }
 
   @Test
-    public void testContactToGroup(){
+  public void testContactToGroup(){
 
     Contacts beforeContacts = app.db().contacts();
     Groups beforeGroups = app.db().groups();
-    ContactData contactToGroup = app.db().contacts().iterator().next();
-    GroupData groupForContact = app.db().groups().iterator().next();
     Boolean flagNotEmptyGroup = false;
-
     for (ContactData contactInFor : beforeContacts ) {
       if (contactInFor.getGroups().size() < app.db().groups().size()) {
         flagNotEmptyGroup = true;
@@ -97,20 +90,7 @@ public class ContactModificationTests extends TestBase {
             System.out.println(contactInFor);
             System.out.println(groupInFor);
             System.out.println("БИНГО !!!!!");
-
-            Contacts beforeContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
-                    .withId(groupInFor.getId()).getContacts();
-
             app.contact().addToGroup(contactInFor, groupInFor);
-
-            Contacts afterContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
-                    .withId(groupInFor.getId()).getContacts();
-
-            assertThat(afterContactsInGroupBD, equalTo(beforeContactsInGroupBD.without(contactInFor)));
-
-            app.goTo().contacts();
-            app.contact().groupButton(groupInFor);
-            verifyContactsInGroupUI(groupInFor);
             break;
           }
         }
@@ -124,9 +104,9 @@ public class ContactModificationTests extends TestBase {
       ContactData contactAny = beforeContacts.iterator().next();
       app.goTo().contacts();
       app.contact().addToGroup(contactAny, newGroup);
+      flagNotEmptyGroup = true;
     }
 
     assertThat(flagNotEmptyGroup, is(true));
   }
-
 }

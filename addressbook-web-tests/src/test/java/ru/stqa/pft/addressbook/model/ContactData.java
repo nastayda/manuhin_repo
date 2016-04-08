@@ -264,8 +264,4 @@ public class ContactData {
     groups.add(group);
     return this;
   }
-
-  public ContactData viewInGroup(GroupData group) {
-    return this;
-  }
 }
