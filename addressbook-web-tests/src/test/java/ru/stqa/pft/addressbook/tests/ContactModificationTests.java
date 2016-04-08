@@ -16,6 +16,8 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -83,42 +85,36 @@ public class ContactModificationTests extends TestBase {
     Groups beforeGroups = app.db().groups();
     ContactData contactToGroup = app.db().contacts().iterator().next();
     GroupData groupForContact = app.db().groups().iterator().next();
-    Boolean flagNotEmptyGroup = false;
 
     Integer contactID = 0;
     Integer groupID = 0;
 
     for (ContactData contactInFor : beforeContacts ) {
       if (contactInFor.getGroups().size() < app.db().groups().size()) {
-        flagNotEmptyGroup = true;
         for (GroupData groupInFor : beforeGroups) {
           if (groupInFor.getContacts().size() < app.db().contacts().size()) {
-            System.out.println(contactInFor);
-            System.out.println(groupInFor);
-            System.out.println("БИНГО !!!!!");
-
             contactID = contactInFor.getId();
             groupID = groupInFor.getId();
-
             break;
           }
         }
       }
     }
 
-    if (!flagNotEmptyGroup) {
+    if (contactID == 0 && groupID == 0) {
       app.goTo().groups();
-      GroupData newGroup = new GroupData().withName("987").withFooter("22").withHeader("33");
+
+      SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+      Date currentTime = new Date();
+      System.out.println("currentTime = " + sdf.format(currentTime));
+
+      GroupData newGroup = new GroupData().withName(sdf.format(currentTime))
+              .withFooter("22").withHeader("33");
       app.group().create(newGroup);
       ContactData contactAny = beforeContacts.iterator().next();
 
       contactID = contactAny.getId();
       groupID = newGroup.getId();
-
-
-      app.goTo().contacts();
-      app.contact().addToGroup(contactAny, newGroup);
-      flagNotEmptyGroup = true;
     }
 
     Contacts beforeContactsInGroupBD = new Contacts(app.db().groups().iterator().next()
