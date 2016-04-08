@@ -12,7 +12,6 @@ gradle-app.setting
 *.gradle
 
 
-.idea/workspace.xml
-.idea/workspace.xml
 *.log
 .idea/workspace.xml
+.idea/

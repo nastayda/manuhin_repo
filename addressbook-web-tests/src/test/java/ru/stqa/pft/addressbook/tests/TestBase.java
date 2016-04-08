@@ -78,4 +78,16 @@ public class TestBase {
               .collect(Collectors.toSet())));
     }
   }
+
+  public void verifyContactsInGroupUI(GroupData group) {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts contactsInGroupUI = app.contact().all();
+      Contacts contactsInGroupBD = (Contacts) group.getContacts();
+      assertThat(contactsInGroupUI, equalTo(contactsInGroupBD
+              .stream().map((c) -> new ContactData().withId(c.getId())
+                      .withFirstname(c.getFirstname()).withLastname(c.getLastname())
+                      .withAddress(c.getAddress()).withEmail(c.getEmail()))
+              .collect(Collectors.toSet())));
+    }
+  }
 }

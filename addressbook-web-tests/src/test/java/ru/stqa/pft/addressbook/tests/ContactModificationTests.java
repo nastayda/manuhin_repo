@@ -81,7 +81,10 @@ public class ContactModificationTests extends TestBase {
 
     Contacts beforeContacts = app.db().contacts();
     Groups beforeGroups = app.db().groups();
+    ContactData contactToGroup = app.db().contacts().iterator().next();
+    GroupData groupForContact = app.db().groups().iterator().next();
     Boolean flagNotEmptyGroup = false;
+
     for (ContactData contactInFor : beforeContacts ) {
       if (contactInFor.getGroups().size() < app.db().groups().size()) {
         flagNotEmptyGroup = true;
@@ -90,7 +93,20 @@ public class ContactModificationTests extends TestBase {
             System.out.println(contactInFor);
             System.out.println(groupInFor);
             System.out.println("БИНГО !!!!!");
+
+            Contacts beforeContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
+                    .withId(groupInFor.getId()).getContacts();
+
+            app.goTo().contacts();
+            app.contact().groupButton(groupInFor);
             app.contact().addToGroup(contactInFor, groupInFor);
+
+            Contacts afterContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
+                    .withId(groupInFor.getId()).getContacts();
+
+            assertThat(afterContactsInGroupBD, equalTo(beforeContactsInGroupBD.without(contactInFor)));
+
+            verifyContactsInGroupUI(groupInFor);
             break;
           }
         }

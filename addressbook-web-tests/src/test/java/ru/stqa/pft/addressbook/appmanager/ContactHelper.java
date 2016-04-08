@@ -185,4 +185,9 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
     toContacts();
   }
+
+  public void groupButton(GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
+  }
+
 }
