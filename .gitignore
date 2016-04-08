@@ -12,5 +12,10 @@ gradle-app.setting
 *.gradle
 
 
+<<<<<<< HEAD
 .idea/workspace.xml
+.idea/workspace.xml
+=======
+addressbook-web-tests/test-20160408T012149.log
+>>>>>>> origin/master
 .idea/workspace.xml
