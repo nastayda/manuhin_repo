@@ -2305,3 +2305,4 @@
 29844 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.GroupData{footer=footer 2, name=test 2, header=header 2, id=222, contacts=[ru.stqa.pft.addressbook.model.ContactData#181, ru.stqa.pft.addressbook.model.ContactData#180, ru.stqa.pft.addressbook.model.ContactData#179]}
 29845 [main] DEBUG o.h.internal.util.EntityPrinter - ru.stqa.pft.addressbook.model.GroupData{footer=footer 3, name=test 3, header=header 3, id=223, contacts=[ru.stqa.pft.addressbook.model.ContactData#181, ru.stqa.pft.addressbook.model.ContactData#180, ru.stqa.pft.addressbook.model.ContactData#179]}
 37660 [pool-1-thread-1] DEBUG o.h.e.j.c.i.DriverManagerConnectionProviderImpl - Connection pool now considered primed; min-size will be maintained
+1119197 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactToGroup with parameters []

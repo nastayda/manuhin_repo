@@ -97,12 +97,20 @@ public class ContactModificationTests extends TestBase {
             System.out.println(contactInFor);
             System.out.println(groupInFor);
             System.out.println("БИНГО !!!!!");
+
+            Contacts beforeContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
+                    .withId(groupInFor.getId()).getContacts();
+
             app.contact().addToGroup(contactInFor, groupInFor);
+
+            Contacts afterContactsInGroupBD = (Contacts) app.db().groups().iterator().next()
+                    .withId(groupInFor.getId()).getContacts();
+
+            assertThat(afterContactsInGroupBD, equalTo(beforeContactsInGroupBD.without(contactInFor)));
 
             app.goTo().contacts();
             app.contact().groupButton(groupInFor);
-            ////
-            assertThat(contactInFor.viewInGroup(groupInFor), equalTo(groupInFor.getContacts()));
+            verifyContactsInGroupUI(groupInFor);
             break;
           }
         }
@@ -120,4 +128,5 @@ public class ContactModificationTests extends TestBase {
 
     assertThat(flagNotEmptyGroup, is(true));
   }
+
 }
