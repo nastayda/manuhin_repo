@@ -16,6 +16,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
+import java.security.acl.Group;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -89,15 +90,13 @@ public class ContactModificationTests extends TestBase {
     ContactData contactToGroup = app.db().contacts().iterator().next();
     GroupData groupForContact = app.db().groups().iterator().next();
 
-    Integer contactID = 0;
-    Integer groupID = 0;
+    Boolean foundContactAndGroup = false;
 
-    for (ContactData c : beforeContacts ) {
-      if (c.getGroups().size() < groupsCount /**&& c.getId() == contactToGroup.getId()**/) {
+    for (ContactData c : beforeContacts) {
+      if (c.getGroups().size() < groupsCount) {
         for (GroupData g : beforeGroups) {
-          if (g.getContacts().size() < contactsCount /**&& g.getId() == groupForContact.getId()**/) {
-            contactID = c.getId();
-            groupID = g.getId();
+          if (g.getContacts().size() < contactsCount) {
+            foundContactAndGroup = true;
             contactToGroup = c;
             groupForContact = g;
             break;
@@ -106,39 +105,49 @@ public class ContactModificationTests extends TestBase {
       }
     }
 
-    if (contactID == 0 && groupID == 0) {
+    if (!foundContactAndGroup) {
       app.goTo().groups();
 
       SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
       Date currentTime = new Date();
+      String nameNewGroup = sdf.format(currentTime);
       System.out.println("currentTime = " + sdf.format(currentTime));
 
       GroupData newGroup = new GroupData().withName(sdf.format(currentTime))
               .withFooter("22").withHeader("33");
       app.group().create(newGroup);
-      ContactData contactAny = beforeContacts.iterator().next();
 
-      contactID = contactAny.getId();
-      groupID = newGroup.getId();
+      beforeGroups = app.db().groups();
+
+      for (GroupData g : beforeGroups ) {
+        if (g.getName().equals(nameNewGroup)) {
+          groupForContact = g;
+          break;
+        }
+      }
     }
 
     Groups beforeContactToGroup = contactToGroup.getGroups();
 
-    app.contact().addToGroup(contactToGroup, groupForContact);
-    app.goTo().contacts();
-    app.contact().groupButton(groupForContact);
+    addContactToGroup(contactToGroup, groupForContact);
 
-      Contacts afterContacts = app.db().contacts();
-      Groups afterContactToGroup = null;
+    Contacts afterContacts = app.db().contacts();
+    Groups afterContactToGroup = null;
 
-      for (ContactData c : afterContacts ) {
-          if (c.getId() == contactToGroup.getId()) {
-              afterContactToGroup = c.getGroups();
-              break;
-          }
+    for (ContactData c : afterContacts ) {
+      if (c.getId() == contactToGroup.getId()) {
+        afterContactToGroup = c.getGroups();
+        break;
       }
+    }
 
-      assertThat(beforeContactToGroup, equalTo(afterContactToGroup.without(groupForContact)));
+    assertThat(beforeContactToGroup, equalTo(afterContactToGroup.without(groupForContact)));
 //      verifyContactsInGroupUI(groupForContact);
+  }
+
+  public void addContactToGroup(ContactData contactToGroup, GroupData groupForContact) {
+    app.goTo().contacts();
+    app.contact().addToGroup(contactToGroup, groupForContact);
+    app.contact().groupButton(groupForContact);
   }
 }
