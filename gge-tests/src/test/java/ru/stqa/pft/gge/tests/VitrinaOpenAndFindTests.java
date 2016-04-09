@@ -1,6 +1,7 @@
-package ru.stqa.pft.gge_vitrinas;
+package ru.stqa.pft.gge.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.gge.tests.TestBase;
 
 public class VitrinaOpenAndFindTests extends TestBase {
 
