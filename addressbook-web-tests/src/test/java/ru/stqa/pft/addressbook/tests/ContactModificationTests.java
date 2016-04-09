@@ -18,6 +18,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -83,18 +84,22 @@ public class ContactModificationTests extends TestBase {
 
     Contacts beforeContacts = app.db().contacts();
     Groups beforeGroups = app.db().groups();
+    Integer contactsCount = beforeContacts.size();
+    Integer groupsCount = beforeGroups.size();
     ContactData contactToGroup = app.db().contacts().iterator().next();
     GroupData groupForContact = app.db().groups().iterator().next();
 
     Integer contactID = 0;
     Integer groupID = 0;
 
-    for (ContactData contactInFor : beforeContacts ) {
-      if (contactInFor.getGroups().size() < app.db().groups().size()) {
-        for (GroupData groupInFor : beforeGroups) {
-          if (groupInFor.getContacts().size() < app.db().contacts().size()) {
-            contactID = contactInFor.getId();
-            groupID = groupInFor.getId();
+    for (ContactData c : beforeContacts ) {
+      if (c.getGroups().size() < groupsCount /**&& c.getId() == contactToGroup.getId()**/) {
+        for (GroupData g : beforeGroups) {
+          if (g.getContacts().size() < contactsCount /**&& g.getId() == groupForContact.getId()**/) {
+            contactID = c.getId();
+            groupID = g.getId();
+            contactToGroup = c;
+            groupForContact = g;
             break;
           }
         }
@@ -117,18 +122,23 @@ public class ContactModificationTests extends TestBase {
       groupID = newGroup.getId();
     }
 
-    Contacts beforeContactsInGroupBD = new Contacts(app.db().groups().iterator().next()
-            .withId(groupID).getContacts());
+    Groups beforeContactToGroup = contactToGroup.getGroups();
 
-    app.contact().addToGroup(contactToGroup.withId(contactID), groupForContact.withId(groupID));
+    app.contact().addToGroup(contactToGroup, groupForContact);
     app.goTo().contacts();
-    app.contact().groupButton(groupForContact.withId(groupID));
+    app.contact().groupButton(groupForContact);
 
-    Contacts afterContactsInGroupBD = new Contacts(app.db().groups().iterator().next()
-            .withId(contactID).getContacts());
+      Contacts afterContacts = app.db().contacts();
+      Groups afterContactToGroup = null;
 
-    assertThat(beforeContactsInGroupBD, equalTo(afterContactsInGroupBD.without(contactToGroup.withId(contactID))));
+      for (ContactData c : afterContacts ) {
+          if (c.getId() == contactToGroup.getId()) {
+              afterContactToGroup = c.getGroups();
+              break;
+          }
+      }
 
-    verifyContactsInGroupUI(groupForContact.withId(groupID));
+      assertThat(beforeContactToGroup, equalTo(afterContactToGroup.without(groupForContact)));
+//      verifyContactsInGroupUI(groupForContact);
   }
 }
