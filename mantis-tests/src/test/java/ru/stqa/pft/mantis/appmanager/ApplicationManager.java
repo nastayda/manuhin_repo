@@ -13,7 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Юрий on 04.03.2016.
+ * Created by Юрий on 09.04.2016.
  */
 public class ApplicationManager {
 
@@ -46,4 +46,11 @@ public class ApplicationManager {
     wd.quit();
   }
 
+  public HttpSession newSession (){
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
+  }
 }

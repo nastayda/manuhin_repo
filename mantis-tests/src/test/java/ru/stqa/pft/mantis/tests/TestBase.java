@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
 /**
- * Created by Юрий on 04.03.2016.
+ * Created by Юрий on 09.04.2016.
  */
 public class TestBase {
 
