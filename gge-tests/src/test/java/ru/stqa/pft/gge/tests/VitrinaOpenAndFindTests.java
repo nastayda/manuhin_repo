@@ -8,10 +8,10 @@ public class VitrinaOpenAndFindTests extends TestBase {
   @Test
   public void testVitrinaOpenAndFind() throws Exception {
 
-    selectVitrina();
-    vizovRasshPoisk();
-    fillAllFilters();
-    buttonFind();
+    app.selectVitrina();
+    app.vizovRasshPoisk();
+    app.fillAllFilters();
+    app.buttonFind();
 
   }
 

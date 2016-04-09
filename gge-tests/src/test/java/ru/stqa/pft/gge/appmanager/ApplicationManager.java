@@ -80,7 +80,7 @@ public class ApplicationManager {
     wd.findElement(By.id("submitBtn")).click();
   }
 
-  protected void selectVitrina() throws InterruptedException {
+  public void selectVitrina() throws InterruptedException {
     selectRazdel();
     selectMenuVitrin();
     selectPodMenuVitrina();
@@ -97,12 +97,12 @@ public class ApplicationManager {
     wd.findElement(By.xpath("//div[@id='secondMenu']/ul/li/a")).click();
   }
 
-  protected void fillAllFilters() throws InterruptedException {
+  public void fillAllFilters() throws InterruptedException {
     waitLoadPage();
     fillFiltrAddress();
   }
 
-  protected void buttonFind() throws InterruptedException {
+  public void buttonFind() throws InterruptedException {
     waitElement(By.xpath("//div[@class='form']/input"));
     wd.findElement(By.xpath("//div[@class='form']/input")).click();
   }
@@ -114,7 +114,7 @@ public class ApplicationManager {
     wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).sendKeys("ав");
   }
 
-  protected void vizovRasshPoisk() throws InterruptedException {
+  public void vizovRasshPoisk() throws InterruptedException {
     waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
     waitLoadPage();
     wd.findElement(By.id("0E0CADA75DC448959686DFC63BD2178A")).click();
