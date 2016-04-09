@@ -121,7 +121,7 @@ public class ContactHelper extends HelperBase {
     alertDeletion();
   }
 
-  private void selectById(int id) {
+  public void selectById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
@@ -190,4 +190,8 @@ public class ContactHelper extends HelperBase {
     new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
   }
 
+  public void removeFromGroupByContactId(int id) {
+    selectById(id);
+    click(By.name("remove"));
+  }
 }

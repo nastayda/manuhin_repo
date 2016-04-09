@@ -145,9 +145,69 @@ public class ContactModificationTests extends TestBase {
 //      verifyContactsInGroupUI(groupForContact);
   }
 
-  public void addContactToGroup(ContactData contactToGroup, GroupData groupForContact) {
+
+  @Test
+  public void testContactRemoveFromGroup(){
+
+    Contacts beforeContacts = app.db().contacts();
+    Groups beforeGroups = app.db().groups();
+    ContactData contactToGroup = app.db().contacts().iterator().next();
+    GroupData groupForContact = app.db().groups().iterator().next();
+
+    Boolean foundContactAndGroup = false;
+
+    for (ContactData c : beforeContacts) {
+      if (c.getGroups().size() > 0) {
+        for (GroupData g : beforeGroups) {
+          if (g.getContacts().size() > 0) {
+            foundContactAndGroup = true;
+            contactToGroup = c;
+            groupForContact = g;
+            break;
+          }
+        }
+      }
+    }
+
+    Groups beforeContactToGroup = contactToGroup.getGroups();
+
+    if (!foundContactAndGroup) {
+      addContactToGroup(contactToGroup, groupForContact);
+      beforeContacts = app.db().contacts();
+
+      for (ContactData c : beforeContacts ) {
+        if (c.getId() == contactToGroup.getId()) {
+          beforeContactToGroup = c.getGroups();
+          break;
+        }
+      }
+    }
+
+    removeContactFromGroup(contactToGroup, groupForContact);
+
+    Contacts afterContacts = app.db().contacts();
+    Groups afterContactToGroup = null;
+
+    for (ContactData c : afterContacts ) {
+      if (c.getId() == contactToGroup.getId()) {
+        afterContactToGroup = c.getGroups();
+        break;
+      }
+    }
+
+    assertThat(beforeContactToGroup, equalTo(afterContactToGroup.withAdded(groupForContact)));
+//      verifyContactsInGroupUI(groupForContact);
+  }
+
+  public void removeContactFromGroup(ContactData contact, GroupData group) {
+    app.contact().groupButton(group);
+    app.contact().removeFromGroupByContactId(contact.getId());
     app.goTo().contacts();
-    app.contact().addToGroup(contactToGroup, groupForContact);
-    app.contact().groupButton(groupForContact);
+  }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    app.goTo().contacts();
+    app.contact().addToGroup(contact, group);
+    app.contact().groupButton(group);
   }
 }
