@@ -1,6 +1,7 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import ru.stqa.pft.mantis.model.UserMantis;
 
 /**
  * Created by Юрий on 09.04.2016.
@@ -22,6 +23,23 @@ public class RegistrationHelper extends HelperBase{
     wd.get(confirmationLink);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
-    click(By.cssSelector("input[value='Update User']"));
+    click(By.cssSelector("input[value='Update UserMantis']"));
+  }
+
+  public void adminAutorization() {
+    String adminLogin = app.getProperty("web.adminLogin");
+    String adminPassword = app.getProperty("web.adminPassword");
+    wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
+    type(By.name("username"), adminLogin);
+    type(By.name("password"), adminPassword);
+    click(By.cssSelector("input[value='Login']"));
+  }
+
+  public UserMantis chooseUser() {
+    click(By.xpath("html/body/div[2]/p/span[1]/a"));
+    click(By.xpath("html/body/table[3]/tbody/tr[4]/td[1]/a"));
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    click(By.cssSelector("input[value='Reset Password']"));
+    return new UserMantis().withEmail(email);
   }
 }
