@@ -2,6 +2,7 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
+import ru.stqa.pft.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -20,14 +21,6 @@ public class MailHelper {
     public MailHelper (ApplicationManager app){
         this.app = app;
         wiser = new Wiser();
-    }
-
-    public void start(){
-        wiser.start();
-    }
-
-    public void stop(){
-        wiser.stop();
     }
 
     public List<MailMessage> waitForMail(int count, long timeout) {
@@ -60,4 +53,13 @@ public class MailHelper {
             return  null;
         }
     }
+    public void start(){
+        wiser.start();
+    }
+
+    public void stop(){
+        wiser.stop();
+    }
+
+
 }
