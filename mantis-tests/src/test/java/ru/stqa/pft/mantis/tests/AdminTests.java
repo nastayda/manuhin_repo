@@ -20,16 +20,18 @@ public class AdminTests extends TestBase {
     public void testChangeUserPassword() throws IOException {
 
         app.admin().adminAutorization();
-        UserMantis userMantis = app.admin().chooseUser();
+        app.admin().chooseUser();
+        UserMantis userMantis = app.admin().getUser();
+        app.admin().resetPassword();
 
 
-        /**String email = String.format("%s@localhost.localdomain", now);
-         app.registration().start(user, email);
-         List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-         String confirmationLink = findConfirmationLink(mailMessages, email);
-         app.registration().finish(confirmationLink, password);
-         assertTrue(app.newSession().login(user, password));
-         */
+      /**String email = String.format("%s@localhost.localdomain", now);
+       app.registration().start(user, email);
+       List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+       String confirmationLink = findConfirmationLink(mailMessages, email);
+       app.registration().finish(confirmationLink, password);
+       assertTrue(app.newSession().login(user, password));
+       */
     }
 
     @AfterMethod(alwaysRun = true)
