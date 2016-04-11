@@ -3,8 +3,12 @@ package ru.stqa.pft.mantis.tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserMantis;
 import java.io.IOException;
+import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by manuhin on 11.04.2016.
@@ -18,20 +22,16 @@ public class AdminTests extends TestBase {
 
     @Test
     public void testChangeUserPassword() throws IOException {
-
         app.admin().adminAutorization();
         app.admin().chooseUser();
         UserMantis userMantis = app.admin().getUser();
         app.admin().resetPassword();
-
-
-      /**String email = String.format("%s@localhost.localdomain", now);
-       app.registration().start(user, email);
-       List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-       String confirmationLink = findConfirmationLink(mailMessages, email);
-       app.registration().finish(confirmationLink, password);
-       assertTrue(app.newSession().login(user, password));
-       */
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 30000);
+        long now = System.currentTimeMillis();
+        String newPassword = "password" + now;
+        String confirmationLink = app.admin().findConfirmationLink(mailMessages, userMantis.getEmail());
+        app.registration().finish(confirmationLink, newPassword);
+        assertTrue(app.newSession().login(userMantis.getUsername(), newPassword));
     }
 
     @AfterMethod(alwaysRun = true)
