@@ -42,16 +42,57 @@ public class TicketHelper extends HelperBase {
     radioButton(locator);
   }
 
-  public Trains all() {
+  public Trains all(String typePl) {
     Trains trains = new Trains();
     List<WebElement> rows = wd.findElements(By.xpath("//*[@class=\"trlist__trlist-row trslot \"]"));
     for (WebElement row: rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
-      String lastname = cells.get(1).getText();
-      String firstname = cells.get(2).getText();
-      String allphones = cells.get(5).getText();
-      String address = cells.get(3).getText();
-      String allemails = cells.get(4).getText();
+      // номер поезда
+      if (cells.get(8)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__time\"]")).getText().equals(typePl)) {
+
+      }
+      String number = cells.get(3)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__tr-num train-num-0\"]")).getText();
+      // наименование поезда
+      // trlist__cell-pointdata__tr-brand
+      String name = cells.get(3)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__tr-brand\"]")).getText();
+      // станция отправления
+      // trlist__cell-pointdata__station-name
+      String stationFrom = cells.get(4)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__station-name\"]")).getText();
+      // дата отправления
+      // trlist__cell-pointdata__date-sub
+      String dateFrom = cells.get(4)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText();
+      // время отправления
+      // trlist__cell-pointdata__time
+      String timeFrom = cells.get(4)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__time\"]")).getText();
+      // станция назначения
+      // trlist__cell-pointdata__station-name
+      String stationTo = cells.get(7)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__station-name\"]")).getText();
+      // дата прибытия
+      String dateTo = cells.get(7)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText();
+      // время прибытия
+      String timeTo = cells.get(7)
+              .findElement(By.xpath("//*[@class=\"trlist__cell-pointdata__time\"]")).getText();
+      // тип вагона (сидячий, купе, св, плацкарт...)
+      // 8
+      // Купе
+      //
+      String typePlace = row.findElement(By.xpath("")).getText();
+      // Кол-во мест нужного типа
+      String countPlace = row.findElement(By.xpath("")).getText();
+      // Цена билета
+      String price = row.findElement(By.xpath("")).getText();
+
+
+
+
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
 
       //trains.add(new Train().//withId(id).withFirstname(firstname).withLastname(lastname)
