@@ -1,0 +1,19 @@
+[
+  {
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "razdel": "Рабочий кабинет",
+    "rzdel_xpath": "//*[@id='firstMenu']/li[1]/a[@href!='']",
+  },
+
+]
