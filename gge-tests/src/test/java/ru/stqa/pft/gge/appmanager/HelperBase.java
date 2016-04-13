@@ -11,12 +11,10 @@ import java.io.File;
  * Created by Юрий on 05.03.2016.
  */
 public class HelperBase {
-  protected ApplicationManager app;
   protected WebDriver wd;
 
-  public HelperBase(ApplicationManager app) {
-    this.app = app;
-    this.wd = app.getDriver();
+  public HelperBase(WebDriver wd) {
+    this.wd = wd;
   }
 
   protected void click(By locator) {

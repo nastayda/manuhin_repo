@@ -8,6 +8,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
   @Test
   public void testVitrinaOpenAndFind() throws Exception {
 
+//    app.getDriver();
     app.selectVitrina();
     app.vizovRasshPoisk();
     app.fillAllFilters();
