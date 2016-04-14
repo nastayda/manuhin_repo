@@ -1,11 +1,10 @@
 package ru.stqa.pft.rzd.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import java.io.File;
+
+import static org.testng.Assert.fail;
 
 /**
  * Created by Юрий on 05.03.2016.
@@ -59,6 +58,22 @@ public class HelperBase {
       return true;
     } catch (NoSuchElementException ex) {
       return false;
+    }
+  }
+
+  protected void waitElement(By locator, Integer delay) throws InterruptedException {
+    for (int second = 0;; second++) {
+      if (second >= delay) {
+        fail("timeout");
+      }
+      try {
+        if (isElementPresent(locator)) {
+          break;
+        }
+      }
+      catch (Exception e) {
+      }
+      Thread.sleep(1000);
     }
   }
 }

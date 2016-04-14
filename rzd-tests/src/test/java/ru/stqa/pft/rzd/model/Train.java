@@ -1,21 +1,22 @@
 package ru.stqa.pft.rzd.model;
 
+import java.util.Date;
+
 /**
  * Created by manuhin on 13.04.2016.
  */
 public class Train {
   // запись по поезду: xpath = //*[@class="trlist__trlist-row trslot "]
+  private Integer id;         // номер кнопки поезда
   private String number;      // номер поезда
   private String name;        // наименование поезда
   private String stationFrom; // станция отправления
-  private String dateFrom;    // дата отправления
-  private String timeFrom;    // время отправления
+  private Date datetimeFrom;    // дата, время отправления
   private String stationTo;   // станция назначения
-  private String dateTo;      // дата прибытия
-  private String timeTo;      // время прибытия
+  private Date datetimeTo;      // дата, время прибытия
   private String typePlace;   // тип вагона (сидячий, купе, св, плацкарт...)
   private Integer countPlace;  // Кол-во мест нужного типа
-  private String price;       // Цена билета
+  private Integer price;       // Цена билета
 
   public String getNumber() {
     return number;
@@ -29,24 +30,16 @@ public class Train {
     return stationFrom;
   }
 
-  public String getDateFrom() {
-    return dateFrom;
+  public Date getDatetimeFrom() {
+    return datetimeFrom;
   }
 
-  public String getTimeFrom() {
-    return timeFrom;
-  }
-
-  public String getDateTo() {
-    return dateTo;
+  public Date getDatetimeTo() {
+    return datetimeTo;
   }
 
   public String getStationTo() {
     return stationTo;
-  }
-
-  public String getTimeTo() {
-    return timeTo;
   }
 
   public String getTypePlace() {
@@ -57,8 +50,12 @@ public class Train {
     return countPlace;
   }
 
-  public String getPrice() {
+  public Integer getPrice() {
     return price;
+  }
+
+  public Integer getId() {
+    return id;
   }
 
   public Train withNumber(String number) {
@@ -76,13 +73,8 @@ public class Train {
     return this;
   }
 
-  public Train withDateFrom(String dateFrom) {
-    this.dateFrom = dateFrom;
-    return this;
-  }
-
-  public Train withTimeFrom(String timeFrom) {
-    this.timeFrom = timeFrom;
+  public Train withDateTimeFrom(Date dateTimeFrom) {
+    this.datetimeFrom = dateTimeFrom;
     return this;
   }
 
@@ -91,13 +83,8 @@ public class Train {
     return this;
   }
 
-  public Train withDateTo(String dateTo) {
-    this.dateTo = dateTo;
-    return this;
-  }
-
-  public Train withTimeTo(String timeTo) {
-    this.timeTo = timeTo;
+  public Train withDateTimeTo(Date dateTimeTo) {
+    this.datetimeTo = dateTimeTo;
     return this;
   }
 
@@ -111,8 +98,14 @@ public class Train {
     return this;
   }
 
-  public Train withPrice(String price) {
+  public Train withPrice(Integer price) {
     this.price = price;
     return this;
   }
+
+  public Train withId(Integer id) {
+    this.id = id;
+    return this;
+  }
+
 }

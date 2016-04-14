@@ -7,6 +7,9 @@ import ru.stqa.pft.rzd.model.Train;
 import ru.stqa.pft.rzd.model.Trains;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,11 +24,15 @@ public class TicketHelper extends HelperBase {
   }
 
   public void chooseDirection() throws InterruptedException {
-    type(By.id("name0"), "Сан");
-    click(By.cssSelector("div.station"));
+    waitElement(By.id("name0"), 100);
+    type(By.id("name0"), "САНКТ-ПЕТЕРБУРГ");
+   // waitElement(By.cssSelector("div.station"), 100);
+//    click(By.cssSelector("div.station"));
     Thread.sleep(10000);
-    type(By.id("name1"), "Москва");
-    click(By.xpath("//div[7]/div[1]"));
+    waitElement(By.id("name1"), 100);
+    type(By.id("name1"), "МОСКВА");
+   // waitElement(By.xpath("//div[7]/div[1]"), 100);
+   // click(By.xpath("//div[7]/div[1]"));
     Thread.sleep(10000);
   }
 
@@ -42,23 +49,30 @@ public class TicketHelper extends HelperBase {
     radioButton(locator);
   }
 
-  public Trains all() throws InterruptedException {
+  public Trains all() throws InterruptedException, ParseException {
     Thread.sleep(10000);
     Trains trains = new Trains();
     List<WebElement> rows = wd.findElements(By.xpath("//*[@class=\"trlist__trlist-row trslot \"]"));
     for (WebElement row: rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.xpath(".//input[1]")).getAttribute("value"));
+      // номер поезда
       String number = cells.get(2)
               .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__tr-num train-num-0\"]")).getText();
       // наименование поезда
-      String name = cells.get(2)
-              .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__tr-brand\"]")).getText();
+      String name = "";
+     // if (isElementPresent(cells.get(2)
+     //         .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__tr-brand\"]"))) {
+     //   name = cells.get(2)
+     //           .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__tr-brand\"]")).getText();
+     // }
       // станция отправления
       String stationFrom = cells.get(3)
               .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__station-name\"]")).getText();
       // дата отправления
       String dateFrom = cells.get(3)
-              .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText();
+              .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText()
+              .substring(1).trim();
       // время отправления
       String timeFrom = cells.get(3)
               .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__time\"]")).getText();
@@ -67,32 +81,47 @@ public class TicketHelper extends HelperBase {
               .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__station-name\"]")).getText();
       // дата прибытия
       String dateTo = cells.get(7)
-              .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText();
+              .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__date-sub\"]")).getText()
+              .substring(1).trim();
       // время прибытия
       String timeTo = cells.get(7)
               .findElement(By.xpath(".//*[@class=\"trlist__cell-pointdata__time\"]")).getText();
       // тип вагона (сидячий, купе, св, плацкарт...)
       String typePlace = cells.get(9).getText();
       // Кол-во мест нужного типа
-      String countPlace = cells.get(10).getText();
+      int countPlace = Integer.parseInt(cells.get(10).getText());
       // Цена билета
-      String price = cells.get(11).getText();
+      int price = Integer.parseInt(cells.get(11).getText().replaceAll("руб.","").trim());
 
-    //  int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+      Date datetimeFrom = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").parse(dateFrom + " " + timeFrom + ":00");
+      Date datetimeTo = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").parse(dateTo + " " + timeTo + ":00");
 
-      //trains.add(new Train().//withId(id).withFirstname(firstname).withLastname(lastname)
-      //.withAllphones(allphones).withAddress(address).withAllmails(allemails)
-      //);
+      trains.add(new Train().withId(id).withNumber(number).withName(name)
+              .withDateTimeFrom(datetimeFrom).withStationFrom(stationFrom)
+              .withDateTimeTo(datetimeTo).withStationTo(stationTo)
+              .withTypePlace(typePlace).withCountPlace(countPlace).withPrice(price));
     }
     return trains;
   }
 
   public void chooseType(String typePl) throws InterruptedException {
     Thread.sleep(10000);
-    click(By.xpath("//*[@class=\"dottedLink\" and @name=\"nothing\"]"));
+    String typePlaceXpath = "//*[@class=\"dottedLink\" and @name=\"nothing\"]";
+    Integer delay = 300;
+    waitElement(By.xpath(typePlaceXpath), delay);
+    click(By.xpath(typePlaceXpath));
     if (typePl.equals("Купе")) {
       click(By.xpath("//*[@type=\"checkbox\" and @name=\"car-type4\"]"));
+    } else if (typePl.equals("Сидячий")) {
+      click(By.xpath("//*[@type=\"checkbox\" and @name=\"car-type3\"]"));
     }
     click(By.xpath("//*[@id='Submit']/span[2]"));
+  }
+
+  public Train chooseTrain(Trains trains) {
+
+
+
+    return trains.iterator().next();
   }
 }
