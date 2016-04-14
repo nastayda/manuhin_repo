@@ -23,7 +23,6 @@ public class RzdTests extends TestBase{
       Date from2 = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").parse("12.06.2016 20:00:00");
       Date to2 = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").parse("13.06.2016 05:59:59");
 
-
       app.ticket().chooseDirection();
       app.ticket().chooseDate(By.xpath("//div[@class='bg']/div/div[3]/div/ul/li[21]/span"));
 
@@ -31,7 +30,8 @@ public class RzdTests extends TestBase{
       Train train2 = app.ticket().getTrain(countPlaceMin, type2, from2, to2, "после");
       Train train = app.ticket().bestTrain(train1, train2);
 
-      app.ticket().chosenTrain(By.xpath("//table[@class='trlist']/tbody/tr[6]/td[1]/input[2]"));
+      app.ticket().chooseTypes(type1, type2);
+      app.ticket().chosenTrain(train.getId());
     }
 
 

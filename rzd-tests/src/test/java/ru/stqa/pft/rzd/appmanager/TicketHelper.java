@@ -47,11 +47,14 @@ public class TicketHelper extends HelperBase {
     click(By.id("Submit"));
   }
 
-  public void chosenTrain(By locator) {
-    List<WebElement> elements = wd.findElements(By.xpath("//*[@class=\"trlist__trlist-row trslot \"]"));
-
-
-    radioButton(locator);
+  public void chosenTrain(Integer id) {
+//    List<WebElement> elements = wd.findElements(By.xpath("//*[@class=\"trlist__trlist-row trslot \"]"));
+    WebElement element = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+    WebElement rod = element.findElement(By.xpath("./.."));
+    WebElement ho = rod.findElement(By.xpath("./input[2]"));
+    ho.click();
+    //radioButton(ho.getAttribute());
+//    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public Trains all() throws InterruptedException, ParseException {
@@ -123,6 +126,19 @@ public class TicketHelper extends HelperBase {
     click(By.xpath("//*[@id='Submit']/span[2]"));
   }
 
+  public void chooseTypes(String typePl1, String typePl2) throws InterruptedException {
+    Thread.sleep(10000);
+    String typePlaceXpath = "//*[@class=\"dottedLink\" and @name=\"nothing\"]";
+    Integer delay = 60;
+    waitElement(By.xpath(typePlaceXpath), delay);
+    click(By.xpath(typePlaceXpath));
+    if (typePl1.equals("Сидячий") && typePl2.equals("Купе")) {
+      click(By.xpath("//*[@type=\"checkbox\" and @name=\"car-type4\"]"));
+      click(By.xpath("//*[@type=\"checkbox\" and @name=\"car-type3\"]"));
+    }
+    click(By.xpath("//*[@id='Submit']/span[2]"));
+  }
+
   public Train chooseTrain(Trains trains, String typePlace, Integer countPlace, Date dateFrom, Date dateTo, String condition) {
     Train train = new Train();
     if (condition == "до") {
@@ -166,10 +182,10 @@ public class TicketHelper extends HelperBase {
     return train;
   }
 
-  public Train getTrain(Integer countPlaceMin, String type1, Date from1, Date to1, String condition) throws InterruptedException, ParseException {
-    chooseType(type1);
-    Trains trains1 = all();
-    return chooseTrain(trains1, type1, countPlaceMin, from1, to1, condition);
+  public Train getTrain(Integer countPlaceMin, String typePl, Date dateFrom, Date dateTo, String condition) throws InterruptedException, ParseException {
+    chooseType(typePl);
+    Trains trains = all();
+    return chooseTrain(trains, typePl, countPlaceMin, dateFrom, dateTo, condition);
   }
 
 }
