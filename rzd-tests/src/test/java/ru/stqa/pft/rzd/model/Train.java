@@ -14,7 +14,7 @@ public class Train {
   private String dateTo;      // дата прибытия
   private String timeTo;      // время прибытия
   private String typePlace;   // тип вагона (сидячий, купе, св, плацкарт...)
-  private String countPlace;  // Кол-во мест нужного типа
+  private Integer countPlace;  // Кол-во мест нужного типа
   private String price;       // Цена билета
 
   public String getNumber() {
@@ -53,7 +53,7 @@ public class Train {
     return typePlace;
   }
 
-  public String getCountPlace() {
+  public Integer getCountPlace() {
     return countPlace;
   }
 
@@ -106,7 +106,7 @@ public class Train {
     return this;
   }
 
-  public Train withCountPlace(String countPlace) {
+  public Train withCountPlace(Integer countPlace) {
     this.countPlace = countPlace;
     return this;
   }
