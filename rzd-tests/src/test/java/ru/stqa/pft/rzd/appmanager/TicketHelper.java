@@ -11,6 +11,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Юрий on 05.03.2016.
@@ -25,14 +30,14 @@ public class TicketHelper extends HelperBase {
 
   public void chooseDirection() throws InterruptedException {
     waitElement(By.id("name0"), 100);
-    type(By.id("name0"), "САНКТ-ПЕТЕРБУРГ");
-   // waitElement(By.cssSelector("div.station"), 100);
-//    click(By.cssSelector("div.station"));
+    type(By.id("name0"), "САНКТ-ПЕТЕРБ");
+    waitElement(By.cssSelector("div.station"), 100);
+    click(By.cssSelector("div.station"));
     Thread.sleep(10000);
     waitElement(By.id("name1"), 100);
-    type(By.id("name1"), "МОСКВА");
-   // waitElement(By.xpath("//div[7]/div[1]"), 100);
-   // click(By.xpath("//div[7]/div[1]"));
+    type(By.id("name1"), "МОС");
+    waitElement(By.xpath("//div[7]/div[1]"), 100);
+    click(By.xpath("//div[7]/div[1]"));
     Thread.sleep(10000);
   }
 
@@ -107,7 +112,7 @@ public class TicketHelper extends HelperBase {
   public void chooseType(String typePl) throws InterruptedException {
     Thread.sleep(10000);
     String typePlaceXpath = "//*[@class=\"dottedLink\" and @name=\"nothing\"]";
-    Integer delay = 300;
+    Integer delay = 60;
     waitElement(By.xpath(typePlaceXpath), delay);
     click(By.xpath(typePlaceXpath));
     if (typePl.equals("Купе")) {
@@ -118,10 +123,43 @@ public class TicketHelper extends HelperBase {
     click(By.xpath("//*[@id='Submit']/span[2]"));
   }
 
-  public Train chooseTrain(Trains trains) {
+  public Train chooseTrain(Trains trains, String typePlace, Integer countPlace, Date dateFrom, Date dateTo, String condition) {
+    Train train = new Train();
+    if (condition == "до") {
+      //WebElement chosenUser = users.stream().filter((u) -> !(u.getText().equals(adminLogin))).findFirst().get();
+     // assertThat(after, equalTo(
+     //         before.withAdded(contact.withId(after.stream().mapToInt((c) -> (c.getId())).max().getAsInt()))));
+      //asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+      //        .stream().filter((s) -> ! s.equals(""))
+      //        .collect(Collectors.joining("\n"));
+      // assertThat(uiGroups, equalTo(dbGroups
+      //.stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+      //        .collect(Collectors.toSet())));
+      int minPriceTrain = trains.stream()
+              .filter((t) -> (t.getDatetimeFrom().after(dateFrom)))
+              .filter((t) -> (t.getDatetimeTo().before(dateTo)))
+              .filter((t) -> (t.getCountPlace() >= countPlace))
+              .mapToInt((t) -> (t.getPrice())).min().getAsInt();
+      int id = trains.stream()
+              .filter((t) -> (t.getDatetimeFrom().after(dateFrom)))
+              .filter((t) -> (t.getDatetimeTo().before(dateTo)))
+              .filter((t) -> (t.getCountPlace() >= countPlace))
+              .filter((t) -> (t.getPrice().equals(minPriceTrain))).findFirst().get().getId();
+      train = trains.stream().filter((t) -> (t.getId().equals(id))).findFirst().get();
+    } else {
+      int minPriceTrain = trains.stream()
+              .filter((t) -> (t.getDatetimeFrom().after(dateFrom)))
+              .filter((t) -> (t.getDatetimeTo().after(dateTo)))
+              .filter((t) -> (t.getCountPlace() >= countPlace))
+              .mapToInt((t) -> (t.getPrice())).min().getAsInt();
+      int id = trains.stream()
+              .filter((t) -> (t.getDatetimeFrom().after(dateFrom)))
+              .filter((t) -> (t.getDatetimeTo().after(dateTo)))
+              .filter((t) -> (t.getCountPlace() >= countPlace))
+              .filter((t) -> (t.getPrice().equals(minPriceTrain))).findFirst().get().getId();
+      train = trains.stream().filter((t) -> (t.getId().equals(id))).findFirst().get();
+    }
 
-
-
-    return trains.iterator().next();
+    return train;
   }
 }
