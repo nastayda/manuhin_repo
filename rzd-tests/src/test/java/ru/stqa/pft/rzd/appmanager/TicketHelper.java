@@ -48,13 +48,11 @@ public class TicketHelper extends HelperBase {
   }
 
   public void chosenTrain(Integer id) {
-//    List<WebElement> elements = wd.findElements(By.xpath("//*[@class=\"trlist__trlist-row trslot \"]"));
     WebElement element = wd.findElement(By.cssSelector("input[value='" + id + "']"));
     WebElement rod = element.findElement(By.xpath("./.."));
     WebElement ho = rod.findElement(By.xpath("./input[2]"));
     ho.click();
-    //radioButton(ho.getAttribute());
-//    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    wd.findElement(By.id("continueButton")).click();
   }
 
   public Trains all() throws InterruptedException, ParseException {
