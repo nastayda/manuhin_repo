@@ -126,13 +126,6 @@ public class TicketHelper extends HelperBase {
   public Train chooseTrain(Trains trains, String typePlace, Integer countPlace, Date dateFrom, Date dateTo, String condition) {
     Train train = new Train();
     if (condition == "до") {
-      //WebElement chosenUser = users.stream().filter((u) -> !(u.getText().equals(adminLogin))).findFirst().get();
-     // assertThat(after, equalTo(
-     //         before.withAdded(contact.withId(after.stream().mapToInt((c) -> (c.getId())).max().getAsInt()))));
-      //asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-      //        .stream().filter((s) -> ! s.equals(""))
-      //        .collect(Collectors.joining("\n"));
-      // assertThat(uiGroups, equalTo(dbGroups
       //.stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
       //        .collect(Collectors.toSet())));
       int minPriceTrain = trains.stream()
@@ -162,4 +155,21 @@ public class TicketHelper extends HelperBase {
 
     return train;
   }
+
+  public Train bestTrain(Train train1, Train train2) {
+    Train train = new Train();
+    if (train1.getPrice() < train2.getPrice()) {
+      train = train1;
+    } else {
+      train = train2;
+    }
+    return train;
+  }
+
+  public Train getTrain(Integer countPlaceMin, String type1, Date from1, Date to1, String condition) throws InterruptedException, ParseException {
+    chooseType(type1);
+    Trains trains1 = all();
+    return chooseTrain(trains1, type1, countPlaceMin, from1, to1, condition);
+  }
+
 }
