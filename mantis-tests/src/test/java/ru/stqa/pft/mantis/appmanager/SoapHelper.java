@@ -24,30 +24,33 @@ public class SoapHelper {
     this.app = app;
   }
 
-  public Set<Project> getProjects() throws MalformedURLException, RemoteException {
+  public Set<Project> getProjects() throws MalformedURLException, RemoteException, javax.xml.rpc.ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root");
+    ProjectData[] projects = mc.mc_projects_get_user_accessible(app.getProperty("mantis.adminlogin"),
+            app.getProperty("mantis.adminpassword"));
 
     return Arrays.asList(projects).stream()
             .map((p) -> new Project().withId(p.getId().intValue()).withName(p.getName()))
             .collect(Collectors.toSet());
   }
 
-  private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+  public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException, javax.xml.rpc.ServiceException {
     return new MantisConnectLocator()
-              .getMantisConnectPort(new URL("http://localhost/mantisbt-1.2.19/api/soap/mantisconnect.php"));
+              .getMantisConnectPort(new URL(app.getProperty("mantis.soapURL")));
   }
 
-  public Issue addIssue(Issue issue) throws MalformedURLException, RemoteException {
+  public Issue addIssue(Issue issue) throws MalformedURLException, RemoteException, javax.xml.rpc.ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    String[] categories = mc.mc_project_get_categories("administrator", "root", BigInteger.valueOf(issue.getProject().getId()));
+    String mantisLogin = app.getProperty("mantis.adminlogin");
+    String mantisPassword = app.getProperty("mantis.adminpassword");
+    String[] categories = mc.mc_project_get_categories(mantisLogin, mantisPassword, BigInteger.valueOf(issue.getProject().getId()));
     IssueData issueData = new IssueData();
     issueData.setSummary(issue.getSummary());
     issueData.setDescription(issue.getDescription());
     issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()), issue.getProject().getName()));
     issueData.setCategory(categories[0]);
-    BigInteger issueId = mc.mc_issue_add("administrator", "root", issueData);
-    IssueData createdIssueData = mc.mc_issue_get("administrator", "root", issueId);
+    BigInteger issueId = mc.mc_issue_add(mantisLogin, mantisPassword, issueData);
+    IssueData createdIssueData = mc.mc_issue_get(mantisLogin, mantisPassword, issueId);
 
     return new Issue().withId(createdIssueData.getId().intValue())
             .withSummary(createdIssueData.getSummary())
