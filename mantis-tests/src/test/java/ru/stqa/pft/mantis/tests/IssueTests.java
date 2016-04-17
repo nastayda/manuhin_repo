@@ -20,6 +20,6 @@ public class IssueTests extends TestBase {
 
   @Test
   public void testCheckIssue() {
-    System.out.println("Начинаем тест...");;
+    System.out.println("Начинаем тест...");
   }
 }
