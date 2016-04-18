@@ -1,4 +1,4 @@
-package ru.stqa.pft.rest;
+package ru.stqa.pft.rest.model;
 
 /**
  * Created by Юрий on 17.04.2016.
