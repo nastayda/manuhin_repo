@@ -22,7 +22,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by Юрий on 17.04.2016.
  */
-public class RestTests {
+public class RestTests extends TestBase{
 
   @Test
   public void testCreateIssue() throws IOException {
@@ -32,30 +32,6 @@ public class RestTests {
     Set<Issue> newIssues = getIssue();
     oldIssues.add(newIssue.withId(issueId));
     assertEquals(newIssues, oldIssues);
-
   }
 
-  private Set<Issue> getIssue() throws IOException {
-    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json"))
-            .returnContent().asString();
-    JsonElement parsed = new JsonParser().parse(json);
-    JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
-  }
-
-  private Executor getExecutor() {
-    CloseableHttpClient httpClient = HttpClients.custom()
-            .setProxy(new HttpHost("proxy.mdi.ru", 3128))
-            .setRedirectStrategy(new LaxRedirectStrategy()).build();
-    return Executor.newInstance(httpClient).auth("LSGjeU4yP1X493ud1hNniA==", "");
-  }
-
-  private int createIssue(Issue newIssue) throws IOException {
-    String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
-            .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
-                      new BasicNameValuePair("description", newIssue.getDescription())))
-            .returnContent().asString();
-    JsonElement parsed = new JsonParser().parse(json);
-    return parsed.getAsJsonObject().get("issue_id").getAsInt();
-  }
 }
