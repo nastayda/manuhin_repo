@@ -12,8 +12,8 @@ public class IssueTests extends TestBase {
 
   @BeforeTest
   public void preConditions() throws IOException {
-    //skipIfNotFixed(5);
-    skipIfNotFixed(7);
+    skipIfNotFixed(6);
+    skipIfNotFixed(2);
   }
 
   @Test
