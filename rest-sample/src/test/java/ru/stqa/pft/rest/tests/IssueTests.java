@@ -12,7 +12,7 @@ public class IssueTests extends TestBase {
 
   @BeforeTest
   public void preConditions() throws IOException {
-    skipIfNotFixed(9);
+    skipIfNotFixed(11);
     skipIfNotFixed(2);
   }
 

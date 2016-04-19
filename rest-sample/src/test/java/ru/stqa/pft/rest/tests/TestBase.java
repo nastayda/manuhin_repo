@@ -49,11 +49,11 @@ public class TestBase {
     boolean isIssueOpen = true;
     Set<Issue> issues = getIssue();
     Issue anyIssue = issues.iterator().next();
-    int status = 1;
+    String status = "";
     for (Issue issue : issues) {
       if (issue.getId() == issueId) {
         status = getIssueStatus(issue);
-        if (status == 3 || status == 4)
+        if (status.equals("resolved") || status.equals("closed"))
         isIssueOpen = false;
         break;
       }
@@ -61,11 +61,11 @@ public class TestBase {
     return isIssueOpen;
   }
 
-  private int getIssueStatus(Issue issue) throws IOException {
+  private String getIssueStatus(Issue issue) throws IOException {
     String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
-    return parsed.getAsJsonObject().get("state").getAsInt();
+    return parsed.getAsJsonObject().get("state_name").getAsString();
   }
 
   Set<Issue> getIssue() throws IOException {
