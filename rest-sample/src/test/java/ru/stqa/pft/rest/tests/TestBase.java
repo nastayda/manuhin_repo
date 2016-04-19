@@ -19,6 +19,7 @@ import ru.stqa.pft.rest.appmanager.ApplicationManager;
 import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,15 +48,15 @@ public class TestBase {
   }
 
   private boolean isIssueOpen(int issueId) throws IOException {
-    boolean isIssueOpen = true;
+    boolean isIssueOpen = false;
     Set<Issue> issues = getIssue();
     Issue anyIssue = issues.iterator().next();
     String status = "";
     for (Issue issue : issues) {
       if (issue.getId() == issueId) {
         status = getIssueStatus(issueId);
-        if (status.equals("resolved") || status.equals("closed"))
-        isIssueOpen = false;
+        if (status.equals("Open") || status.equals("In Progress"))
+        isIssueOpen = true;
         break;
       }
     }
@@ -67,10 +68,10 @@ public class TestBase {
     String json = getExecutor().execute(Request.Get(requestString))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
-    JsonElement issue = parsed.getAsJsonObject().get("issues");
-    String status = parsed.getAsJsonObject().get("state_name").getAsString();
-
-    return status;
+    JsonElement issues = parsed.getAsJsonObject().get("issues");
+    List<Issue> issueData = new Gson().fromJson(issues, new TypeToken<List<Issue>>(){}.getType());
+    Issue issue = issueData.iterator().next();
+    return issue.getState_name();
   }
 
   Set<Issue> getIssue() throws IOException {
