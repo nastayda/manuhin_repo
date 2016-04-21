@@ -4,8 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
+
+import static org.testng.Assert.fail;
 
 /**
  * Created by Юрий on 05.03.2016.
@@ -17,7 +20,7 @@ public class HelperBase {
     this.wd = wd;
   }
 
-  protected void click(By locator) {
+  public void click(By locator) {
     wd.findElement(locator).click();
   }
 
@@ -38,12 +41,32 @@ public class HelperBase {
     }
   }
 
-  public boolean isAlertPresent() {
+  protected boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
       return true;
     } catch (NoAlertPresentException e) {
       return false;
+    }
+  }
+
+  public void waitLoadPage() throws InterruptedException {
+    waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));
+  }
+
+  protected void waitElement(By locator) throws InterruptedException {
+    for (int second = 0;; second++) {
+      if (second >= 60) {
+        fail("timeout");
+      }
+      try {
+        if (isElementPresent(locator)) {
+          break;
+        }
+      }
+      catch (Exception e) {
+      }
+      Thread.sleep(1000);
     }
   }
 
@@ -55,4 +78,5 @@ public class HelperBase {
       return false;
     }
   }
+
 }
