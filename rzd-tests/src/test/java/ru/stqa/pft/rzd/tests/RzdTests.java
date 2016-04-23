@@ -12,7 +12,7 @@ import java.util.Date;
 public class RzdTests extends TestBase{
 
     @Test
-    public void RzdTests() throws InterruptedException, ParseException {
+    public void testRzd() throws InterruptedException, ParseException {
       Integer countPlaceMin = 10;
 
       String type1 = "Сидячий";
