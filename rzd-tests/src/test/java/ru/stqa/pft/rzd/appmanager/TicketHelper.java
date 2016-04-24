@@ -30,12 +30,14 @@ public class TicketHelper extends HelperBase {
 
   public void chooseDirection() throws InterruptedException {
     waitElement(By.id("name0"), 10);
-    type(By.id("name0"), "САНКТ-ПЕТЕРБ");
+    //type(By.id("name0"), "САНКТ-ПЕТЕРБ");
+    type(By.id("name0"), "CFYRN");
     waitElement(By.cssSelector("div.station"), 10);
     click(By.cssSelector("div.station"));
     Thread.sleep(10000);
     waitElement(By.id("name1"), 10);
-    type(By.id("name1"), "МОС");
+    //type(By.id("name1"), "МОС");
+    type(By.id("name1"), "VJCRD");
     waitElement(By.xpath("//div[7]/div[1]"), 10);
     click(By.xpath("//div[7]/div[1]"));
     Thread.sleep(10000);
