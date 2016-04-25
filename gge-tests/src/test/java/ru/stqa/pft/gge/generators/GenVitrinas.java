@@ -9,10 +9,7 @@ import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.gge.model.GeneratorData;
 import ru.stqa.pft.gge.tests.TestBase;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +52,8 @@ public class GenVitrinas extends TestBase {
   }
 
   private void saveAsJson(List<GeneratorData> vitrinas, File file) throws IOException {
-    Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(vitrinas);
     try (Writer writer = new FileWriter(file)) {
       writer.write(json);

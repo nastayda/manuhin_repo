@@ -1,15 +1,10 @@
 package ru.stqa.pft.gge.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.FileReader;
@@ -52,7 +47,7 @@ public class ApplicationManager {
     wd.get(properties.getProperty("web.baseUrl"));
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
-    generatorHelper = new GeneratorHelper(wd);
+    generatorHelper = new GeneratorHelper(wd, properties);
     vitrinaHelper = new VitrinaHelper(wd);
   }
 
