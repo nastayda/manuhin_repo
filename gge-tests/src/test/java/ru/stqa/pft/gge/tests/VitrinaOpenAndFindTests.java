@@ -52,7 +52,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
   @Test(dataProvider = "validGroupsFromJson")
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
 
-    app.vitrina().selectVitrina();
+    app.vitrina().selectVitrina(vitrina);
     app.vitrina().vizovRasshPoisk();
     app.vitrina().fillAllFilters();
     app.vitrina().buttonFind();
