@@ -1,0 +1,306 @@
+[
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Главная страница",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]/a",
+    "vitrina": "Главная страница",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои задачи",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]/a",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои задачи",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]/a",
+    "vitrina": "Архив",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Проекты поручений",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Предоставленные отчеты",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Для исполнения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Выданные мной",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Исполненные поручения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[5]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои поручения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "Перепорученные мной",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[6]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои процессы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a",
+    "vitrina": "Для исполнения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои процессы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a",
+    "vitrina": "Инициированные мной",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои процессы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a",
+    "vitrina": "Контролируемые мной",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои процессы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a",
+    "vitrina": "Архив",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На исполнение мне",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На исполнение подразделению",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Проекты документов",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[5]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[6]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[7]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На ознакомление",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[8]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Подготовленные мной",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[9]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "На согласование",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[10]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои документы",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Незакрытые документы",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[11]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Дела в работе",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]/a",
+    "vitrina": "Мои дела",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Дела в работе",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]/a",
+    "vitrina": "Дела моего подразделения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Дела в работе",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]/a",
+    "vitrina": "Дела моих подразделений",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Дела в работе",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]/a",
+    "vitrina": "Мои дела",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[6]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[1]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Мои проекты",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[7]/a",
+    "vitrina": "Мои проекты",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[7]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Обращения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]/a",
+    "vitrina": "Все обращения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Обращения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]/a",
+    "vitrina": "Новые обращения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Обращения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]/a",
+    "vitrina": "Проверка комплектности",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[1]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Нагрузка подразделения",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]/a",
+    "vitrina": "Нагрузка подразделения",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[2]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "На выпуске",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "На Выпуске",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "На выпуске",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]/a",
+    "vitrina": "График выпуска",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[3]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Реестр заключений",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a",
+    "vitrina": "Реестр заключений",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[4]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Заявления ПГУ",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Новые заявления",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "//*[@id\u003d\u0027firstMenu\u0027]/li[2]/a[@href!\u003d\u0027\u0027]",
+    "menu": "Заявления ПГУ",
+    "menuXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]/a",
+    "vitrina": "Все заявления",
+    "vitrinaXpath": "//*[@id\u003d\u0027secondMenu\u0027]/ul/li[5]//ul/li[2]/a"
+  }
+]

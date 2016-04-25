@@ -19,12 +19,11 @@ public class TestBase {
   }
 
   @AfterSuite(alwaysRun = true)
-    public void tearDown() {
+  public void tearDown() {
       app.stop();
   }
 
   public ApplicationManager getApp() {
     return app;
   }
-
 }

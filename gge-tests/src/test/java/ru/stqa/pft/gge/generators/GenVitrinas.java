@@ -6,8 +6,6 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 import ru.stqa.pft.gge.tests.TestBase;
 
@@ -31,7 +29,7 @@ public class GenVitrinas extends TestBase {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
-  public static void main(String[] args) throws IOException, InterruptedException {
+  public static void main(String[] args) throws Exception {
     GenVitrinas generator = new GenVitrinas();
     JCommander jCommander = new JCommander(generator);
     try {
@@ -40,7 +38,9 @@ public class GenVitrinas extends TestBase {
       jCommander.usage();
       return;
     }
+    generator.setUp();
     generator.run();
+    generator.tearDown();
   }
 
   private void run() throws IOException, InterruptedException {
@@ -52,7 +52,6 @@ public class GenVitrinas extends TestBase {
     } else {
       System.out.println("Unrecognized format " + format);
     }
-
   }
 
   private void saveAsJson(List<GeneratorData> vitrinas, File file) throws IOException {
@@ -75,7 +74,7 @@ public class GenVitrinas extends TestBase {
   private List<GeneratorData> generateVitrinasData(int count) throws InterruptedException {
     System.out.println(new File(".").getAbsolutePath());
     List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
-    vitrinas = app.vitrinagen().GenParam(1);
+    vitrinas = app.vitrinagen().GenParam(count);
     return vitrinas;
   }
 }
