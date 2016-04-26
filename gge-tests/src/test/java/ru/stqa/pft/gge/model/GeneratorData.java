@@ -104,4 +104,13 @@ public class GeneratorData {
         this.vitrinaXpath = vitrinaXpath;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "GeneratorData{" +
+                "razdel='" + razdel + '\'' +
+                ", menu='" + menu + '\'' +
+                ", vitrina='" + vitrina + '\'' +
+                '}';
+    }
 }
