@@ -107,10 +107,8 @@ public class GeneratorData {
 
     @Override
     public String toString() {
-        return "GeneratorData{" +
-                "razdel='" + razdel + '\'' +
-                ", menu='" + menu + '\'' +
-                ", vitrina='" + vitrina + '\'' +
-                '}';
+        return  razdel + " / " +
+                menu + " / " +
+                vitrina;
     }
 }
