@@ -2,14 +2,6 @@
   {
     "razdel": "Рабочий кабинет",
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Главная страница",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Главная страница",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои задачи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Все мои задачи",

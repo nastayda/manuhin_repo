@@ -15,20 +15,17 @@ public class VitrinaHelper extends HelperBase {
   public void selectVitrina(GeneratorData vitrina) throws InterruptedException {
     selectRazdel(vitrina);
     selectMenuVitrin(vitrina);
-    selectPodMenuVitrina(vitrina);
+    if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
+      selectPodMenuVitrina(vitrina);
+    }
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
-    //waitElement(By.xpath("//a[contains(text(),'Новые обращения')]"));
-    //wd.findElement(By.xpath("//a[contains(text(),'Новые обращения')]")).click();
     waitElement(By.xpath(vitrina.getVitrinaXpath()));
     wd.findElement(By.xpath(vitrina.getVitrinaXpath())).click();
   }
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
-    //waitLoadPage();
-    //waitElement(By.xpath("//div[@id='secondMenu']/ul/li/a"));
-    //wd.findElement(By.xpath("//div[@id='secondMenu']/ul/li/a")).click();
     waitLoadPage();
     waitElement(By.xpath(vitrina.getMenuXpath()));
     wd.findElement(By.xpath(vitrina.getMenuXpath())).click();
@@ -41,28 +38,23 @@ public class VitrinaHelper extends HelperBase {
 
   public void buttonFind() throws InterruptedException {
     waitElement(By.xpath("//div[@class='form']/input"));
-    wd.findElement(By.xpath("//div[@class='form']/input")).click();
+    click(By.xpath("//div[@class='form']/input"));
   }
 
   private void fillFiltrAddress() throws InterruptedException {
     waitElement(By.xpath("//div[@class='form']/div[2]/span/input"));
-    wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).click();
-    wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).clear();
-    wd.findElement(By.xpath("//div[@class='form']/div[2]/span/input")).sendKeys("ав");
+    type(By.xpath("//div[@class='form']/div[2]/span/input"), "ав");
   }
 
   public void vizovRasshPoisk() throws InterruptedException {
     waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
     waitLoadPage();
-    wd.findElement(By.id("0E0CADA75DC448959686DFC63BD2178A")).click();
+    click(By.id("0E0CADA75DC448959686DFC63BD2178A"));
   }
 
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
-    //waitElement(By.linkText("Экспертиза"));
-    //waitLoadPage();
-    //wd.findElement(By.linkText("Экспертиза")).click();
     waitElement(By.xpath(vitrina.getRazdXpath()));
     waitLoadPage();
-    wd.findElement(By.xpath(vitrina.getRazdXpath())).click();
+    click(By.xpath(vitrina.getRazdXpath()));
   }
 }
