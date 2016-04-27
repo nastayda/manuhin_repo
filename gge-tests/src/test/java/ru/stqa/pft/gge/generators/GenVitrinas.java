@@ -35,7 +35,7 @@ public class GenVitrinas extends TestBase {
       jCommander.usage();
       return;
     }
-    generator.setUp();
+    generator.setUp2();
     generator.run();
     generator.tearDown();
   }

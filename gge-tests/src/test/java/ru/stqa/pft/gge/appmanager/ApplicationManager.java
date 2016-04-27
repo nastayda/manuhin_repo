@@ -1,6 +1,8 @@
 package ru.stqa.pft.gge.appmanager;
 
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -53,7 +55,7 @@ public class ApplicationManager {
       capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     wd.manage().window().maximize();
     wd.get(properties.getProperty("web.baseUrl"));
     sessionHelper = new SessionHelper(wd);
@@ -78,6 +80,10 @@ public class ApplicationManager {
 
   public GeneratorHelper vitrinagen() {
     return generatorHelper;
+  }
+
+  public byte[] takeScreenshot() {
+    return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
   }
 
 }

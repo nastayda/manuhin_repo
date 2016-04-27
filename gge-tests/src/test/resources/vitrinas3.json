@@ -4,7 +4,15 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои задачи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
-    "vitrina": "Все мои задачи",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a"
+    "vitrina": "Архив",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a"
   }
 ]
