@@ -11,7 +11,7 @@ import ru.stqa.pft.gge.appmanager.ApplicationManager;
 @Listeners(MyTestListener.class)
 public class TestBase {
 
-  protected static final ApplicationManager app =
+  protected final ApplicationManager app =
           new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX)) ;
 
   @BeforeMethod

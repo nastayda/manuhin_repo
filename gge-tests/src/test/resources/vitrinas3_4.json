@@ -1,0 +1,18 @@
+[
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Исполненные поручения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[5]/a"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Перепорученные мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[6]/a"
+  }
+]
