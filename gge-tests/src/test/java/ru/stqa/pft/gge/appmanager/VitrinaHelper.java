@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by manuhin on 21.04.2016.
@@ -45,6 +46,37 @@ public class VitrinaHelper extends HelperBase {
       fillFiltrType(element, 47, "ав");
       fillFiltrType(element, 6, "01.04.2015");
       fillFiltrType(element, 9, "01.04.2015");
+      fillFiltrReference(element, 16);
+      fillFiltrReference(element, 15);
+    }
+  }
+
+  private void fillFiltrReference(WebElement element, int attr) throws InterruptedException {
+    String xpathlocator = ".//*[@class=\"folderIco\" and @attr_type=\"" + attr + "\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    Set<String> winOld = wd.getWindowHandles();
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          click(By.xpath(xpathlocator));
+
+          Set<String> wNewSet = wd.getWindowHandles();
+          wNewSet.removeAll(winOld);
+          String wNew = wNewSet.iterator().next();
+          wd.switchTo().window(wNew);
+
+          String xpathAll = "//input[@id=\"collect_all\"]";
+          waitElement(By.xpath(xpathAll));
+          click(By.xpath(xpathAll));
+
+          String xpathSubmit = "//input[@id=\"submitButton\"]";
+          waitElement(By.xpath(xpathSubmit));
+          click(By.xpath(xpathSubmit));
+
+          wd.switchTo().window(winOld.iterator().next());
+        }
+      }
     }
   }
 

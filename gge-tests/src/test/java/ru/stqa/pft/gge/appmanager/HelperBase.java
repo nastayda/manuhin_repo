@@ -64,7 +64,7 @@ public class HelperBase {
 
   protected void waitElement(By locator) throws InterruptedException {
     for (int second = 0;; second++) {
-      if (second >= 60) {
+      if (second >= 30) {
         fail("timeout");
       }
       try {
