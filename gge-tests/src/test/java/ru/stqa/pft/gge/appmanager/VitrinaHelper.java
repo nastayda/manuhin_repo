@@ -2,7 +2,10 @@ package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
+
+import java.util.List;
 
 /**
  * Created by manuhin on 21.04.2016.
@@ -33,7 +36,16 @@ public class VitrinaHelper extends HelperBase {
 
   public void fillAllFilters() throws InterruptedException {
     waitLoadPage();
-    fillFiltrAddress();
+    String startXpath = ".//*[@class=\"form\"]";
+    List<WebElement> elements = wd.findElements(By.xpath(startXpath));
+    WebElement element = elements.iterator().next();
+    if (elements.size() == 1) {
+      fillFiltrType(element, 0, "ав");
+      fillFiltrType(element, 49, "ав");
+      fillFiltrType(element, 47, "ав");
+      fillFiltrType(element, 6, "01.04.2015");
+      fillFiltrType(element, 9, "01.04.2015");
+    }
   }
 
   public void buttonFind() throws InterruptedException {
@@ -41,15 +53,28 @@ public class VitrinaHelper extends HelperBase {
     click(By.xpath("//div[@class='form']/input"));
   }
 
-  private void fillFiltrAddress() throws InterruptedException {
-    waitElement(By.xpath("//div[@class='form']/div[2]/span/input"));
-    type(By.xpath("//div[@class='form']/div[2]/span/input"), "ав");
+  private void fillFiltrType(WebElement element, int attr, String text) throws InterruptedException {
+    String xpathlocator = ".//*[@type=\"text\" and @attr_type=\"" + attr + "\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          type(w, text);
+        }
+      }
+    }
   }
 
   public void vizovRasshPoisk() throws InterruptedException {
-    waitElement(By.id("0E0CADA75DC448959686DFC63BD2178A"));
-    waitLoadPage();
-    click(By.id("0E0CADA75DC448959686DFC63BD2178A"));
+    String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
+    List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
+    if (elements.size() == 1) {
+      waitLoadPage();
+      waitElement(By.xpath(xpathRasshPoisk));
+      waitLoadPage();
+      click(By.xpath(xpathRasshPoisk));
+    }
   }
 
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {

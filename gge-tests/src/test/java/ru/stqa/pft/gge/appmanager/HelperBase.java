@@ -1,9 +1,6 @@
 package ru.stqa.pft.gge.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
@@ -31,6 +28,17 @@ public class HelperBase {
         click(locator);
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
+      }
+    }
+  }
+
+  protected void type(WebElement webElement, String text) {
+    if (text != null) {
+      String existingText = webElement.getAttribute("value");
+      if (! text.equals(existingText)) {
+        webElement.click();
+        webElement.clear();
+        webElement.sendKeys(text);
       }
     }
   }
