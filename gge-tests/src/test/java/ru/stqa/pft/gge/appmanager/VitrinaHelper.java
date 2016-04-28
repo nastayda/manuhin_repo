@@ -26,13 +26,13 @@ public class VitrinaHelper extends HelperBase {
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
     waitElement(By.xpath(vitrina.getVitrinaXpath()));
-    wd.findElement(By.xpath(vitrina.getVitrinaXpath())).click();
+    click(By.xpath(vitrina.getVitrinaXpath()));
   }
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
     waitElement(By.xpath(vitrina.getMenuXpath()));
-    wd.findElement(By.xpath(vitrina.getMenuXpath())).click();
+    click(By.xpath(vitrina.getMenuXpath()));
   }
 
   public void fillAllFilters() throws InterruptedException {
@@ -48,6 +48,7 @@ public class VitrinaHelper extends HelperBase {
       fillFiltrType(element, 9, "01.04.2015");
       fillFiltrReference(element, 16);
       fillFiltrReference(element, 15);
+      fillFiltrCombobox(element);
     }
   }
 
@@ -59,22 +60,24 @@ public class VitrinaHelper extends HelperBase {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
-          click(By.xpath(xpathlocator));
+          if (w.isDisplayed()) {
+            click(By.xpath(xpathlocator));
 
-          Set<String> wNewSet = wd.getWindowHandles();
-          wNewSet.removeAll(winOld);
-          String wNew = wNewSet.iterator().next();
-          wd.switchTo().window(wNew);
+            Set<String> wNewSet = wd.getWindowHandles();
+            wNewSet.removeAll(winOld);
+            String wNew = wNewSet.iterator().next();
+            wd.switchTo().window(wNew);
 
-          String xpathAll = "//input[@id=\"collect_all\"]";
-          waitElement(By.xpath(xpathAll));
-          click(By.xpath(xpathAll));
+            String xpathAll = "//input[@id=\"collect_all\"]";
+            waitElement(By.xpath(xpathAll));
+            click(By.xpath(xpathAll));
 
-          String xpathSubmit = "//input[@id=\"submitButton\"]";
-          waitElement(By.xpath(xpathSubmit));
-          click(By.xpath(xpathSubmit));
+            String xpathSubmit = "//input[@id=\"submitButton\"]";
+            waitElement(By.xpath(xpathSubmit));
+            click(By.xpath(xpathSubmit));
 
-          wd.switchTo().window(winOld.iterator().next());
+            wd.switchTo().window(winOld.iterator().next());
+          }
         }
       }
     }
@@ -92,7 +95,25 @@ public class VitrinaHelper extends HelperBase {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
-          type(w, text);
+          if (w.isDisplayed()) {
+            type(w, text);
+          }
+        }
+      }
+    }
+  }
+
+  private void fillFiltrCombobox(WebElement element) throws InterruptedException {
+    String xpathlocator = ".//input[@class=\"finderForSelect\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isDisplayed()) {
+            w.click();
+            click(By.xpath(".//*[@id='selectOptionLists']/div/div/div[2]"));
+          }
         }
       }
     }
@@ -102,7 +123,6 @@ public class VitrinaHelper extends HelperBase {
     String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
     if (elements.size() == 1) {
-      waitLoadPage();
       waitElement(By.xpath(xpathRasshPoisk));
       waitLoadPage();
       click(By.xpath(xpathRasshPoisk));
