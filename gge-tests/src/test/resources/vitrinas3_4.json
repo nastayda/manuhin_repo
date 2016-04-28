@@ -1,18 +1,162 @@
 [
   {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Исполненные поручения",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[5]/a"
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Незавершенные задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[9]/a"
   },
   {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Задачи поручений",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[10]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Перепорученные мной",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[6]/a"
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "По типам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Запросы правоохранительных органов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Запросы судебной экспертизы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения органов и организаций",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения органов и организаций",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "По типам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения граждан",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения граждан",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "По типам поступления",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Распоряжения Правительства РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Постановления Правительства РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[3]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Приказы вышестоящей организации",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[4]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Приказы ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[5]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Распоряжения ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[6]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Иные распорядительные документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[7]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[1]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Служебные записки ЦА",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[2]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Переписка с филиалами",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[3]/a"
   }
 ]

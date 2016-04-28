@@ -35,7 +35,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_manulov_all.json")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas3.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
