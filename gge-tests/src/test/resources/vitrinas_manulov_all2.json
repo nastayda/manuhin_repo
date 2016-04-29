@@ -1,0 +1,10 @@
+[
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Все обращения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a"
+  }
+]

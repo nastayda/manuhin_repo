@@ -3,7 +3,6 @@ package ru.stqa.pft.gge.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.util.List;
@@ -26,26 +25,60 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
-    waitLoadPage();
+    //waitLoadPage();
     //waitElement(By.xpath(vitrina.getVitrinaXpath()));
-    WebElement w = wd.findElement(By.xpath(vitrina.getVitrinaXpath()));
-    if (w.isDisplayed() && w.isEnabled()) {
-      click(By.xpath(vitrina.getVitrinaXpath()));
-    } else {
-      System.out.println("Витрина " + vitrina.getVitrina() + " не найдена!");
-    }
+    //WebElement w = wd.findElement(By.xpath(vitrina.getVitrinaXpath()));
+    recursiaVitrina(vitrina, 15);
+    //if (w.isDisplayed() && w.isEnabled()) {
+      //waitLoadPage();
+    //  recursiaVitrina(vitrina, 15);
+    //} else {
+    //  System.out.println("Витрина \"" + vitrina.getVitrina() + "\" не найдена!");
+    //}
 
+  }
+
+  private int recursiaVitrina(GeneratorData vitrina, int i) throws InterruptedException {
+    try {
+      click(By.xpath(vitrina.getVitrinaXpath()));
+      return i;
+    } catch (Exception e) {
+      Thread.sleep(1000);
+      i--;
+      if (i > 0) {
+        selectMenuVitrin(vitrina);
+        return recursiaVitrina(vitrina, i);
+      }
+      return i;
+    }
+  }
+
+  private int recursiaMenu(GeneratorData vitrina, int i) throws InterruptedException {
+    try {
+      click(By.xpath(vitrina.getMenuXpath()));
+      return i;
+    } catch (Exception e) {
+      Thread.sleep(1000);
+      i--;
+      if (i > 0) {
+        selectRazdel(vitrina);
+        return recursiaMenu(vitrina, i);
+      }
+      return i;
+    }
   }
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
     //waitElement(By.xpath(vitrina.getMenuXpath()));
-    WebElement w = wd.findElement(By.xpath(vitrina.getMenuXpath()));
-    if (w.isDisplayed() && w.isEnabled()) {
-      click(By.xpath(vitrina.getMenuXpath()));
-    } else {
-      System.out.println("Меню " + vitrina.getMenu() + " не найдено!");
-    }
+    recursiaMenu(vitrina, 15);
+    //WebElement w = wd.findElement(By.xpath(vitrina.getMenuXpath()));
+    //if (w.isDisplayed() && w.isEnabled()) {
+    //  waitLoadPage();
+    //  click(By.xpath(vitrina.getMenuXpath()));
+    //} else {
+    //  System.out.println("Меню \"" + vitrina.getMenu() + "\" не найдено!");
+   // }
   }
 
   public void fillAllFilters() throws InterruptedException {
@@ -147,9 +180,10 @@ public class VitrinaHelper extends HelperBase {
     //waitElement(By.xpath(vitrina.getRazdXpath()));
     WebElement w = wd.findElement(By.xpath(vitrina.getRazdXpath()));
     if (w.isDisplayed() && w.isEnabled()) {
+      waitLoadPage();
       click(By.xpath(vitrina.getRazdXpath()));
     } else {
-      System.out.println("Раздел " + vitrina.getRazdel() + " не найден!");
+      System.out.println("Раздел \"" + vitrina.getRazdel() + "\" не найден!");
     }
   }
 }
