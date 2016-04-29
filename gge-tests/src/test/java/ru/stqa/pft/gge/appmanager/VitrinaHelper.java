@@ -25,17 +25,7 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
-    //waitLoadPage();
-    //waitElement(By.xpath(vitrina.getVitrinaXpath()));
-    //WebElement w = wd.findElement(By.xpath(vitrina.getVitrinaXpath()));
     recursiaVitrina(vitrina, 15);
-    //if (w.isDisplayed() && w.isEnabled()) {
-      //waitLoadPage();
-    //  recursiaVitrina(vitrina, 15);
-    //} else {
-    //  System.out.println("Витрина \"" + vitrina.getVitrina() + "\" не найдена!");
-    //}
-
   }
 
   private int recursiaVitrina(GeneratorData vitrina, int i) throws InterruptedException {
@@ -70,15 +60,7 @@ public class VitrinaHelper extends HelperBase {
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
-    //waitElement(By.xpath(vitrina.getMenuXpath()));
     recursiaMenu(vitrina, 15);
-    //WebElement w = wd.findElement(By.xpath(vitrina.getMenuXpath()));
-    //if (w.isDisplayed() && w.isEnabled()) {
-    //  waitLoadPage();
-    //  click(By.xpath(vitrina.getMenuXpath()));
-    //} else {
-    //  System.out.println("Меню \"" + vitrina.getMenu() + "\" не найдено!");
-   // }
   }
 
   public void fillAllFilters() throws InterruptedException {
@@ -177,7 +159,6 @@ public class VitrinaHelper extends HelperBase {
 
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
-    //waitElement(By.xpath(vitrina.getRazdXpath()));
     WebElement w = wd.findElement(By.xpath(vitrina.getRazdXpath()));
     if (w.isDisplayed() && w.isEnabled()) {
       waitLoadPage();
