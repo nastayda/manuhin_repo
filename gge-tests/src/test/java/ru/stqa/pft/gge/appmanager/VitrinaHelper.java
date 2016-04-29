@@ -3,6 +3,7 @@ package ru.stqa.pft.gge.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.util.List;
@@ -25,14 +26,26 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
-    waitElement(By.xpath(vitrina.getVitrinaXpath()));
-    click(By.xpath(vitrina.getVitrinaXpath()));
+    waitLoadPage();
+    //waitElement(By.xpath(vitrina.getVitrinaXpath()));
+    WebElement w = wd.findElement(By.xpath(vitrina.getVitrinaXpath()));
+    if (w.isDisplayed() && w.isEnabled()) {
+      click(By.xpath(vitrina.getVitrinaXpath()));
+    } else {
+      System.out.println("Витрина " + vitrina.getVitrina() + " не найдена!");
+    }
+
   }
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
-    waitElement(By.xpath(vitrina.getMenuXpath()));
-    click(By.xpath(vitrina.getMenuXpath()));
+    //waitElement(By.xpath(vitrina.getMenuXpath()));
+    WebElement w = wd.findElement(By.xpath(vitrina.getMenuXpath()));
+    if (w.isDisplayed() && w.isEnabled()) {
+      click(By.xpath(vitrina.getMenuXpath()));
+    } else {
+      System.out.println("Меню " + vitrina.getMenu() + " не найдено!");
+    }
   }
 
   public void fillAllFilters() throws InterruptedException {
@@ -131,7 +144,12 @@ public class VitrinaHelper extends HelperBase {
 
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
-    waitElement(By.xpath(vitrina.getRazdXpath()));
-    click(By.xpath(vitrina.getRazdXpath()));
+    //waitElement(By.xpath(vitrina.getRazdXpath()));
+    WebElement w = wd.findElement(By.xpath(vitrina.getRazdXpath()));
+    if (w.isDisplayed() && w.isEnabled()) {
+      click(By.xpath(vitrina.getRazdXpath()));
+    } else {
+      System.out.println("Раздел " + vitrina.getRazdel() + " не найден!");
+    }
   }
 }
