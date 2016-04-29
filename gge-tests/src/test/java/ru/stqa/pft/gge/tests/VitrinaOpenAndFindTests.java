@@ -35,7 +35,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas3.json")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_manulov_all.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -50,7 +50,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
 
   @Test(dataProvider = "validGroupsFromJson")
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
-
     app.vitrina().selectVitrina(vitrina);
     app.vitrina().vizovRasshPoisk();
     app.vitrina().fillAllFilters();
