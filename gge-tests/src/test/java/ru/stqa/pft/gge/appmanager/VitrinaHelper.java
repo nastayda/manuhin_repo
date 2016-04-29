@@ -123,15 +123,15 @@ public class VitrinaHelper extends HelperBase {
     String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
     if (elements.size() == 1) {
-      waitElement(By.xpath(xpathRasshPoisk));
       waitLoadPage();
+      waitElement(By.xpath(xpathRasshPoisk));
       click(By.xpath(xpathRasshPoisk));
     }
   }
 
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
-    waitElement(By.xpath(vitrina.getRazdXpath()));
     waitLoadPage();
+    waitElement(By.xpath(vitrina.getRazdXpath()));
     click(By.xpath(vitrina.getRazdXpath()));
   }
 }
