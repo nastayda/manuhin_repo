@@ -69,6 +69,7 @@ public class VitrinaHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.xpath(startXpath));
     WebElement element = elements.iterator().next();
     if (elements.size() == 1) {
+      fillFiltrCombobox(element);
       fillFiltrType(element, 0, "ав");
       fillFiltrType(element, 49, "ав");
       fillFiltrType(element, 47, "ав");
@@ -76,7 +77,6 @@ public class VitrinaHelper extends HelperBase {
       fillFiltrType(element, 9, "01.04.2015");
       fillFiltrReference(element, 16);
       fillFiltrReference(element, 15);
-      fillFiltrCombobox(element);
     }
   }
 
@@ -89,7 +89,7 @@ public class VitrinaHelper extends HelperBase {
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
-            click(By.xpath(xpathlocator));
+            w.click();
 
             Set<String> wNewSet = wd.getWindowHandles();
             wNewSet.removeAll(winOld);
@@ -105,6 +105,7 @@ public class VitrinaHelper extends HelperBase {
             click(By.xpath(xpathSubmit));
 
             wd.switchTo().window(winOld.iterator().next());
+            waitLoadPage();
           }
         }
       }
@@ -132,15 +133,23 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void fillFiltrCombobox(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//input[@class=\"finderForSelect\"]";
+    String xpathlocator = ".//*[@class=\"curSelect\"]";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
-            w.click();
-            click(By.xpath(".//*[@id='selectOptionLists']/div/div/div[2]"));
+            List<WebElement> elementsValue = element2.findElements(By.xpath("./../select/option"));
+            WebElement ww = elementsValue.iterator().next();
+            String text1 = "";
+            for (WebElement www : elementsValue) {
+              text1 = www.getText();
+              if (!text1.equals("")) {
+                break;
+              };
+            }
+            w.sendKeys(text1);
           }
         }
       }
