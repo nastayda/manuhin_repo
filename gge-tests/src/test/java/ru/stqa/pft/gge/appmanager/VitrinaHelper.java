@@ -140,16 +140,16 @@ public class VitrinaHelper extends HelperBase {
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
-            List<WebElement> elementsValue = element2.findElements(By.xpath("./../select/option"));
+            List<WebElement> elementsValue = w.findElements(By.xpath("./../select/option"));
             WebElement ww = elementsValue.iterator().next();
             String text1 = "";
             for (WebElement www : elementsValue) {
               text1 = www.getText();
               if (!text1.equals("")) {
-                break;
+               // break;
               };
             }
-            w.sendKeys(text1);
+            w.sendKeys("Да");
           }
         }
       }

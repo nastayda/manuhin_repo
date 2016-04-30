@@ -1,10 +1,10 @@
 [
   {
-    "razdel": "Экспертиза",
-    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
-    "menu": "Обращения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Все обращения",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a"
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Акты",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Акты",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a"
   }
 ]
