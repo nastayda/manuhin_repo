@@ -104,12 +104,14 @@ public class VitrinaHelper extends HelperBase {
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
 
-            recursiaReference(w, 15);
+            w.click();
+            //recursiaReference(w, 15);
 
             Set<String> wNewSet = wd.getWindowHandles();
             int attempt = 0;
             while (wNewSet.size() < 2 && attempt < 15) {
               Thread.sleep(1000);
+              wNewSet = wd.getWindowHandles();
               attempt++;
             }
 
