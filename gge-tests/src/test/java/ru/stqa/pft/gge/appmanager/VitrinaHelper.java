@@ -17,7 +17,11 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public void selectVitrina(GeneratorData vitrina) throws InterruptedException {
-    selectRazdel(vitrina);
+    for (int i = 1; i < 5; i++) {
+      if (selectRazdel(vitrina)) {
+        break;
+      }
+    }
     selectMenuVitrin(vitrina);
     if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
       selectPodMenuVitrina(vitrina);
@@ -31,6 +35,17 @@ public class VitrinaHelper extends HelperBase {
   private int recursiaVitrina(GeneratorData vitrina, int i) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getVitrinaXpath()));
+      waitLoadPage();
+      List<WebElement> elements = wd.findElements(By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+      if (elements.size() == 1) {
+        if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
+          return 0;
+        } else {
+          i--;
+          selectMenuVitrin(vitrina);
+          return recursiaVitrina(vitrina, i);
+        }
+      }
       return i;
     } catch (Exception e) {
       Thread.sleep(1000);
@@ -185,16 +200,6 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  public boolean checkRasshPoisk() throws InterruptedException {
-    waitLoadPage();
-    String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
-    List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
-    if (elements.size() == 1) {
-      return true;
-    }
-    return false;
-  }
-
   private int recursiaRazdel(GeneratorData vitrina, int i) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getRazdXpath()));
@@ -209,8 +214,17 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
+  private boolean selectRazdel(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
     recursiaRazdel(vitrina, 15);
+    return true;
+  }
+
+  public boolean isMistakes() {
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@class=\"headTitle\"]"));
+    if (elements.size() == 0) {
+      return true;
+    }
+    return false;
   }
 }
