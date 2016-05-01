@@ -15,6 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class VitrinaOpenAndFindTests extends TestBase {
 
   @DataProvider
@@ -54,5 +57,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
     app.vitrina().vizovRasshPoisk();
     app.vitrina().fillAllFilters();
     app.vitrina().buttonFind();
+    assertThat(app.vitrina().checkRasshPoisk(), equalTo(true));
   }
 }

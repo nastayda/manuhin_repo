@@ -67,8 +67,8 @@ public class VitrinaHelper extends HelperBase {
     waitLoadPage();
     String startXpath = ".//*[@class=\"form\"]";
     List<WebElement> elements = wd.findElements(By.xpath(startXpath));
-    WebElement element = elements.iterator().next();
     if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
       fillFiltrCombobox(element);
       fillFiltrType(element, 0, "ав");
       fillFiltrType(element, 49, "ав");
@@ -167,7 +167,6 @@ public class VitrinaHelper extends HelperBase {
             if (elementsValue.size() == 1) {
               WebElement ww = elementsValue.iterator().next();
               String text1 = ww.getText();
-              //WebElement www = w.findElement(By.xpath("./span"));
               w.sendKeys(text1);
             }
           }
@@ -186,14 +185,32 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
+  public boolean checkRasshPoisk() throws InterruptedException {
+    waitLoadPage();
+    String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
+    List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
+    if (elements.size() == 1) {
+      return true;
+    }
+    return false;
+  }
+
+  private int recursiaRazdel(GeneratorData vitrina, int i) throws InterruptedException {
+    try {
+      click(By.xpath(vitrina.getRazdXpath()));
+      return i;
+    } catch (Exception e) {
+      Thread.sleep(1000);
+      i--;
+      if (i > 0) {
+        return recursiaRazdel(vitrina, i);
+      }
+      return i;
+    }
+  }
+
   private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
-    WebElement w = wd.findElement(By.xpath(vitrina.getRazdXpath()));
-    if (w.isDisplayed() && w.isEnabled()) {
-      waitLoadPage();
-      click(By.xpath(vitrina.getRazdXpath()));
-    } else {
-      System.out.println("Раздел \"" + vitrina.getRazdel() + "\" не найден!");
-    }
+    recursiaRazdel(vitrina, 15);
   }
 }
