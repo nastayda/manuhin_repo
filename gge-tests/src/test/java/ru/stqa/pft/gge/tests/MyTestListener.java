@@ -18,7 +18,8 @@ public class MyTestListener implements ITestListener {
 
   @Override
   public void onTestSuccess(ITestResult iTestResult) {
-
+    ApplicationManager app = (ApplicationManager) iTestResult.getTestContext().getAttribute("app");
+    saveScreenshot(app.takeScreenshot());
   }
 
   @Override
@@ -39,7 +40,8 @@ public class MyTestListener implements ITestListener {
 
   @Override
   public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
+    ApplicationManager app = (ApplicationManager) iTestResult.getTestContext().getAttribute("app");
+    saveScreenshot(app.takeScreenshot());
   }
 
   @Override
