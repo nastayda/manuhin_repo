@@ -42,8 +42,9 @@ public class VitrinaHelper extends HelperBase {
           return 0;
         } else {
           i--;
+          selectRazdel(vitrina);
           selectMenuVitrin(vitrina);
-          return recursiaVitrina(vitrina, i);
+          return i;
         }
       }
       return i;
@@ -95,20 +96,6 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  private int recursiaReference(WebElement webElement, int i) throws InterruptedException {
-    try {
-      webElement.click();
-      return i;
-    } catch (Exception e) {
-      Thread.sleep(1000);
-      i--;
-      if (i > 0) {
-        return recursiaReference(webElement, i);
-      }
-      return i;
-    }
-  }
-
   private void fillFiltrReference(WebElement element, int attr) throws InterruptedException {
     String xpathlocator = ".//*[@class=\"folderIco\" and @attr_type=\"" + attr + "\"]";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
@@ -120,7 +107,6 @@ public class VitrinaHelper extends HelperBase {
           if (w.isDisplayed()) {
 
             w.click();
-            //recursiaReference(w, 15);
 
             Set<String> wNewSet = wd.getWindowHandles();
             int attempt = 0;
