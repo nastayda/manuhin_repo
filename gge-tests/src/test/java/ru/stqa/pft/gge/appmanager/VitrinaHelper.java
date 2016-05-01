@@ -21,6 +21,7 @@ public class VitrinaHelper extends HelperBase {
       if (selectRazdel(vitrina)) {
         break;
       }
+      Thread.sleep(2000);
     }
     selectMenuVitrin(vitrina);
     if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
@@ -29,6 +30,7 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
+    Thread.sleep(3000);
     recursiaVitrina(vitrina, 15);
   }
 
@@ -49,7 +51,7 @@ public class VitrinaHelper extends HelperBase {
       }
       return i;
     } catch (Exception e) {
-      Thread.sleep(1000);
+      Thread.sleep(3000);
       i--;
       if (i > 0) {
         selectMenuVitrin(vitrina);
@@ -64,7 +66,7 @@ public class VitrinaHelper extends HelperBase {
       click(By.xpath(vitrina.getMenuXpath()));
       return i;
     } catch (Exception e) {
-      Thread.sleep(1000);
+      Thread.sleep(3000);
       i--;
       if (i > 0) {
         selectRazdel(vitrina);
@@ -76,6 +78,7 @@ public class VitrinaHelper extends HelperBase {
 
   private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
+    Thread.sleep(3000);
     recursiaMenu(vitrina, 15);
   }
 
@@ -191,7 +194,7 @@ public class VitrinaHelper extends HelperBase {
       click(By.xpath(vitrina.getRazdXpath()));
       return i;
     } catch (Exception e) {
-      Thread.sleep(1000);
+      Thread.sleep(3000);
       i--;
       if (i > 0) {
         return recursiaRazdel(vitrina, i);
