@@ -44,7 +44,9 @@ public class VitrinaHelper extends HelperBase {
           return 0;
         } else {
           i--;
+          Thread.sleep(3000);
           selectRazdel(vitrina);
+          Thread.sleep(3000);
           selectMenuVitrin(vitrina);
           return i;
         }
@@ -54,6 +56,7 @@ public class VitrinaHelper extends HelperBase {
       Thread.sleep(3000);
       i--;
       if (i > 0) {
+        selectRazdel(vitrina);
         selectMenuVitrin(vitrina);
         return recursiaVitrina(vitrina, i);
       }
@@ -142,6 +145,8 @@ public class VitrinaHelper extends HelperBase {
   public void buttonFind() throws InterruptedException {
     waitElement(By.xpath("//div[@class='form']/input"));
     click(By.xpath("//div[@class='form']/input"));
+    Thread.sleep(3000);
+    waitLoadPage();
   }
 
   private void fillFiltrType(WebElement element, int attr, String text) throws InterruptedException {

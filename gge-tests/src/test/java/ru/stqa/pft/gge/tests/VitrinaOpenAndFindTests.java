@@ -51,7 +51,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "validGroupsFromJson", timeOut = 150000)
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
     app.vitrina().selectVitrina(vitrina);
     assertThat(app.vitrina().isMistakes(), equalTo(false));
