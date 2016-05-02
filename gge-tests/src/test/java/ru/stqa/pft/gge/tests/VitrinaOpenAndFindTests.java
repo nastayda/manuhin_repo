@@ -55,6 +55,9 @@ public class VitrinaOpenAndFindTests extends TestBase {
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
     app.vitrina().selectVitrina(vitrina);
     assertThat(app.vitrina().isMistakes(), equalTo(false));
+    
+    assertThat(app.vitrina().checkVitrinaName(vitrina), equalTo(true));
+
     app.vitrina().vizovRasshPoisk();
     app.vitrina().fillAllFilters();
     app.vitrina().buttonFind();
