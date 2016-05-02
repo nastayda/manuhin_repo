@@ -34,6 +34,16 @@ public class VitrinaHelper extends HelperBase {
     recursiaVitrina(vitrina, 15);
   }
 
+  public boolean checkVitrinaName(GeneratorData vitrina) {
+    List<WebElement> elements = wd.findElements(By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+    if (elements.size() == 1) {
+      if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private int recursiaVitrina(GeneratorData vitrina, int i) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getVitrinaXpath()));
@@ -48,6 +58,8 @@ public class VitrinaHelper extends HelperBase {
           selectRazdel(vitrina);
           Thread.sleep(3000);
           selectMenuVitrin(vitrina);
+          Thread.sleep(3000);
+          selectPodMenuVitrina(vitrina);
           return i;
         }
       }
