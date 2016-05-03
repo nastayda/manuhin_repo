@@ -15,6 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class VitrinaOpenAndFindTests5 extends TestBase {
 
   @DataProvider
@@ -48,12 +51,16 @@ public class VitrinaOpenAndFindTests5 extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson")
+  @Test(dataProvider = "validGroupsFromJson", timeOut = 150000)
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
-
     app.vitrina().selectVitrina(vitrina);
+    assertThat(app.vitrina().isMistakes(), equalTo(false));
+
+    assertThat(app.vitrina().checkVitrinaName(vitrina), equalTo(true));
+
     app.vitrina().vizovRasshPoisk();
     app.vitrina().fillAllFilters();
     app.vitrina().buttonFind();
+    assertThat(app.vitrina().isMistakes(), equalTo(false));
   }
 }

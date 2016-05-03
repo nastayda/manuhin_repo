@@ -4,6 +4,14 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
     "menu": "На контроле",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все предоставленные отчеты",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[8]/a"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Незавершенные задачи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[9]/a"
   },
@@ -126,37 +134,5 @@
     "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
     "vitrina": "Распоряжения ГГЭ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[6]/a"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Распорядительные документы",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
-    "vitrina": "Иные распорядительные документы",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[7]/a"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Внутренние документы",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
-    "vitrina": "Все документы",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[1]/a"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Внутренние документы",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
-    "vitrina": "Служебные записки ЦА",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[2]/a"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Внутренние документы",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
-    "vitrina": "Переписка с филиалами",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[3]/a"
   }
 ]
