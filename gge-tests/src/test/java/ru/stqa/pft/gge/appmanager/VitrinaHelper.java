@@ -16,17 +16,21 @@ public class VitrinaHelper extends HelperBase {
     super(wd);
   }
 
-  public void selectVitrina(GeneratorData vitrina) throws InterruptedException {
-    for (int i = 1; i < 5; i++) {
-      if (selectRazdel(vitrina)) {
-        break;
+  public boolean selectVitrina(GeneratorData vitrina) throws InterruptedException {
+    for (int i = 1; i <= 5; i++) {
+      selectRazdel(vitrina);
+      selectMenuVitrin(vitrina);
+      if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
+        selectPodMenuVitrina(vitrina);
       }
-      Thread.sleep(2000);
+
+      if (checkVitrinaName(vitrina)) {
+        return true;
+      } else {
+        Thread.sleep(2000);
+      }
     }
-    selectMenuVitrin(vitrina);
-    if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
-      selectPodMenuVitrina(vitrina);
-    }
+    return false;
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
@@ -220,10 +224,9 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  private boolean selectRazdel(GeneratorData vitrina) throws InterruptedException {
+  private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
     waitLoadPage();
     recursiaRazdel(vitrina, 15);
-    return true;
   }
 
   public boolean isMistakes() {
