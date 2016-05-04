@@ -201,7 +201,8 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public void vizovRasshPoisk() throws InterruptedException {
-    String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]";
+    //String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // test-eis, 82-й
+    String xpathRasshPoisk = ".//*[@class=\"singleButton searchBtn default-btn MAIN\"]"; // eis
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
     if (elements.size() == 1) {
       waitLoadPage();
