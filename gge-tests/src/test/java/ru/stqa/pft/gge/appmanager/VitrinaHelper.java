@@ -1,6 +1,7 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
@@ -108,6 +109,7 @@ public class VitrinaHelper extends HelperBase {
     if (elements.size() == 1) {
       WebElement element = elements.iterator().next();
       fillFiltrCombobox(element);
+      //fillFiltrCheckbox(element);
       fillFiltrType(element, 0, "ав");
       fillFiltrType(element, 49, "ав");
       fillFiltrType(element, 47, "ав");
@@ -181,19 +183,37 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void fillFiltrCombobox(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//*[@class=\"curSelect\"]";
+    String xpathlocator = ".//select";
+
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
-          if (w.isDisplayed()) {
-            List<WebElement> elementsValue = w.findElements(By.xpath("./../select/option[last()]"));
-            if (elementsValue.size() == 1) {
-              WebElement ww = elementsValue.iterator().next();
-              String text1 = ww.getText();
-              w.sendKeys(text1);
-            }
+          List<WebElement> elementsValue = w.findElements(By.xpath("./option[last()]"));
+          if (elementsValue.size() == 1) {
+            WebElement ww = elementsValue.iterator().next();
+            String id = w.getAttribute("id");
+            String jstriptString = "$('select#" + id + "').find('option:last').attr('selected', 'selected').end().change()";
+            ((JavascriptExecutor) wd).executeScript(jstriptString);
+          }
+        }
+      }
+    }
+  }
+
+  private void fillFiltrCheckbox(WebElement element) throws InterruptedException {
+    String xpathlocator = ".//input[@type=\"checkbox\" and @class!=\"masked\"]";
+
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isEnabled()) {
+            waitLoadPage();
+            Thread.sleep(10000);
+            w.click();
           }
         }
       }
@@ -201,8 +221,8 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public void vizovRasshPoisk() throws InterruptedException {
-    //String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // test-eis, 82-й
-    String xpathRasshPoisk = ".//*[@class=\"singleButton searchBtn default-btn MAIN\"]"; // eis
+    String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // test-eis, 82-й
+    //String xpathRasshPoisk = ".//*[@class=\"singleButton searchBtn default-btn MAIN\"]"; // eis
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
     if (elements.size() == 1) {
       waitLoadPage();

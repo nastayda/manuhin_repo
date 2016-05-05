@@ -1,5 +1,13 @@
 [
   {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Договоры",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Договоры",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a"
+  },
+  {
     "razdel": "Делопроизводство",
     "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
     "menu": "Распорядительные документы",
