@@ -59,8 +59,8 @@ public class HelperBase {
   }
 
   public void waitLoadPage() throws InterruptedException {
-    waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));   // test-eis, 82-й
-    //waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none; width: 100%;\"]")); // eis
+    //waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));   // test-eis, 82-й
+    waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none; width: 100%;\"]")); // eis
   }
 
   protected void waitElement(By locator) throws InterruptedException {

@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.io.File;
 
@@ -23,17 +24,36 @@ public class PodachaZajavlenija {
     
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
-        wd.get("https://vm-081-as-gge.mdi.ru/auth/login.action");
+        wd.manage().window().maximize();
+        //wd.get("https://vm-081-as-gge.mdi.ru/auth/login.action");
+        wd.get("https://test-my.gge.ru/auth/login.action");
         type(By.id("username"), "galactica_admin1");
         type(By.id("password"), "21");
         click(By.id("submitBtn"));
+
         waitElementAndClick(By.linkText("Подать новое заявление"));
+
+        // Наименование объекта
         type(By.id("_labelAcceptor10"), "Деловой и культурный комплекс РФ");
-        click(By.id("_labelAcceptor12"));
+
+        // комбобокс "Источник финансирования"
+        //click(By.id("_labelAcceptor12"));
+
+        // Почтовый адрес
         type(By.id("_labelAcceptor18"), "101000");
-        click(By.id("_labelAcceptor19"));
-        click(By.cssSelector("span.folderContainer"));
-        click(By.cssSelector("span.folderButtonAdd"));
+
+        // комбобокс "Субъект РФ"
+        //click(By.id("_labelAcceptor19"));
+
+        // справочник "Функциональное назначение"
+        fillReference(By.xpath(".//*[@for=\"_labelAcceptor21\"]/..//*[@class=\"folderButtonAdd\"]"));
+
+
+        // справочник "Показатель"
+        fillReference(By.xpath(".//*[@for=\"_labelAcceptor25\"]/..//*[@class=\"folderButtonAdd\"]"));
+
+
+
         wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span")).click();
         wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span/span[1]/span[1]")).click();
         type(By.id("_labelAcceptor27"), "10000");
@@ -86,6 +106,39 @@ public class PodachaZajavlenija {
             wd.findElement(By.id("1EB0BAB72F3B46ADAF74DDE33D0BBF7B_0_0")).click();
         }
         wd.findElement(By.id("next")).click();
+    }
+
+    private void fillReference(By locator) throws InterruptedException {
+        Set<String> winOld = wd.getWindowHandles();
+
+        click(locator);
+
+        Set<String> wNewSet = wd.getWindowHandles();
+        int attempt = 0;
+        while (wNewSet.size() < 2 && attempt < 15) {
+            Thread.sleep(1000);
+            wNewSet = wd.getWindowHandles();
+            attempt++;
+        }
+
+        wNewSet.removeAll(winOld);
+        String wNew = wNewSet.iterator().next();
+        wd.switchTo().window(wNew);
+
+        String xpathPlus1 = "(//*[@class=\"Expand\"])[1]";
+        waitElement(By.xpath(xpathPlus1));
+        click(By.xpath(xpathPlus1));
+
+        String xpathRadio2 = "(//input[@class=\"RadioCheckElem\"])[2]";
+        waitElement(By.xpath(xpathRadio2));
+        click(By.xpath(xpathRadio2));
+
+        String xpathSubmit = ".//input[@id='submitButton']";
+        waitElement(By.xpath(xpathSubmit));
+        click(By.xpath(xpathSubmit));
+
+        wd.switchTo().window(winOld.iterator().next());
+        waitLoadPage();
     }
 
     private void waitElementAndClick(By locator) throws InterruptedException {
