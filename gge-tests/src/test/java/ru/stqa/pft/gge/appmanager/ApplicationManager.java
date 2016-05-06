@@ -56,7 +56,7 @@ public class ApplicationManager {
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
     wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    wd.manage().window().maximize();
+    //wd.manage().window().maximize();
     wd.get(properties.getProperty("web.baseUrl"));
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
