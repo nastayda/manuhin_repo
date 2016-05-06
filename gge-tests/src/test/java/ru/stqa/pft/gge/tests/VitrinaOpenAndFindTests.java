@@ -61,5 +61,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
     app.vitrina().buttonFind();
 
     assertThat(app.vitrina().isMistakes(), equalTo(false));
+    
   }
 }
