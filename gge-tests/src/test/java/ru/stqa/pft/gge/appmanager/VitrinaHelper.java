@@ -109,7 +109,7 @@ public class VitrinaHelper extends HelperBase {
     if (elements.size() == 1) {
       WebElement element = elements.iterator().next();
       fillFiltrCombobox(element);
-      //fillFiltrCheckbox(element);
+      fillFiltrCheckbox(element);
       fillFiltrType(element, 0, "ав");
       fillFiltrType(element, 49, "ав");
       fillFiltrType(element, 47, "ав");
@@ -211,9 +211,9 @@ public class VitrinaHelper extends HelperBase {
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           if (w.isEnabled()) {
-            waitLoadPage();
-            Thread.sleep(10000);
-            w.click();
+            String id = w.getAttribute("id");
+            String jstriptString = "$('input#" + id + "').click()";
+            ((JavascriptExecutor) wd).executeScript(jstriptString);
           }
         }
       }
