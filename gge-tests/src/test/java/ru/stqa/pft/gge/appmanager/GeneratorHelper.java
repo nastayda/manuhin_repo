@@ -20,7 +20,7 @@ public class GeneratorHelper extends HelperBase {
 
   private Properties properties;
 
-  public List<GeneratorData> GenParam(int i, boolean isProdServer) throws InterruptedException {
+  public List<GeneratorData> GenParam(int i, boolean isProdServer, String loginUser, String baseUrl) throws InterruptedException {
     List<WebElement> mainMenu;
     List<WebElement> dropDown;
     List <GeneratorData> listRazd = new ArrayList<>();
@@ -37,12 +37,13 @@ public class GeneratorHelper extends HelperBase {
 
     String xpathSubmenuDropEnd = properties.getProperty("xpath.submenu.drop.end");
 
-    String loginUser = properties.getProperty("web.adminLogin");
-    String baseUrl = properties.getProperty("web.baseUrl");
+    //String loginUser = properties.getProperty("web.adminLogin");
+    //String baseUrl = properties.getProperty("web.baseUrl");
 
     //Раздел
     for (int r = 1; r <= i; r++){
       waitLoadPage(isProdServer);
+      //Thread.sleep(3000);
       String xpath1 = xpathRazdelStart + "["+ r +"]" + xpathRazdelEnd;
       click(By.xpath(xpath1));
       String nameRazd = wd.findElement(By.xpath(xpath1)).getText();
@@ -51,6 +52,7 @@ public class GeneratorHelper extends HelperBase {
       //Меню
       for(int m = 1; m <= amountMenu; m++) {
         waitLoadPage(isProdServer);
+        Thread.sleep(1000);
         String xpath2 = xpathMenuStart + "["+ m +"]" + xpathMenuEnd;
         String nameMenu = wd.findElement(By.xpath(xpath2)).getText();
         String classMenu = wd.findElement(By.xpath(xpathMenuStart + "["+ m +"]"))
@@ -60,6 +62,7 @@ public class GeneratorHelper extends HelperBase {
           dropDown = wd.findElements(By.xpath(xpathMenuStart + "[" + m +"]" + xpathSubmenuDropEnd));
           int amountSubMenu = dropDown.size();
           waitLoadPage(isProdServer);
+          Thread.sleep(1000);
           click(By.xpath(xpath2));
           for(int s = 1; s <= amountSubMenu; s++){
             String xpath3 = xpathSubmenuStart + "[" + m + "]" + xpathSubmenuIn + "[" + s + "]" + xpathSubmenuEnd;

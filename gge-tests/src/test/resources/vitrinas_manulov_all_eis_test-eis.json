@@ -822,20 +822,10 @@
   {
     "razdel": "Настройки",
     "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
-    "menu": "Сотрудники",
+    "menu": "Организации",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Сотрудники",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
-  },
-  {
-    "razdel": "Настройки",
-    "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
-    "menu": "Все пользователи",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
-    "vitrina": "Все пользователи",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все организации",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
@@ -847,7 +837,7 @@
     "vitrina": "Все мои задачи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -857,7 +847,7 @@
     "vitrina": "Архив",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -867,7 +857,7 @@
     "vitrina": "Проекты поручений",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -877,7 +867,7 @@
     "vitrina": "Предоставленные отчеты",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -887,7 +877,7 @@
     "vitrina": "Для исполнения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -897,7 +887,7 @@
     "vitrina": "Выданные мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -907,7 +897,7 @@
     "vitrina": "Исполненные поручения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[5]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -917,7 +907,7 @@
     "vitrina": "Перепорученные мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[6]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -927,7 +917,7 @@
     "vitrina": "Для исполнения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -937,7 +927,7 @@
     "vitrina": "Инициированные мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -947,7 +937,7 @@
     "vitrina": "Контролируемые мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -957,7 +947,7 @@
     "vitrina": "Архив",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -967,7 +957,7 @@
     "vitrina": "На исполнение мне",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -977,7 +967,7 @@
     "vitrina": "На исполнение подразделению",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -987,7 +977,7 @@
     "vitrina": "На контроле",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -997,7 +987,7 @@
     "vitrina": "Проекты документов",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1007,7 +997,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[5]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1017,7 +1007,7 @@
     "vitrina": "На контроле",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[6]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1027,7 +1017,7 @@
     "vitrina": "На ознакомление",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[7]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1037,7 +1027,7 @@
     "vitrina": "Подготовленные мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[8]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1047,7 +1037,7 @@
     "vitrina": "На согласование",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[9]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1057,7 +1047,7 @@
     "vitrina": "Незакрытые документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[10]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -1067,7 +1057,7 @@
     "vitrina": "Мои дела",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Экспертиза",
@@ -1077,7 +1067,7 @@
     "vitrina": "Все обращения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Экспертиза",
@@ -1087,7 +1077,7 @@
     "vitrina": "Новые обращения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Экспертиза",
@@ -1097,7 +1087,7 @@
     "vitrina": "Проверка комплектности",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Экспертиза",
@@ -1107,7 +1097,7 @@
     "vitrina": "На Выпуске",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Экспертиза",
@@ -1117,7 +1107,7 @@
     "vitrina": "Реестр заключений",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1127,7 +1117,7 @@
     "vitrina": "Договоры",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1137,7 +1127,7 @@
     "vitrina": "По дате",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1147,7 +1137,7 @@
     "vitrina": "По источникам финансирования",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1157,7 +1147,7 @@
     "vitrina": "По виду услуги",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1167,7 +1157,7 @@
     "vitrina": "Счета",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1177,7 +1167,7 @@
     "vitrina": "По годам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1187,7 +1177,7 @@
     "vitrina": "По источнику финансирования",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1197,7 +1187,7 @@
     "vitrina": "По актам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1207,7 +1197,7 @@
     "vitrina": "По счетам-фактурам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1217,7 +1207,7 @@
     "vitrina": "Акты",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1227,7 +1217,7 @@
     "vitrina": "По годам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1237,7 +1227,7 @@
     "vitrina": "По заказчику",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1247,7 +1237,7 @@
     "vitrina": "По плательщику",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Оплата",
@@ -1257,7 +1247,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1267,7 +1257,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1277,7 +1267,7 @@
     "vitrina": "Папки документов",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1287,7 +1277,7 @@
     "vitrina": "Поиск документов",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1297,7 +1287,7 @@
     "vitrina": "Новые документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1307,7 +1297,7 @@
     "vitrina": "Все документы на контроле",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1317,7 +1307,7 @@
     "vitrina": "Внешний контроль",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1327,7 +1317,7 @@
     "vitrina": "Внутренний контроль",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1337,7 +1327,7 @@
     "vitrina": "Документы на контроле по исполнителям",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[5]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1347,7 +1337,7 @@
     "vitrina": "Все проекты поручений",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[6]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1357,7 +1347,7 @@
     "vitrina": "Все поручения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[7]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1367,7 +1357,7 @@
     "vitrina": "Все предоставленные отчеты",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[8]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1377,7 +1367,7 @@
     "vitrina": "Незавершенные задачи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[9]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1387,7 +1377,7 @@
     "vitrina": "Задачи поручений",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[10]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1397,7 +1387,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1407,7 +1397,7 @@
     "vitrina": "По типам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1417,7 +1407,7 @@
     "vitrina": "Запросы правоохранительных органов",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1427,7 +1417,7 @@
     "vitrina": "Запросы судебной экспертизы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1437,7 +1427,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1447,7 +1437,7 @@
     "vitrina": "По типам",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1457,7 +1447,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1467,7 +1457,7 @@
     "vitrina": "По типам поступления",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1477,7 +1467,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1487,7 +1477,7 @@
     "vitrina": "Распоряжения Правительства РФ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1497,7 +1487,7 @@
     "vitrina": "Постановления Правительства РФ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1507,7 +1497,7 @@
     "vitrina": "Приказы вышестоящей организации",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1517,7 +1507,7 @@
     "vitrina": "Приказы ГГЭ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[5]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1527,7 +1517,7 @@
     "vitrina": "Распоряжения ГГЭ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[6]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1537,7 +1527,7 @@
     "vitrina": "Иные распорядительные документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[7]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1547,7 +1537,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1557,7 +1547,7 @@
     "vitrina": "Служебные записки ЦА",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1567,7 +1557,7 @@
     "vitrina": "Переписка с филиалами",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1577,7 +1567,7 @@
     "vitrina": "Иные внутренние документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1587,7 +1577,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1597,7 +1587,7 @@
     "vitrina": "Поручения Президента РФ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1607,7 +1597,7 @@
     "vitrina": "Протоколы совещаний и поручения Правительства РФ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[3]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1617,7 +1607,7 @@
     "vitrina": "Протоколы совещаний и поручения вышестоящей организации",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[4]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1627,7 +1617,7 @@
     "vitrina": "Протоколы совещаний и поручения Начальника ГГЭ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[5]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1637,7 +1627,7 @@
     "vitrina": "Иные протоколы совещаний и поручения",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[6]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1647,7 +1637,7 @@
     "vitrina": "Протоколы совещаний у заместителей Начальника ГГЭ",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[7]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1657,7 +1647,7 @@
     "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[9]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Делопроизводство",
@@ -1667,7 +1657,7 @@
     "vitrina": "Новые документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[9]//ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Организации",
@@ -1677,7 +1667,7 @@
     "vitrina": "Все организации",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Сотрудники",
@@ -1687,7 +1677,7 @@
     "vitrina": "Сотрудники",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Сотрудники",
@@ -1697,6 +1687,6 @@
     "vitrina": "Все пользователи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   }
 ]
