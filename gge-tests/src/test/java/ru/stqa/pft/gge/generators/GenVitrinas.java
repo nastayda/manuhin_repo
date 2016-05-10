@@ -26,6 +26,9 @@ public class GenVitrinas extends TestBase {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
+  //public String baseUrl = "https://eis.gge.ru/auth/login.action";
+  public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
+
   public static void main(String[] args) throws Exception {
     GenVitrinas generator = new GenVitrinas();
     JCommander jCommander = new JCommander(generator);
@@ -36,7 +39,8 @@ public class GenVitrinas extends TestBase {
       return;
     }
 
-    generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
+    //generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
+    generator.setUp2("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
     generator.run();
     generator.tearDown();
   }
@@ -73,7 +77,13 @@ public class GenVitrinas extends TestBase {
   private List<GeneratorData> generateVitrinasData(int count) throws InterruptedException {
     System.out.println(new File(".").getAbsolutePath());
     List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
-    vitrinas = app.vitrinagen().GenParam(count);
+
+    boolean isProdServer = false;
+    if (baseUrl.equals("https://eis.gge.ru/auth/login.action")) {
+      isProdServer = true;
+    }
+
+    vitrinas = app.vitrinagen().GenParam(count, isProdServer);
     return vitrinas;
   }
 }

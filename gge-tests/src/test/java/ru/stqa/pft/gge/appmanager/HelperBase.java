@@ -58,9 +58,12 @@ public class HelperBase {
     }
   }
 
-  public void waitLoadPage() throws InterruptedException {
-    //waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));   // test-eis, 82-й
-    waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none; width: 100%;\"]")); // eis
+  public void waitLoadPage(boolean isProdServer) throws InterruptedException {
+    if (isProdServer) {
+      waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none; width: 100%;\"]")); // eis
+    } else {
+      waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));   // test-eis, 82-й
+    }
   }
 
   protected void waitElement(By locator) throws InterruptedException {

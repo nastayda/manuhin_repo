@@ -7,7 +7,7 @@
     "vitrina": "Все мои задачи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
     "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
+    "baseUrl": "https://test-eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Рабочий кабинет",
@@ -16,7 +16,7 @@
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Все мои задачи",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
-    "loginUser": "v.andropov",
+    "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   }
 ]

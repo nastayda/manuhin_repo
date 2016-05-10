@@ -2,16 +2,6 @@
   {
     "razdel": "Рабочий кабинет",
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Главная страница",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Главная страница",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои задачи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Все мои задачи",
@@ -154,7 +144,7 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "Проекты документов",
+    "vitrina": "На контроле",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
@@ -164,7 +154,7 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "Все документы",
+    "vitrina": "Проекты документов",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[4]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
@@ -174,7 +164,7 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "На контроле",
+    "vitrina": "Все документы",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[5]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
@@ -184,7 +174,7 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "На ознакомление",
+    "vitrina": "На контроле",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[6]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
@@ -194,7 +184,7 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "На согласование",
+    "vitrina": "На ознакомление",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[7]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
@@ -204,8 +194,38 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои документы",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "Незакрытые документы",
+    "vitrina": "Подготовленные мной",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[8]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На согласование",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[9]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Незакрытые документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[10]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Дела в работе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Мои дела",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
@@ -254,8 +274,8 @@
     "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
     "menu": "Реестр заключений",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Выданные заключения",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
+    "vitrina": "Реестр заключений",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
@@ -810,27 +830,17 @@
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
   {
-    "razdel": "Сотрудники",
+    "razdel": "Организации",
     "razdelXpath": ".//*[@id='firstMenu']/li[5]/a[@href!='']",
-    "menu": "Сотрудники",
+    "menu": "Все организации",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Сотрудники",
+    "vitrina": "Все организации",
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
   {
     "razdel": "Сотрудники",
-    "razdelXpath": ".//*[@id='firstMenu']/li[5]/a[@href!='']",
-    "menu": "Все пользователи",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
-    "vitrina": "Все пользователи",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://eis.gge.ru/auth/login.action"
-  },
-  {
-    "razdel": "Настройки",
     "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
     "menu": "Сотрудники",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
@@ -840,7 +850,7 @@
     "baseUrl": "https://eis.gge.ru/auth/login.action"
   },
   {
-    "razdel": "Настройки",
+    "razdel": "Сотрудники",
     "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
     "menu": "Все пользователи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",

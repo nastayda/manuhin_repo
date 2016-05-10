@@ -17,12 +17,12 @@ public class VitrinaHelper extends HelperBase {
     super(wd);
   }
 
-  public boolean selectVitrina(GeneratorData vitrina) throws InterruptedException {
+  public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     for (int i = 1; i <= 5; i++) {
-      selectRazdel(vitrina);
-      selectMenuVitrin(vitrina);
+      selectRazdel(vitrina, isProdServer);
+      selectMenuVitrin(vitrina, isProdServer);
       if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
-        selectPodMenuVitrina(vitrina);
+        selectPodMenuVitrina(vitrina, isProdServer);
       }
 
       if (checkVitrinaName(vitrina)) {
@@ -34,9 +34,9 @@ public class VitrinaHelper extends HelperBase {
     return false;
   }
 
-  private void selectPodMenuVitrina(GeneratorData vitrina) throws InterruptedException {
+  private void selectPodMenuVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     Thread.sleep(3000);
-    recursiaVitrina(vitrina, 15);
+    recursiaVitrina(vitrina, 15, isProdServer);
   }
 
   public boolean checkVitrinaName(GeneratorData vitrina) {
@@ -49,10 +49,10 @@ public class VitrinaHelper extends HelperBase {
     return false;
   }
 
-  private int recursiaVitrina(GeneratorData vitrina, int i) throws InterruptedException {
+  private int recursiaVitrina(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getVitrinaXpath()));
-      waitLoadPage();
+      waitLoadPage(isProdServer);
       List<WebElement> elements = wd.findElements(By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
       if (elements.size() == 1) {
         if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
@@ -60,11 +60,11 @@ public class VitrinaHelper extends HelperBase {
         } else {
           i--;
           Thread.sleep(3000);
-          selectRazdel(vitrina);
+          selectRazdel(vitrina, isProdServer);
           Thread.sleep(3000);
-          selectMenuVitrin(vitrina);
+          selectMenuVitrin(vitrina, isProdServer);
           Thread.sleep(3000);
-          selectPodMenuVitrina(vitrina);
+          selectPodMenuVitrina(vitrina, isProdServer);
           return i;
         }
       }
@@ -73,15 +73,15 @@ public class VitrinaHelper extends HelperBase {
       Thread.sleep(3000);
       i--;
       if (i > 0) {
-        selectRazdel(vitrina);
-        selectMenuVitrin(vitrina);
-        return recursiaVitrina(vitrina, i);
+        selectRazdel(vitrina, isProdServer);
+        selectMenuVitrin(vitrina, isProdServer);
+        return recursiaVitrina(vitrina, i, isProdServer);
       }
       return i;
     }
   }
 
-  private int recursiaMenu(GeneratorData vitrina, int i) throws InterruptedException {
+  private int recursiaMenu(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getMenuXpath()));
       return i;
@@ -89,21 +89,21 @@ public class VitrinaHelper extends HelperBase {
       Thread.sleep(3000);
       i--;
       if (i > 0) {
-        selectRazdel(vitrina);
-        return recursiaMenu(vitrina, i);
+        selectRazdel(vitrina, isProdServer);
+        return recursiaMenu(vitrina, i, isProdServer);
       }
       return i;
     }
   }
 
-  private void selectMenuVitrin(GeneratorData vitrina) throws InterruptedException {
-    waitLoadPage();
+  private void selectMenuVitrin(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
     Thread.sleep(3000);
-    recursiaMenu(vitrina, 15);
+    recursiaMenu(vitrina, 15, isProdServer);
   }
 
-  public void fillAllFilters() throws InterruptedException {
-    waitLoadPage();
+  public void fillAllFilters(boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
     String startXpath = ".//*[@class=\"form\"]";
     List<WebElement> elements = wd.findElements(By.xpath(startXpath));
     if (elements.size() == 1) {
@@ -115,12 +115,12 @@ public class VitrinaHelper extends HelperBase {
       fillFiltrType(element, 47, "ав");
       fillFiltrType(element, 6, "01.04.2015");
       fillFiltrType(element, 9, "01.04.2015");
-      fillFiltrReference(element, 16);
-      fillFiltrReference(element, 15);
+      fillFiltrReference(element, 16, isProdServer);
+      fillFiltrReference(element, 15, isProdServer);
     }
   }
 
-  private void fillFiltrReference(WebElement element, int attr) throws InterruptedException {
+  private void fillFiltrReference(WebElement element, int attr, boolean isProdServer) throws InterruptedException {
     String xpathlocator = ".//*[@class=\"folderIco\" and @attr_type=\"" + attr + "\"]";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     Set<String> winOld = wd.getWindowHandles();
@@ -153,18 +153,18 @@ public class VitrinaHelper extends HelperBase {
             click(By.xpath(xpathSubmit));
 
             wd.switchTo().window(winOld.iterator().next());
-            waitLoadPage();
+            waitLoadPage(isProdServer);
           }
         }
       }
     }
   }
 
-  public void buttonFind() throws InterruptedException {
+  public void buttonFind(boolean isProdServer) throws InterruptedException {
     waitElement(By.xpath("//div[@class='form']/input"));
     click(By.xpath("//div[@class='form']/input"));
     Thread.sleep(3000);
-    waitLoadPage();
+    waitLoadPage(isProdServer);
   }
 
   private void fillFiltrType(WebElement element, int attr, String text) throws InterruptedException {
@@ -220,12 +220,16 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  public void vizovRasshPoisk() throws InterruptedException {
-    //String xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // test-eis, 82-й
-    String xpathRasshPoisk = ".//*[@class=\"singleButton searchBtn default-btn MAIN\"]"; // eis
+  public void vizovRasshPoisk(boolean isProdServer) throws InterruptedException {
+    String xpathRasshPoisk = "";
+    if (isProdServer) {
+      xpathRasshPoisk = ".//*[@class=\"singleButton searchBtn default-btn MAIN\"]"; // eis
+    } else {
+      xpathRasshPoisk = ".//*[@class=\"singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // test-eis, 82-й
+    }
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
     if (elements.size() == 1) {
-      waitLoadPage();
+      waitLoadPage(isProdServer);
       waitElement(By.xpath(xpathRasshPoisk));
       click(By.xpath(xpathRasshPoisk));
     }
@@ -245,8 +249,8 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
-  private void selectRazdel(GeneratorData vitrina) throws InterruptedException {
-    waitLoadPage();
+  private void selectRazdel(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
     recursiaRazdel(vitrina, 15);
   }
 
