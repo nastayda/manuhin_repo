@@ -35,7 +35,8 @@ public class GenVitrinas extends TestBase {
       jCommander.usage();
       return;
     }
-    generator.setUp2();
+
+    generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
     generator.run();
     generator.tearDown();
   }

@@ -20,8 +20,9 @@ public class TestBase {
     context.setAttribute("app", app);
   }
 
-  public void setUp2() throws Exception {
+  public void setUp2(String username, String password, String baseUrl) throws Exception {
     app.init();
+    app.session().login(username, password, baseUrl);
   }
 
   @AfterMethod(alwaysRun = true)

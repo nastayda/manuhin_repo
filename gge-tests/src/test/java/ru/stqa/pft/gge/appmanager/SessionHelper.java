@@ -12,7 +12,8 @@ public class SessionHelper extends HelperBase {
     super(wd);
   }
 
-  public void login(String username, String password) {
+  public void login(String username, String password, String baseUrl) {
+    wd.get(baseUrl);
     click(By.id("content"));
     type(By.id("username"), username);
     type(By.id("password"), password);

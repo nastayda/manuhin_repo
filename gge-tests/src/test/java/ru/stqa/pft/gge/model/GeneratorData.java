@@ -22,6 +22,13 @@ public class GeneratorData {
     @Expose
     private String vitrinaXpath;
 
+    @Expose
+    private String loginUser;
+
+    @Expose
+
+    private String baseUrl;
+
 
     /**
      * Геттеры
@@ -51,6 +58,14 @@ public class GeneratorData {
         return vitrinaXpath;
     }
 
+
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public String getLoginUser() {
+        return loginUser;
+    }
 
     /**
      * Сеттеры
@@ -105,10 +120,22 @@ public class GeneratorData {
         return this;
     }
 
+    public GeneratorData withBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+        return this;
+    }
+
+    public GeneratorData withLoginUser(String loginUser) {
+        this.loginUser = loginUser;
+        return this;
+    }
+
     @Override
     public String toString() {
         return  razdel + " / " +
                 menu + " / " +
-                vitrina;
+                vitrina + " / " +
+                loginUser + " / " +
+                baseUrl;
     }
 }

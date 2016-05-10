@@ -37,6 +37,9 @@ public class GeneratorHelper extends HelperBase {
 
     String xpathSubmenuDropEnd = properties.getProperty("xpath.submenu.drop.end");
 
+    String loginUser = properties.getProperty("web.adminLogin");
+    String baseUrl = properties.getProperty("web.baseUrl");
+
     //Раздел
     for (int r = 1; r <= i; r++){
       waitLoadPage();
@@ -64,14 +67,16 @@ public class GeneratorHelper extends HelperBase {
             GeneratorData generatorData = new GeneratorData()
                     .withRazdelName(nameRazd).withRazdelXpath(xpath1)
                     .withMenuName(nameMenu).withMenuXpath(xpath2)
-                    .withVitrinaName(nameSub).withVitrinaXpath(xpath3);
+                    .withVitrinaName(nameSub).withVitrinaXpath(xpath3)
+                    .withLoginUser(loginUser).withBaseUrl(baseUrl);
             listRazd.add(generatorData);
           }
         } else {
           GeneratorData generatorData = new GeneratorData()
                   .withRazdelName(nameRazd).withRazdelXpath(xpath1)
                   .withMenuName(nameMenu).withMenuXpath(xpath2)
-                  .withVitrinaName(nameMenu).withVitrinaXpath(xpath2);
+                  .withVitrinaName(nameMenu).withVitrinaXpath(xpath2)
+                  .withLoginUser(loginUser).withBaseUrl(baseUrl);
           listRazd.add(generatorData);
         }
       }
