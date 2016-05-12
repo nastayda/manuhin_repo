@@ -1,0 +1,32 @@
+[
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Выполнение",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "По актам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Поиск документов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://eis.gge.ru/auth/login.action"
+  }
+]

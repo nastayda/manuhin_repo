@@ -1,5 +1,6 @@
 package ru.stqa.pft.gge.appmanager;
 
+import org.openqa.jetty.util.TempByteHolder;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -32,6 +33,7 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private GeneratorHelper generatorHelper;
   private VitrinaHelper vitrinaHelper;
+  public boolean successInit = false;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -39,27 +41,34 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
-    String target = System.getProperty("target", "local");
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-    if ("".equals(properties.getProperty("selenium.server"))) {
-      if (browser.equals(BrowserType.FIREFOX)) {
-        wd = new FirefoxDriver();
-      } else if (browser.equals(BrowserType.CHROME)) {
-        wd = new ChromeDriver();
-      } else if (browser.equals(BrowserType.IE)) {
-        wd = new InternetExplorerDriver();
+    try {
+      String target = System.getProperty("target", "local");
+      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+      if ("".equals(properties.getProperty("selenium.server"))) {
+        if (browser.equals(BrowserType.FIREFOX)) {
+          wd = new FirefoxDriver();
+        } else if (browser.equals(BrowserType.CHROME)) {
+          wd = new ChromeDriver();
+        } else if (browser.equals(BrowserType.IE)) {
+          wd = new InternetExplorerDriver();
+        }
+      } else {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(browser);
+        capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
+        wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
       }
-    } else {
-      DesiredCapabilities capabilities = new DesiredCapabilities();
-      capabilities.setBrowserName(browser);
-      capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
-      wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+      wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      //wd.manage().window().maximize();
+
+      sessionHelper = new SessionHelper(wd);
+      generatorHelper = new GeneratorHelper(wd, properties);
+      vitrinaHelper = new VitrinaHelper(wd);
+
+      successInit = true;
+    } catch (Throwable e) {
+      e.printStackTrace();
     }
-    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    //wd.manage().window().maximize();
-    sessionHelper = new SessionHelper(wd);
-    generatorHelper = new GeneratorHelper(wd, properties);
-    vitrinaHelper = new VitrinaHelper(wd);
   }
 
   public void stop() {

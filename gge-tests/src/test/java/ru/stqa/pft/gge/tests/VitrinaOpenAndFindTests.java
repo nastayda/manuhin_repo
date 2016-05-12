@@ -64,6 +64,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
       password = "Ukfdujc21";
     }
 
+    assertThat(app.successInit, equalTo(true));
     app.session().login(vitrina.getLoginUser(), password, vitrina.getBaseUrl());
 
     assertThat(app.vitrina().selectVitrina(vitrina, isProdServer), equalTo(true));
@@ -72,7 +73,6 @@ public class VitrinaOpenAndFindTests extends TestBase {
     app.vitrina().vizovRasshPoisk(isProdServer);
     app.vitrina().fillAllFilters(isProdServer);
     app.vitrina().buttonFind(isProdServer);
-
     assertThat(app.vitrina().isMistakes(), equalTo(false));
   }
 }
