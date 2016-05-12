@@ -1,17 +1,17 @@
 // Тут нужно все причесать
 package ru.stqa.pft.gge.tests;
 
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static org.testng.Assert.*;
 
+import java.io.File;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.io.File;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.*;
+import static org.testng.Assert.fail;
 
 public class PodachaZajavlenija {
     FirefoxDriver wd;
@@ -24,35 +24,15 @@ public class PodachaZajavlenija {
     
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
+        int korpus = 1; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
+
+        //wd.manage().window().maximize();
+        autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
+        //autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
+
         wd.manage().window().maximize();
-        //wd.get("https://vm-081-as-gge.mdi.ru/auth/login.action");
-        wd.get("https://test-my.gge.ru/auth/login.action");
-        type(By.id("username"), "galactica_admin1");
-        type(By.id("password"), "21");
-        click(By.id("submitBtn"));
-
-        waitElementAndClick(By.linkText("Подать новое заявление"));
-
-        // Наименование объекта
-        type(By.id("_labelAcceptor10"), "Деловой и культурный комплекс РФ");
-
-        // комбобокс "Источник финансирования"
-        //click(By.id("_labelAcceptor12"));
-
-        // Почтовый адрес
-        type(By.id("_labelAcceptor18"), "101000");
-
-        // комбобокс "Субъект РФ"
-        //click(By.id("_labelAcceptor19"));
-
-        // справочник "Функциональное назначение"
-        fillReference(By.xpath(".//*[@for=\"_labelAcceptor21\"]/..//*[@class=\"folderButtonAdd\"]"));
-
-
-        // справочник "Показатель"
-        fillReference(By.xpath(".//*[@for=\"_labelAcceptor25\"]/..//*[@class=\"folderButtonAdd\"]"));
-
-
+        // Первый шаг заявления
+        step1(korpus);
 
         wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span")).click();
         wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span/span[1]/span[1]")).click();
@@ -108,15 +88,86 @@ public class PodachaZajavlenija {
         wd.findElement(By.id("next")).click();
     }
 
+    private void autorization(String url, String login, String password) {
+        wd.get(url);
+        type(By.id("username"), login);
+        type(By.id("password"), password);
+        click(By.id("submitBtn"));
+    }
+
+    private void step1(int korpus) throws InterruptedException {
+        waitElementAndClick(By.linkText("Подать новое заявление"));
+
+        // Наименование объекта
+        String nameObject = "Спортивный комплекс «Звездный». Корпус " + korpus;
+        type(By.id("_labelAcceptor10"), nameObject);
+
+        // комбобокс "Источник финансирования"
+        multiSelect(4, 2);
+
+        // Почтовый адрес
+        String addressObject = "394065, Воронежская обл., г.Воронеж, ул. Южно-Моравская, д.3, к. " + korpus;
+        type(By.id("_labelAcceptor18"), addressObject);
+
+        // комбобокс "Субъект РФ"
+        multiSelect(6, 9);
+
+        waitLoadPage();
+        Thread.sleep(5000);
+        // справочник "Функциональное назначение"
+        fillReference(By.xpath(".//*[@for=\"_labelAcceptor21\"]/..//*[@class=\"folderButtonAdd\"]"));
+
+        // чекбоксом "Добавить типовые технико-экономические показатели"
+        checkCheckbox("CHECK_TYPE");
+        Thread.sleep(3000);
+
+        waitElement(By.id("_labelAcceptor27"));
+        type(By.id("_labelAcceptor27"), "1,35"); // Площадь участка
+        waitLoadPage();
+        type(By.id("_labelAcceptor37"), "10500"); // Площадь застройки
+        waitLoadPage();
+        type(By.id("_labelAcceptor42"), "8500"); // Площадь благоустройства
+        waitLoadPage();
+        type(By.id("_labelAcceptor47"), "1200"); // Площадь озеленения
+
+        type(By.id("_labelAcceptor52"), "8,7"); // Общая площадь
+        type(By.id("_labelAcceptor57"), "51200"); // Общий строительный объем
+        type(By.id("_labelAcceptor62"), "5100"); // Строительный объём надземной/надводной части
+        type(By.id("_labelAcceptor67"), "14200"); // Строительный объем подземной/подводной части
+        type(By.id("_labelAcceptor72"), "15"); // Верхняя отметка объекта
+        type(By.id("_labelAcceptor77"), "5"); // Этажность
+        type(By.id("_labelAcceptor82"), "24"); // Продолжительность строительства, реконструкции
+        type(By.id("_labelAcceptor87"), "120,5"); // Общая сметная стоимость строительства в ценах по состоянию на 01.01.2000 (без НДС)
+
+        type(By.id("_labelAcceptor92"), "156,2"); // Общая сметная стоимость строительства с учетом НДС (в текущих ценах)
+        type(By.id("_labelAcceptor97"), "43,3"); // Стоимость проектно-изыскательских работ (ПИР) в ценах по состоянию на 01.01.2000 (без НДС)
+        type(By.id("_labelAcceptor102"), "51,1"); // Стоимость проектно-изыскательских работ (ПИР) в текущих ценах (с НДС)
+
+        click(By.id("next"));
+    }
+
+    private void multiSelect(final int numSelect, final int numValue) throws InterruptedException {
+        String jstriptString = "$('.autoFormMULTISELECT:eq(" + numSelect + ") .token-input-list').click();";
+        ((JavascriptExecutor) wd).executeScript(jstriptString);
+
+        Thread.sleep(2000);
+
+        jstriptString = "$('.token-input-dropdown li:eq(" + numValue + ")').mousedown();";
+        ((JavascriptExecutor) wd).executeScript(jstriptString);
+    }
+
     private void fillReference(By locator) throws InterruptedException {
         Set<String> winOld = wd.getWindowHandles();
 
+        waitLoadPage();
+        waitElement(locator);
         click(locator);
 
         Set<String> wNewSet = wd.getWindowHandles();
         int attempt = 0;
         while (wNewSet.size() < 2 && attempt < 15) {
             Thread.sleep(1000);
+            click(locator);
             wNewSet = wd.getWindowHandles();
             attempt++;
         }
@@ -139,6 +190,11 @@ public class PodachaZajavlenija {
 
         wd.switchTo().window(winOld.iterator().next());
         waitLoadPage();
+    }
+
+    private void checkCheckbox(final String nick) throws InterruptedException {
+        String jstriptString = "$('[nick=\"" + nick + "\"] input[type=\"checkbox\"]').click();";
+        ((JavascriptExecutor) wd).executeScript(jstriptString);
     }
 
     private void waitElementAndClick(By locator) throws InterruptedException {
