@@ -1,6 +1,5 @@
 package ru.stqa.pft.gge.appmanager;
 
-import org.openqa.jetty.util.TempByteHolder;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,8 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.fail;
 
 /**
  * Created by Юрий on 04.03.2016.
