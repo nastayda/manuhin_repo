@@ -24,68 +24,102 @@ public class PodachaZajavlenija {
     
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
-        int korpus = 1; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
+        int korpus = 3; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
+        int maxKorpus = 10;
+        boolean easyVariant = true;
 
-        //wd.manage().window().maximize();
-        autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
-        //autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
+        for (int i = korpus; i < maxKorpus; i++) {
+            autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
+            //autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
 
-        wd.manage().window().maximize();
-        // Первый шаг заявления
-        step1(korpus);
+            wd.manage().window().maximize();
 
-        wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span")).click();
-        wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/span[1]/span/span/span/span[1]/span[1]")).click();
-        type(By.id("_labelAcceptor27"), "10000");
-        click(By.id("_labelAcceptor29"));
-        click(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[2]/div[2]/div/span/span"));
-        click(By.xpath("//form[@class='form']/div/div/div/div/div[7]/div/div[2]/div[3]/span[1]/span/span/span/span[1]/span[1]"));
-        type(By.id("_labelAcceptor37"), "12000");
+            // Первый шаг заявления
+            step1(i, easyVariant);
+            // Второй шаг заявления
+            step2();
+            // Третий шаг заявления
+            step3();
+            // Четвертый шаг - подача заявления
+            step4();
+        }
+    }
+
+    private void step4() {
+        click(By.id("apply"));
+    }
+
+    private void step3() throws InterruptedException {
+        click(By.xpath("//*[@for=\"9C17D64348EA4A97A1711FA9711A7AFE_0_2\"]/span"));
+        checkCheckboxWithId("B9D198ADC20E4E9FBE9D2B79C14887C2_0_0");
+        checkCheckboxWithId("DB68524BAAE74FD89C29A62EC52FFFC9_0_0");
+        checkCheckboxWithId("1EB0BAB72F3B46ADAF74DDE33D0BBF7B_0_0");
+        waitLoadPage();
         click(By.id("next"));
+    }
 
-        click(By.id("_labelAcceptor1"));
-        click(By.id("_labelAcceptor7"));
-        type(By.id("_labelAcceptor12"), "101000, Москва, Фуркасовский пер., д.6");
-        type(By.id("_labelAcceptor13"), "info@gge.ru");
-        type(By.id("_labelAcceptor13"), "info@yandex.ru");
-        type(By.id("_labelAcceptor14"), "7 499 652-90-19");
-        type(By.id("_labelAcceptor18"), "044583001");
-        type(By.id("_labelAcceptor19"), "отделение 1 Московского ГТУ Банка");
-        type(By.id("_labelAcceptor20"), "г. Москва 705");
-        type(By.id("_labelAcceptor23"), "40601810000003000002");
-        type(By.id("_labelAcceptor24"), "27778410004517733333");
-        type(By.id("_labelAcceptor26"), "Хохолина");
-        type(By.id("_labelAcceptor28"), "Галина");
-        type(By.id("_labelAcceptor29"), "Анатольевна");
-        type(By.id("_labelAcceptor31"), "Хохолиной Галины Анатольевной");
-        type(By.id("_labelAcceptor32"), "Устава");
-        type(By.id("_labelAcceptor33"), "Руководитель");
-        type(By.id("_labelAcceptor34"), "Руководителя");
-        type(By.id("_labelAcceptor37"), "8 948 853-04-99");
-        type(By.id("_labelAcceptor38"), "433439@mdi.ru");
-        type(By.id("_labelAcceptor38"), "433449@mdi.ru");
+    private void checkCheckboxWithId(String id) {
+        String jstriptString = "$('input#" + id + "').click()";
+        ((JavascriptExecutor) wd).executeScript(jstriptString);
+    }
 
-        if (!wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[3]/div[4]/div[3]/div[4]/div/div/div[2]/div/span[10]/span/label/input")).isSelected()) {
-            wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[3]/div[4]/div[3]/div[4]/div/div/div[2]/div/span[10]/span/label/input")).click();
-        }
-        if (!wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[4]/div[4]/div[1]/div/div[2]/div/span/span/label/input")).isSelected()) {
-            wd.findElement(By.xpath("//form[@class='form']/div/div/div/div/div[4]/div[4]/div[1]/div/div[2]/div/span/span/label/input")).click();
-        }
-        click(By.id("_labelAcceptor99"));
+    private void step2() throws InterruptedException {
+        // Первая организация
+        waitElement(By.id("_labelAcceptor3"));
+        waitLoadPage();
+        type(By.id("_labelAcceptor3"), "7708543649");
+
+        waitElement(By.id("_labelAcceptor5"));
+        type(By.id("_labelAcceptor5"), "770801001");
+        Thread.sleep(500);
+        type(By.id("_labelAcceptor5"), "\n");
+        type(By.id("_labelAcceptor5"), "770801001");
+
+        // Вторая организация
+        waitElement(By.id("_labelAcceptor45"));
+        waitLoadPage();
+        type(By.id("_labelAcceptor45"), "4716016979");
+
+        waitElement(By.id("_labelAcceptor47"));
+        type(By.id("_labelAcceptor47"), "772801001");
+        Thread.sleep(500);
+        type(By.id("_labelAcceptor47"), "\n");
+        type(By.id("_labelAcceptor47"), "772801001");
+
+        // Третья организация
+        waitElement(By.id("_labelAcceptor87"));
+        waitLoadPage();
+        type(By.id("_labelAcceptor87"), "0000990");
+
+        waitElement(By.id("_labelAcceptor89"));
+        type(By.id("_labelAcceptor89"), "0007540");
+        Thread.sleep(500);
+        type(By.id("_labelAcceptor89"), "\n");
+        type(By.id("_labelAcceptor89"), "0007540");
+
+        String xpathButtonAddOrg = "(//div[@class=\"addSection buttonGray addRem add\"])[4]";
+        waitElement(By.xpath(xpathButtonAddOrg));
+        click(By.xpath(xpathButtonAddOrg));
+
+        // Четвертая организация
+        waitElement(By.id("_labelAcceptor167"));
+        waitLoadPage();
+        type(By.id("_labelAcceptor167"), "1110990");
+
+        waitElement(By.id("_labelAcceptor169"));
+        type(By.id("_labelAcceptor169"), "1117540");
+        Thread.sleep(500);
+        type(By.id("_labelAcceptor169"), "\n");
+        type(By.id("_labelAcceptor169"), "1117540");
+
+        //Роль 4й организации
+        String jstriptString = "$('select#_labelAcceptor166').find('option:eq(9)').attr('selected', 'selected').end().change();";
+        ((JavascriptExecutor) wd).executeScript(jstriptString);
+        //Thread.sleep(5000);
+
+        waitLoadPage();
+        //Thread.sleep(3000);
         click(By.id("next"));
-        if (!wd.findElement(By.id("9C17D64348EA4A97A1711FA9711A7AFE_0_0")).isSelected()) {
-            wd.findElement(By.id("9C17D64348EA4A97A1711FA9711A7AFE_0_0")).click();
-        }
-        if (!wd.findElement(By.id("B9D198ADC20E4E9FBE9D2B79C14887C2_0_0")).isSelected()) {
-            wd.findElement(By.id("B9D198ADC20E4E9FBE9D2B79C14887C2_0_0")).click();
-        }
-        if (!wd.findElement(By.id("DB68524BAAE74FD89C29A62EC52FFFC9_0_0")).isSelected()) {
-            wd.findElement(By.id("DB68524BAAE74FD89C29A62EC52FFFC9_0_0")).click();
-        }
-        if (!wd.findElement(By.id("1EB0BAB72F3B46ADAF74DDE33D0BBF7B_0_0")).isSelected()) {
-            wd.findElement(By.id("1EB0BAB72F3B46ADAF74DDE33D0BBF7B_0_0")).click();
-        }
-        wd.findElement(By.id("next")).click();
     }
 
     private void autorization(String url, String login, String password) {
@@ -95,8 +129,14 @@ public class PodachaZajavlenija {
         click(By.id("submitBtn"));
     }
 
-    private void step1(int korpus) throws InterruptedException {
+    private void step1(int korpus, boolean easyVariant) throws InterruptedException {
         waitElementAndClick(By.linkText("Подать новое заявление"));
+
+        if (easyVariant) {
+            waitLoadPage();
+            click(By.xpath("//*[@for=\"A572AF0F9BBE41CB9A399FCA9BDE25E2_0_2\"]/span"));
+            click(By.xpath("//*[@for=\"30CF4DD3EB714DF4BA4CBC81FE249760_0_1\"]/span"));
+        }
 
         // Наименование объекта
         String nameObject = "Спортивный комплекс «Звездный». Корпус " + korpus;
@@ -118,7 +158,7 @@ public class PodachaZajavlenija {
         fillReference(By.xpath(".//*[@for=\"_labelAcceptor21\"]/..//*[@class=\"folderButtonAdd\"]"));
 
         // чекбоксом "Добавить типовые технико-экономические показатели"
-        checkCheckbox("CHECK_TYPE");
+        checkCheckboxWithNick("CHECK_TYPE");
         Thread.sleep(3000);
 
         waitElement(By.id("_labelAcceptor27"));
@@ -192,7 +232,7 @@ public class PodachaZajavlenija {
         waitLoadPage();
     }
 
-    private void checkCheckbox(final String nick) throws InterruptedException {
+    private void checkCheckboxWithNick(final String nick) throws InterruptedException {
         String jstriptString = "$('[nick=\"" + nick + "\"] input[type=\"checkbox\"]').click();";
         ((JavascriptExecutor) wd).executeScript(jstriptString);
     }
