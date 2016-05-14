@@ -34,4 +34,15 @@ public class SeleniumSamples {
     wd.get("http://selenium2.ru");
     wd.quit();
   }
+
+  public static final String USERNAME = "yuriymanuhin1";
+  public static final String AUTOMATE_KEY = "V2DteiKuxvATeZxmu7iG";
+  public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+
+  @Test
+  public void inRemoteinCloud() throws MalformedURLException {
+    WebDriver wd = new RemoteWebDriver(new URL(URL), DesiredCapabilities.firefox());
+    wd.get("http://selenium2.ru");
+    wd.quit();
+  }
 }

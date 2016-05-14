@@ -3,25 +3,35 @@ package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
 public class PodachaZajavlenija {
-    FirefoxDriver wd;
-    
+    //FirefoxDriver wd;
+    WebDriver wd;
+    public static final String USERNAME = "yuriymanuhin1";
+    public static final String AUTOMATE_KEY = "V2DteiKuxvATeZxmu7iG";
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+
+
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new FirefoxDriver();
+        wd = new RemoteWebDriver(new URL(URL), DesiredCapabilities.firefox());
+
+        //wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
-    
+
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
         int korpus = 3; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
