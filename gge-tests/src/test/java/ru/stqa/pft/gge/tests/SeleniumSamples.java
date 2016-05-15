@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
@@ -42,6 +43,13 @@ public class SeleniumSamples {
   @Test
   public void inRemoteinCloud() throws MalformedURLException {
     WebDriver wd = new RemoteWebDriver(new URL(URL), DesiredCapabilities.firefox());
+    wd.get("http://selenium2.ru");
+    wd.quit();
+  }
+
+  @Test
+  public void simpleIERun() {
+    InternetExplorerDriver wd = new InternetExplorerDriver();
     wd.get("http://selenium2.ru");
     wd.quit();
   }
