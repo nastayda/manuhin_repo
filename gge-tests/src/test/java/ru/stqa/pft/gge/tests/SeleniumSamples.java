@@ -1,6 +1,7 @@
 package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -51,6 +52,13 @@ public class SeleniumSamples {
   public void simpleIERun() {
     InternetExplorerDriver wd = new InternetExplorerDriver();
     wd.get("http://selenium2.ru");
+    wd.quit();
+  }
+
+  @Test
+  public void simpleChromeRun() {
+    ChromeDriver wd = new ChromeDriver();
+    wd.get("https://yandex.ru/");
     wd.quit();
   }
 }
