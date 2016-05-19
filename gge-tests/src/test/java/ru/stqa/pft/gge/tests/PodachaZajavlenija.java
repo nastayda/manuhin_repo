@@ -26,16 +26,28 @@ public class PodachaZajavlenija {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new RemoteWebDriver(new URL(URL), DesiredCapabilities.firefox());
+        //For HTTP
+//        System.getProperties().put("http.proxyHost", "proxy.mdi.ru");
+//        System.getProperties().put("http.proxyPort", "3128");
+//        System.getProperties().put("http.proxyUser", "manuhin");
+//        System.getProperties().put("http.proxyPassword", "manyurij");
+//
+//        //For HTTPS
+//        System.getProperties().put("https.proxyHost", "proxy.mdi.ru");
+//        System.getProperties().put("https.proxyPort", "3128");
+//        System.getProperties().put("https.proxyUser", "manuhin");
+//        System.getProperties().put("https.proxyPassword", "manyurij");
+//
+//        wd = new RemoteWebDriver(new URL(URL), DesiredCapabilities.firefox());
 
-        //wd = new FirefoxDriver();
+        wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
 
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
-        int korpus = 3; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
-        int maxKorpus = 10;
+        int korpus = 113; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
+        int maxKorpus = 114;
         boolean easyVariant = true;
 
         for (int i = korpus; i < maxKorpus; i++) {
