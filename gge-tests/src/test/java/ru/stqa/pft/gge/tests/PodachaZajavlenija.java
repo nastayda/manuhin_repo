@@ -3,14 +3,11 @@ package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -111,13 +108,13 @@ public class PodachaZajavlenija {
         // Третья организация
         waitElement(By.id("_labelAcceptor87"));
         waitLoadPage();
-        type(By.id("_labelAcceptor87"), "0000990");
+        type(By.id("_labelAcceptor87"), "7713011336");
 
         waitElement(By.id("_labelAcceptor89"));
-        type(By.id("_labelAcceptor89"), "0007540");
+        type(By.id("_labelAcceptor89"), "774501001");
         Thread.sleep(500);
         type(By.id("_labelAcceptor89"), "\n");
-        type(By.id("_labelAcceptor89"), "0007540");
+        type(By.id("_labelAcceptor89"), "774501001");
 
         String xpathButtonAddOrg = "(//div[@class=\"addSection buttonGray addRem add\"])[4]";
         waitElement(By.xpath(xpathButtonAddOrg));
@@ -153,6 +150,7 @@ public class PodachaZajavlenija {
 
     private void step1(int korpus, boolean easyVariant) throws InterruptedException {
         waitElementAndClick(By.linkText("Подать новое заявление"));
+       // waitElementAndClick(By.id("A98E27FB93F8472894CA67511F465DA4"));
 
         if (easyVariant) {
             waitLoadPage();
