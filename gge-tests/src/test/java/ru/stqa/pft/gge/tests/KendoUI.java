@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 /**
@@ -45,11 +45,9 @@ public class KendoUI {
       List<WebElement> elements2 = wd.findElements(By.xpath(xpathButton2));
       WebElement element2 = elements2.iterator().next();
 
-      int i = 1;
       for (WebElement e: elements2) {
-        String xpathButton3 = "(" + xpathButton2 + ")[" + i + "]";
-        i++;
-        wait.until(visibilityOfElementLocated(By.xpath(xpathButton3))).click();
+        wait.until(visibilityOf(e)).click();
+        //прикрутить скриншот
       }
       System.out.println("Прокликаны все папки под папкой 'Kendo UI'");
     } else if (elements.size() == 0) {
