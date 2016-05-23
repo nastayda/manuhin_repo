@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -29,24 +30,32 @@ public class KendoUI {
   @Test
   public void testsKendoUI() throws InterruptedException {
     String xpathButton = "//span[contains(text(),\"Kendo\")]";
-    String xpathButton2 = "./../span[@class=\"rtPlus\"]";
+    String xpathButton2 = "//li[@class=\"rtLI editable\"]//ul[@class=\"rtUL\"]//span[@class=\"rtIn\"]";
 
     WebDriverWait wait = new WebDriverWait(wd, 30);
 
     wait.until(visibilityOfElementLocated(By.xpath(xpathButton)));
     List<WebElement> elements = wd.findElements(By.xpath(xpathButton));
 
-    if (elements.size() > 0) {
+    if (elements.size() == 1) {
       WebElement element = elements.iterator().next();
-      //List<WebElement> elements2 = element.findElements(By.xpath(xpathButton2));
-      wait.until(visibilityOfElementLocated(By.xpath(xpathButton))).click();
-      //Thread.sleep(100);
-      //element.click();
-      //Thread.sleep(100);
+      wait.until(visibilityOfElementLocated(By.xpath(xpathButton)));
+      new Actions(wd).doubleClick(element).perform();
 
+      List<WebElement> elements2 = wd.findElements(By.xpath(xpathButton2));
+      WebElement element2 = elements2.iterator().next();
+
+      int i = 1;
+      for (WebElement e: elements2) {
+        String xpathButton3 = "(" + xpathButton2 + ")[" + i + "]";
+        i++;
+        wait.until(visibilityOfElementLocated(By.xpath(xpathButton3))).click();
+      }
+      System.out.println("Прокликаны все папки под папкой 'Kendo UI'");
+    } else if (elements.size() == 0) {
+      System.out.println("Папка 'Kendo UI' не найдена");
     } else {
-      wait.until(presenceOfElementLocated(By.xpath(xpathButton)));
-
+      System.out.println("Папок 'Kendo UI' более одной, не понятно по какой кликать");
     }
   }
 
