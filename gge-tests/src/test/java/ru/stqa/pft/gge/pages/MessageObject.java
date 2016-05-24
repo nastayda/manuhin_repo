@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * Created by manuhin on 24.05.2016.
  */
@@ -13,29 +15,12 @@ public class MessageObject extends PageFactory{
   public WebElement kendo;
 
   @FindBy(xpath = "//li[@class=\"rtLI editable\"]//ul[@class=\"rtUL\"]//span[@class=\"rtIn\"]")
-  public WebElement subMenu;
+  public List<WebElement> subMenus;
 
   @FindBy(xpath = "//td[@class=\"subject\"")
-  public WebElement subject;
+  public List<WebElement> subjects;
 
-  public WebElement getSubject() {
-    return subject;
-  }
+  @FindBy(xpath = "//span[@class=\\\"rgGroupHeaderText\\\"]")
+  public List<WebElement> dateTitles;
 
-  public WebElement getKendo() {
-    return kendo;
-  }
-
-  public void setKendo(WebElement kendo) {
-    this.kendo = kendo;
-  }
-
-  public WebElement getSubMenu() {
-
-    return subMenu;
-  }
-
-  public void setSubMenu(WebElement subMenu) {
-    this.subMenu = subMenu;
-  }
 }
