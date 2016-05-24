@@ -20,10 +20,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
  */
 public class KendoUI {
 
-  WebDriver wd = new FirefoxDriver();
+  private WebDriver wd;
 
   @BeforeMethod
   private void init() {
+    wd = new FirefoxDriver();
     wd.get("http://demos.telerik.com/aspnet-ajax/webmail/default.aspx");
   }
 
@@ -47,7 +48,13 @@ public class KendoUI {
 
       for (WebElement e: elements2) {
         wait.until(visibilityOf(e)).click();
-        //прикрутить скриншот
+        //Object document;
+        //wd.
+        //if (document.readyState == "complete") {
+
+        //}
+        waitPageLoaded();
+        wait.until(visibilityOfElementLocated(By.xpath(xpathButton)));
       }
       System.out.println("Прокликаны все папки под папкой 'Kendo UI'");
     } else if (elements.size() == 0) {
@@ -55,6 +62,11 @@ public class KendoUI {
     } else {
       System.out.println("Папок 'Kendo UI' более одной, не понятно по какой кликать");
     }
+  }
+
+  private void waitPageLoaded() {
+    //document.readyState
+
   }
 
   @AfterMethod(alwaysRun = true)
