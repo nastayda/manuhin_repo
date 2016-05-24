@@ -43,13 +43,13 @@ public class PodachaZajavlenija {
 
     @Test
     public void PodachaZajavlenija() throws InterruptedException {
-        int korpus = 113; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
-        int maxKorpus = 114;
-        boolean easyVariant = true;
+        int korpus = 118; // номер корпуса - изменяющийся параметр для создания большого кол-ва заявок
+        int maxKorpus = 119;
+        boolean easyVariant = false; //true;
 
         for (int i = korpus; i < maxKorpus; i++) {
-            autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
-            //autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
+            //autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
+            autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
 
             wd.manage().window().maximize();
 
