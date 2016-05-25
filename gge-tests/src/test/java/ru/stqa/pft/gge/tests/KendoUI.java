@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.pages.DisplayedElementLocatorFactory;
 import ru.stqa.pft.gge.pages.MessageObject;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,18 +49,19 @@ public class KendoUI {
     }
   }
 
-  private void checkVisibilityOfChanges(WebElement sm, MessageObject message) {
-    int dateTitlesCount = message.getDateTitles().size();
-    int fromsCount = this.message.getFroms().size();
-    int subjectsCount = this.message.getSubjects().size();
-    int datesCount = this.message.getDates().size();
-    String fromActualText = this.message.fromActual.getText();
-    String fromActual2Text = this.message.fromActual2.getText();
-    String dateActualText = this.message.dateActual.getText();
-    String dateActual2Text = this.message.dateActual2.getText();
-    int bodyActualCount = this.message.getBodyActual().size();
-
-    assertThat(fromActualText, equalTo(fromActual2Text));
+  private void checkVisibilityOfChanges(WebElement sm, MessageObject message) throws InterruptedException {
+    String s = sm.getText().replaceAll("[^\\d]", "");
+    int num = Integer.parseInt(s);
+    
+    int dateTitlesCount = countElements(num, message.getDateTitles());
+    int fromsCount = countElements(num-1,message.getFroms());
+    int subjectsCount = countElements(num-1,message.getSubjects());
+    int datesCount = countElements(num-1,message.getDates());
+    String fromActualText = message.fromActual.getText();
+    String fromActual2Text = message.fromActual2.getText();
+    String dateActualText = message.dateActual.getText();
+    String dateActual2Text = message.dateActual2.getText();
+    int bodyActualCount = message.getBodyActual().size();
 
     System.out.println("Подпапка " + sm.getText() + ":");
     System.out.println("dateTitlesCount = " + dateTitlesCount);
@@ -68,6 +70,28 @@ public class KendoUI {
     System.out.println("datesCount = " + datesCount);
     System.out.println("bodyActualCount = " + bodyActualCount);
     System.out.println("");
+
+    assertThat(fromActualText, equalTo(fromActual2Text));
+    assertThat(dateTitlesCount, equalTo(num));
+    assertThat(fromsCount, equalTo(num-1));
+    assertThat(subjectsCount, equalTo(num-1));
+    assertThat(datesCount, equalTo(num-1));
+  }
+
+  private int countElements(int num, List<WebElement> elements) throws InterruptedException {
+    int countElements = 0;
+    int i = 0;
+    int maxI = 60;
+    do {
+      countElements = elements.size();
+      if (countElements == num) {
+        break;
+      } else {
+        Thread.sleep(500);
+      }
+      i++;
+    } while (i < maxI);
+    return countElements;
   }
 
   private void doubleClick(WebDriver wd, WebElement button) {
