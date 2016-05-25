@@ -1,6 +1,5 @@
 package ru.stqa.pft.gge.tests;
 
-import org.bouncycastle.crypto.tls.ContentType;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,11 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
-
-import java.util.List;
-
-import static java.awt.SystemColor.menu;
-import static org.bouncycastle.crypto.tls.ContentType.alert;
 
 /**
  * Created by manuhin on 25.05.2016.

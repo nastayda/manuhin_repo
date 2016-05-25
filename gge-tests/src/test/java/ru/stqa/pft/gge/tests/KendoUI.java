@@ -52,7 +52,7 @@ public class KendoUI {
   private void checkVisibilityOfChanges(WebElement sm, MessageObject message) throws InterruptedException {
     String s = sm.getText().replaceAll("[^\\d]", "");
     int num = Integer.parseInt(s);
-    
+
     int dateTitlesCount = countElements(num, message.getDateTitles());
     int fromsCount = countElements(num-1,message.getFroms());
     int subjectsCount = countElements(num-1,message.getSubjects());
