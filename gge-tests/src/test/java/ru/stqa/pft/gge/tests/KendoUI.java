@@ -13,6 +13,7 @@ import ru.stqa.pft.gge.pages.DisplayedElementLocatorFactory;
 import ru.stqa.pft.gge.pages.MessageObject;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,6 +32,7 @@ public class KendoUI {
     wd.get("http://demos.telerik.com/aspnet-ajax/webmail/default.aspx");
     message = new MessageObject();
     PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 30), message);
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
   @Test
