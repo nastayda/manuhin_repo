@@ -28,7 +28,8 @@ public class GenVitrinas extends TestBase {
 
   //public String baseUrl = "https://eis.gge.ru/auth/login.action";
   //public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
-  public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
+  //public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
+  public String baseUrl = "https://vm-085-as-gge.mdi.ru/auth/login.action";
   public String loginUser = "i.manylov";
 
   public static void main(String[] args) throws Exception {
@@ -43,7 +44,8 @@ public class GenVitrinas extends TestBase {
 
     //generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
     //generator.setUp2("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
-    generator.setUp2("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
+    //generator.setUp2("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
+    generator.setUp2("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
     generator.run();
     generator.tearDown();
   }
@@ -82,7 +84,8 @@ public class GenVitrinas extends TestBase {
     List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
 
     boolean isProdServer = false;
-    if (baseUrl.equals("https://eis.gge.ru/auth/login.action")) {
+    if (baseUrl.equals("https://eis.gge.ru/auth/login.action") ||
+            baseUrl.equals("https://vm-085-as-gge.mdi.ru/auth/login.action")) {
       isProdServer = true;
     }
 
