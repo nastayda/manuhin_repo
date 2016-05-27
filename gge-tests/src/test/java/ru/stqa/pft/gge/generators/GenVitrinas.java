@@ -26,8 +26,9 @@ public class GenVitrinas extends TestBase {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
-  public String baseUrl = "https://eis.gge.ru/auth/login.action";
+  //public String baseUrl = "https://eis.gge.ru/auth/login.action";
   //public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
+  public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
   public String loginUser = "i.manylov";
 
   public static void main(String[] args) throws Exception {
@@ -40,8 +41,9 @@ public class GenVitrinas extends TestBase {
       return;
     }
 
-    generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
+    //generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
     //generator.setUp2("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
+    generator.setUp2("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
     generator.run();
     generator.tearDown();
   }
