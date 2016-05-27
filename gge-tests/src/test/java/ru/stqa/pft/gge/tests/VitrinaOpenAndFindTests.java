@@ -55,7 +55,8 @@ public class VitrinaOpenAndFindTests extends TestBase {
   public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
-    if (vitrina.getBaseUrl().equals("https://eis.gge.ru/auth/login.action")) {
+    if (vitrina.getBaseUrl().equals("https://eis.gge.ru/auth/login.action") ||
+            vitrina.getBaseUrl().equals("https://vm-085-as-gge.mdi.ru/auth/login.action")) {
       isProdServer = true;
     }
 
