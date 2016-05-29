@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.gge.pages.DisplayedElementLocatorFactory;
 import ru.stqa.pft.gge.pages.PageFilms;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +28,12 @@ public class FilmCollection {
 
   @BeforeMethod
   private void init() {
-    wd = new FirefoxDriver();
+    FirefoxProfile firefoxProfile = new FirefoxProfile(new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/rnps6h8z.default"));
+    firefoxProfile.setEnableNativeEvents(false);
+    wd = new FirefoxDriver(firefoxProfile);
+
+    //FirefoxProfile firefoxProfile = new FirefoxProfile(new File("C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/AppData/Roaming/Mozilla/Firefox/Profiles/rnps6h8z.default"));
+
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
     films = new PageFilms();
     PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 30), films);

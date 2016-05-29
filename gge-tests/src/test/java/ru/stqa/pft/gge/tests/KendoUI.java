@@ -32,7 +32,7 @@ public class KendoUI {
     wd.get("http://demos.telerik.com/aspnet-ajax/webmail/default.aspx");
     message = new MessageObject();
     PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 30), message);
-    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
   }
 
   @Test
