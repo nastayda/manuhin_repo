@@ -2,16 +2,6 @@
   {
     "razdel": "Рабочий кабинет",
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Главная страница",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "vitrina": "Главная страница",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://vm-085-as-gge.mdi.ru/auth/login.action"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои задачи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Все мои задачи",
