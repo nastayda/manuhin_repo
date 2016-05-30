@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -32,21 +33,23 @@ public class FilmCollection {
 
   @BeforeMethod
   private void init() {
-    browser = BrowserType.FIREFOX;
+    browser = BrowserType.CHROME;
     if (browser.equals(BrowserType.FIREFOX)) {
       FirefoxProfile firefoxProfile = new FirefoxProfile(new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
       firefoxProfile.setEnableNativeEvents(false);
       firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
       wd = new FirefoxDriver(firefoxProfile);
     } else if (browser.equals(BrowserType.CHROME)) {
-      wd = new ChromeDriver();
+      ChromeOptions chromeOptions = new ChromeOptions();
+      chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
+      wd = new ChromeDriver(chromeOptions);
     } else if (browser.equals(BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
     films = new PageFilms();
-    PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 30), films);
+    PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 5), films);
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.findElement(By.name("username")).sendKeys("admin");
     wd.findElement(By.name("password")).sendKeys("admin");
@@ -59,11 +62,11 @@ public class FilmCollection {
     String stringForSearch = findTextFromCookies;
     String[] titlesFilmsFromCookies = getTitlesFilms();
 
-    if (!findTextFromCookies.equals("")) {
+    if (findTextFromCookies.equals("") || findTextFromCookies.equals("Search for movies...")) {
+      stringForSearch = "t";
+    } else {
       films.find.clear();
       films.find.sendKeys(Keys.ENTER);
-    } else {
-      stringForSearch = "an";
     }
 
     try {
@@ -76,7 +79,7 @@ public class FilmCollection {
       waitAfterFind(titleFilmsAlternativeTrue);
       String[] titlesFilmsAfterFind = getTitlesFilms();
       assertThat(titlesFilmsAfterFind, equalTo(titleFilmsAlternativeTrue));
-      if (!findTextFromCookies.equals("")) {
+      if (!(findTextFromCookies.equals("") || findTextFromCookies.equals("Search for movies..."))) {
         assertThat(titlesFilmsAfterFind, equalTo(titlesFilmsFromCookies));
       }
 
@@ -117,7 +120,20 @@ public class FilmCollection {
     return titleFilmsAlternativeTrue;
   }
 
-  private String[] getTitlesFilms() {
+  private String[] getTitlesFilms() throws InterruptedException {
+    List<WebElement> oldTitles = films.getTitles();
+    List<WebElement> newTitles;
+
+    for (int i = 0; i < 60; i++) {
+      Thread.sleep(500);
+      newTitles = films.getTitles();
+      if (newTitles.size() == oldTitles.size()) {
+        break;
+      } else {
+        oldTitles = newTitles;
+      }
+    }
+
     titles = films.getTitles();
     String[] titleFilms = new String[titles.size()];
     int i = 0;
