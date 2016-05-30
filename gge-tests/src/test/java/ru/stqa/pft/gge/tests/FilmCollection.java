@@ -6,7 +6,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +35,7 @@ public class FilmCollection {
 
   @BeforeMethod
   private void init() {
-    browser = BrowserType.CHROME;
+    browser = BrowserType.IE;
     if (browser.equals(BrowserType.FIREFOX)) {
       FirefoxProfile firefoxProfile = new FirefoxProfile(new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
       firefoxProfile.setEnableNativeEvents(false);
@@ -44,7 +46,11 @@ public class FilmCollection {
       chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
       wd = new ChromeDriver(chromeOptions);
     } else if (browser.equals(BrowserType.IE)) {
-      wd = new InternetExplorerDriver();
+      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
+              .usingDriverExecutable(new File("c:/tools/IEDriverServer.exe")).build();
+      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
+      wd = new InternetExplorerDriver(service,capabilities);
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
