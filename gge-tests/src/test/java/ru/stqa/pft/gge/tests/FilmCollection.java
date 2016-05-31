@@ -34,10 +34,11 @@ public class FilmCollection {
   private String browser;
 
   @BeforeMethod
-  private void init() {
+  private void init() throws InterruptedException {
     browser = BrowserType.IE;
     if (browser.equals(BrowserType.FIREFOX)) {
-      FirefoxProfile firefoxProfile = new FirefoxProfile(new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
+      FirefoxProfile firefoxProfile = new FirefoxProfile(
+              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
       firefoxProfile.setEnableNativeEvents(false);
       firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
       wd = new FirefoxDriver(firefoxProfile);
@@ -46,14 +47,16 @@ public class FilmCollection {
       chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
       wd = new ChromeDriver(chromeOptions);
     } else if (browser.equals(BrowserType.IE)) {
-      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
-              .usingDriverExecutable(new File("c:/tools/IEDriverServer.exe")).build();
-      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
-      wd = new InternetExplorerDriver(service,capabilities);
+//      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
+//              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
+//      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+//      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
+//      wd = new InternetExplorerDriver(service,capabilities);
+      wd = new InternetExplorerDriver();
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
+    Thread.sleep(20000);
     films = new PageFilms();
     PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 5), films);
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
