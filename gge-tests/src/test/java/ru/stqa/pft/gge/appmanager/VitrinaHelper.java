@@ -235,6 +235,22 @@ public class VitrinaHelper extends HelperBase {
     }
   }
 
+  public void vizovRasshPoiskMGE(boolean isProdServer) throws InterruptedException {
+    String xpathRasshPoisk = "";
+    if (isProdServer) {
+      xpathRasshPoisk = "//*[@class=\"singleButton searchBtn default-btn left right MAIN\"]"; //
+    } else {
+      xpathRasshPoisk = "//*[@class=\"SERVICE_element singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // 97-й
+    }
+
+    List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));
+    if (elements.size() == 1) {
+      waitLoadPage(isProdServer);
+      waitElement(By.xpath(xpathRasshPoisk));
+      click(By.xpath(xpathRasshPoisk));
+    }
+  }
+
   private int recursiaRazdel(GeneratorData vitrina, int i) throws InterruptedException {
     try {
       click(By.xpath(vitrina.getRazdXpath()));

@@ -29,8 +29,16 @@ public class GenVitrinas extends TestBase {
   //public String baseUrl = "https://eis.gge.ru/auth/login.action";
   //public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
   //public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
-  public String baseUrl = "https://vm-085-as-gge.mdi.ru/auth/login.action";
-  public String loginUser = "i.manylov";
+//  public String baseUrl = "https://vm-085-as-gge.mdi.ru/auth/login.action";
+//  public String loginUser = "i.manylov";
+
+//  public String baseUrl = "https://vm-097-tomcat-mge.mdi.ru:8443/auth/login.action";
+//  public String baseUrl = "https://vm-086-as-mge.mdi.ru:8443/auth/login.action";
+  public String baseUrl = "https://expertiza.mos.ru:8443/auth/login.action";
+  public String loginUser = "galactica_admin1";
+
+
+  public static String project = "MGE";
 
   public static void main(String[] args) throws Exception {
     GenVitrinas generator = new GenVitrinas();
@@ -45,13 +53,16 @@ public class GenVitrinas extends TestBase {
     //generator.setUp2("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
     //generator.setUp2("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
     //generator.setUp2("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
-    generator.setUp2("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
-    generator.run();
+    //generator.setUp2("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
+//    generator.setUp2("galactica_admin1", "21", "https://vm-097-tomcat-mge.mdi.ru:8443/auth/login.action");
+//    generator.setUp2("galactica_admin1", "21", "https://vm-086-as-mge.mdi.ru:8443/auth/login.action");
+    generator.setUp2("galactica_admin1", "123456", "https://expertiza.mos.ru:8443/auth/login.action");
+    generator.run(project);
     generator.tearDown();
   }
 
-  private void run() throws IOException, InterruptedException {
-    List<GeneratorData> vitrinas = generateVitrinasData(count);
+  private void run(String project) throws IOException, InterruptedException {
+    List<GeneratorData> vitrinas = generateVitrinasData(project, count);
     if (format.equals("xml")) {
       saveAsXml(vitrinas, new File(file));
     } else if (format.equals("json")) {
@@ -79,17 +90,22 @@ public class GenVitrinas extends TestBase {
     }
   }
 
-  private List<GeneratorData> generateVitrinasData(int count) throws InterruptedException {
+  private List<GeneratorData> generateVitrinasData(String project, int count) throws InterruptedException {
     System.out.println(new File(".").getAbsolutePath());
     List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
 
     boolean isProdServer = false;
     if (baseUrl.equals("https://eis.gge.ru/auth/login.action") ||
-            baseUrl.equals("https://vm-085-as-gge.mdi.ru/auth/login.action")) {
+            baseUrl.equals("https://vm-085-as-gge.mdi.ru/auth/login.action") ||
+            baseUrl.equals("https://expertiza.mos.ru:8443/auth/login.action")) {
       isProdServer = true;
     }
 
-    vitrinas = app.vitrinagen().GenParam(count, isProdServer, loginUser, baseUrl);
+    if (project.equals("MGE")) {
+      vitrinas = app.vitrinagen().GenParam2(count, isProdServer, loginUser, baseUrl);
+    } else {
+      vitrinas = app.vitrinagen().GenParam(count, isProdServer, loginUser, baseUrl);
+    }
     return vitrinas;
   }
 }

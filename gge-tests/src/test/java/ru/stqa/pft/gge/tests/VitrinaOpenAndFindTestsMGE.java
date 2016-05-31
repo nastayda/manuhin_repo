@@ -18,7 +18,10 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class VitrinaOpenAndFindTests extends TestBase {
+/**
+ * Created by manuhin on 31.05.2016.
+ */
+public class VitrinaOpenAndFindTestsMGE extends TestBase{
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXml() throws IOException {
@@ -38,7 +41,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_manulov_all_vm-082_eis_test-eis.json")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_mge_galactica_admin1_all_expertiza_vm-097.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -51,18 +54,17 @@ public class VitrinaOpenAndFindTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson", timeOut = 150000)
-  public void testVitrinaOpenAndFind(GeneratorData vitrina) throws Exception {
+  @Test(dataProvider = "validGroupsFromJson", timeOut = 250000)
+  public void testVitrinaOpenAndFindMGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
-    if (vitrina.getBaseUrl().equals("https://eis.gge.ru/auth/login.action") ||
-            vitrina.getBaseUrl().equals("https://vm-085-as-gge.mdi.ru/auth/login.action")) {
+    if (vitrina.getBaseUrl().equals("https://expertiza.mos.ru:8443/auth/login.action")) {
       isProdServer = true;
     }
 
     String password = "21";
     if (isProdServer) {
-      password = "Ukfdujc21";
+      password = "123456";
     }
 
     assertThat(app.successInit, equalTo(true));
@@ -71,7 +73,7 @@ public class VitrinaOpenAndFindTests extends TestBase {
     assertThat(app.vitrina().selectVitrina(vitrina, isProdServer), equalTo(true));
     assertThat(app.vitrina().isMistakes(), equalTo(false));
 
-    app.vitrina().vizovRasshPoisk(isProdServer);
+    app.vitrina().vizovRasshPoiskMGE(isProdServer);
     app.vitrina().fillAllFilters(isProdServer);
     app.vitrina().buttonFind(isProdServer);
     assertThat(app.vitrina().isMistakes(), equalTo(false));
