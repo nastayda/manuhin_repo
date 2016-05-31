@@ -47,12 +47,12 @@ public class FilmCollection {
       chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
       wd = new ChromeDriver(chromeOptions);
     } else if (browser.equals(BrowserType.IE)) {
-//      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
-//              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
-//      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-//      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
-//      wd = new InternetExplorerDriver(service,capabilities);
-      wd = new InternetExplorerDriver();
+      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
+              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
+      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
+      wd = new InternetExplorerDriver(service,capabilities);
+ //     wd = new InternetExplorerDriver();
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
