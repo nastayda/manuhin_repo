@@ -35,7 +35,8 @@ public class FilmCollection {
 
   @BeforeMethod
   private void init() throws InterruptedException {
-    browser = BrowserType.IE;
+    browser = BrowserType.FIREFOX;
+    
     if (browser.equals(BrowserType.FIREFOX)) {
       FirefoxProfile firefoxProfile = new FirefoxProfile(
               new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
@@ -52,7 +53,6 @@ public class FilmCollection {
       DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
       capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
       wd = new InternetExplorerDriver(service,capabilities);
- //     wd = new InternetExplorerDriver();
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
