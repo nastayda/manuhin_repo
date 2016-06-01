@@ -36,7 +36,7 @@ public class FilmCollection {
   @BeforeMethod
   private void init() throws InterruptedException {
     browser = BrowserType.FIREFOX;
-    
+
     if (browser.equals(BrowserType.FIREFOX)) {
       FirefoxProfile firefoxProfile = new FirefoxProfile(
               new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
@@ -56,9 +56,8 @@ public class FilmCollection {
     }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
-    Thread.sleep(20000);
     films = new PageFilms();
-    PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 5), films);
+    PageFactory.initElements(new DisplayedElementLocatorFactory(wd, 10), films);
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.findElement(By.name("username")).sendKeys("admin");
     wd.findElement(By.name("password")).sendKeys("admin");
