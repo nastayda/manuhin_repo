@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Юрий on 04.06.2016.
  */
 public class FindElementInAnyFrames {
+
   private WebDriver wd;
   private PageAnyFrame pageFrame;
   private String browser;
