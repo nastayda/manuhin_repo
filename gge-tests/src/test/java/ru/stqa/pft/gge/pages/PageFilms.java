@@ -17,6 +17,9 @@ public class PageFilms extends PageFactory{
   @FindBy(xpath = "//div[@class=\"title\"]")
   public List<WebElement> titles;
 
+  @FindBy(xpath = "//div[@class=\"content\"]")
+  public WebElement noFound;
+
   public List<WebElement> getTitles() {
     return titles;
   }
