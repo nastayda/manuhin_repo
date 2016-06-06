@@ -36,24 +36,25 @@ public class FilmCollection {
   @BeforeMethod
   private void init() throws InterruptedException {
     browser = BrowserType.FIREFOX;
+    wd = new FirefoxDriver();
 
-    if (browser.equals(BrowserType.FIREFOX)) {
-      FirefoxProfile firefoxProfile = new FirefoxProfile(
-              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
-      firefoxProfile.setEnableNativeEvents(false);
-      firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
-      wd = new FirefoxDriver(firefoxProfile);
-    } else if (browser.equals(BrowserType.CHROME)) {
-      ChromeOptions chromeOptions = new ChromeOptions();
-      chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
-      wd = new ChromeDriver(chromeOptions);
-    } else if (browser.equals(BrowserType.IE)) {
-      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
-              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
-      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
-      wd = new InternetExplorerDriver(service,capabilities);
-    }
+//    if (browser.equals(BrowserType.FIREFOX)) {
+//      FirefoxProfile firefoxProfile = new FirefoxProfile(
+//              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
+//      firefoxProfile.setEnableNativeEvents(false);
+//      firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
+//      wd = new FirefoxDriver(firefoxProfile);
+//    } else if (browser.equals(BrowserType.CHROME)) {
+//      ChromeOptions chromeOptions = new ChromeOptions();
+//      chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
+//      wd = new ChromeDriver(chromeOptions);
+//    } else if (browser.equals(BrowserType.IE)) {
+//      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
+//              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
+//      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+//      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
+//      wd = new InternetExplorerDriver(service,capabilities);
+//    }
 
     wd.get("http://barancev.w.pw/php4dvd/#!/sort/name%20asc/");
     films = new PageFilms();

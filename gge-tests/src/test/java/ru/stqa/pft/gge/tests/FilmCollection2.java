@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 /**
  * Created by Юрий on 05.06.2016.
@@ -40,10 +40,11 @@ public class FilmCollection2 {
   @BeforeMethod
   private void init() throws InterruptedException {
     browser = BrowserType.FIREFOX;
-
+//    wd = new FirefoxDriver();
     if (browser.equals(BrowserType.FIREFOX)) {
       FirefoxProfile firefoxProfile = new FirefoxProfile(
-              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
+//              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
+              new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/vtf1oczy.selenium"));
       firefoxProfile.setEnableNativeEvents(false);
       firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
       wd = new FirefoxDriver(firefoxProfile);
@@ -74,14 +75,27 @@ public class FilmCollection2 {
 
     String findTextFromCookies = find.getAttribute("value");
     String stringForSearch = findTextFromCookies;
+
+    wait.until(presenceOfElementLocated(By.xpath(xpathFind)));
+    wait.until(visibilityOfElementLocated(By.xpath(xpathFind)));
+    List<WebElement> titlesFromCookies = wd.findElements(By.xpath(xpathTitles));
+    wait.until(visibilityOfAllElements(titlesFromCookies));
     String[] titlesFilmsFromCookies = getTitlesFilms();
+
+    List<WebElement> titlesAll;
+    String[] titlesAllText;
 
     if (findTextFromCookies.equals("") || findTextFromCookies.equals("Search for movies...")) {
       stringForSearch = "t";
     } else {
       find.clear();
       find.sendKeys(Keys.ENTER);
-      wait.until(invisibilityOfElementLocated(By.xpath("(" + xpathTitles + ")[1]")));
+
+      wait.until(invisibilityOfAllElements(titlesFromCookies));
+      wait.until(presenceOfElementLocated(By.xpath(xpathFind)));
+      titlesAll = wd.findElements(By.xpath(xpathTitles));
+      wait.until(visibilityOfAllElements(titlesAll));
+      titlesAllText = getTitlesFilms();
     }
 
     try {
@@ -90,6 +104,17 @@ public class FilmCollection2 {
       find.clear();
       find.sendKeys(stringForSearch);
       find.sendKeys(Keys.ENTER);
+
+      wait.until(invisibilityOfAllElements(titlesFromCookies));
+
+      wait.until(presenceOfElementLocated(By.xpath(xpathFind)));
+
+      List<WebElement> titlesFromFind = wd.findElements(By.xpath(xpathTitles));
+
+      wait.until(visibilityOfAllElements(titlesFromFind));
+      String[] titlesFromFind2 = getTitlesFilms();
+
+
 
       waitAfterFind(titleFilmsAlternativeTrue);
       String[] titlesFilmsAfterFind = getTitlesFilms();
