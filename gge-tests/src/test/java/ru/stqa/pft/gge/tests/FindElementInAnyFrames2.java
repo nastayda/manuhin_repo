@@ -53,8 +53,9 @@ public class FindElementInAnyFrames2 {
     }
 
 //     frame
-    wd.get("file:///C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/Downloads/____%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/%D0%92%D1%81%D0%B5%20%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D1%8B%20%D0%B8%20%D1%82%D0%B0%D0%B9%D0%BD%D1%8B%20Selenium%202.0/Lesson_4/%D0%94%D0%975/Frames2.html");
+//    wd.get("file:///C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/Downloads/____%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/%D0%92%D1%81%D0%B5%20%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D1%8B%20%D0%B8%20%D1%82%D0%B0%D0%B9%D0%BD%D1%8B%20Selenium%202.0/Lesson_4/%D0%94%D0%975/Frames2.html");
 
+    wd.get("file:///D:/ht/frames.html");
     // iframe
 //    wd.get("file:///C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/Downloads/____%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/%D0%92%D1%81%D0%B5%20%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D1%8B%20%D0%B8%20%D1%82%D0%B0%D0%B9%D0%BD%D1%8B%20Selenium%202.0/Lesson_4/%D0%94%D0%975/iFrames.html");
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -65,7 +66,8 @@ public class FindElementInAnyFrames2 {
   public void testFindElementInAnyFrames() {
 //    String locator = "//a[@class=\"page-up\"][contains(text(),\"Qwerty123\")]";
 //    String locator = "//button";
-    String locator = "//span[contains(text(),\"Kendo\")]";
+    String locator = "//button/span[contains(text(),\"Find_3\")]";
+    String srcString = "";
 
     try {
       findElementInAnyFrame(wd, By.xpath(locator)).click();
@@ -87,21 +89,49 @@ public class FindElementInAnyFrames2 {
   private WebElement findElementInFrames(WebDriver wd, By locator, String frameXpath, String frameOutString) {
     WebElement targetElement = null;
     List<WebElement> frames = wd.findElements(By.xpath(frameXpath));
+    String srcURL = frames.iterator().next().getAttribute("src");
+    System.out.println(srcURL);
     if (frames.size() > 0) {
       int i = 0;
       for (WebElement f : frames) {
         i++;
         wd.switchTo().frame(f);
+        List<WebElement> bodies = wd.findElements(By.tagName("body"));
+        if (bodies.size() > 0) {
+          String body = wd.findElement(By.tagName("body")).getText();
+          System.out.println("body : " + body);
+        }
+        String currentUrl = wd.getCurrentUrl();
+        System.out.println(frameOutString + i + "currentUrl : " + currentUrl);
         List<WebElement> elementsToFind = wd.findElements(locator);
         if (elementsToFind.size() > 0) {
           System.out.println(frameOutString + " № " + i + " : найден искомый элемент");
           targetElement = wait.until(visibilityOfElementLocated(locator));
           return targetElement;
         } else {
+          String frameXpathI = "//frame";
+          String iframeXpathI = "//iframe";
+
+          List<WebElement> framesI = wd.findElements(By.xpath(frameXpath));
+
+          if (framesI.size() > 0) {
+            
+          }
+
           wd.switchTo().defaultContent();
         }
       }
     }
+
+//    if (targetElement == null) {
+//      String frameXpathNew = "//frame";
+//      String iframeXpathNew = "//iframe";
+//      targetElement = findElementInFrames(wd, locator, frameXpathNew, "frame");
+//      if (targetElement == null) {
+//        targetElement = findElementInFrames(wd, locator, iframeXpathNew, "iframe");
+//      }
+//    }
+
     return targetElement;
   }
 
