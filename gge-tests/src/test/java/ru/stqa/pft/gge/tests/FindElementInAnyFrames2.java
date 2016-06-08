@@ -4,23 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
  * Created by Юрий on 05.06.2016.
@@ -29,45 +24,30 @@ public class FindElementInAnyFrames2 {
   private WebDriver wd;
   private String browser;
   private WebDriverWait wait;
+  private List<WebElement> jumpers;
+  private int jumpLevel = 0;
+  private WebElement targetElement = null;
 
   @BeforeMethod
   private void init() throws InterruptedException {
     browser = BrowserType.CHROME;
 
     if (browser.equals(BrowserType.FIREFOX)) {
-      FirefoxProfile firefoxProfile = new FirefoxProfile(
-              new File("c:/Users/Юрий/AppData/Roaming/Mozilla/Firefox/Profiles/90zxmmsx.selenium"));
-      firefoxProfile.setEnableNativeEvents(false);
-      firefoxProfile.setPreference("network.cookie.prefsMigrated",true);
-      wd = new FirefoxDriver(firefoxProfile);
+      wd = new FirefoxDriver();
     } else if (browser.equals(BrowserType.CHROME)) {
-      ChromeOptions chromeOptions = new ChromeOptions();
-      chromeOptions.addArguments("--user-data-dir=/home/user/.a5");
-      wd = new ChromeDriver(chromeOptions);
+      wd = new ChromeDriver();
     } else if (browser.equals(BrowserType.IE)) {
-      InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
-              .usingDriverExecutable(new File("d:/tools/IEDriverServer.exe")).build();
-      DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-      capabilities.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
-      wd = new InternetExplorerDriver(service,capabilities);
+      wd = new InternetExplorerDriver();
     }
 
-//     frame
-//    wd.get("file:///C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/Downloads/____%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/%D0%92%D1%81%D0%B5%20%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D1%8B%20%D0%B8%20%D1%82%D0%B0%D0%B9%D0%BD%D1%8B%20Selenium%202.0/Lesson_4/%D0%94%D0%975/Frames2.html");
-
     wd.get("file:///D:/ht/frames.html");
-    // iframe
-//    wd.get("file:///C:/Users/%D0%AE%D1%80%D0%B8%D0%B9/Downloads/____%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5/%D0%92%D1%81%D0%B5%20%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D1%8B%20%D0%B8%20%D1%82%D0%B0%D0%B9%D0%BD%D1%8B%20Selenium%202.0/Lesson_4/%D0%94%D0%975/iFrames.html");
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wait = new WebDriverWait(wd, 10);
   }
 
   @Test
   public void testFindElementInAnyFrames() {
-//    String locator = "//a[@class=\"page-up\"][contains(text(),\"Qwerty123\")]";
-//    String locator = "//button";
     String locator = "//button/span[contains(text(),\"Find_3\")]";
-    String srcString = "";
 
     try {
       findElementInAnyFrame(wd, By.xpath(locator)).click();
@@ -77,60 +57,81 @@ public class FindElementInAnyFrames2 {
   }
 
   private WebElement findElementInAnyFrame(WebDriver wd, By locator) {
-    String frameXpath = "//frame";
-    String iframeXpath = "//iframe";
-    WebElement targetElement = findElementInFrames(wd, locator, frameXpath, "frame");
-    if (targetElement == null) {
-      targetElement = findElementInFrames(wd, locator, iframeXpath, "iframe");
-    }
+    jumpers = wd.findElements(locator);
+    jumpers.clear();
+    WebElement targetElement = findElementInFrames(wd, locator);
     return targetElement;
   }
 
-  private WebElement findElementInFrames(WebDriver wd, By locator, String frameXpath, String frameOutString) {
-    WebElement targetElement = null;
-    List<WebElement> frames = wd.findElements(By.xpath(frameXpath));
-    String srcURL = frames.iterator().next().getAttribute("src");
-    System.out.println(srcURL);
-    if (frames.size() > 0) {
-      int i = 0;
-      for (WebElement f : frames) {
-        i++;
-        wd.switchTo().frame(f);
-        List<WebElement> bodies = wd.findElements(By.tagName("body"));
-        if (bodies.size() > 0) {
-          String body = wd.findElement(By.tagName("body")).getText();
-          System.out.println("body : " + body);
-        }
-        String currentUrl = wd.getCurrentUrl();
-        System.out.println(frameOutString + i + "currentUrl : " + currentUrl);
-        List<WebElement> elementsToFind = wd.findElements(locator);
-        if (elementsToFind.size() > 0) {
-          System.out.println(frameOutString + " № " + i + " : найден искомый элемент");
-          targetElement = wait.until(visibilityOfElementLocated(locator));
-          return targetElement;
-        } else {
-          String frameXpathI = "//frame";
-          String iframeXpathI = "//iframe";
+  private WebElement findElementInFrames(WebDriver wd, By locator) {
+    String frameXpath = "//frame";
+    String iframeXpath = "//iframe";
 
-          List<WebElement> framesI = wd.findElements(By.xpath(frameXpath));
-
-          if (framesI.size() > 0) {
-            
-          }
-
-          wd.switchTo().defaultContent();
-        }
+    // Собираем список всех фреймов
+    List<WebElement> allFrames = wd.findElements(By.xpath(frameXpath));
+    List<WebElement> iframes = wd.findElements(By.xpath(iframeXpath));
+    if (iframes.size() > 0) {
+      for (WebElement f : iframes) {
+        allFrames.add(f);
       }
     }
 
-//    if (targetElement == null) {
-//      String frameXpathNew = "//frame";
-//      String iframeXpathNew = "//iframe";
-//      targetElement = findElementInFrames(wd, locator, frameXpathNew, "frame");
-//      if (targetElement == null) {
-//        targetElement = findElementInFrames(wd, locator, iframeXpathNew, "iframe");
-//      }
-//    }
+    if (allFrames.size() > 0) {
+      int i = 0;
+      for (WebElement f : allFrames) {
+        i++;
+
+        if (wd.findElements(By.tagName("body")).size() > 0) {
+          String body = wd.findElement(By.tagName("body")).getText();
+          System.out.println("body : " + body);
+        }
+
+        // В список прыжков вносим фрейм, в который прыгаем
+        jumpers.add(f);
+        if ((jumpLevel == 0) && (jumpers.size() > 1)) {
+          for (WebElement jj : jumpers) {
+            wd.switchTo().frame(jj);
+            // Уровень вложенности фреймов увеличиваем
+            jumpLevel++;
+          }
+        } else {
+          wd.switchTo().frame(f);
+          // Уровень вложенности фреймов увеличиваем
+          jumpLevel++;
+        }
+
+        if (wd.findElements(By.tagName("body")).size() > 0) {
+          String body = wd.findElement(By.tagName("body")).getText();
+          System.out.println("body : " + body);
+        }
+
+        // Ищем эл-т, если находим - выход
+        List<WebElement> targetElements = wd.findElements(locator);
+        if (targetElements.size() > 0) {
+          System.out.println("Глубина вложенности = " + jumpLevel + " Фрейм № " + i + " : найден искомый элемент");
+          targetElement = wait.until(visibilityOf(targetElements.iterator().next()));
+          return targetElement;
+        } else {
+
+          targetElement = findElementInFrames(wd, locator);
+          if (targetElement != null) {
+            return targetElement;
+          }
+
+          wd.switchTo().defaultContent();
+
+          int ii = 0;
+          for (WebElement j : jumpers) {
+            if (f.equals(j)) {
+              break;
+            }
+            ii++;
+          }
+          jumpers.remove(ii);
+          jumpLevel = 0;
+        }
+      }
+    }
 
     return targetElement;
   }
