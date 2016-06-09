@@ -1,5 +1,7 @@
 package ru.stqa.pft.gge.tests;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,19 +17,34 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 
+import static java.util.logging.Logger.getLogger;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.slf4j.LoggerFactory.getILoggerFactory;
 
 /**
  * Created by Юрий on 05.06.2016.
  */
 public class FindElementInAnyFrames2 {
-  private WebDriver wd;
+//  private WebDriver wd;
+  private static RemoteWebDriver wd;
   private String browser;
   private WebDriverWait wait;
   private List<WebElement> jumpers;
   private int jumpLevel = 0;
   private WebElement targetElement = null;
+
+  static {
+    getLogger("").setLevel(Level.ALL);
+    for (Handler h: getLogger("").getHandlers()) {
+      getLogger("").removeHandler(h);
+    }
+//    Slf4JBridgeHandler
+//    SysOutOverSLF4J
+    StatusPrinter.print((LoggerContext) getILoggerFactory());
+  }
 
   @BeforeMethod
   private void init() throws InterruptedException {
@@ -40,6 +58,7 @@ public class FindElementInAnyFrames2 {
       wd = new InternetExplorerDriver();
     }
 
+    wd.setLogLevel(Level.INFO);
     wd.get("file:///D:/ht/frames.html");
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wait = new WebDriverWait(wd, 10);
