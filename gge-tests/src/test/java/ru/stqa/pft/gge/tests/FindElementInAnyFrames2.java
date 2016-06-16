@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.tests;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.util.StatusPrinter;
+import net.lightbody.bmp.proxy.ProxyServer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,12 +36,13 @@ public class FindElementInAnyFrames2 {
   private List<WebElement> jumpers;
   private int jumpLevel = 0;
   private WebElement targetElement = null;
+  private ProxyServer bmp;
 
   static {
     getLogger("").setLevel(Level.ALL);
-    for (Handler h: getLogger("").getHandlers()) {
-      getLogger("").removeHandler(h);
-    }
+//    for (Handler h: getLogger("").getHandlers()) {
+//      getLogger("").removeHandler(h);
+//    }
 //    Slf4JBridgeHandler
 //    SysOutOverSLF4J
     StatusPrinter.print((LoggerContext) getILoggerFactory());
