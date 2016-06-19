@@ -4,7 +4,6 @@
     <test name="Vitrinas" >
         <classes>
             <class name="ru.stqa.pft.gge.tests.VitrinaOpenAndFindTestsGGE" />
-            <class name="ru.stqa.pft.gge.tests.VitrinaOpenAndFindTestsMGE" />
         </classes>
     </test>
 </suite>
