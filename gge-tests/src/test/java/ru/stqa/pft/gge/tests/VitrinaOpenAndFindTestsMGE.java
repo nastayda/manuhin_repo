@@ -41,7 +41,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_mge_galactica_admin1_all_expertiza_vm-097.json")))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/vitrinas_mge_galactica_admin_all_vm-086.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
