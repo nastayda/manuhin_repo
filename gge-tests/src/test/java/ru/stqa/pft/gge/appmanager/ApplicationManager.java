@@ -28,7 +28,8 @@ public class ApplicationManager {
 
   private String browser;
   private SessionHelper sessionHelper;
-  private GeneratorHelper generatorHelper;
+  private GeneratorHelperGGEMGE generatorHelperGGEMGE;
+  private GeneratorHelperUGD generatorHelperUGD;
   private VitrinaHelper vitrinaHelper;
   public boolean successInit = false;
 
@@ -59,7 +60,8 @@ public class ApplicationManager {
       //wd.manage().window().maximize();
 
       sessionHelper = new SessionHelper(wd);
-      generatorHelper = new GeneratorHelper(wd, properties);
+      generatorHelperGGEMGE = new GeneratorHelperGGEMGE(wd, properties);
+      generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
 
       successInit = true;
@@ -82,8 +84,12 @@ public class ApplicationManager {
     return vitrinaHelper;
   }
 
-  public GeneratorHelper vitrinagen() {
-    return generatorHelper;
+  public GeneratorHelperGGEMGE vitrinagenGGEMGE() {
+    return generatorHelperGGEMGE;
+  }
+
+  public GeneratorHelperUGD vitrinagenUGD() {
+    return generatorHelperUGD;
   }
 
   public byte[] takeScreenshot() {

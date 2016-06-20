@@ -58,7 +58,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
   public void testVitrinaOpenAndFindMGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
-    if (vitrina.getBaseUrl().equals("https://expertiza.mos.ru:8443/auth/login.action")) {
+    if (vitrina.getBaseUrl().equals("https://expertiza.mos.ru:8443/auth/loginGGEMGE.action")) {
       isProdServer = true;
     }
 
@@ -68,7 +68,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     }
 
     assertThat(app.successInit, equalTo(true));
-    app.session().login(vitrina.getLoginUser(), password, vitrina.getBaseUrl());
+    app.session().loginGGEMGE(vitrina.getLoginUser(), password, vitrina.getBaseUrl());
 
     assertThat(app.vitrina().selectVitrina(vitrina, isProdServer), equalTo(true));
     assertThat(app.vitrina().isMistakes(), equalTo(false));

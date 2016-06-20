@@ -19,7 +19,7 @@ public class Clicker {
     public String RAZD = ".//*[@id='firstMenu']/li/a[@href!='']";
     public String MENU = ".//*[@id='secondMenu']/ul/li/a";
     public String SUBMENU = "(.//*[@id='secondMenu']/ul/li//ul/li)";
-    public String URL = "https://vm-082-as-gge.mdi.ru/auth/login.action?service=https%3A%2F%2Fvm-082-as-gge.mdi.ru%2Fportal%2FtabInfo.action%3Ftab%3DPRIVATEOFFICE";
+    public String URL = "https://vm-082-as-gge.mdi.ru/auth/loginGGEMGE.action?service=https%3A%2F%2Fvm-082-as-gge.mdi.ru%2Fportal%2FtabInfo.action%3Ftab%3DPRIVATEOFFICE";
     public String usserName = "galactica_admin1";
     public String usserPass = "21";
 

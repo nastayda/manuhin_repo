@@ -12,8 +12,8 @@ import java.util.Properties;
 /**
  * Created by manuhin on 21.04.2016.
  */
-public class GeneratorHelper extends HelperBase {
-  public GeneratorHelper(WebDriver wd, Properties properties) {
+public class GeneratorHelperGGEMGE extends HelperBase {
+  public GeneratorHelperGGEMGE(WebDriver wd, Properties properties) {
     super(wd);
     this.properties = properties;
     //wd.manage().window().maximize();

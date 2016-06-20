@@ -48,7 +48,7 @@ public class PodachaZajavlenija {
         boolean easyVariant = false; //true;
 
         for (int i = korpus; i < maxKorpus; i++) {
-            autorization("https://test-my.gge.ru/auth/login.action", "galactica_admin1", "21");
+            autorization("https://test-my.gge.ru/auth/loginGGEMGE.action", "galactica_admin1", "21");
 //            autorization("https://vm-081-as-gge.mdi.ru/auth/login.action", "galactica_admin1", "21");
 
             wd.manage().window().maximize();
