@@ -66,6 +66,15 @@ public class HelperBase {
     }
   }
 
+  public void waitLoadPageUGD(boolean isProdServer) throws InterruptedException {
+    if (isProdServer) {
+      waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none;\"]"));   // test-eis, 82-й
+    } else {
+      waitElement(By.xpath("//div[@id=\"overlay\" and @style=\"display: none; width: 100%;\"]")); // ugd-test
+    }
+
+  }
+
   protected void waitElement(By locator) throws InterruptedException {
     for (int second = 0;; second++) {
       if (second >= 60) {

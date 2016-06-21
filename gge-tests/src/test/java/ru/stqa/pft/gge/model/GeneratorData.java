@@ -20,14 +20,19 @@ public class GeneratorData {
     private String vitrina;
 
     @Expose
+    private String vitrinaID;
+
+    @Expose
     private String vitrinaXpath;
 
     @Expose
     private String loginUser;
 
     @Expose
-
     private String baseUrl;
+
+    @Expose
+    private String listVitrinasUrl;
 
 
     /**
@@ -54,10 +59,13 @@ public class GeneratorData {
         return vitrina;
     }
 
+    public String getVitrinaID() {
+        return vitrinaID;
+    }
+
     public String getVitrinaXpath() {
         return vitrinaXpath;
     }
-
 
     public String getBaseUrl() {
         return baseUrl;
@@ -67,54 +75,40 @@ public class GeneratorData {
         return loginUser;
     }
 
-    /**
-     * Сеттеры
-     * @param razdList
-     */
-    public void setRazdName(String razdList) {
-        razdel = razdList;
-    }
-
-    public void setRazdXpath (String xpathRazd) {
-        razdelXpath = xpathRazd;
-    }
-
-    public void setMenu(String menuList) {
-        menu = menuList;
-    }
-
-    public void setMenuXpath(String xpathMenu) {
-        menuXpath = xpathMenu;
-    }
-
-    public void setVitrina (String vitrinaList) {
-        vitrina = vitrinaList;
-    }
-
-    public void setVitrinaXpath (String xpathVitrina) {
-        vitrinaXpath = xpathVitrina;
+    public String getListVitrinasUrl() {
+        return listVitrinasUrl;
     }
 
     public GeneratorData withRazdelName(String razdel) {
         this.razdel = razdel;
         return this;
     }
+
     public GeneratorData withRazdelXpath(String razdelXpath) {
         this.razdelXpath = razdelXpath;
         return this;
     }
+
     public GeneratorData withMenuName(String menu) {
         this.menu = menu;
         return this;
     }
+
     public GeneratorData withMenuXpath(String menuXpath) {
         this.menuXpath = menuXpath;
         return this;
     }
+
     public GeneratorData withVitrinaName(String vitrina) {
         this.vitrina = vitrina;
         return this;
     }
+
+    public GeneratorData withVitrinaID(String vitrinaID) {
+        this.vitrinaID = vitrinaID;
+        return this;
+    }
+
     public GeneratorData withVitrinaXpath(String vitrinaXpath) {
         this.vitrinaXpath = vitrinaXpath;
         return this;
@@ -127,6 +121,11 @@ public class GeneratorData {
 
     public GeneratorData withLoginUser(String loginUser) {
         this.loginUser = loginUser;
+        return this;
+    }
+
+    public GeneratorData withListVitrinasUrl(String listVitrinasUrl) {
+        this.listVitrinasUrl = listVitrinasUrl;
         return this;
     }
 

@@ -31,6 +31,8 @@ public class GenVitrinasUGD extends TestBase {
 
   //public String baseUrl = "https://eis.gge.ru/auth/login.action";
   public String baseUrl = "http://ugd-test.mos.ru/authS2/dualAuthPage.action";
+  public String listVitrinasUrl =
+          "http://ugd-test.mos.ru/ugd/tabInfo.action?tab=CARD$PORTAL_TREE&documentId=#tab::id=0/card::cardId=CARD$PORTAL_TREE";
   public String loginUser = "OstashenkoAE";
 
 
@@ -95,7 +97,7 @@ public class GenVitrinasUGD extends TestBase {
     }
 
     if (project.equals("UGD")) {
-      vitrinas = app.vitrinagenUGD().GenParamUGD(count, isProdServer, loginUser, baseUrl);
+      vitrinas = app.vitrinagenUGD().GenParamUGD(count, isProdServer, loginUser, baseUrl, listVitrinasUrl);
     }
     return vitrinas;
   }

@@ -1,9 +1,9 @@
 package ru.stqa.pft.gge.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.remote.RemoteWebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.util.List;
@@ -15,6 +15,129 @@ import java.util.Set;
 public class VitrinaHelper extends HelperBase {
   public VitrinaHelper(WebDriver wd) {
     super(wd);
+  }
+
+  public boolean selectVitrinaUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    selectPodMenuVitrinaUGD(vitrina, isProdServer);
+    if (checkVitrinaNameUGD(vitrina, isProdServer) && checkRazdelNameUGD(vitrina, isProdServer)) {
+      return true;
+    }
+    return false;
+  }
+
+  private void selectPodMenuVitrinaUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPageUGD(isProdServer);
+    List<WebElement> elements = wd.findElements(By.xpath(vitrina.getVitrinaXpath()));
+    if (elements.size() == 1) {
+      WebElement next = elements.iterator().next();
+      if (waitForDisplayed(next)) {
+        By locator = By.xpath(vitrina.getVitrinaXpath());
+        // Прокрутка скрола до нужной ссылки
+        RemoteWebElement element = (RemoteWebElement) wd.findElement(locator);
+        ((Locatable) element).getCoordinates().inViewPort();
+        // Клик по ссылке
+        for (int ii = 1; ii < 3; ii++) {
+          try {
+            waitLoadPageUGD(isProdServer);
+            // Получаем ID ссылки
+            jscriptClickById(vitrina.getVitrinaID());
+          } catch (WebDriverException e) {
+            System.out.println(vitrina.getRazdel() + " "
+                    + vitrina.getMenu() + " "
+                    + vitrina.getVitrina() + " WebDriverException");
+            Thread.sleep(500);
+          }
+        }
+        waitLoadPageUGD(isProdServer);
+        for (int ii = 1; ii < 20; ii++) {
+          List<WebElement> elementsDOMVitrina = wd.findElements(By.xpath("//body[@class=\"isVitrina\"]"));
+          if (elementsDOMVitrina.size() == 1) {
+            break;
+          } else {
+            System.out.println(vitrina.getRazdel() + " "
+                    + vitrina.getMenu() + " "
+                    + vitrina.getVitrina() + " DOM not found");
+            Thread.sleep(500);
+          }
+        }
+      }
+    }
+  }
+
+  public void jscriptClickById(String id) {
+    String jscriptString = "document.getElementById('" + id + "').click()";
+    ((JavascriptExecutor) wd).executeScript(jscriptString);
+  }
+
+  public boolean checkVitrinaNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPageUGD(isProdServer);
+    List<WebElement> elements = wd.findElements(
+            By.xpath("//*[@id='serviceBar']/h3"));
+    if (elements.size() == 1) {
+      WebElement next = elements.iterator().next();
+      for (int ii = 1; ii < 20; ii++) {
+        try {
+          waitForDisplayed(next);
+        } catch (StaleElementReferenceException e) {
+          System.out.println(vitrina.getRazdel() + " "
+          + vitrina.getMenu() + " "
+          + vitrina.getVitrina() + " StaleElementReferenceException");
+          Thread.sleep(500);
+        }
+      }
+
+      if (waitForDisplayed(next)) {
+        String nameVitrinaFromPage = next.getText();
+        if (nameVitrinaFromPage.equals(vitrina.getVitrina())) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private Boolean waitForDisplayed(WebElement next) throws InterruptedException {
+    Boolean wfd = false;
+    for (int ii = 1; ii < 50; ii++) {
+      if (next.isDisplayed()) {
+        wfd = true;
+        break;
+      } else {
+        Thread.sleep(200);
+      }
+    }
+    return wfd;
+  }
+
+  public boolean checkRazdelNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPageUGD(isProdServer);
+    List<WebElement> elements = wd.findElements(
+            By.xpath("//div[@class=\"search simpleSearchContainer TOP_MENU\"]/a[@class=\"tabName\"]"));
+    if (elements.size() == 1) {
+      String nameRazdelFromPage = elements.iterator().next().getText();
+      if (nameRazdelFromPage.equals(vitrina.getRazdel())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void fillAllFiltersUGD(boolean isProdServer) throws InterruptedException {
+//    waitLoadPage(isProdServer);
+//    String startXpath = ".//*[@class=\"form\"]";
+//    List<WebElement> elements = wd.findElements(By.xpath(startXpath));
+//    if (elements.size() == 1) {
+//      WebElement element = elements.iterator().next();
+//      fillFiltrCombobox(element);
+//      fillFiltrCheckbox(element);
+//      fillFiltrType(element, 0, "ав");
+//      fillFiltrType(element, 49, "ав");
+//      fillFiltrType(element, 47, "ав");
+//      fillFiltrType(element, 6, "01.04.2015");
+//      fillFiltrType(element, 9, "01.04.2015");
+//      fillFiltrReference(element, 16, isProdServer);
+//      fillFiltrReference(element, 15, isProdServer);
+//    }
   }
 
   public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
@@ -40,7 +163,8 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public boolean checkVitrinaName(GeneratorData vitrina) {
-    List<WebElement> elements = wd.findElements(By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+    List<WebElement> elements = wd.findElements(
+            By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
     if (elements.size() == 1) {
       if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
         return true;
@@ -53,7 +177,8 @@ public class VitrinaHelper extends HelperBase {
     try {
       click(By.xpath(vitrina.getVitrinaXpath()));
       waitLoadPage(isProdServer);
-      List<WebElement> elements = wd.findElements(By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+      List<WebElement> elements = wd.findElements(
+              By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
       if (elements.size() == 1) {
         if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
           return 0;
@@ -194,7 +319,8 @@ public class VitrinaHelper extends HelperBase {
           if (elementsValue.size() == 1) {
             WebElement ww = elementsValue.iterator().next();
             String id = w.getAttribute("id");
-            String jstriptString = "$('select#" + id + "').find('option:last').attr('selected', 'selected').end().change()";
+            String jstriptString =
+                    "$('select#" + id + "').find('option:last').attr('selected', 'selected').end().change()";
             ((JavascriptExecutor) wd).executeScript(jstriptString);
           }
         }
@@ -240,7 +366,8 @@ public class VitrinaHelper extends HelperBase {
     if (isProdServer) {
       xpathRasshPoisk = "//*[@class=\"singleButton searchBtn default-btn left right MAIN\"]"; //
     } else {
-      xpathRasshPoisk = "//*[@class=\"SERVICE_element singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // 97-й
+      xpathRasshPoisk =
+              "//*[@class=\"SERVICE_element singleButton SERVICE searchBtn default-btn left right MAIN\"]"; // 97-й
     }
 
     List<WebElement> elements = wd.findElements(By.xpath(xpathRasshPoisk));

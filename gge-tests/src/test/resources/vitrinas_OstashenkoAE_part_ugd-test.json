@@ -2,6 +2,42 @@
   {
     "razdel": "Реестры документов",
     "razdelXpath": "(//*[@id='PortalTree']/li)[3]",
+    "menu": "Другие реестры",
+    "menuXpath": "(//*[@id='PortalTree']/li[3]/ul/li/a)[7]",
+    "vitrina": "Сведения о подключении сетей и коммуникаций",
+    "vitrinaID": "6FBCB7A849574011A7803B7066382CAC",
+    "vitrinaXpath": "(//*[@id='PortalTree']/li[3]/ul/li[7]/a/../ul/li/a)[6]",
+    "loginUser": "OstashenkoAE",
+    "baseUrl": "http://ugd-test.mos.ru/authS2/dualAuthPage.action",
+    "listVitrinasUrl": "http://ugd-test.mos.ru/ugd/tabInfo.action?tab=CARD$PORTAL_TREE&documentId=#tab::id=0/card::cardId=CARD$PORTAL_TREE"
+  },
+  {
+    "razdel": "Реестры документов",
+    "razdelXpath": "(//*[@id='PortalTree']/li)[3]",
+    "menu": "Другие реестры",
+    "menuXpath": "(//*[@id='PortalTree']/li[3]/ul/li/a)[7]",
+    "vitrina": "Ордера ОАТИ",
+    "vitrinaID": "742ED65A14F64D5A83F29650EC47B7EB",
+    "vitrinaXpath": "(//*[@id='PortalTree']/li[3]/ul/li[7]/a/../ul/li/a)[7]",
+    "loginUser": "OstashenkoAE",
+    "baseUrl": "http://ugd-test.mos.ru/authS2/dualAuthPage.action",
+    "listVitrinasUrl": "http://ugd-test.mos.ru/ugd/tabInfo.action?tab=CARD$PORTAL_TREE&documentId=#tab::id=0/card::cardId=CARD$PORTAL_TREE"
+  },
+  {
+    "razdel": "Реестры документов",
+    "razdelXpath": "(//*[@id='PortalTree']/li)[3]",
+    "menu": "Другие реестры",
+    "menuXpath": "(//*[@id='PortalTree']/li[3]/ul/li/a)[7]",
+    "vitrina": "Участники инвестиционно-строительной деятельности",
+    "vitrinaID": "8191B4B6988D46B696A3BC3E1969F338",
+    "vitrinaXpath": "(//*[@id='PortalTree']/li[3]/ul/li[7]/a/../ul/li/a)[8]",
+    "loginUser": "OstashenkoAE",
+    "baseUrl": "http://ugd-test.mos.ru/authS2/dualAuthPage.action",
+    "listVitrinasUrl": "http://ugd-test.mos.ru/ugd/tabInfo.action?tab=CARD$PORTAL_TREE&documentId=#tab::id=0/card::cardId=CARD$PORTAL_TREE"
+  },
+  {
+    "razdel": "Реестры документов",
+    "razdelXpath": "(//*[@id='PortalTree']/li)[3]",
     "menu": "Москомархитектура",
     "menuXpath": "(//*[@id='PortalTree']/li[3]/ul/li/a)[1]",
     "vitrina": "ГПЗУ",
