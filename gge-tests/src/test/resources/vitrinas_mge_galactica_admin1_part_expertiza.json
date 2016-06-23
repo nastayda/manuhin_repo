@@ -1,0 +1,22 @@
+[
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
+    "menu": "Мои задачи",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[2]",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[2]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/auth/login.action"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
+    "menu": "Мои задачи",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[2]",
+    "vitrina": "Архив",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[2]/..//ul/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/auth/login.action"
+  }
+]
