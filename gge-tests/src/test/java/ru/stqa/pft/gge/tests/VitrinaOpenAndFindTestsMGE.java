@@ -60,11 +60,12 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
   public void testVitrinaOpenAndFindMGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
-    if (vitrina.getBaseUrl().equals("https://expertiza.mos.ru:8443/auth/login.action")) {
-      isProdServer = true;
-    }
+   // boolean isProdServer = true;
+   // if (vitrina.getBaseUrl().equals("https://expertiza.mos.ru:8443/auth/login.action")) {
+   //   isProdServer = true;
+    //}
 
-    String password = "21";
+    String password = "123456";
     if (isProdServer) {
       password = "123456";
     }
