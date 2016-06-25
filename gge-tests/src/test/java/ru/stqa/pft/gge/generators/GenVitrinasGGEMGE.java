@@ -96,8 +96,7 @@ public class GenVitrinasGGEMGE extends TestBase {
 
     boolean isProdServer = false;
     if (baseUrl.equals("https://eis.gge.ru/auth/login.action") ||
-            baseUrl.equals("https://vm-085-as-gge.mdi.ru/auth/login.action") ||
-            baseUrl.equals("https://expertiza.mos.ru:8443/auth/login.action")) {
+            baseUrl.equals("https://vm-085-as-gge.mdi.ru/auth/login.action")) {
       isProdServer = true;
     }
 

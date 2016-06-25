@@ -56,7 +56,7 @@ public class ApplicationManager {
         capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
         wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
       }
-      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
       //wd.manage().window().maximize();
 
       sessionHelper = new SessionHelper(wd);
