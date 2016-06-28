@@ -1032,16 +1032,6 @@
   {
     "razdel": "Делопроизводство",
     "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
-    "menu": "Распорядительные документы",
-    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[9]",
-    "vitrina": "Дубль два",
-    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[9]/..//ul/li/a)[7]",
-    "loginUser": "galactica_admin1",
-    "baseUrl": "https://expertiza.mos.ru:8443/auth/login.action"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
     "menu": "Документы из ЭДО",
     "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[10]",
     "vitrina": "Документы из ЭДО",
