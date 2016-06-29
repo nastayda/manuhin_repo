@@ -214,7 +214,7 @@ public class VitrinaHelper extends HelperBase {
       Thread.sleep(3000);
       i--;
       if (i > 0) {
-//        selectRazdel(vitrina, isProdServer);
+        selectRazdel(vitrina, isProdServer);
         return recursiaMenu(vitrina, i, isProdServer);
       }
       return i;
