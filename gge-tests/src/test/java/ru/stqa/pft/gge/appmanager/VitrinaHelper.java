@@ -214,7 +214,7 @@ public class VitrinaHelper extends HelperBase {
       Thread.sleep(3000);
       i--;
       if (i > 0) {
-        selectRazdel(vitrina, isProdServer);
+//        selectRazdel(vitrina, isProdServer);
         return recursiaMenu(vitrina, i, isProdServer);
       }
       return i;
@@ -269,9 +269,27 @@ public class VitrinaHelper extends HelperBase {
             String wNew = wNewSet.iterator().next();
             wd.switchTo().window(wNew);
 
-            String xpathAll = "//input[@id=\"collect_all\"]";
-            waitElement(By.xpath(xpathAll));
-            click(By.xpath(xpathAll));
+            Thread.sleep(500);
+            String xpathRadioButton = "//input[@class=\"RadioCheckElem\" and @type=\"radio\"]";
+            List<WebElement> radioButtonElements = wd.findElements(By.xpath(xpathRadioButton));
+            if (radioButtonElements.size() == 0) {
+              String xpathAll = "//input[@id=\"collect_all\"]";
+              waitElement(By.xpath(xpathAll));
+              click(By.xpath(xpathAll));
+            } else {
+              WebElement next = radioButtonElements.iterator().next();
+              Boolean clickRadioIs = false;
+              attempt = 0;
+              while (!clickRadioIs && attempt < 15) {
+                Thread.sleep(500);
+                try {
+                  next.click();
+                  clickRadioIs = true;
+                } catch (Exception e) {
+                  attempt++;
+                }
+              }
+            }
 
             String xpathSubmit = "//input[@id=\"submitButton\"]";
             waitElement(By.xpath(xpathSubmit));
