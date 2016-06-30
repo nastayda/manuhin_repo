@@ -356,13 +356,19 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public boolean isMistakes(boolean isProdServer) throws InterruptedException {
-    Thread.sleep(500);
-    waitLoadPage(isProdServer);
-    List<WebElement> elements = wd.findElements(By.xpath(".//*[@class=\"headTitle\"]"));
-    if (elements.size() == 0) {
-      return true;
+    Boolean isMistakes = true;
+    for (int i = 1; i < 5; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      List<WebElement> elements = wd.findElements(By.xpath(".//*[@class=\"headTitle\"]"));
+      if (elements.size() > 0) {
+        isMistakes = false;
+        break;
+      }
     }
-    return false;
+
+    return isMistakes;
   }
 
   public boolean isMistakesOtchet(boolean isProdServer) throws InterruptedException {
