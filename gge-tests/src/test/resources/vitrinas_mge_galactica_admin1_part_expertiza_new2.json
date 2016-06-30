@@ -1,5 +1,15 @@
 [
   {
+    "razdel": "Аналитика",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[6]",
+    "menu": "Аналитика",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Мониторинг ПГУ",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[7]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=ANALYTICS&b=115135D8A93344FCB068923269259F10#/tree::rel=9/card::cardId=MGE$GU_MONITOR"
+  },
+  {
     "razdel": "Рабочий кабинет",
     "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
     "menu": "Мои процессы",
@@ -148,15 +158,5 @@
     "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[1]",
     "loginUser": "galactica_admin1",
     "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=ANALYTICS&c=3&b=5644029E965342DC87CBD359644185D4&a=DA42C60737CF4F9399AA30D86C7D86CB#tab::id=0/tree::rel=3/filter::id=DA42C60737CF4F9399AA30D86C7D86CB/vitrina::viewId=DA42C60737CF4F9399AA30D86C7D86CB&offset=0&limit=10"
-  },
-  {
-    "razdel": "Аналитика",
-    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[6]",
-    "menu": "Аналитика",
-    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
-    "vitrina": "Мониторинг ПГУ",
-    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[7]",
-    "loginUser": "galactica_admin1",
-    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=ANALYTICS&b=115135D8A93344FCB068923269259F10#/tree::rel=9/card::cardId=MGE$GU_MONITOR"
   }
 ]
