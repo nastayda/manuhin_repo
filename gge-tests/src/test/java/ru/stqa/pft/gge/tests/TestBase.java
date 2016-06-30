@@ -27,6 +27,11 @@ public class TestBase {
     app.session().loginGGEMGE(username, password, baseUrl);
   }
 
+  public void setUpMGE(String username, String password, String baseUrl) throws Exception {
+    app.initMGE();
+    app.session().loginGGEMGE(username, password, baseUrl);
+  }
+
   public void setUpUGD(String username, String password,
                        Boolean userIsChinovnik, String baseUrl,
                        String listVitrinasUrl) throws IOException {

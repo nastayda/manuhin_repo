@@ -141,25 +141,39 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-    for (int i = 1; i <= 5; i++) {
-      selectRazdel(vitrina, isProdServer);
-      selectMenuVitrin(vitrina, isProdServer);
-      if (!vitrina.getMenuXpath().equals(vitrina.getVitrinaXpath())) {
-        selectPodMenuVitrina(vitrina, isProdServer);
-      }
+    wd.get(vitrina.getBaseUrl());
+    wd.manage().window().maximize();
+    Thread.sleep(500);
 
-      if (checkVitrinaName(vitrina)) {
-        return true;
-      } else {
-        Thread.sleep(2000);
-      }
+    if (!checkVitrinaIs(vitrina)) {
+      return true;
     }
+
+    if (checkVitrinaName(vitrina)) {
+      return true;
+    }
+
     return false;
   }
 
   private void selectPodMenuVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     Thread.sleep(3000);
     recursiaVitrina(vitrina, 15, isProdServer);
+  }
+
+  public boolean checkVitrinaIs(GeneratorData vitrina) {
+    List<WebElement> elements = wd.findElements(
+            By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+    if (elements.size() == 1) {
+      return true;
+    } else {
+      List<WebElement> elementsOtchetName = wd.findElements(
+              By.xpath("//h1[@class=\"header_prot\"]"));
+      if (elementsOtchetName.size() == 1) {
+        return false;
+      }
+    }
+    return false;
   }
 
   public boolean checkVitrinaName(GeneratorData vitrina) {
@@ -415,8 +429,21 @@ public class VitrinaHelper extends HelperBase {
     recursiaRazdel(vitrina, 15);
   }
 
-  public boolean isMistakes() {
+  public boolean isMistakes(boolean isProdServer) throws InterruptedException {
+    Thread.sleep(500);
+    waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@class=\"headTitle\"]"));
+    if (elements.size() == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean isMistakesOtchet(boolean isProdServer) throws InterruptedException {
+    Thread.sleep(500);
+    waitLoadPage(isProdServer);
+    List<WebElement> elements = wd.findElements(
+            By.xpath("//table[@class=\"tableCardStyle nadzorTable\"]//tr"));
     if (elements.size() == 0) {
       return true;
     }

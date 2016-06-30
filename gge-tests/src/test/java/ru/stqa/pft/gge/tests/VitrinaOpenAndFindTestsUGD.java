@@ -72,7 +72,7 @@ public class VitrinaOpenAndFindTestsUGD extends TestBase {
             vitrina.getBaseUrl(), vitrina.getListVitrinasUrl());
 
     assertThat(app.vitrina().selectVitrinaUGD(vitrina, isProdServer), equalTo(true));
-    assertThat(app.vitrina().isMistakes(), equalTo(false));
+    assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
 
     app.vitrina().fillAllFiltersUGD(isProdServer);
 //    app.vitrina().buttonFind(isProdServer);

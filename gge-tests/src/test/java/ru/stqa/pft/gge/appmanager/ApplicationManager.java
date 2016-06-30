@@ -29,6 +29,7 @@ public class ApplicationManager {
   private String browser;
   private SessionHelper sessionHelper;
   private GeneratorHelperGGEMGE generatorHelperGGEMGE;
+  private GeneratorHelperMGE generatorHelperMGE;
   private GeneratorHelperUGD generatorHelperUGD;
   private VitrinaHelper vitrinaHelper;
   public boolean successInit = false;
@@ -61,7 +62,40 @@ public class ApplicationManager {
 
       sessionHelper = new SessionHelper(wd);
       generatorHelperGGEMGE = new GeneratorHelperGGEMGE(wd, properties);
+      generatorHelperMGE = new GeneratorHelperMGE(wd, properties);
       generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
+      vitrinaHelper = new VitrinaHelper(wd);
+
+      successInit = true;
+    } catch (Throwable e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void initMGE() throws IOException {
+    try {
+      String target = System.getProperty("target", "local");
+      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+      if ("".equals(properties.getProperty("selenium.server"))) {
+        if (browser.equals(BrowserType.FIREFOX)) {
+          wd = new FirefoxDriver();
+        } else if (browser.equals(BrowserType.CHROME)) {
+          wd = new ChromeDriver();
+        } else if (browser.equals(BrowserType.IE)) {
+          wd = new InternetExplorerDriver();
+        }
+      } else {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(browser);
+        capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
+        wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+      }
+      wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+      sessionHelper = new SessionHelper(wd);
+//      generatorHelperGGEMGE = new GeneratorHelperGGEMGE(wd, properties);
+      generatorHelperMGE = new GeneratorHelperMGE(wd, properties);
+//      generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
 
       successInit = true;
@@ -86,6 +120,10 @@ public class ApplicationManager {
 
   public GeneratorHelperGGEMGE vitrinagenGGEMGE() {
     return generatorHelperGGEMGE;
+  }
+
+  public GeneratorHelperMGE vitrinagenMGE() {
+    return generatorHelperMGE;
   }
 
   public GeneratorHelperUGD vitrinagenUGD() {
