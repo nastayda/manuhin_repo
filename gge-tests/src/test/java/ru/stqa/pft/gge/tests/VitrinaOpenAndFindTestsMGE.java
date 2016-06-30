@@ -43,7 +43,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(
-            new File("src/test/resources/vitrinas_mge_galactica_admin1_all_expertiza_new2.json")))) {
+            new File("src/test/resources/vitrinas_mge_galactica_admin1_part_expertiza_new2.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -76,11 +76,10 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     assertThat(app.vitrina().selectVitrina(vitrina, isProdServer), equalTo(true));
     if (app.vitrina().checkVitrinaIs(vitrina)) {
       assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
-
-    app.vitrina().vizovRasshPoiskMGE(isProdServer);
-    app.vitrina().fillAllFilters(isProdServer);
-    app.vitrina().buttonFind(isProdServer);
-    assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
+      app.vitrina().vizovRasshPoiskMGE(isProdServer);
+      app.vitrina().fillAllFilters(isProdServer);
+      app.vitrina().buttonFind(isProdServer);
+      assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
     } else {
       assertThat(app.vitrina().isMistakesOtchet(isProdServer), equalTo(false));
     }

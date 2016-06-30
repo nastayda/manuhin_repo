@@ -1,7 +1,6 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.remote.RemoteWebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
@@ -12,8 +11,8 @@ import java.util.Set;
 /**
  * Created by manuhin on 21.04.2016.
  */
-public class VitrinaHelper extends HelperBase {
-  public VitrinaHelper(WebDriver wd) {
+public class VitrinaHelperOld extends HelperBase {
+  public VitrinaHelperOld(WebDriver wd) {
     super(wd);
   }
 
@@ -143,7 +142,6 @@ public class VitrinaHelper extends HelperBase {
   public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     wd.get(vitrina.getBaseUrl());
     wd.manage().window().maximize();
-    waitLoadPage(isProdServer);
     Thread.sleep(500);
 
     if (!checkVitrinaIs(vitrina)) {
@@ -157,10 +155,10 @@ public class VitrinaHelper extends HelperBase {
     return false;
   }
 
-//  private void selectPodMenuVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-//    Thread.sleep(3000);
-//    recursiaVitrina(vitrina, 15, isProdServer);
-//  }
+  private void selectPodMenuVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    Thread.sleep(3000);
+    recursiaVitrina(vitrina, 15, isProdServer);
+  }
 
   public boolean checkVitrinaIs(GeneratorData vitrina) {
     List<WebElement> elements = wd.findElements(
@@ -188,59 +186,59 @@ public class VitrinaHelper extends HelperBase {
     return false;
   }
 
-//  private int recursiaVitrina(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
-//    try {
-//      click(By.xpath(vitrina.getVitrinaXpath()));
-//      waitLoadPage(isProdServer);
-//      List<WebElement> elements = wd.findElements(
-//              By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
-//      if (elements.size() == 1) {
-//        if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
-//          return 0;
-//        } else {
-//          i--;
-//          Thread.sleep(3000);
-//          selectRazdel(vitrina, isProdServer);
-//          Thread.sleep(3000);
-//          selectMenuVitrin(vitrina, isProdServer);
-//          Thread.sleep(3000);
-//          selectPodMenuVitrina(vitrina, isProdServer);
-//          return i;
-//        }
-//      }
-//      return i;
-//    } catch (Exception e) {
-//      Thread.sleep(3000);
-//      i--;
-//      if (i > 0) {
-//        selectRazdel(vitrina, isProdServer);
-//        selectMenuVitrin(vitrina, isProdServer);
-//        return recursiaVitrina(vitrina, i, isProdServer);
-//      }
-//      return i;
-//    }
-//  }
-//
-//  private int recursiaMenu(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
-//    try {
-//      click(By.xpath(vitrina.getMenuXpath()));
-//      return i;
-//    } catch (Exception e) {
-//      Thread.sleep(3000);
-//      i--;
-//      if (i > 0) {
-//        selectRazdel(vitrina, isProdServer);
-//        return recursiaMenu(vitrina, i, isProdServer);
-//      }
-//      return i;
-//    }
-//  }
-//
-//  private void selectMenuVitrin(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-//    waitLoadPage(isProdServer);
-//    Thread.sleep(3000);
-//    recursiaMenu(vitrina, 15, isProdServer);
-//  }
+  private int recursiaVitrina(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
+    try {
+      click(By.xpath(vitrina.getVitrinaXpath()));
+      waitLoadPage(isProdServer);
+      List<WebElement> elements = wd.findElements(
+              By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+      if (elements.size() == 1) {
+        if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
+          return 0;
+        } else {
+          i--;
+          Thread.sleep(3000);
+          selectRazdel(vitrina, isProdServer);
+          Thread.sleep(3000);
+          selectMenuVitrin(vitrina, isProdServer);
+          Thread.sleep(3000);
+          selectPodMenuVitrina(vitrina, isProdServer);
+          return i;
+        }
+      }
+      return i;
+    } catch (Exception e) {
+      Thread.sleep(3000);
+      i--;
+      if (i > 0) {
+        selectRazdel(vitrina, isProdServer);
+        selectMenuVitrin(vitrina, isProdServer);
+        return recursiaVitrina(vitrina, i, isProdServer);
+      }
+      return i;
+    }
+  }
+
+  private int recursiaMenu(GeneratorData vitrina, int i, boolean isProdServer) throws InterruptedException {
+    try {
+      click(By.xpath(vitrina.getMenuXpath()));
+      return i;
+    } catch (Exception e) {
+      Thread.sleep(3000);
+      i--;
+      if (i > 0) {
+        selectRazdel(vitrina, isProdServer);
+        return recursiaMenu(vitrina, i, isProdServer);
+      }
+      return i;
+    }
+  }
+
+  private void selectMenuVitrin(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(3000);
+    recursiaMenu(vitrina, 15, isProdServer);
+  }
 
   public void fillAllFilters(boolean isProdServer) throws InterruptedException {
     waitLoadPage(isProdServer);
