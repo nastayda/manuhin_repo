@@ -143,15 +143,18 @@ public class VitrinaHelper extends HelperBase {
   public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     wd.get(vitrina.getBaseUrl());
     wd.manage().window().maximize();
-    waitLoadPage(isProdServer);
-    Thread.sleep(500);
 
-    if (!checkVitrinaIs(vitrina)) {
-      return true;
-    }
+    for (int i = 1; i < 5; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
 
-    if (checkVitrinaName(vitrina)) {
-      return true;
+      if (!checkVitrinaIs(vitrina)) {
+        return true;
+      }
+
+      if (checkVitrinaName(vitrina)) {
+        return true;
+      }
     }
 
     return false;
