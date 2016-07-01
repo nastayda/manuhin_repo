@@ -367,7 +367,7 @@ public class VitrinaHelper extends HelperBase {
 
   public boolean isMistakes(boolean isProdServer) throws InterruptedException {
     Boolean isMistakes = true;
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 20; i++) {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
