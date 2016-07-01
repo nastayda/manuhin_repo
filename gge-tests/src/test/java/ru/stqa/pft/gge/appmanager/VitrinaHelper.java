@@ -1,7 +1,6 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.remote.RemoteWebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
@@ -179,8 +178,19 @@ public class VitrinaHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(
             By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
     if (elements.size() == 1) {
-      if (elements.iterator().next().getText().equals(vitrina.getVitrina())) {
-        return true;
+      WebElement element = elements.iterator().next();
+
+      for (int i = 1; i < 5; i++) {
+        try {
+          Thread.sleep(500);
+          if (element.isDisplayed()) {
+            if (element.getText().equals(vitrina.getVitrina())) {
+              return true;
+            }
+          }
+        } catch (Exception e) {
+          System.out.println("Элемент наименования витрины невидим");
+        }
       }
     }
     return false;
