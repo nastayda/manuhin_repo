@@ -44,9 +44,11 @@ public class GeneratorHelperGGEMGE extends HelperBase {
     //Раздел
     for (int r = 1; r <= i; r++){
       waitLoadPage(isProdServer);
-      //Thread.sleep(3000);
+      Thread.sleep(1000);
       String xpath1 = xpathRazdelStart + "["+ r +"]" + xpathRazdelEnd;
       click(By.xpath(xpath1));
+      waitLoadPage(isProdServer);
+      Thread.sleep(1000);
       String nameRazd = wd.findElement(By.xpath(xpath1)).getText();
       mainMenu =  wd.findElements(By.xpath(xpathMenuStart + xpathMenuEnd));
       int amountMenu = mainMenu.size();
@@ -68,19 +70,21 @@ public class GeneratorHelperGGEMGE extends HelperBase {
           for(int s = 1; s <= amountSubMenu; s++){
             String xpath3 = xpathSubmenuStart + "[" + m + "]" + xpathSubmenuIn + "[" + s + "]" + xpathSubmenuEnd;
             String nameSub = wd.findElement(By.xpath(xpath3)).getText();
+            String urlVitrina = wd.findElement(By.xpath(xpath3)).getAttribute("href");
             GeneratorData generatorData = new GeneratorData()
                     .withRazdelName(nameRazd).withRazdelXpath(xpath1)
                     .withMenuName(nameMenu).withMenuXpath(xpath2)
                     .withVitrinaName(nameSub).withVitrinaXpath(xpath3)
-                    .withLoginUser(loginUser).withBaseUrl(baseUrl);
+                    .withLoginUser(loginUser).withBaseUrl(urlVitrina);
             listRazd.add(generatorData);
           }
         } else {
+          String urlVitrina = wd.findElement(By.xpath(xpath2)).getAttribute("href");
           GeneratorData generatorData = new GeneratorData()
                   .withRazdelName(nameRazd).withRazdelXpath(xpath1)
                   .withMenuName(nameMenu).withMenuXpath(xpath2)
                   .withVitrinaName(nameMenu).withVitrinaXpath(xpath2)
-                  .withLoginUser(loginUser).withBaseUrl(baseUrl);
+                  .withLoginUser(loginUser).withBaseUrl(urlVitrina);
           listRazd.add(generatorData);
         }
       }

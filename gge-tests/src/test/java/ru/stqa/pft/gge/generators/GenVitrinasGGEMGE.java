@@ -26,19 +26,13 @@ public class GenVitrinasGGEMGE extends TestBase {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
-  //public String baseUrl = "https://eis.gge.ru/auth/login.action";
-  //public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
-  //public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
+//  public String baseUrl = "https://eis.gge.ru/auth/login.action";
+  public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
+//  public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
 //  public String baseUrl = "https://vm-085-as-gge.mdi.ru/auth/login.action";
-//  public String loginUser = "i.manylov";
+  public String loginUser = "i.manylov";
 
-//  public String baseUrl = "https://vm-097-tomcat-mge.mdi.ru:8443/auth/login.action";
-//  public String baseUrl = "https://vm-086-as-mge.mdi.ru:8443/auth/login.action";
-  public String baseUrl = "https://expertiza.mos.ru:8443/auth/login.action";
-  public String loginUser = "galactica_admin1";
-
-
-  public static String project = "MGE";
+  public static String project = "GGE";
 
   public static void main(String[] args) throws Exception {
     GenVitrinasGGEMGE generator = new GenVitrinasGGEMGE();
@@ -50,13 +44,10 @@ public class GenVitrinasGGEMGE extends TestBase {
       return;
     }
 
-    //generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
-    //generator.setUpGGEMGE("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
-    //generator.setUpGGEMGE("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
+//    generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
+    generator.setUpGGEMGE("i.manylov", "21", "https://test-eis.gge.ru/auth/login.action");
+//    generator.setUpGGEMGE("i.manylov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
     //generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
-//    generator.setUpGGEMGE("galactica_admin1", "21", "https://vm-097-tomcat-mge.mdi.ru:8443/auth/login.action");
-//    generator.setUpGGEMGE("galactica_admin1", "21", "https://vm-086-as-mge.mdi.ru:8443/auth/login.action");
-    generator.setUpGGEMGE("galactica_admin1", "123456", "https://expertiza.mos.ru:8443/auth/login.action");
     generator.run(project);
     generator.tearDown();
   }
@@ -100,11 +91,11 @@ public class GenVitrinasGGEMGE extends TestBase {
       isProdServer = true;
     }
 
-    if (project.equals("MGE")) {
-      vitrinas = app.vitrinagenGGEMGE().GenParam2(count, isProdServer, loginUser, baseUrl);
-    } else {
+//    if (project.equals("MGE")) {
+//      vitrinas = app.vitrinagenGGEMGE().GenParam2(count, isProdServer, loginUser, baseUrl);
+//    } else {
       vitrinas = app.vitrinagenGGEMGE().GenParam(count, isProdServer, loginUser, baseUrl);
-    }
+//    }
     return vitrinas;
   }
 }

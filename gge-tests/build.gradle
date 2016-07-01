@@ -23,9 +23,25 @@ dependencies {
 //    compile 'net.lightbody.bmp:browsermob-legacy:2.1.1'
 }
 
-test {
+//test {
+//    useTestNG {
+//        suites 'src/test/resources/testng-vitrinas.xml'
+//    }
+//    if (project.hasProperty('browser')) {
+//        systemProperty 'browser', "${browser}"
+//    }
+//    if (project.hasProperty('target')) {
+//        systemProperty 'target', "${target}"
+//    }
+//    if (project.hasProperty('verifyUI')) {
+//        systemProperty 'verifyUI', "${verifyUI}"
+//    }
+//    systemProperty "file.encoding", "utf-8"
+//}
+
+task testMGE(type: Test) {
     useTestNG {
-        suites 'src/test/resources/testng-vitrinas.xml'
+        suites 'src/test/resources/testng-vitrinas-MGE.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
@@ -36,7 +52,21 @@ test {
     if (project.hasProperty('verifyUI')) {
         systemProperty 'verifyUI', "${verifyUI}"
     }
-    systemProperty "file.encoding", "utf-8"
+}
+
+task testGGE(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-vitrinas-GGE.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
 }
 
 test.doFirst {
