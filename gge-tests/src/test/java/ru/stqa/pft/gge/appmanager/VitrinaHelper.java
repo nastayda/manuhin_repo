@@ -143,13 +143,13 @@ public class VitrinaHelper extends HelperBase {
     wd.get(vitrina.getBaseUrl());
     wd.manage().window().maximize();
 
+    if (!checkVitrinaIs(vitrina, isProdServer)) {
+      return true;
+    }
+
     for (int i = 1; i < 5; i++) {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
-
-      if (!checkVitrinaIs(vitrina)) {
-        return true;
-      }
 
       if (checkVitrinaName(vitrina)) {
         return true;
@@ -159,19 +159,25 @@ public class VitrinaHelper extends HelperBase {
     return false;
   }
 
-  public boolean checkVitrinaIs(GeneratorData vitrina) {
-    List<WebElement> elements = wd.findElements(
-            By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
-    if (elements.size() == 1) {
-      return true;
-    } else {
-      List<WebElement> elementsOtchetName = wd.findElements(
-              By.xpath("//h1[@class=\"header_prot\"]"));
-      if (elementsOtchetName.size() == 1) {
-        return false;
+  public boolean checkVitrinaIs(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    Boolean isVitrina = false;
+    for (int i = 1; i < 10; i++) {
+      waitLoadPage(isProdServer);
+      List<WebElement> elements = wd.findElements(
+              By.xpath(".//div[@id=\"serviceBar\" and @class=\"serviceBar\"]//h3"));
+      if (elements.size() == 1) {
+        isVitrina = true;
+        break;
+      } else {
+        List<WebElement> elementsOtchetName = wd.findElements(
+                By.xpath("//h1[@class=\"header_prot\"]"));
+        if (elementsOtchetName.size() == 1) {
+          break;
+        }
       }
+      Thread.sleep(500);
     }
-    return false;
+    return isVitrina;
   }
 
   public boolean checkVitrinaName(GeneratorData vitrina) {
