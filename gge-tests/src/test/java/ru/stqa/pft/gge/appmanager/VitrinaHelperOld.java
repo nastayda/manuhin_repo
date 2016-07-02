@@ -95,19 +95,6 @@ public class VitrinaHelperOld extends HelperBase {
     return false;
   }
 
-  private Boolean waitForDisplayed(WebElement next) throws InterruptedException {
-    Boolean wfd = false;
-    for (int ii = 1; ii < 50; ii++) {
-      if (next.isDisplayed()) {
-        wfd = true;
-        break;
-      } else {
-        Thread.sleep(200);
-      }
-    }
-    return wfd;
-  }
-
   public boolean checkRazdelNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     waitLoadPageUGD(isProdServer);
     List<WebElement> elements = wd.findElements(

@@ -5,6 +5,7 @@ import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.remote.RemoteWebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -93,19 +94,6 @@ public class VitrinaHelper extends HelperBase {
       }
     }
     return false;
-  }
-
-  private Boolean waitForDisplayed(WebElement next) throws InterruptedException {
-    Boolean wfd = false;
-    for (int ii = 1; ii < 50; ii++) {
-      if (next.isDisplayed()) {
-        wfd = true;
-        break;
-      } else {
-        Thread.sleep(200);
-      }
-    }
-    return wfd;
   }
 
   public boolean checkRazdelNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
@@ -396,5 +384,35 @@ public class VitrinaHelper extends HelperBase {
       return true;
     }
     return false;
+  }
+
+  public List<String> allLink(boolean isProdServer) throws InterruptedException {
+    Boolean isLinks = false;
+    List<WebElement> elements = new ArrayList<WebElement>();
+
+    for (int i = 1; i < 20; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      elements = wd.findElements(By.xpath("//tbody[@id=\"vitrinaResultBody\"]//a"));
+      if (elements.size() > 0) {
+        isLinks = true;
+        break;
+      }
+    }
+
+    if (!isLinks) {
+      return null;
+    }
+
+    List<String> links = new ArrayList<String>();
+
+    for (WebElement element : elements) {
+      String href = element.getAttribute("href");
+      links.add(href);
+      System.out.println(href + "\n");
+    }
+
+    return links;
   }
 }

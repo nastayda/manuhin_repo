@@ -99,4 +99,17 @@ public class HelperBase {
       return false;
     }
   }
+
+  public Boolean waitForDisplayed(WebElement next) throws InterruptedException {
+    Boolean wfd = false;
+    for (int ii = 1; ii < 50; ii++) {
+      if (next.isDisplayed()) {
+        wfd = true;
+        break;
+      } else {
+        Thread.sleep(200);
+      }
+    }
+    return wfd;
+  }
 }

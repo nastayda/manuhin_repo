@@ -32,6 +32,7 @@ public class ApplicationManager {
   private GeneratorHelperMGE generatorHelperMGE;
   private GeneratorHelperUGD generatorHelperUGD;
   private VitrinaHelper vitrinaHelper;
+  private CardHelper cardHelper;
   public boolean successInit = false;
 
   public ApplicationManager(String browser) {
@@ -65,6 +66,7 @@ public class ApplicationManager {
       generatorHelperMGE = new GeneratorHelperMGE(wd, properties);
       generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
+      cardHelper = new CardHelper(wd);
 
       successInit = true;
     } catch (Throwable e) {
@@ -97,6 +99,7 @@ public class ApplicationManager {
       generatorHelperMGE = new GeneratorHelperMGE(wd, properties);
 //      generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
+      cardHelper = new CardHelper(wd);
 
       successInit = true;
     } catch (Throwable e) {
@@ -116,6 +119,10 @@ public class ApplicationManager {
 
   public VitrinaHelper vitrina() {
     return vitrinaHelper;
+  }
+
+  public CardHelper card() {
+    return cardHelper;
   }
 
   public GeneratorHelperGGEMGE vitrinagenGGEMGE() {
