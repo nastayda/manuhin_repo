@@ -71,7 +71,11 @@ task testGGE(type: Test) {
     systemProperty "file.encoding", "utf-8"
 }
 
-test.doFirst {
+testMGE.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+testGGE.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
