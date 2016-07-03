@@ -1,4 +1,4 @@
-package ru.stqa.pft.gge.tests;
+package ru.stqa.pft.gge.tests_study;
 
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;

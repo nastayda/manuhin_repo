@@ -26,7 +26,7 @@ public class VitrinaHelper extends HelperBase {
   }
 
   private void selectPodMenuVitrinaUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-    waitLoadPageUGD(isProdServer);
+    waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(By.xpath(vitrina.getVitrinaXpath()));
     if (elements.size() == 1) {
       WebElement next = elements.iterator().next();
@@ -38,7 +38,7 @@ public class VitrinaHelper extends HelperBase {
         // Клик по ссылке
         for (int ii = 1; ii < 3; ii++) {
           try {
-            waitLoadPageUGD(isProdServer);
+            waitLoadPage(isProdServer);
             // Получаем ID ссылки
             jscriptClickById(vitrina.getVitrinaID());
           } catch (WebDriverException e) {
@@ -48,7 +48,7 @@ public class VitrinaHelper extends HelperBase {
             Thread.sleep(500);
           }
         }
-        waitLoadPageUGD(isProdServer);
+        waitLoadPage(isProdServer);
         for (int ii = 1; ii < 20; ii++) {
           List<WebElement> elementsDOMVitrina = wd.findElements(By.xpath("//body[@class=\"isVitrina\"]"));
           if (elementsDOMVitrina.size() == 1) {
@@ -70,7 +70,7 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public boolean checkVitrinaNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-    waitLoadPageUGD(isProdServer);
+    waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(
             By.xpath("//*[@id='serviceBar']/h3"));
     if (elements.size() == 1) {
@@ -97,7 +97,7 @@ public class VitrinaHelper extends HelperBase {
   }
 
   public boolean checkRazdelNameUGD(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
-    waitLoadPageUGD(isProdServer);
+    waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(
             By.xpath("//div[@class=\"search simpleSearchContainer TOP_MENU\"]/a[@class=\"tabName\"]"));
     if (elements.size() == 1) {

@@ -1,4 +1,4 @@
-package ru.stqa.pft.gge.tests;
+package ru.stqa.pft.gge.tests_study;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

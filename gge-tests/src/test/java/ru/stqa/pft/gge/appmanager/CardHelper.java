@@ -1,14 +1,11 @@
 package ru.stqa.pft.gge.appmanager;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.openqa.selenium.*;
-import org.openqa.selenium.internal.Locatable;
-import org.openqa.selenium.remote.RemoteWebElement;
-import ru.stqa.pft.gge.model.GeneratorData;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by manuhin on 21.04.2016.
@@ -38,7 +35,7 @@ public class CardHelper extends HelperBase {
     Boolean isOpenWithoutMistakes = false;
 
     wd.get(s);
-    waitLoadPageCard(isProdServer);
+    waitLoadPage(isProdServer);
     Thread.sleep(500);
 
     isOpenWithoutMistakes = checkCardMistakes(isProdServer);
@@ -46,7 +43,7 @@ public class CardHelper extends HelperBase {
     List<WebElement> elements = new ArrayList<WebElement>();
 
     for (int i = 1; i < 20; i++) {
-      waitLoadPageCard(isProdServer);
+      waitLoadPage(isProdServer);
       Thread.sleep(500);
 
       elements = wd.findElements(By.xpath("//ul[@id=\"tabs_group\"]//a"));
@@ -76,7 +73,7 @@ public class CardHelper extends HelperBase {
   private Boolean checkCardMistakes(Boolean isProdServer) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
 
-    waitLoadPageCard(isProdServer);
+    waitLoadPage(isProdServer);
     Thread.sleep(500);
 
     List<WebElement> elements =
@@ -91,11 +88,7 @@ public class CardHelper extends HelperBase {
 
   private void openCardVkladka(WebElement element, Boolean isProdServer, String textVkladki) throws InterruptedException {
     element.click();
-    waitLoadPageCard(isProdServer);
+    waitLoadPage(isProdServer);
     Thread.sleep(500);
-  }
-
-  public void waitLoadPageCard(boolean isProdServer) throws InterruptedException {
-    waitElement(By.xpath("//div[@id=\"cboxOverlay\" and contains(@style,\"display: none\")]"));
   }
 }
