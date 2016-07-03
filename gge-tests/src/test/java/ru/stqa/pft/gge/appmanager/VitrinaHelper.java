@@ -401,11 +401,11 @@ public class VitrinaHelper extends HelperBase {
       }
     }
 
-    if (!isLinks) {
-      return null;
-    }
-
     List<String> links = new ArrayList<String>();
+
+    if (!isLinks) {
+      return links;
+    }
 
     for (WebElement element : elements) {
       String href = element.getAttribute("href");

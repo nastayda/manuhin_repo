@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class CardsTestsGGE extends TestBase {
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(
-            new File("src/test/resources/vitrinas_manulov_all_eis_new.json")))) {
+            new File("src/test/resources/vitrinas_manulov_part_vm-082_new.json")))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -53,7 +54,7 @@ public class CardsTestsGGE extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson", timeOut = 150000)
+  @Test(dataProvider = "validGroupsFromJson")//, timeOut = 150000)
   public void testCardsTestsGGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
@@ -76,9 +77,8 @@ public class CardsTestsGGE extends TestBase {
 
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
-//    app.vitrina().vizovRasshPoisk(isProdServer);
-//    app.vitrina().fillAllFilters(isProdServer);
-//    app.vitrina().buttonFind(isProdServer);
-//    assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
+    if (hrefs.size() > 0) {
+      assertThat(app.card().openCards(hrefs, isProdServer), equalTo(true));
+    }
   }
 }
