@@ -18,45 +18,5 @@
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=23&b=BC463D2B6E3E479CB1A748752B506A81&a=8CAEABF763FB4CF8A74664937D005F3A#tab::id=0/tree::rel=23/filter::id=8CAEABF763FB4CF8A74664937D005F3A/categorize::id=95715E458DB047E1827CC59DA61CAEB0&vid=8CAEABF763FB4CF8A74664937D005F3A&offset=0&limit=50"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Проекты поручений",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=7&b=4F56866F6B65414C8902B817D15C8DC4&a=DAE8CCCDA15E4F90A723A7B0541905FD#tab::id=0/tree::rel=7/filter::id=DAE8CCCDA15E4F90A723A7B0541905FD/vitrina::viewId=DAE8CCCDA15E4F90A723A7B0541905FD&offset=0&limit=100"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Предоставленные отчеты",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=8&b=B3C488DF879D46E59833609EB91E9A2F&a=EAC62B2BEEBC493AB79908F904E9D140#tab::id=0/tree::rel=8/filter::id=EAC62B2BEEBC493AB79908F904E9D140/vitrina::viewId=EAC62B2BEEBC493AB79908F904E9D140&offset=0&limit=100"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Предоставленные мной отчеты",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=9&b=4C72236905D44799B3043B403A3C7B9D&a=803747BC59134A6D94F103E4DADC526A#tab::id=0/tree::rel=9/filter::id=803747BC59134A6D94F103E4DADC526A/vitrina::viewId=803747BC59134A6D94F103E4DADC526A&offset=0&limit=100"
-  },
-  {
-    "razdel": "Рабочий кабинет",
-    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-    "menu": "Мои поручения",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
-    "vitrina": "Для исполнения",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a",
-    "loginUser": "i.manylov",
-    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=11&b=E9313FE6699D486CA47289339F185FDB&a=FF64DDDD1477470B88704D3F6B0E1E21#tab::id=0/tree::rel=11/filter::id=FF64DDDD1477470B88704D3F6B0E1E21/vitrina::viewId=FF64DDDD1477470B88704D3F6B0E1E21&offset=0&limit=100"
   }
 ]

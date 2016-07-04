@@ -37,6 +37,7 @@ public class CardHelper extends HelperBase {
 
     s = s + "2";
     vitrina.withBaseUrl(s);
+    vitrina.toString();
 
     wd.get(s);
 
