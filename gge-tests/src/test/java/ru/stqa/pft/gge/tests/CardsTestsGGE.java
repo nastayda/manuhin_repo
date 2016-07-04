@@ -77,7 +77,7 @@ public class CardsTestsGGE extends TestBase {
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
     if (hrefs.size() > 0) {
-      assertThat(app.card().openCards(hrefs, isProdServer), equalTo(true));
+      assertThat(app.card().openCards(hrefs, isProdServer, vitrina), equalTo(true));
     }
   }
 }

@@ -58,6 +58,31 @@ public class HelperBase {
     }
   }
 
+  public Boolean isWaitedCboxOverlay(boolean isProdServer) throws InterruptedException {
+    return waitElementFast(By.xpath("//div[@id=\"cboxOverlay\"]"));
+  }
+
+  private Boolean waitElementFast(By locator) throws InterruptedException {
+    Boolean isWaited = false;
+
+    for (int second = 0;; second++) {
+      if (second >= 5) {
+        break;
+      }
+      try {
+        if (isElementPresent(locator)) {
+          isWaited = true;
+          break;
+        }
+      }
+      catch (Exception e) {
+      }
+      Thread.sleep(1000);
+    }
+
+    return isWaited;
+  }
+
   public void waitLoadPage(boolean isProdServer) throws InterruptedException {
     waitElement(By.xpath("//div[@id=\"cboxOverlay\" and contains(@style,\"display: none\")]"));
   }

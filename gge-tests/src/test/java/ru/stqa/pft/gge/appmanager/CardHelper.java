@@ -3,6 +3,7 @@ package ru.stqa.pft.gge.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,12 @@ public class CardHelper extends HelperBase {
   }
 
 
-  public Boolean openCards(List<String> hrefs, Boolean isProdServer) throws InterruptedException {
+  public Boolean openCards(List<String> hrefs, Boolean isProdServer, GeneratorData vitrina) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
     int iMax = 5;
     int i = 0;
     for (String s : hrefs) {
-      isOpenWithoutMistakes = openCard(s, isProdServer);
+      isOpenWithoutMistakes = openCard(s, isProdServer, vitrina);
       i++;
       if (i >= iMax || !isOpenWithoutMistakes) {
         break;
@@ -31,14 +32,25 @@ public class CardHelper extends HelperBase {
     return  isOpenWithoutMistakes;
   }
 
-  private Boolean openCard(String s, Boolean isProdServer) throws InterruptedException {
+  private Boolean openCard(String s, Boolean isProdServer, GeneratorData vitrina) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
 
+    s = s + "2";
+    vitrina.withBaseUrl(s);
+
     wd.get(s);
+
+    if (!isWaitedCboxOverlay(isProdServer)) {
+      return isOpenWithoutMistakes;
+    };
     waitLoadPage(isProdServer);
     Thread.sleep(500);
 
     isOpenWithoutMistakes = checkCardMistakes(isProdServer);
+
+    if (!isOpenWithoutMistakes) {
+      return isOpenWithoutMistakes;
+    }
 
     List<WebElement> elements = new ArrayList<WebElement>();
 
@@ -77,7 +89,8 @@ public class CardHelper extends HelperBase {
     Thread.sleep(500);
 
     List<WebElement> elements =
-            wd.findElements(By.xpath("//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]"));
+            wd.findElements(
+                    By.xpath("//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]"));
 
     if (elements.size() == 0) {
       isOpenWithoutMistakes = true;
