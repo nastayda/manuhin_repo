@@ -55,9 +55,25 @@ task testMGE(type: Test) {
     systemProperty "file.encoding", "utf-8"
 }
 
-task testGGE(type: Test) {
+task testGGEvitrinas(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-vitrinas-GGE.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    systemProperty "file.encoding", "utf-8"
+}
+
+task testGGEcards(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-cards-GGE.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
@@ -75,7 +91,11 @@ testMGE.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
-testGGE.doFirst {
+testGGEvitrinas.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+testGGEcards.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
