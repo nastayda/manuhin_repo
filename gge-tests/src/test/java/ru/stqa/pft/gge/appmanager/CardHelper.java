@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +14,16 @@ import java.util.List;
  * Created by manuhin on 21.04.2016.
  */
 public class CardHelper extends HelperBase {
+
+  String file;
+
   public CardHelper(WebDriver wd) {
     super(wd);
   }
 
 
-  public Boolean openCards(List<String> hrefs, Boolean isProdServer, GeneratorData vitrina) throws InterruptedException {
+  public Boolean openCards(List<String> hrefs, Boolean isProdServer, GeneratorData vitrina)
+          throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     int iMax = 5;
     int i = 0;
@@ -32,16 +38,19 @@ public class CardHelper extends HelperBase {
     return  isOpenWithoutMistakes;
   }
 
-  private Boolean openCard(String s, Boolean isProdServer, GeneratorData vitrina) throws InterruptedException {
+  private Boolean openCard(String s, Boolean isProdServer, GeneratorData vitrina)
+          throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
 
     s = s + "2";
-    vitrina.withBaseUrl(s);
-    vitrina.toString();
+    vitrina.withCardUrl(s);
 
     wd.get(s);
 
+    file = "src/test/resources/cards_manulov_part_vm-082_new_1.json";
+
     if (!isWaitedCboxOverlay(isProdServer)) {
+      saveAsJson(vitrina, new File(file));
       return isOpenWithoutMistakes;
     };
     waitLoadPage(isProdServer);
@@ -50,6 +59,7 @@ public class CardHelper extends HelperBase {
     isOpenWithoutMistakes = checkCardMistakes(isProdServer);
 
     if (!isOpenWithoutMistakes) {
+      saveAsJson(vitrina, new File(file));
       return isOpenWithoutMistakes;
     }
 

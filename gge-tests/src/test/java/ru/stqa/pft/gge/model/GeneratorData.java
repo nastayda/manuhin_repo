@@ -32,6 +32,9 @@ public class GeneratorData {
     private String baseUrl;
 
     @Expose
+    private String cardUrl;
+
+    @Expose
     private String listVitrinasUrl;
 
 
@@ -69,6 +72,10 @@ public class GeneratorData {
 
     public String getBaseUrl() {
         return baseUrl;
+    }
+
+    public String getCardUrl() {
+        return cardUrl;
     }
 
     public String getLoginUser() {
@@ -116,6 +123,11 @@ public class GeneratorData {
 
     public GeneratorData withBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
+        return this;
+    }
+
+    public GeneratorData withCardUrl(String cardUrl) {
+        this.cardUrl = cardUrl;
         return this;
     }
 

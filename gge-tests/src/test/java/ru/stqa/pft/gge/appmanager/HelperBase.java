@@ -1,9 +1,16 @@
 package ru.stqa.pft.gge.appmanager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.gge.model.GeneratorData;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
 
 import static org.testng.Assert.fail;
 
@@ -123,5 +130,14 @@ public class HelperBase {
       }
     }
     return wfd;
+  }
+
+  public void saveAsJson(GeneratorData vitrina, File file) throws IOException {
+    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation().create();
+    String json = gson.toJson(vitrina);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 }
