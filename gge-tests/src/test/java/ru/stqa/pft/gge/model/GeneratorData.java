@@ -32,9 +32,9 @@ public class GeneratorData {
     @Expose
     private String baseUrl;
 
-    @Expose
+//    @Expose
     @Parameter("cardUrl fail")
-    private String cardUrl;
+    protected String cardUrl;
 
     @Expose
     private String listVitrinasUrl;
