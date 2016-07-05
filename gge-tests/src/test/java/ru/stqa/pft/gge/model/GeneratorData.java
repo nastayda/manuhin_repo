@@ -1,7 +1,6 @@
 package ru.stqa.pft.gge.model;
 
 import com.google.gson.annotations.Expose;
-import ru.yandex.qatools.allure.annotations.Parameter;
 
 public class GeneratorData {
 
@@ -32,9 +31,8 @@ public class GeneratorData {
     @Expose
     private String baseUrl;
 
-//    @Expose
-    @Parameter("cardUrl fail")
-    protected String cardUrl;
+    @Expose
+    private String cardUrl;
 
     @Expose
     private String listVitrinasUrl;
