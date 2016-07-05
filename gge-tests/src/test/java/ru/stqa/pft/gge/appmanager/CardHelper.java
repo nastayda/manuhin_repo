@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
-import ru.yandex.qatools.allure.annotations.Parameter;
+//import ru.yandex.qatools.allure.annotations.Parameter;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +18,8 @@ public class CardHelper extends HelperBase {
 
   String file;
 
-  @Parameter("cardUrl fail")
-  private String cardUrlFail;
+//  @Parameter("cardUrl fail")
+//  private String cardUrlFail;
 
 
   public CardHelper(WebDriver wd) {
@@ -56,7 +56,7 @@ public class CardHelper extends HelperBase {
 
     if (!isWaitedCboxOverlay(isProdServer)) {
       saveAsJson(vitrina, new File(file));
-      cardUrlFail = vitrina.getCardUrl();
+//      cardUrlFail = vitrina.getCardUrl();
       return isOpenWithoutMistakes;
     };
     waitLoadPage(isProdServer);
@@ -66,7 +66,7 @@ public class CardHelper extends HelperBase {
 
     if (!isOpenWithoutMistakes) {
       saveAsJson(vitrina, new File(file));
-      cardUrlFail = vitrina.getCardUrl();
+//      cardUrlFail = vitrina.getCardUrl();
       return isOpenWithoutMistakes;
     }
 
