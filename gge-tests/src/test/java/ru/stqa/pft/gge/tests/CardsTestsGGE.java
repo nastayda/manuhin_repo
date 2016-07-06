@@ -82,6 +82,7 @@ public class CardsTestsGGE extends TestBase {
 
     if (hrefs.size() > 0) {
       cardUrlFail = vitrina.getCardUrl();
+      cardUrlFail = "fail";
       assertThat(app.card().openCards(hrefs, isProdServer, vitrina), equalTo(true));
     }
   }

@@ -21,6 +21,7 @@ dependencies {
     compile 'org.webjars.bower:jQuery:2.2.3'
 //    compile 'ru.yandex.qatools.allure:allure-core:1.5.0.RC2'
     compile 'ru.yandex.qatools.allure:allure-java-annotations:1.5.0.RC2'
+    compile 'ru.yandex.qatools.allure:allure-java-annotations:1.5.0-RC1'
 //    compile 'org.slf4j:jul-to-slf4j:1.7.21'
 //    compile 'net.lightbody.bmp:browsermob-legacy:2.1.1'
 }
