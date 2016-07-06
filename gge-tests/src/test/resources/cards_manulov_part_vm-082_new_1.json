@@ -1,11 +1,24 @@
-{
-  "razdel": "Рабочий кабинет",
-  "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
-  "menu": "Мои задачи",
-  "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
-  "vitrina": "Все мои задачи",
-  "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
-  "loginUser": "i.manylov",
-  "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=4&b=6DF3B3E72A794B3CB72CC2C120EB5174&a=7E4F50644A014D4CA7654EA06AEDFDA0#tab::id=0/tree::rel=4/filter::id=7E4F50644A014D4CA7654EA06AEDFDA0/vitrina::viewId=7E4F50644A014D4CA7654EA06AEDFDA0&offset=0&limit=100",
-  "cardUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=be934297d76e4442818ee5fea4caf1e0&tab=PROCESSTASK_CARD2"
-}
+[
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои задачи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=4&b=6DF3B3E72A794B3CB72CC2C120EB5174&a=7E4F50644A014D4CA7654EA06AEDFDA0#tab::id=0/tree::rel=4/filter::id=7E4F50644A014D4CA7654EA06AEDFDA0/vitrina::viewId=7E4F50644A014D4CA7654EA06AEDFDA0&offset=0&limit=100",
+    "cardUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=be934297d76e4442818ee5fea4caf1e0&tab=PROCESSTASK_CARD2"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои задачи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=4&b=6DF3B3E72A794B3CB72CC2C120EB5174&a=7E4F50644A014D4CA7654EA06AEDFDA0#tab::id=0/tree::rel=4/filter::id=7E4F50644A014D4CA7654EA06AEDFDA0/vitrina::viewId=7E4F50644A014D4CA7654EA06AEDFDA0&offset=0&limit=100",
+    "cardUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=be934297d76e4442818ee5fea4caf1e0&tab=PROCESSTASK_CARD2"
+  }
+]

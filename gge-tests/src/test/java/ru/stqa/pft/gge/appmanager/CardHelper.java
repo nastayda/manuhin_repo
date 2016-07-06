@@ -1,11 +1,15 @@
 package ru.stqa.pft.gge.appmanager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +24,6 @@ public class CardHelper extends HelperBase {
   public CardHelper(WebDriver wd) {
     super(wd);
   }
-
 
   public Boolean openCards(List<String> hrefs, Boolean isProdServer, GeneratorData vitrina)
           throws InterruptedException, IOException {
@@ -50,7 +53,7 @@ public class CardHelper extends HelperBase {
     file = "src/test/resources/cards_manulov_part_vm-082_new_1.json";
 
     if (!isWaitedCboxOverlay(isProdServer)) {
-      saveAsJson(vitrina, new File(file));
+      failCardToJson(vitrina, file);
       return isOpenWithoutMistakes;
     };
     waitLoadPage(isProdServer);
@@ -59,7 +62,7 @@ public class CardHelper extends HelperBase {
     isOpenWithoutMistakes = checkCardMistakes(isProdServer);
 
     if (!isOpenWithoutMistakes) {
-      saveAsJson(vitrina, new File(file));
+      failCardToJson(vitrina, file);
       return isOpenWithoutMistakes;
     }
 
@@ -92,6 +95,27 @@ public class CardHelper extends HelperBase {
 
     return  isOpenWithoutMistakes;
   }
+
+  private void failCardToJson(GeneratorData vitrina, String fileName) throws IOException {
+    List<GeneratorData> vitrinas = vitrinasFromJson(fileName);
+    vitrinas.add(vitrina);
+    saveAsJson(vitrinas, new File(fileName));
+  }
+
+  public List<GeneratorData> vitrinasFromJson(String fileName) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<GeneratorData> vitrinas = gson.fromJson(json, new TypeToken<List<GeneratorData>>(){}.getType()); // List<GroupData>.class
+      return vitrinas;
+    }
+  }
+
 
   private Boolean checkCardMistakes(Boolean isProdServer) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;

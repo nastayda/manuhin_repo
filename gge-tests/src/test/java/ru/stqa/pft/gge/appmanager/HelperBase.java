@@ -132,10 +132,10 @@ public class HelperBase {
     return wfd;
   }
 
-  public void saveAsJson(GeneratorData vitrina, File file) throws IOException {
+  public void saveAsJson(List<GeneratorData> vitrinas, File file) throws IOException {
     Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
             .excludeFieldsWithoutExposeAnnotation().create();
-    String json = gson.toJson(vitrina);
+    String json = gson.toJson(vitrinas);
     try (Writer writer = new FileWriter(file)) {
       writer.write(json);
     }
