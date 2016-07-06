@@ -415,4 +415,46 @@ public class VitrinaHelper extends HelperBase {
 
     return links;
   }
+
+  public boolean isWithCatagorize(boolean isProdServer) throws InterruptedException {
+    Boolean isWithCatagorize = false;
+
+    for (int i = 1; i < 5; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      if (checkCategorize(isProdServer)) {
+        isWithCatagorize = true;
+        break;
+      }
+    }
+
+    return isWithCatagorize;
+  }
+
+  private boolean checkCategorize(boolean isProdServer) {
+    Boolean isWithCatagorize = false;
+
+    List<WebElement> elements = wd.findElements(By.xpath("//a[@class=\"megatree-exp\"]"));
+    if (elements.size() > 0) {
+      isWithCatagorize = true;
+    }
+
+    return isWithCatagorize;
+  }
+
+  public void clickCategorizes(boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+    jscriptOpenAllCategorize();
+
+    allLink(isProdServer);
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+  }
+
+  public void jscriptOpenAllCategorize() {
+    String jscriptString = "$('#caterorizeTree .row').each(function(){ categorizeLogic.trigger($(this).attr('rel')) });";
+    ((JavascriptExecutor) wd).executeScript(jscriptString);
+  }
 }

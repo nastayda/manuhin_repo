@@ -74,6 +74,9 @@ public class CardsTestsGGE extends TestBase {
     assertThat(app.vitrina().selectVitrina(vitrina, isProdServer), equalTo(true));
     assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
 
+    if (app.vitrina().isWithCatagorize(isProdServer)) {
+      app.vitrina().clickCategorizes(isProdServer);
+    }
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
     if (hrefs.size() > 0) {

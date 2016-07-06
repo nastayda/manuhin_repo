@@ -2,6 +2,16 @@
   {
     "razdel": "Рабочий кабинет",
     "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=27&b=D15E3D68AD344EC49696E6A97008C88D&a=BEF30CB1DBAA47EEA428D13226C05B30#tab::id=0/tree::rel=27/filter::id=BEF30CB1DBAA47EEA428D13226C05B30/categorize::id=4B3F18060C8A49B58B77E5C0DBC5091F&vid=BEF30CB1DBAA47EEA428D13226C05B30&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
     "menu": "Мои задачи",
     "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
     "vitrina": "Все мои задачи",
