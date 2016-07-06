@@ -6,7 +6,6 @@ import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.model.GeneratorData;
-import ru.yandex.qatools.allure.annotations.Parameter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -54,9 +53,6 @@ public class CardsTestsGGE extends TestBase {
     }
   }
 
-  @Parameter("cardUrl fail")
-  private String cardUrlFail;
-
   @Test(dataProvider = "validGroupsFromJson")//, timeOut = 150000)
   public void testCardsTestsGGE(GeneratorData vitrina) throws Exception {
 
@@ -81,8 +77,6 @@ public class CardsTestsGGE extends TestBase {
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
     if (hrefs.size() > 0) {
-      cardUrlFail = vitrina.getCardUrl();
-      cardUrlFail = "fail";
       assertThat(app.card().openCards(hrefs, isProdServer, vitrina), equalTo(true));
     }
   }
