@@ -1,16 +1,14 @@
 package ru.stqa.pft.gge.appmanager;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.gge.model.GeneratorData;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +43,12 @@ public class CardHelper extends HelperBase {
           throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
 
-    s = s + "2";
+//    s = s + "2";
     vitrina.withCardUrl(s);
 
     wd.get(s);
 
-    file = "src/test/resources/cards_manulov_part_vm-082_new_1.json";
+    file = "src/test/resources/cards_manulov_part_vm-082_new_2.json";
 
     if (!isWaitedCboxOverlay(isProdServer)) {
       failCardToJson(vitrina, file);
@@ -112,6 +110,15 @@ public class CardHelper extends HelperBase {
       }
       Gson gson = new Gson();
       List<GeneratorData> vitrinas = gson.fromJson(json, new TypeToken<List<GeneratorData>>(){}.getType()); // List<GroupData>.class
+      return vitrinas;
+    } catch (IOException e) {
+      Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
+              .excludeFieldsWithoutExposeAnnotation().create();
+      List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
+      String json = gson.toJson(vitrinas);
+      try (Writer writer = new FileWriter(file)) {
+        writer.write(json);
+      }
       return vitrinas;
     }
   }
