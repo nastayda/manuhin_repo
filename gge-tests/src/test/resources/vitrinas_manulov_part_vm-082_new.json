@@ -18,5 +18,25 @@
     "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
     "loginUser": "i.manylov",
     "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=23&b=BC463D2B6E3E479CB1A748752B506A81&a=8CAEABF763FB4CF8A74664937D005F3A#tab::id=0/tree::rel=23/filter::id=8CAEABF763FB4CF8A74664937D005F3A/categorize::id=95715E458DB047E1827CC59DA61CAEB0&vid=8CAEABF763FB4CF8A74664937D005F3A&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои задачи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=4&b=6DF3B3E72A794B3CB72CC2C120EB5174&a=7E4F50644A014D4CA7654EA06AEDFDA0#tab::id=0/tree::rel=4/filter::id=7E4F50644A014D4CA7654EA06AEDFDA0/vitrina::viewId=7E4F50644A014D4CA7654EA06AEDFDA0&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
+    "loginUser": "i.manylov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=23&b=BC463D2B6E3E479CB1A748752B506A81&a=8CAEABF763FB4CF8A74664937D005F3A#tab::id=0/tree::rel=23/filter::id=8CAEABF763FB4CF8A74664937D005F3A/categorize::id=95715E458DB047E1827CC59DA61CAEB0&vid=8CAEABF763FB4CF8A74664937D005F3A&offset=0&limit=50"
   }
 ]
