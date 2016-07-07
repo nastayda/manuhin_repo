@@ -2,7 +2,6 @@ package ru.stqa.pft.gge.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.model.GeneratorData;
@@ -20,27 +19,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CardsTestsGGE extends TestBase {
 
-  @DataProvider
-  public Iterator<Object[]> validGroupsFromXml() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(
-            new File("src/test/resources/vitrinas3.xml")))) {
-      String xml = "";
-      String line = reader.readLine();
-      while (line != null) {
-        xml += line;
-        line = reader.readLine();
-      }
-      XStream xstream = new XStream();
-      xstream.processAnnotations(GeneratorData.class);
-      List<GeneratorData> vitrinas = (List<GeneratorData>) xstream.fromXML(xml);
-      return vitrinas.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
-    }
-  }
+  String fileNameFromJson = "src/test/resources/vitrinas_andropov_part_vm-082.json";
+  String fileNameForFailCards = "src/test/resources/cards_andropov_part_vm-082_bad.json";
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(
-            new File("src/test/resources/vitrinas_andropov_all_vm-082.json")))) {
+            new File(fileNameFromJson)))) {
       String json = "";
       String line = reader.readLine();
       while (line != null) {
@@ -53,7 +38,7 @@ public class CardsTestsGGE extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validGroupsFromJson")//, timeOut = 150000)
+  @Test(dataProvider = "validGroupsFromJson", timeOut = 250000)
   public void testCardsTestsGGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
@@ -80,7 +65,7 @@ public class CardsTestsGGE extends TestBase {
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
     if (hrefs.size() > 0) {
-      assertThat(app.card().openCards(hrefs, isProdServer, vitrina), equalTo(true));
+      assertThat(app.card().openCards(hrefs, isProdServer, vitrina, fileNameForFailCards), equalTo(true));
     }
   }
 }

@@ -1,0 +1,812 @@
+[
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Все обращения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=3&b=CE03E5EB0DB74AA7B49B3022EDD98A08&a=E169F1647A334149ADE4E3C677BD6089#tab::id=0/tree::rel=3/filter::id=E169F1647A334149ADE4E3C677BD6089/vitrina::viewId=E169F1647A334149ADE4E3C677BD6089&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Новые обращения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=4&b=071CE199344E45338C33E34F21EF2E45&a=28C1CB46A3A743DCB703266F379E189D#tab::id=0/tree::rel=4/filter::id=28C1CB46A3A743DCB703266F379E189D/vitrina::viewId=28C1CB46A3A743DCB703266F379E189D&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои задачи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все мои задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=4&b=6DF3B3E72A794B3CB72CC2C120EB5174&a=7E4F50644A014D4CA7654EA06AEDFDA0#tab::id=0/tree::rel=4/filter::id=7E4F50644A014D4CA7654EA06AEDFDA0/vitrina::viewId=7E4F50644A014D4CA7654EA06AEDFDA0&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои задачи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Архив",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=5&b=0AB4958307F5419685441FEE3CB232AC&a=280EB5154B344000B6D85FF1C3F605CB#tab::id=0/tree::rel=5/filter::id=280EB5154B344000B6D85FF1C3F605CB/vitrina::viewId=280EB5154B344000B6D85FF1C3F605CB&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Проекты поручений",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=7&b=4F56866F6B65414C8902B817D15C8DC4&a=DAE8CCCDA15E4F90A723A7B0541905FD#tab::id=0/tree::rel=7/filter::id=DAE8CCCDA15E4F90A723A7B0541905FD/vitrina::viewId=DAE8CCCDA15E4F90A723A7B0541905FD&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Предоставленные отчеты",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=8&b=B3C488DF879D46E59833609EB91E9A2F&a=EAC62B2BEEBC493AB79908F904E9D140#tab::id=0/tree::rel=8/filter::id=EAC62B2BEEBC493AB79908F904E9D140/vitrina::viewId=EAC62B2BEEBC493AB79908F904E9D140&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Для исполнения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=11&b=E9313FE6699D486CA47289339F185FDB&a=FF64DDDD1477470B88704D3F6B0E1E21#tab::id=0/tree::rel=11/filter::id=FF64DDDD1477470B88704D3F6B0E1E21/vitrina::viewId=FF64DDDD1477470B88704D3F6B0E1E21&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Выданные мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=12&b=449E37A5BB954133B3AB46C7DF8143DA&a=B0FE190AE16B43B7B5AC921D55D9BEB7#tab::id=0/tree::rel=12/filter::id=B0FE190AE16B43B7B5AC921D55D9BEB7/vitrina::viewId=B0FE190AE16B43B7B5AC921D55D9BEB7&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Исполненные поручения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[5]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=13&b=23A8B11A27944FF096A22CD3AD8DD99B&a=742D5DF3D1A44B0AA2192625265A2A15#tab::id=0/tree::rel=13/filter::id=742D5DF3D1A44B0AA2192625265A2A15/vitrina::viewId=742D5DF3D1A44B0AA2192625265A2A15&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Перепорученные мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[6]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=14&b=9D4A6BB857A547BE81DBCC6B57A323B7&a=BF8EEEC49267481DAB5F986BC384D2D9#tab::id=0/tree::rel=14/filter::id=BF8EEEC49267481DAB5F986BC384D2D9/vitrina::viewId=BF8EEEC49267481DAB5F986BC384D2D9&offset=0&limit=100"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои процессы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Для исполнения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=16&b=860290EB0FCD4E6A88F549C0D15E9669&a=AAA691D283454D3DBB2579DF69D239C3#tab::id=0/tree::rel=16/filter::id=AAA691D283454D3DBB2579DF69D239C3/vitrina::viewId=AAA691D283454D3DBB2579DF69D239C3&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои процессы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Инициированные мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=17&b=43F03B3CF85D44B79683B9D93980C1D6&a=B48ECAA589B44A0AA82423D2BCA9D03E#tab::id=0/tree::rel=17/filter::id=B48ECAA589B44A0AA82423D2BCA9D03E/vitrina::viewId=B48ECAA589B44A0AA82423D2BCA9D03E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои процессы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Контролируемые мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=18&b=66952FC8664C43B6B8537BA734F00716&a=3FC3E8BAD80149B8AFE08724947D54D7#tab::id=0/tree::rel=18/filter::id=3FC3E8BAD80149B8AFE08724947D54D7/vitrina::viewId=3FC3E8BAD80149B8AFE08724947D54D7&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои процессы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Архив",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=19&b=903E2E8231204756A685FCDE6C4CC1B1&a=C67DADE75E214EF9A19A6E2C55D08029#tab::id=0/tree::rel=19/filter::id=C67DADE75E214EF9A19A6E2C55D08029/vitrina::viewId=C67DADE75E214EF9A19A6E2C55D08029&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На исполнение мне",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=21&b=55D35C2C99DD43BAA0B5DFD60CDF9282&a=6B75BAB14B2A4D1F979C0580F66E6393#tab::id=0/tree::rel=21/filter::id=6B75BAB14B2A4D1F979C0580F66E6393/vitrina::viewId=6B75BAB14B2A4D1F979C0580F66E6393&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На исполнение подразделению",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=22&b=86F9D0CB2F1848448977C64BFE17AF8C&a=7006BC3C0BF2453E8E539FA25D36C120#tab::id=0/tree::rel=22/filter::id=7006BC3C0BF2453E8E539FA25D36C120/vitrina::viewId=7006BC3C0BF2453E8E539FA25D36C120&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Проекты документов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=25&b=7485F266648648BE90BABFAEE06ABA33&a=28F4C72A29764BE9BCC4E8334756BC3E#tab::id=0/tree::rel=25/filter::id=28F4C72A29764BE9BCC4E8334756BC3E/vitrina::viewId=28F4C72A29764BE9BCC4E8334756BC3E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=26&b=BE0AA6A8EE31455E843B1FD3387900AE&a=DE388E122A7A4730B28584EE9FF36113#tab::id=0/tree::rel=26/filter::id=DE388E122A7A4730B28584EE9FF36113/vitrina::viewId=DE388E122A7A4730B28584EE9FF36113&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На контроле",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[5]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=27&b=D15E3D68AD344EC49696E6A97008C88D&a=BEF30CB1DBAA47EEA428D13226C05B30#tab::id=0/tree::rel=27/filter::id=BEF30CB1DBAA47EEA428D13226C05B30/categorize::id=4B3F18060C8A49B58B77E5C0DBC5091F&vid=BEF30CB1DBAA47EEA428D13226C05B30&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На ознакомление",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[6]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=28&b=21BE6CF04AF14B19AA04EDCBB2A1C832&a=EA0A5B3A8E0E4D7693E9CC71D233A6F5#tab::id=0/tree::rel=28/filter::id=EA0A5B3A8E0E4D7693E9CC71D233A6F5/vitrina::viewId=EA0A5B3A8E0E4D7693E9CC71D233A6F5&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Подготовленные мной",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[7]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=30&b=AB5CF702EE0A49D49FE4948D1DBCBA1A&a=1EBA64D124B74D0DA3B299555CF3EC08#tab::id=0/tree::rel=30/filter::id=1EBA64D124B74D0DA3B299555CF3EC08/vitrina::viewId=1EBA64D124B74D0DA3B299555CF3EC08&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "На согласование",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[8]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=31&b=B527E15924D54A5F8EB50E0AE0600460&a=CD4E20F2AFE64B4FA74896C1E4CE75B3#tab::id=0/tree::rel=31/filter::id=CD4E20F2AFE64B4FA74896C1E4CE75B3/vitrina::viewId=CD4E20F2AFE64B4FA74896C1E4CE75B3&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": ".//*[@id='firstMenu']/li[1]/a[@href!='']",
+    "menu": "Мои документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Незакрытые документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[9]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PRIVATEOFFICE&c=32&b=3ED7FC9C1B03473BAF42ABA8BCC18507&a=91B44F5465C541C6959FFB77C08F90B3#tab::id=0/tree::rel=32/filter::id=91B44F5465C541C6959FFB77C08F90B3/vitrina::viewId=91B44F5465C541C6959FFB77C08F90B3&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Все обращения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=3&b=CE03E5EB0DB74AA7B49B3022EDD98A08&a=E169F1647A334149ADE4E3C677BD6089#tab::id=0/tree::rel=3/filter::id=E169F1647A334149ADE4E3C677BD6089/vitrina::viewId=E169F1647A334149ADE4E3C677BD6089&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Новые обращения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=4&b=071CE199344E45338C33E34F21EF2E45&a=28C1CB46A3A743DCB703266F379E189D#tab::id=0/tree::rel=4/filter::id=28C1CB46A3A743DCB703266F379E189D/vitrina::viewId=28C1CB46A3A743DCB703266F379E189D&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Обращения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Проверка комплектности",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=5&b=A1932E4C4BF64D88AD17F604453AAF57&a=8532A25534BC44868977477C5A3A5873#tab::id=0/tree::rel=5/filter::id=8532A25534BC44868977477C5A3A5873/categorize::id=DF70A02C177E4781852A3A64DD459645&vid=8532A25534BC44868977477C5A3A5873&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "На выпуске",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "На Выпуске",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=8&b=9D5195441DEA4644935751162E4A5BC4&a=5070D74865FB4D08B47324889DD32AC4#tab::id=0/tree::rel=8/filter::id=5070D74865FB4D08B47324889DD32AC4/categorize::id=6A15C49875CC43A8B62F704C6D9D739F&vid=5070D74865FB4D08B47324889DD32AC4&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": ".//*[@id='firstMenu']/li[2]/a[@href!='']",
+    "menu": "Реестр заключений",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Реестр заключений",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=EXPERT&c=10&b=3A21B6218DBC475DB5D6579FC8FB15C5&a=F066ECEFE79D4AE58EBF13A3698A6A24#tab::id=0/tree::rel=10/filter::id=F066ECEFE79D4AE58EBF13A3698A6A24/vitrina::viewId=F066ECEFE79D4AE58EBF13A3698A6A24&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Договоры",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Договоры",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=4&b=876EA0ED0AB54B749D9507148253E3F5&a=B944AD73D9A84687B616C4E74B9F5464#tab::id=0/tree::rel=4/filter::id=B944AD73D9A84687B616C4E74B9F5464/vitrina::viewId=B944AD73D9A84687B616C4E74B9F5464&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Договоры",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "По дате",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=5&b=C9B36770B7324EDDB78359ED8639BDDD&a=2371D56155114F2C996B48541F0D0B85#tab::id=0/tree::rel=5/filter::id=2371D56155114F2C996B48541F0D0B85/categorize::id=69D52B4B31644D5E9A1B8FDC33FAEB74&vid=2371D56155114F2C996B48541F0D0B85&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Договоры",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "По источникам финансирования",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=7&b=7E86A00CF2EC444D84CEF9AC353A8679&a=3B1A09E0615640C78A61B8B996D4DD0E#tab::id=0/tree::rel=7/filter::id=3B1A09E0615640C78A61B8B996D4DD0E/categorize::id=7FD607CF7B874059B378CDF20661ACF8&vid=3B1A09E0615640C78A61B8B996D4DD0E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Договоры",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "По виду услуги",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=8&b=35895C134C23414EB7F229610D75E411&a=012753F963F14F15AE77FF8B35A4363C#tab::id=0/tree::rel=8/filter::id=012753F963F14F15AE77FF8B35A4363C/categorize::id=8ECC9DA610414D47A7B99CA96A3768BC&vid=012753F963F14F15AE77FF8B35A4363C&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Счета",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Счета",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=12&b=638727AEF5344F4AB00BAED1A195B811&a=31619AA30DAD4CF993447442D565C25E#tab::id=0/tree::rel=12/filter::id=31619AA30DAD4CF993447442D565C25E/vitrina::viewId=31619AA30DAD4CF993447442D565C25E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Счета",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "По годам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=13&b=C2C4B209FCB7459CAAD40FAAF9C306FC&a=4CEC4E63D2BC4F43ADEAD94294EE6860#tab::id=0/tree::rel=13/filter::id=4CEC4E63D2BC4F43ADEAD94294EE6860/categorize::id=4DAF54245282494AB4F452702BF678AF&vid=4CEC4E63D2BC4F43ADEAD94294EE6860&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Счета",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "По источнику финансирования",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=14&b=B19F2C4F4429404A83D3F0A8BA7DF11F&a=A7CB6C2623914065A33D978AF0CC3A54#tab::id=0/tree::rel=14/filter::id=A7CB6C2623914065A33D978AF0CC3A54/categorize::id=FBAAECC94F104C5B9BC2AB8B8FA5187F&vid=A7CB6C2623914065A33D978AF0CC3A54&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Выполнение",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "По актам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=16&b=90A67FA1C9D748BE9F564DB6446D903B&a=B700E7B3B7CE475F8002BDC320D53546#tab::id=0/tree::rel=16/filter::id=B700E7B3B7CE475F8002BDC320D53546/categorize::id=6A908DEA85604050948B9DAC6CBD6111&vid=B700E7B3B7CE475F8002BDC320D53546&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Выполнение",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "По счетам-фактурам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=17&b=30F63177A63146DA88E6F6ECDB65D1A1&a=100B9DBB79B94323966E5106929748B9#tab::id=0/tree::rel=17/filter::id=100B9DBB79B94323966E5106929748B9/categorize::id=44FC1DC9501E4100A1862D8A86EC801F&vid=100B9DBB79B94323966E5106929748B9&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Акты",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Акты",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=19&b=A235CFC4AA5B4766A112AC9722E38446&a=116673CF619745108A3694D11F52A9FC#tab::id=0/tree::rel=19/filter::id=116673CF619745108A3694D11F52A9FC/vitrina::viewId=116673CF619745108A3694D11F52A9FC&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Акты",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "По годам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=20&b=A1EAA2BBFF7145989EBEEB254F58B63C&a=A03A3FA0A71D46FCBA2F435D5F7EE332#tab::id=0/tree::rel=20/filter::id=A03A3FA0A71D46FCBA2F435D5F7EE332/categorize::id=FF3F4BCB6B9944E3BEE5C50BA83C5020&vid=A03A3FA0A71D46FCBA2F435D5F7EE332&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Организации",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "По заказчику",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=23&b=DF2518D5BFCA413EAA35B5238076ECBB&a=F0E57042329942DEBAE11E4A4DBC4B68#tab::id=0/tree::rel=23/filter::id=F0E57042329942DEBAE11E4A4DBC4B68/categorize::id=1C5C0AEE21DC4B8A8780FBFFA2E7FE80&vid=F0E57042329942DEBAE11E4A4DBC4B68&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Организации",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "По плательщику",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=24&b=56E995A022DC49568DA6D8C5840C4583&a=7996FE4607204342B99935E9D4A85B79#tab::id=0/tree::rel=24/filter::id=7996FE4607204342B99935E9D4A85B79/categorize::id=DD43DF10DD104AE0BC7FCA60CB43511C&vid=7996FE4607204342B99935E9D4A85B79&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PAY&c=26&b=639CB8FA754846A28EB5798A9E5A3375&a=91897E143D0B4C43A7FA9B535F7C78BB#tab::id=0/tree::rel=26/filter::id=91897E143D0B4C43A7FA9B535F7C78BB/vitrina::viewId=91897E143D0B4C43A7FA9B535F7C78BB&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=3&b=96FE09DD4CEC40C6BA712C6A7263BBA3&a=E93EC358A69745469F6266C0275F7907#tab::id=0/tree::rel=3/filter::id=E93EC358A69745469F6266C0275F7907/vitrina::viewId=E93EC358A69745469F6266C0275F7907&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Папки документов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=4&b=EE2E5C68AACD4FE18EAB1006AB815A32&a=8C59CF909EB349BFAA52B2E4FC3A4BF1#tab::id=0/tree::rel=4/filter::id=8C59CF909EB349BFAA52B2E4FC3A4BF1/vitrina::viewId=8C59CF909EB349BFAA52B2E4FC3A4BF1&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Все документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Поиск документов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=5&b=F128C39854AF4D289081CFAA1CC61B67&a=543A943CE20D46E091223B06012E2A71#tab::id=0/tree::rel=5/filter::id=543A943CE20D46E091223B06012E2A71/vitrina::viewId=543A943CE20D46E091223B06012E2A71&offset=0&limit=10"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Новые документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=7&b=3F9840A1979E4660AAED255576096B57&a=4FBB0872486F4FD38A5C9FDE06EAAA9E#tab::id=0/tree::rel=7/filter::id=4FBB0872486F4FD38A5C9FDE06EAAA9E/vitrina::viewId=4FBB0872486F4FD38A5C9FDE06EAAA9E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все документы на контроле",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=8&b=6ECDA7373C1F44DAAD7F08CBC51D2B76&a=4EAFD8C32C9C459494F14A44C99F5A7A#tab::id=0/tree::rel=8/filter::id=4EAFD8C32C9C459494F14A44C99F5A7A/vitrina::viewId=4EAFD8C32C9C459494F14A44C99F5A7A&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Внешний контроль",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=9&b=9EA2205032774C2F986B41FF0C2067B3&a=5DC5AF44E9064016A4E1D11FC88B58D1#tab::id=0/tree::rel=9/filter::id=5DC5AF44E9064016A4E1D11FC88B58D1/categorize::id=71260A36674B4AECAE07D19AF415B82D&vid=5DC5AF44E9064016A4E1D11FC88B58D1&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Внутренний контроль",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=10&b=C4EE5A84D5A145F6A63FFADBE0489A8B&a=8BABAD8A817548BDA24A40A8F47C2DBE#tab::id=0/tree::rel=10/filter::id=8BABAD8A817548BDA24A40A8F47C2DBE/categorize::id=742B7FB46E124C02BC77FA5232716953&vid=8BABAD8A817548BDA24A40A8F47C2DBE&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "На контроле",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Незавершенные задачи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]//ul/li[5]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=15&b=137DEF959EDF4E91968D92401F344B97&a=DA0EC995CABA4BCB9F401124DF70963B#tab::id=0/tree::rel=15/filter::id=DA0EC995CABA4BCB9F401124DF70963B/vitrina::viewId=DA0EC995CABA4BCB9F401124DF70963B&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=18&b=47C2C896691C4636AE7ADDDA51FEE221&a=F784494F5C6449C49E09132389E1111E#tab::id=0/tree::rel=18/filter::id=F784494F5C6449C49E09132389E1111E/vitrina::viewId=F784494F5C6449C49E09132389E1111E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "По типам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=19&b=0A4C655295404B5EAC432438A70B8693&a=AF89FB7F38B143D186AEBEF0471E2216#tab::id=0/tree::rel=19/filter::id=AF89FB7F38B143D186AEBEF0471E2216/categorize::id=312AFEEBBD694F2D986A77365372D318&vid=AF89FB7F38B143D186AEBEF0471E2216&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Запросы правоохранительных органов",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=20&b=EFDFEAB9B07743A38ED085FBEB29A5D5&a=234875B589BB428A99EC591B22244D35#tab::id=0/tree::rel=20/filter::id=234875B589BB428A99EC591B22244D35/vitrina::viewId=234875B589BB428A99EC591B22244D35&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Переписка по экспертизе",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[3]/a",
+    "vitrina": "Запросы судебной экспертизы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[3]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=21&b=12BA555413B445949B89272198C1EDD0&a=4D808B2C33464854A6A4535268565FB5#tab::id=0/tree::rel=21/filter::id=4D808B2C33464854A6A4535268565FB5/vitrina::viewId=4D808B2C33464854A6A4535268565FB5&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения органов и организаций",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=23&b=A3788CF4B9044C99AE3E4C5A24AD9713&a=4D9897FA43CF4F1293AC0F242E855E93#tab::id=0/tree::rel=23/filter::id=4D9897FA43CF4F1293AC0F242E855E93/vitrina::viewId=4D9897FA43CF4F1293AC0F242E855E93&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения органов и организаций",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "По типам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=24&b=046F716CA35A4EC2824D490695381E63&a=A9D963FBEF66467289C3091C659C7A98#tab::id=0/tree::rel=24/filter::id=A9D963FBEF66467289C3091C659C7A98/categorize::id=9A7B99D51EC14280947F0C2F2F3D3171&vid=A9D963FBEF66467289C3091C659C7A98&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения граждан",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=26&b=86A42D8CDAE74E3FB6728115C605F651&a=0C3FCF0AC63646A3835FFFD6570D026D#tab::id=0/tree::rel=26/filter::id=0C3FCF0AC63646A3835FFFD6570D026D/vitrina::viewId=0C3FCF0AC63646A3835FFFD6570D026D&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Обращения граждан",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
+    "vitrina": "По типам поступления",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=27&b=1F615AFC58C147EDA4939D55E088CC8F&a=E28742A3903E477D8F093BFD93FC09A0#tab::id=0/tree::rel=27/filter::id=E28742A3903E477D8F093BFD93FC09A0/categorize::id=6B08EE042D224FC18F1C3DC350B5CB9D&vid=E28742A3903E477D8F093BFD93FC09A0&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=29&b=BE9EB62C90884B32AF7C13C0FA656EAE&a=32B7121707C047AF9A2E6402B16AD50C#tab::id=0/tree::rel=29/filter::id=32B7121707C047AF9A2E6402B16AD50C/vitrina::viewId=32B7121707C047AF9A2E6402B16AD50C&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Распоряжения Правительства РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=30&b=05C42A7CD3F543FD9699F3A48BC829A3&a=E1B57D292A224E10A3AAC8AFD0791987#tab::id=0/tree::rel=30/filter::id=E1B57D292A224E10A3AAC8AFD0791987/vitrina::viewId=E1B57D292A224E10A3AAC8AFD0791987&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Постановления Правительства РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=31&b=CE8F7610BE4E465E97E1E6094C159354&a=8992C126ED0D42AEAEA33BCF8A218B27#tab::id=0/tree::rel=31/filter::id=8992C126ED0D42AEAEA33BCF8A218B27/vitrina::viewId=8992C126ED0D42AEAEA33BCF8A218B27&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Приказы вышестоящей организации",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=32&b=2373B0F0366543B9A78AAEDA939D757A&a=6E70B7966ED142A68E85E8A6ED5A3362#tab::id=0/tree::rel=32/filter::id=6E70B7966ED142A68E85E8A6ED5A3362/vitrina::viewId=6E70B7966ED142A68E85E8A6ED5A3362&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Приказы ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[5]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=33&b=A12ADEBF36C645C08CB9EE074E1113B6&a=624D175370BE4A918253A254E4BE6F29#tab::id=0/tree::rel=33/filter::id=624D175370BE4A918253A254E4BE6F29/vitrina::viewId=624D175370BE4A918253A254E4BE6F29&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Распоряжения ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[6]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=34&b=BE96F3DEFE6B4531A0D091E26A3A4606&a=A065C86458E6405B8B0AD4D9656E4816#tab::id=0/tree::rel=34/filter::id=A065C86458E6405B8B0AD4D9656E4816/vitrina::viewId=A065C86458E6405B8B0AD4D9656E4816&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Распорядительные документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[6]/a",
+    "vitrina": "Иные распорядительные документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[6]//ul/li[7]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=35&b=7EE10A628AAF4E03B2AE91502FA1017B&a=1BAA2D525D144FEEA0E4E35C7BDC5C17#tab::id=0/tree::rel=35/filter::id=1BAA2D525D144FEEA0E4E35C7BDC5C17/vitrina::viewId=1BAA2D525D144FEEA0E4E35C7BDC5C17&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=37&b=10D8EBF010EC44F39E505607363AD611&a=5141E4AB4F6942049637D1DEE924C413#tab::id=0/tree::rel=37/filter::id=5141E4AB4F6942049637D1DEE924C413/vitrina::viewId=5141E4AB4F6942049637D1DEE924C413&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Служебные записки ЦА",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=38&b=38F386040182405690B6F986052520F9&a=8CDE9B2F7A9B41F188E1BDAA6C3A7CCE#tab::id=0/tree::rel=38/filter::id=8CDE9B2F7A9B41F188E1BDAA6C3A7CCE/vitrina::viewId=8CDE9B2F7A9B41F188E1BDAA6C3A7CCE&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Переписка с филиалами",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=39&b=A36D1545967A459E8FA3CF629674EE4E&a=F18E145B3DA049A981F79255F551266C#tab::id=0/tree::rel=39/filter::id=F18E145B3DA049A981F79255F551266C/vitrina::viewId=F18E145B3DA049A981F79255F551266C&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Внутренние документы",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[7]/a",
+    "vitrina": "Иные внутренние документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[7]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=40&b=1482EED94ADE4C3D91037714BB7DE778&a=7241CBAF8FDD4FC094DF8B6DCC136D71#tab::id=0/tree::rel=40/filter::id=7241CBAF8FDD4FC094DF8B6DCC136D71/vitrina::viewId=7241CBAF8FDD4FC094DF8B6DCC136D71&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=42&b=9D349C84CEF04089BBCC456B5D168F87&a=7075083FE28F490C8382E84F5810DFD7#tab::id=0/tree::rel=42/filter::id=7075083FE28F490C8382E84F5810DFD7/vitrina::viewId=7075083FE28F490C8382E84F5810DFD7&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Поручения Президента РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=43&b=FAF4CC27C8834C03A600254D21593BCE&a=1B0A9D9EE51D49BAA3E40B07E85D06BB#tab::id=0/tree::rel=43/filter::id=1B0A9D9EE51D49BAA3E40B07E85D06BB/vitrina::viewId=1B0A9D9EE51D49BAA3E40B07E85D06BB&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Протоколы совещаний и поручения Правительства РФ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[3]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=44&b=1C50113F75D64E3AB9E1C2D3E9A2C9CB&a=7548E8DCE260400E917A8AF206695206#tab::id=0/tree::rel=44/filter::id=7548E8DCE260400E917A8AF206695206/vitrina::viewId=7548E8DCE260400E917A8AF206695206&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Протоколы совещаний и поручения вышестоящей организации",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[4]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=45&b=93202E0EA2F34650832947F38542FA2A&a=4E5EC924B90F4DDBA59DF8F2C5694BCD#tab::id=0/tree::rel=45/filter::id=4E5EC924B90F4DDBA59DF8F2C5694BCD/vitrina::viewId=4E5EC924B90F4DDBA59DF8F2C5694BCD&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Протоколы совещаний и поручения Начальника ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[5]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=46&b=ED8A67C44E60404C87948FC28DFFFE48&a=CD133459345D498CA90EE50635F429FA#tab::id=0/tree::rel=46/filter::id=CD133459345D498CA90EE50635F429FA/vitrina::viewId=CD133459345D498CA90EE50635F429FA&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Иные протоколы совещаний и поручения",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[6]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=47&b=BBBE4E756EC84B78A88615D958AC47CB&a=387C37F4CEE5458EB7AE7E11907253EB#tab::id=0/tree::rel=47/filter::id=387C37F4CEE5458EB7AE7E11907253EB/vitrina::viewId=387C37F4CEE5458EB7AE7E11907253EB&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Протоколы и поручения",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[8]/a",
+    "vitrina": "Протоколы совещаний у заместителей Начальника ГГЭ",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[8]//ul/li[7]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=48&b=542F64D02FC04D68B7873614E834A6C8&a=465E70BC0CB24C4EB73BE0E0EBCCE218#tab::id=0/tree::rel=48/filter::id=465E70BC0CB24C4EB73BE0E0EBCCE218/vitrina::viewId=465E70BC0CB24C4EB73BE0E0EBCCE218&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Документы из СЭДО ПО Минстроя России",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[9]/a",
+    "vitrina": "Все документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[9]//ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=50&b=F5DF44DC37B447A08E41E1439EBC82E2&a=EA3E4E3BE7F84C8B9E865478F688D147#tab::id=0/tree::rel=50/filter::id=EA3E4E3BE7F84C8B9E865478F688D147/vitrina::viewId=EA3E4E3BE7F84C8B9E865478F688D147&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Документы из СЭДО ПО Минстроя России",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[9]/a",
+    "vitrina": "Новые документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[9]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=OFFICEWORK&c=51&b=332FA341010C4C69B7A434ED1D7FC7C7&a=5889B1FE3CB740CE9BDAD1241917E023#tab::id=0/tree::rel=51/filter::id=5889B1FE3CB740CE9BDAD1241917E023/vitrina::viewId=5889B1FE3CB740CE9BDAD1241917E023&offset=0&limit=50"
+  },
+  {
+    "razdel": "Организации",
+    "razdelXpath": ".//*[@id='firstMenu']/li[5]/a[@href!='']",
+    "menu": "Все организации",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Все организации",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=ORGANIZATION&c=2&b=058D31A7BE6F45E3A1E294BD97AFA03A&a=6CDDF79067984549B7142286BAAA2869#tab::id=0/tree::rel=2/filter::id=6CDDF79067984549B7142286BAAA2869/vitrina::viewId=6CDDF79067984549B7142286BAAA2869&offset=0&limit=500"
+  },
+  {
+    "razdel": "Сотрудники",
+    "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
+    "menu": "Сотрудники",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "vitrina": "Сотрудники",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[1]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=STAFF&c=2&b=30235B66F6104B08BB061B792FD2B6D2&a=314037F4C0F544C29CAD4C18F2DBEF04#tab::id=0/tree::rel=2/filter::id=314037F4C0F544C29CAD4C18F2DBEF04/vitrina::viewId=314037F4C0F544C29CAD4C18F2DBEF04&offset=0&limit=498"
+  },
+  {
+    "razdel": "Сотрудники",
+    "razdelXpath": ".//*[@id='firstMenu']/li[6]/a[@href!='']",
+    "menu": "Все пользователи",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "vitrina": "Все пользователи",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=STAFF&c=3&b=C3A411CC30F9435BBA5B56C7BE831074&a=EE72C9A9A2DF40588BCD52A063358D85#tab::id=0/tree::rel=3/filter::id=EE72C9A9A2DF40588BCD52A063358D85/vitrina::viewId=EE72C9A9A2DF40588BCD52A063358D85&offset=0&limit=500"
+  }
+]
