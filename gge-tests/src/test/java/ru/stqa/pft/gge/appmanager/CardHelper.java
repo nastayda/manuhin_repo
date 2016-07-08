@@ -155,7 +155,9 @@ public class CardHelper extends HelperBase {
         } else if (
                 tab2.equals("STATUS_PGU") ||
                 tab2.equals("PROCESS") ||
-                tab2.equals("ERRAND_CARD_TREE")
+                tab2.equals("ERRAND_CARD_TREE") ||
+                tab2.equals("0C741BD4A8CB43C4AB0C7B80490F2635") ||
+                tab2.equals("EMPL_EMPTY")
                 ) {
           locator = "//thead[@id=\"vitrinaTableHeader\"]//th";
         } else {
