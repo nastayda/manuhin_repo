@@ -71,10 +71,10 @@ public class CardHelper extends HelperBase {
     //    s = s + "2";
     vitrina.withCardUrl(s);
     wd.get(s);
-    String textVkladki = "";
+    String tab2 = ""; //getTab2(s);
 
     isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards);
-    List<WebElement> elements = getWebElements(isProdServer, textVkladki);
+    List<WebElement> elements = getWebElements(isProdServer, tab2);
 
     // При нажатии на следующую вкладку грузится другая страница
 
@@ -90,23 +90,46 @@ public class CardHelper extends HelperBase {
         iii++;
       }
       waitForDisplayed(element);
-      textVkladki = element.getText();
 
       clickTabCardVkladka(element, isProdServer);
-      System.out.println("Открыта вкладка (" + textVkladki + ") карточки по ссылке : " + s + "\n");
+      s = wd.getCurrentUrl();
+      tab2 = getTab2(s);
+      System.out.println("Открыта вкладка (" + tab2 + ") карточки по ссылке : " + s + "\n");
 
       isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards);
       if (!isOpenWithoutMistakes) {
         break;
       }
-      elements = getWebElements(isProdServer, textVkladki);
+      elements = getWebElements(isProdServer, tab2);
     }
 
     return  isOpenWithoutMistakes;
   }
 
+  private String getTab2(String s) {
+    int tabIndexStart = s.indexOf("tab2=");
+    String tab2Start = s.substring(tabIndexStart+5);
+    int tabIndexEnd1 = tab2Start.indexOf("&");
+    if(tabIndexEnd1 < 0) {
+      tabIndexEnd1 = 1000;
+    }
+
+    int tabIndexEnd2 = tab2Start.indexOf("#");
+    if(tabIndexEnd2 < 0) {
+      tabIndexEnd2 = 1000;
+    }
+
+    int tabIndexEnd = Math.min(tabIndexEnd1, tabIndexEnd2);
+    if (tabIndexEnd < 0) {
+       tab2Start = tab2Start;
+    }
+    String tab2 = tab2Start.substring(0, tabIndexEnd);
+
+    return tab2;
+  }
+
   private List<WebElement> getWebElements(Boolean isProdServer,
-                                          String textVkladki) throws InterruptedException {
+                                          String tab2) throws InterruptedException {
     List<WebElement> elements = new ArrayList<WebElement>();
 
     // Проверка на загрузку вкладок
@@ -119,10 +142,24 @@ public class CardHelper extends HelperBase {
 
         String locator = "";
 
-        if (textVkladki.equals("")) {
+        if (tab2.equals("")) {
           locator = "//p[@class=\"sectionTitle\"]";
-        } else if (textVkladki.equals("")) {
-          locator = "//p[@class=\"sectionTitle\"]";
+        } else if (tab2.equals("TEP")) {
+          locator = "//table[@class=\"data_create\"]//td//span[@class=\"color_light_gray\"]";
+        } else if (tab2.equals("PD_FILES")) {
+          locator = "//div[contains(@id,\"dirTree\")]";
+        } else if (tab2.equals("OPIS")) {
+          locator = "//*[@id='vitrinaTableHeader']//th";
+        } else if (tab2.equals("CARD")) {
+          locator = "//h2[@class=\"expert-title\"]";
+        } else if (
+                tab2.equals("STATUS_PGU") ||
+                tab2.equals("PROCESS") ||
+                tab2.equals("ERRAND_CARD_TREE")
+                ) {
+          locator = "//thead[@id=\"vitrinaTableHeader\"]//th";
+        } else {
+          locator = "//body";
         }
 
         // Проверка на загрузку заголовков внутри вкладки
@@ -130,7 +167,6 @@ public class CardHelper extends HelperBase {
         if (isWebElements) {
           break;
         }
-
       }
     }
     return elements;
@@ -173,7 +209,7 @@ public class CardHelper extends HelperBase {
               .excludeFieldsWithoutExposeAnnotation().create();
       List<GeneratorData> vitrinas = new ArrayList<GeneratorData>();
       String json = gson.toJson(vitrinas);
-      try (Writer writer = new FileWriter(file)) {
+      try (Writer writer = new FileWriter(fileName)) {
         writer.write(json);
       }
       return vitrinas;
@@ -187,8 +223,7 @@ public class CardHelper extends HelperBase {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
 
-    String xPathForBadCard = "//body//*[contains(text(),\"Faled\") " +
-            "or contains(text(),\"xception\") or contains(text(),\"rror\")]";
+    String xPathForBadCard = "//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]";
     List<WebElement> elements = wd.findElements(By.xpath(xPathForBadCard));
 
     if (elements.size() == 0) {
@@ -199,8 +234,17 @@ public class CardHelper extends HelperBase {
   }
 
   private void clickTabCardVkladka(WebElement element, Boolean isProdServer) throws InterruptedException {
-    element.click();
     waitLoadPage(isProdServer);
     Thread.sleep(500);
+
+    for (int i = 0; i < 10; i++) {
+      try {
+        element.click();
+        break;
+      } catch (Exception e) {
+        waitLoadPage(isProdServer);
+        Thread.sleep(500);
+      }
+    }
   }
 }

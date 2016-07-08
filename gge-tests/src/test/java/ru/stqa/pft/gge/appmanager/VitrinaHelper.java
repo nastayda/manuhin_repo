@@ -408,9 +408,11 @@ public class VitrinaHelper extends HelperBase {
     }
 
     for (WebElement element : elements) {
-      String href = element.getAttribute("href");
-      links.add(href);
-      System.out.println(href + "\n");
+      if (element.isDisplayed()) {
+        String href = element.getAttribute("href");
+        links.add(href);
+        System.out.println(href + "\n");
+      }
     }
 
     return links;
