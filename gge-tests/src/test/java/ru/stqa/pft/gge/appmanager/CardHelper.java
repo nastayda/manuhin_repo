@@ -225,7 +225,8 @@ public class CardHelper extends HelperBase {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
 
-    String xPathForBadCard = "//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]";
+    String xPathForBadCard =
+            "//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\") or contains(text(),\"Доступ ограничен\")]";
     List<WebElement> elements = wd.findElements(By.xpath(xPathForBadCard));
 
     if (elements.size() == 0) {

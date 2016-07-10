@@ -19,8 +19,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CardsTestsGGE extends TestBase {
 
-  String fileNameFromJson = "src/test/resources/vitrinas_andropov_all_vm-082.json";
-  String fileNameForFailCards = "src/test/resources/cards_andropov_all_vm-082_bad.json";
+  String fileNameFromJson = "src/test/resources/vitrinas_andropov_all_test-eis.json";
+  String fileNameForFailCards = "src/test/resources/cards_andropov_all_test-eis_bad.json";
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromJson() throws IOException {

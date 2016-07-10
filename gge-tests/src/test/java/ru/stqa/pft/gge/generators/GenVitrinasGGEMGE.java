@@ -27,8 +27,8 @@ public class GenVitrinasGGEMGE extends TestBase {
   public String format;
 
 //  public String baseUrl = "https://eis.gge.ru/auth/login.action";
-//  public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
-  public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
+  public String baseUrl = "https://test-eis.gge.ru/auth/login.action";
+//  public String baseUrl = "https://vm-082-as-gge.mdi.ru/auth/login.action";
 //  public String baseUrl = "https://vm-085-as-gge.mdi.ru/auth/login.action";
   public String loginUser = "v.andropov";
 
@@ -45,8 +45,8 @@ public class GenVitrinasGGEMGE extends TestBase {
     }
 
 //    generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://eis.gge.ru/auth/login.action");
-//    generator.setUpGGEMGE("v.andropov", "21", "https://test-eis.gge.ru/auth/login.action");
-    generator.setUpGGEMGE("v.andropov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
+    generator.setUpGGEMGE("v.andropov", "21", "https://test-eis.gge.ru/auth/login.action");
+//    generator.setUpGGEMGE("v.andropov", "21", "https://vm-082-as-gge.mdi.ru/auth/login.action");
     //generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
     generator.run(project);
     generator.tearDown();
