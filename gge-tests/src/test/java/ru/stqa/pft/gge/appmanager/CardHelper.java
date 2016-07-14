@@ -44,7 +44,7 @@ public class CardHelper extends HelperBase {
                               String fileNameForFailCards) throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     String s = wd.getCurrentUrl();
-    vitrina.withCardUrl(s);
+//    vitrina.withCardUrl(s);
 
     if (!isWaitedCboxOverlay(isProdServer)) {
       failCardToJson(vitrina, fileNameForFailCards);
