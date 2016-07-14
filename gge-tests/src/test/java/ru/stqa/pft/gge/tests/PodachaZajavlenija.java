@@ -1,5 +1,5 @@
 // Тут нужно все причесать
-package ru.stqa.pft.gge.tests_study;
+package ru.stqa.pft.gge.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;

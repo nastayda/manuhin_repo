@@ -10,6 +10,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import ru.stqa.pft.gge.wrapper.HighlightingWrapper;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,6 +26,7 @@ public class ApplicationManager {
 
   private final Properties properties;
   WebDriver wd;
+//  WebDriver wd2;
 
   private String browser;
   private SessionHelper sessionHelper;
@@ -47,6 +49,7 @@ public class ApplicationManager {
       if ("".equals(properties.getProperty("selenium.server"))) {
         if (browser.equals(BrowserType.FIREFOX)) {
           wd = new FirefoxDriver();
+//          wd2 = new HighlightingWrapper(new FirefoxDriver(), 200).getDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
           wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {
@@ -140,5 +143,4 @@ public class ApplicationManager {
   public byte[] takeScreenshot() {
     return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
   }
-
 }

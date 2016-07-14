@@ -1,7 +1,14 @@
 package ru.stqa.pft.gge.model;
 
 import com.google.gson.annotations.Expose;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
 
+@Features("Индекс")
+@Stories("Проверка индекса")
+@RunWith(Parameterized.class)
 public class GeneratorData {
 
     @Expose

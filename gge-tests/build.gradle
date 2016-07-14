@@ -19,6 +19,7 @@ dependencies {
     compile "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
     compile 'org.atmosphere.client:javascript:2.3.2'
     compile 'org.webjars.bower:jQuery:2.2.3'
+    compile 'ru.stqa.selenium:webdriver-wrapper:2.0'
 //    compile 'ru.yandex.qatools.allure:allure-core:1.5.0.RC2'
 //    compile 'ru.yandex.qatools.allure:allure-java-annotations:1.5.0.RC2'
 //    compile 'ru.yandex.qatools.allure:allure-java-annotations:1.5.0-RC1'
