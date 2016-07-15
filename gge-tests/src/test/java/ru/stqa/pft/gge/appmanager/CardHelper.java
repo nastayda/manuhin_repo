@@ -18,6 +18,7 @@ import java.util.List;
 public class CardHelper extends HelperBase {
 
   String file;
+  Boolean upLogging = false;
 
   public CardHelper(WebDriver wd) {
     super(wd);
@@ -41,10 +42,36 @@ public class CardHelper extends HelperBase {
   }
 
   private Boolean openVkladka(Boolean isProdServer, GeneratorData vitrina,
-                              String fileNameForFailCards) throws InterruptedException, IOException {
+                              String fileNameForFailCards, Boolean lastVkladka) throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     String s = wd.getCurrentUrl();
 //    vitrina.withCardUrl(s);
+
+    Thread.sleep(500);
+
+    // Проверка на права доступа
+    isOpenWithoutMistakes = checkCardMistakesSimple("//*[contains(text(),\"Доступ ограничен\")]");
+
+
+    if (!isOpenWithoutMistakes) {
+      // Разлогиниться и дальнейшая проверка карточки под админом
+      upLogging = true;
+      selectAnyVitrina(vitrina, isProdServer);
+      logoutBase(isProdServer, "//a[contains(@href,\"/auth/logout\")]");
+      // Логин под админом
+      String loginAdmin = "galactica_admin1";
+      String passwordAdmin = "21";
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      loginBase(loginAdmin, passwordAdmin);
+      s = vitrina.getCardUrl();
+      wd.get(s);
+      isOpenWithoutMistakes = checkCardMistakesSimple("//*[contains(text(),\"Доступ ограничен\")]");
+      if (!isOpenWithoutMistakes) {
+        return isOpenWithoutMistakes;
+      }
+    }
 
     if (!isWaitedCboxOverlay(isProdServer)) {
       failCardToJson(vitrina, fileNameForFailCards);
@@ -53,11 +80,18 @@ public class CardHelper extends HelperBase {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
 
-    isOpenWithoutMistakes = checkCardMistakes(isProdServer);
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
 
     if (!isOpenWithoutMistakes) {
       failCardToJson(vitrina, fileNameForFailCards);
       return isOpenWithoutMistakes;
+    }
+
+    if (upLogging && lastVkladka) {
+      logoutBase(isProdServer, "//a[contains(@href,\"/auth/logout\")]");
+      loginBase(vitrina.getLoginUser(), "21");
+      wd.get(s);
     }
 
     return isOpenWithoutMistakes;
@@ -73,7 +107,8 @@ public class CardHelper extends HelperBase {
     wd.get(s);
     String tab2 = ""; //getTab2(s);
 
-    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards);
+    Boolean lastVkladka = false;
+    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka);
     List<WebElement> elements = getWebElements(isProdServer, tab2);
 
     // При нажатии на следующую вкладку грузится другая страница
@@ -96,11 +131,16 @@ public class CardHelper extends HelperBase {
       tab2 = getTab2(s);
       System.out.println("Открыта вкладка (" + tab2 + ") карточки по ссылке : " + s + "\n");
 
-      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards);
+      if (iii == iMax - 1) {
+        lastVkladka = true;
+      }
+      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka);
       if (!isOpenWithoutMistakes) {
         break;
       }
-      elements = getWebElements(isProdServer, tab2);
+      if (!lastVkladka) {
+        elements = getWebElements(isProdServer, tab2);
+      }
     }
 
     return  isOpenWithoutMistakes;
@@ -219,14 +259,27 @@ public class CardHelper extends HelperBase {
   }
 
 
-  private Boolean checkCardMistakes(Boolean isProdServer) throws InterruptedException {
+  private Boolean checkCardMistakes(Boolean isProdServer, String xPathBadText) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
 
     waitLoadPage(isProdServer);
     Thread.sleep(500);
 
-    String xPathForBadCard =
-            "//body//*[contains(text(),\"Faled\") or contains(text(),\"xception\") or contains(text(),\"Доступ ограничен\")]";
+    String xPathForBadCard = xPathBadText;
+    List<WebElement> elements = wd.findElements(By.xpath(xPathForBadCard));
+
+    if (elements.size() == 0) {
+      isOpenWithoutMistakes = true;
+    }
+
+    return isOpenWithoutMistakes;
+  }
+
+  private Boolean checkCardMistakesSimple(String xPathBadText) throws InterruptedException {
+    Boolean isOpenWithoutMistakes = false;
+    Thread.sleep(500);
+
+    String xPathForBadCard = xPathBadText;
     List<WebElement> elements = wd.findElements(By.xpath(xPathForBadCard));
 
     if (elements.size() == 0) {

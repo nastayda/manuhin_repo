@@ -140,4 +140,35 @@ public class HelperBase {
       writer.write(json);
     }
   }
+
+  public void selectAnyVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    wd.get(vitrina.getBaseUrl());
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+  }
+
+  public void logoutBase(Boolean isProdServer, String xPathExit) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+    Boolean exitFor = true;
+    for (int i = 1; i < 10; i++) {
+      try {
+        click(By.xpath(xPathExit));
+      } catch (Exception e) {
+        exitFor = false;
+        waitLoadPage(isProdServer);
+        Thread.sleep(500);
+      }
+      if (exitFor) {
+        break;
+      }
+    }
+  }
+
+  public void loginBase(String username, String password) {
+    click(By.id("content"));
+    type(By.id("username"), username);
+    type(By.id("password"), password);
+    click(By.id("submitBtn"));
+  }
 }
