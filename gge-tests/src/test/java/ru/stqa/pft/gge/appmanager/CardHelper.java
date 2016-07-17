@@ -12,6 +12,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by manuhin on 21.04.2016.
  */
@@ -25,13 +28,13 @@ public class CardHelper extends HelperBase {
   }
 
   public Boolean openCards(List<String> hrefs, Boolean isProdServer,
-                           GeneratorData vitrina, String fileNameForFailCards)
+                           GeneratorData vitrina, String fileNameForFailCards, String adminLogin, String adminPassword)
           throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     int iMax = 5;
     int i = 0;
     for (String s : hrefs) {
-      isOpenWithoutMistakes = openCard(s, isProdServer, vitrina, fileNameForFailCards);
+      isOpenWithoutMistakes = openCard(s, isProdServer, vitrina, fileNameForFailCards, adminLogin, adminPassword);
       i++;
       if (i >= iMax || !isOpenWithoutMistakes) {
         break;
@@ -42,7 +45,8 @@ public class CardHelper extends HelperBase {
   }
 
   private Boolean openVkladka(Boolean isProdServer, GeneratorData vitrina,
-                              String fileNameForFailCards, Boolean lastVkladka) throws InterruptedException, IOException {
+                              String fileNameForFailCards, Boolean lastVkladka,
+                              String adminLogin, String adminPassword) throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     String s = wd.getCurrentUrl();
 //    vitrina.withCardUrl(s);
@@ -59,8 +63,8 @@ public class CardHelper extends HelperBase {
       selectAnyVitrina(vitrina, isProdServer);
       logoutBase(isProdServer, "//a[contains(@href,\"/auth/logout\")]");
       // Логин под админом
-      String loginAdmin = "galactica_admin1";
-      String passwordAdmin = "21";
+      String loginAdmin = adminLogin;
+      String passwordAdmin = adminPassword;
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
@@ -73,8 +77,11 @@ public class CardHelper extends HelperBase {
       }
     }
 
-    if (!isWaitedCboxOverlay(isProdServer)) {
+    Boolean isWaitedCboxOverlay = false;
+    isWaitedCboxOverlay = isWaitedCboxOverlay(isProdServer);
+    if (!isWaitedCboxOverlay) {
       failCardToJson(vitrina, fileNameForFailCards);
+      assertThat(isWaitedCboxOverlay, equalTo(true));
       return isOpenWithoutMistakes;
     };
     waitLoadPage(isProdServer);
@@ -85,6 +92,7 @@ public class CardHelper extends HelperBase {
 
     if (!isOpenWithoutMistakes) {
       failCardToJson(vitrina, fileNameForFailCards);
+      assertThat(isOpenWithoutMistakes, equalTo(true));
       return isOpenWithoutMistakes;
     }
 
@@ -98,7 +106,7 @@ public class CardHelper extends HelperBase {
   }
 
   private Boolean openCard(String s, Boolean isProdServer, GeneratorData vitrina,
-                           String fileNameForFailCards)
+                           String fileNameForFailCards, String adminLogin, String adminPassword)
           throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
 
@@ -108,7 +116,7 @@ public class CardHelper extends HelperBase {
     String tab2 = ""; //getTab2(s);
 
     Boolean lastVkladka = false;
-    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka);
+    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka, adminLogin, adminPassword);
     List<WebElement> elements = getWebElements(isProdServer, tab2);
 
     // При нажатии на следующую вкладку грузится другая страница
@@ -134,7 +142,7 @@ public class CardHelper extends HelperBase {
       if (iii == iMax - 1) {
         lastVkladka = true;
       }
-      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka);
+      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka, "galactica_admin1", "21");
       if (!isOpenWithoutMistakes) {
         break;
       }

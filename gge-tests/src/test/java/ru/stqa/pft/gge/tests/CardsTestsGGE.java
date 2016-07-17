@@ -49,8 +49,13 @@ public class CardsTestsGGE extends TestBase {
     }
 
     String password = "21";
+
+    String adminLogin = "galactica_admin1";
+    String adminPassword = "21";
+
     if (isProdServer) {
       password = "Ukfdujc21";
+      adminPassword = "Ukfdujc21";
     }
 
     assertThat(app.successInit, equalTo(true));
@@ -65,7 +70,8 @@ public class CardsTestsGGE extends TestBase {
     List<String> hrefs = app.vitrina().allLink(isProdServer);
 
     if (hrefs.size() > 0) {
-      assertThat(app.card().openCards(hrefs, isProdServer, vitrina, fileNameForFailCards), equalTo(true));
+      assertThat(app.card().openCards(hrefs, isProdServer, vitrina, fileNameForFailCards, adminLogin, adminPassword),
+              equalTo(true));
     }
   }
 }
