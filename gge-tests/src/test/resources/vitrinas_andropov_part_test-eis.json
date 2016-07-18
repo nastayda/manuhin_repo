@@ -1,5 +1,25 @@
 [
   {
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Акты",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "По годам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PAY&c=20&b=A1EAA2BBFF7145989EBEEB254F58B63C&a=A03A3FA0A71D46FCBA2F435D5F7EE332#tab::id=0/tree::rel=20/filter::id=A03A3FA0A71D46FCBA2F435D5F7EE332/categorize::id=FF3F4BCB6B9944E3BEE5C50BA83C5020&vid=A03A3FA0A71D46FCBA2F435D5F7EE332&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
+    "menu": "Документы из СЭДО ПО Минстроя России",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[9]/a",
+    "vitrina": "Новые документы",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[9]//ul/li[2]/a",
+    "loginUser": "v.andropov",
+    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=OFFICEWORK&c=51&b=332FA341010C4C69B7A434ED1D7FC7C7&a=5889B1FE3CB740CE9BDAD1241917E023#tab::id=0/tree::rel=51/filter::id=5889B1FE3CB740CE9BDAD1241917E023/vitrina::viewId=5889B1FE3CB740CE9BDAD1241917E023&offset=0&limit=50"
+  },
+  {
     "razdel": "Делопроизводство",
     "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
     "menu": "Обращения граждан",

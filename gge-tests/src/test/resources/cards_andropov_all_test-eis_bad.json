@@ -1,46 +1,13 @@
 [
   {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Обращения граждан",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "По типам поступления",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
+    "razdel": "Оплата",
+    "razdelXpath": ".//*[@id='firstMenu']/li[3]/a[@href!='']",
+    "menu": "Акты",
+    "menuXpath": ".//*[@id='secondMenu']/ul/li[4]/a",
+    "vitrina": "По годам",
+    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[4]//ul/li[2]/a",
     "loginUser": "v.andropov",
-    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=OFFICEWORK&c=27&b=1F615AFC58C147EDA4939D55E088CC8F&a=E28742A3903E477D8F093BFD93FC09A0#tab::id=0/tree::rel=27/filter::id=E28742A3903E477D8F093BFD93FC09A0/categorize::id=6B08EE042D224FC18F1C3DC350B5CB9D&vid=E28742A3903E477D8F093BFD93FC09A0&offset=0&limit=50",
-    "cardUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&fromFilter=E93EC358A69745469F6266C0275F7907&fromVitrina=E93EC358A69745469F6266C0275F7907&documentId=80A22AF373144735AB77B9BA40E4E2AA"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Обращения граждан",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "По типам поступления",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
-    "loginUser": "v.andropov",
-    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=OFFICEWORK&c=27&b=1F615AFC58C147EDA4939D55E088CC8F&a=E28742A3903E477D8F093BFD93FC09A0#tab::id=0/tree::rel=27/filter::id=E28742A3903E477D8F093BFD93FC09A0/categorize::id=6B08EE042D224FC18F1C3DC350B5CB9D&vid=E28742A3903E477D8F093BFD93FC09A0&offset=0&limit=50",
-    "cardUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&fromFilter=E93EC358A69745469F6266C0275F7907&fromVitrina=E93EC358A69745469F6266C0275F7907&documentId=80A22AF373144735AB77B9BA40E4E2AA"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Обращения граждан",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "По типам поступления",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
-    "loginUser": "v.andropov",
-    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=OFFICEWORK&c=27&b=1F615AFC58C147EDA4939D55E088CC8F&a=E28742A3903E477D8F093BFD93FC09A0#tab::id=0/tree::rel=27/filter::id=E28742A3903E477D8F093BFD93FC09A0/categorize::id=6B08EE042D224FC18F1C3DC350B5CB9D&vid=E28742A3903E477D8F093BFD93FC09A0&offset=0&limit=50",
-    "cardUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&fromFilter=E93EC358A69745469F6266C0275F7907&fromVitrina=E93EC358A69745469F6266C0275F7907&documentId=80A22AF373144735AB77B9BA40E4E2AA"
-  },
-  {
-    "razdel": "Делопроизводство",
-    "razdelXpath": ".//*[@id='firstMenu']/li[4]/a[@href!='']",
-    "menu": "Обращения граждан",
-    "menuXpath": ".//*[@id='secondMenu']/ul/li[5]/a",
-    "vitrina": "По типам поступления",
-    "vitrinaXpath": ".//*[@id='secondMenu']/ul/li[5]//ul/li[2]/a",
-    "loginUser": "v.andropov",
-    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=OFFICEWORK&c=27&b=1F615AFC58C147EDA4939D55E088CC8F&a=E28742A3903E477D8F093BFD93FC09A0#tab::id=0/tree::rel=27/filter::id=E28742A3903E477D8F093BFD93FC09A0/categorize::id=6B08EE042D224FC18F1C3DC350B5CB9D&vid=E28742A3903E477D8F093BFD93FC09A0&offset=0&limit=50",
-    "cardUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&fromFilter=E93EC358A69745469F6266C0275F7907&fromVitrina=E93EC358A69745469F6266C0275F7907&documentId=80A22AF373144735AB77B9BA40E4E2AA"
+    "baseUrl": "https://test-eis.gge.ru/portal/tabInfo.action?tab=PAY&c=20&b=A1EAA2BBFF7145989EBEEB254F58B63C&a=A03A3FA0A71D46FCBA2F435D5F7EE332#tab::id=0/tree::rel=20/filter::id=A03A3FA0A71D46FCBA2F435D5F7EE332/categorize::id=FF3F4BCB6B9944E3BEE5C50BA83C5020&vid=A03A3FA0A71D46FCBA2F435D5F7EE332&offset=0&limit=50",
+    "cardUrl": "https://test-eis.gge.ru/portal/tabInfo.action?parentRefresh=false&tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&app=PAY&documentId=86901DC27367487CA75071D1B70C568A#tab::id=0/card::cardId=CARD$PCARDGIO3$BODY"
   }
 ]

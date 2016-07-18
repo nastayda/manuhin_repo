@@ -28,13 +28,15 @@ public class CardHelper extends HelperBase {
   }
 
   public Boolean openCards(List<String> hrefs, Boolean isProdServer,
-                           GeneratorData vitrina, String fileNameForFailCards, String adminLogin, String adminPassword)
+                           GeneratorData vitrina, String fileNameForFailCards,
+                           String adminLogin, String adminPassword, String password)
           throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     int iMax = 5;
     int i = 0;
     for (String s : hrefs) {
-      isOpenWithoutMistakes = openCard(s, isProdServer, vitrina, fileNameForFailCards, adminLogin, adminPassword);
+      isOpenWithoutMistakes = openCard(s, isProdServer, vitrina, fileNameForFailCards,
+              adminLogin, adminPassword, password);
       i++;
       if (i >= iMax || !isOpenWithoutMistakes) {
         break;
@@ -46,7 +48,7 @@ public class CardHelper extends HelperBase {
 
   private Boolean openVkladka(Boolean isProdServer, GeneratorData vitrina,
                               String fileNameForFailCards, Boolean lastVkladka,
-                              String adminLogin, String adminPassword) throws InterruptedException, IOException {
+                              String adminLogin, String adminPassword, String password) throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
     String s = wd.getCurrentUrl();
 //    vitrina.withCardUrl(s);
@@ -55,7 +57,6 @@ public class CardHelper extends HelperBase {
 
     // Проверка на права доступа
     isOpenWithoutMistakes = checkCardMistakesSimple("//*[contains(text(),\"Доступ ограничен\")]");
-
 
     if (!isOpenWithoutMistakes) {
       // Разлогиниться и дальнейшая проверка карточки под админом
@@ -79,6 +80,7 @@ public class CardHelper extends HelperBase {
 
     Boolean isWaitedCboxOverlay = false;
     isWaitedCboxOverlay = isWaitedCboxOverlay(isProdServer);
+
     if (!isWaitedCboxOverlay) {
       failCardToJson(vitrina, fileNameForFailCards);
       assertThat(isWaitedCboxOverlay, equalTo(true));
@@ -86,6 +88,16 @@ public class CardHelper extends HelperBase {
     };
     waitLoadPage(isProdServer);
     Thread.sleep(500);
+
+    // Проверка на существование документа
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer,
+            "//*[contains(text(),\"Такого документа не существует\")]");
+
+    if (!isOpenWithoutMistakes) {
+      failCardToJson(vitrina, fileNameForFailCards);
+      assertThat(isOpenWithoutMistakes, equalTo(true));
+      return isOpenWithoutMistakes;
+    }
 
     // Проверка на реальные баги
     isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
@@ -98,7 +110,7 @@ public class CardHelper extends HelperBase {
 
     if (upLogging && lastVkladka) {
       logoutBase(isProdServer, "//a[contains(@href,\"/auth/logout\")]");
-      loginBase(vitrina.getLoginUser(), "21");
+      loginBase(vitrina.getLoginUser(), password);
       wd.get(s);
     }
 
@@ -106,7 +118,8 @@ public class CardHelper extends HelperBase {
   }
 
   private Boolean openCard(String s, Boolean isProdServer, GeneratorData vitrina,
-                           String fileNameForFailCards, String adminLogin, String adminPassword)
+                           String fileNameForFailCards, String adminLogin, String adminPassword,
+                           String password)
           throws InterruptedException, IOException {
     Boolean isOpenWithoutMistakes = false;
 
@@ -116,7 +129,8 @@ public class CardHelper extends HelperBase {
     String tab2 = ""; //getTab2(s);
 
     Boolean lastVkladka = false;
-    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka, adminLogin, adminPassword);
+    isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards,
+            lastVkladka, adminLogin, adminPassword, password);
     List<WebElement> elements = getWebElements(isProdServer, tab2);
 
     // При нажатии на следующую вкладку грузится другая страница
@@ -142,7 +156,8 @@ public class CardHelper extends HelperBase {
       if (iii == iMax - 1) {
         lastVkladka = true;
       }
-      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards, lastVkladka, "galactica_admin1", "21");
+      isOpenWithoutMistakes = openVkladka(isProdServer, vitrina, fileNameForFailCards,
+              lastVkladka, adminLogin, adminPassword, password);
       if (!isOpenWithoutMistakes) {
         break;
       }
