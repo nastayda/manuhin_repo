@@ -127,6 +127,26 @@ public class VitrinaHelper extends HelperBase {
 //    }
   }
 
+  public boolean selectVitrinaMGE(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
+    wd.get(vitrina.getBaseUrl());
+    wd.manage().window().maximize();
+
+    if (!checkVitrinaIs(vitrina, isProdServer)) {
+      return true;
+    }
+
+    for (int i = 1; i < 100; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      if (checkVitrinaName(vitrina)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public boolean selectVitrina(GeneratorData vitrina, boolean isProdServer) throws InterruptedException {
     wd.get(vitrina.getBaseUrl());
     wd.manage().window().maximize();
@@ -135,7 +155,7 @@ public class VitrinaHelper extends HelperBase {
       return true;
     }
 
-    for (int i = 1; i < 55; i++) {
+    for (int i = 1; i < 20; i++) {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
