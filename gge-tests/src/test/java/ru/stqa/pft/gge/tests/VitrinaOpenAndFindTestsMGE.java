@@ -83,11 +83,11 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     app.session().loginGGEMGE(vitrina.getLoginUser(), password, vitrina.getBaseUrl());
 
     assertThat(app.vitrina().selectVitrinaMGE(vitrina, isProdServer), equalTo(true));
-    assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
+    assertThat(app.vitrina().isMistakesMGE(isProdServer), equalTo(false));
 
     app.vitrina().vizovRasshPoiskMGE(isProdServer);
     app.vitrina().fillAllFilters(isProdServer);
     app.vitrina().buttonFind(isProdServer);
-    assertThat(app.vitrina().isMistakes(isProdServer), equalTo(false));
+    assertThat(app.vitrina().isMistakesMGE(isProdServer), equalTo(false));
   }
 }

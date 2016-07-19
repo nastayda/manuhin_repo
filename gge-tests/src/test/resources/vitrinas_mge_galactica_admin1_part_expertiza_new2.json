@@ -1,5 +1,125 @@
 [
   {
+    "razdel": "Делопроизводство",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
+    "menu": "На контроле",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[7]",
+    "vitrina": "Задачи поручений",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[7]/..//ul/li/a)[8]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=OFFICEWORK&c=16&b=961699C1CAFD4754B677FF2246A6FE0B&a=1565F60086DA4D73B49C2D7C4334734A#tab::id=0/tree::rel=16/filter::id=1565F60086DA4D73B49C2D7C4334734A/vitrina::viewId=1565F60086DA4D73B49C2D7C4334734A&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
+    "menu": "На контроле",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[7]",
+    "vitrina": "Все поручения",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[7]/..//ul/li/a)[5]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=OFFICEWORK&c=13&b=67A5D4BAF0D84BF1B8870C35967ACAD0&a=BB1EC9B7E8254DC08C71020A6FB480AD#tab::id=0/tree::rel=13/filter::id=BB1EC9B7E8254DC08C71020A6FB480AD/vitrina::viewId=BB1EC9B7E8254DC08C71020A6FB480AD&offset=0&limit=100"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
+    "menu": "На контроле",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[7]",
+    "vitrina": "Новые документы",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[7]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=OFFICEWORK&c=9&b=3F9840A1979E4660AAED255576096B57&a=4FBB0872486F4FD38A5C9FDE06EAAA9E#tab::id=0/tree::rel=9/filter::id=4FBB0872486F4FD38A5C9FDE06EAAA9E/vitrina::viewId=4FBB0872486F4FD38A5C9FDE06EAAA9E&offset=0&limit=50"
+  },
+  {
+    "razdel": "Делопроизводство",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[4]",
+    "menu": "Папки документов",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[2]",
+    "vitrina": "Папки документов",
+    "vitrinaXpath": "(//ul[@class=\"secondMenu\"]/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=OFFICEWORK&c=3&b=EE2E5C68AACD4FE18EAB1006AB815A32&a=8C59CF909EB349BFAA52B2E4FC3A4BF1#tab::id=0/tree::rel=3/filter::id=8C59CF909EB349BFAA52B2E4FC3A4BF1/vitrina::viewId=8C59CF909EB349BFAA52B2E4FC3A4BF1&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Все документы",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[7]",
+    "vitrina": "Все документы (old)",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[7]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=44&b=34519779DA464ECAA5C9FFA4CA04F702&a=635E00B0BA98444D8DBE691FB0F21F62#tab::id=0/tree::rel=44/filter::id=635E00B0BA98444D8DBE691FB0F21F62/vitrina::viewId=635E00B0BA98444D8DBE691FB0F21F62&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Организации",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[6]",
+    "vitrina": "По покупателю",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[6]/..//ul/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=42&b=56E995A022DC49568DA6D8C5840C4583&a=7996FE4607204342B99935E9D4A85B79#tab::id=0/tree::rel=42/filter::id=7996FE4607204342B99935E9D4A85B79/categorize::id=DD43DF10DD104AE0BC7FCA60CB43511C&vid=7996FE4607204342B99935E9D4A85B79&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Организации",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[6]",
+    "vitrina": "По заказчику",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[6]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=41&b=DF2518D5BFCA413EAA35B5238076ECBB&a=F0E57042329942DEBAE11E4A4DBC4B68#tab::id=0/tree::rel=41/filter::id=F0E57042329942DEBAE11E4A4DBC4B68/categorize::id=1C5C0AEE21DC4B8A8780FBFFA2E7FE80&vid=F0E57042329942DEBAE11E4A4DBC4B68&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Выполнение",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[4]",
+    "vitrina": "По актам (old)",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[4]/..//ul/li/a)[3]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=33&b=AB3A389FB1D64C6AAB392EB357F576CD&a=678899BA02374A44B8C79D105378201A#tab::id=0/tree::rel=33/filter::id=678899BA02374A44B8C79D105378201A/vitrina::viewId=678899BA02374A44B8C79D105378201A&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Счета",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[3]",
+    "vitrina": "По источнику финансирования (old)",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[3]/..//ul/li/a)[6]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=29&b=44C1AC1635F048ABADE78B9F5D890EC5&a=0D9EF878387D4662B2E0BE5FB5DAFAED#tab::id=0/tree::rel=29/filter::id=0D9EF878387D4662B2E0BE5FB5DAFAED/categorize::id=DA74B9B18B8C48BC93EA6E871596B066&vid=0D9EF878387D4662B2E0BE5FB5DAFAED&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Счета",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[3]",
+    "vitrina": "По годам (old)",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[3]/..//ul/li/a)[5]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&c=28&b=475CC8829FD1456F891B3A866769E1B6&a=F5990500A4904FEA838B15567E1C1F3B#tab::id=0/tree::rel=28/filter::id=F5990500A4904FEA838B15567E1C1F3B/categorize::id=A7F659403827404F9C433B9F2E65D5F0&vid=F5990500A4904FEA838B15567E1C1F3B&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
+    "menu": "Обращения МКЭ",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[6]",
+    "vitrina": "Обращения МКЭ",
+    "vitrinaXpath": "(//ul[@class=\"secondMenu\"]/li/a)[6]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=25&b=E1B53EE7A09C447CBC6E00968FCC9472&a=07D20FC8FC834371B61DD9881FFEB3DA#tab::id=0/tree::rel=25/filter::id=07D20FC8FC834371B61DD9881FFEB3DA/vitrina::viewId=07D20FC8FC834371B61DD9881FFEB3DA&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
+    "menu": "Дела в работе",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[5]",
+    "vitrina": "Дела моего подразделения",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[5]/..//ul/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PRIVATEOFFICE&c=19&b=96743D1B85F44F748C1BB6EC4543862F&a=CE2145BD9F7D40D9A58731B638BCA39F#tab::id=0/tree::rel=19/filter::id=CE2145BD9F7D40D9A58731B638BCA39F/categorize::id=174939767F844EA091B4EDC87E519398&vid=CE2145BD9F7D40D9A58731B638BCA39F&offset=0&limit=50"
+  },
+  {
     "razdel": "Рабочий кабинет",
     "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
     "menu": "Дела в работе",
