@@ -135,7 +135,7 @@ public class VitrinaHelper extends HelperBase {
       return true;
     }
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 55; i++) {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 

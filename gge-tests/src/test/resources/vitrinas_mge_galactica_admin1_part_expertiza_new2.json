@@ -1,5 +1,65 @@
 [
   {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
+    "menu": "Дела в работе",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[5]",
+    "vitrina": "Дела моих подразделений",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[5]/..//ul/li/a)[3]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PRIVATEOFFICE&c=20&b=C56EAB71243C40789AF54CFF0C2251A5&a=A19744A568C644DF918B77D742A1E09D#tab::id=0/tree::rel=20/filter::id=A19744A568C644DF918B77D742A1E09D/categorize::id=55877BC2372B454A911F7DEA498937E5&vid=A19744A568C644DF918B77D742A1E09D&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
+    "menu": "Архивные дела",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[11]",
+    "vitrina": "Архивные дела",
+    "vitrinaXpath": "(//ul[@class=\"secondMenu\"]/li/a)[11]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=37&b=ED10230DD56B4951B76C5890780A2877&a=7FEEBB53AFB9486BB3EA3CDCBE78206E#tab::id=0/tree::rel=37/filter::id=7FEEBB53AFB9486BB3EA3CDCBE78206E/categorize::id=45A3F21661DC40208D088AA141D1C042&vid=7FEEBB53AFB9486BB3EA3CDCBE78206E&offset=0&limit=10"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
+    "menu": "Запись на прием",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[10]",
+    "vitrina": "Все заявки",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[10]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=33&b=2F7F9AF972CD4647B497AC278A2A8B62&a=D4C820B246A64728B82CD9C700FE8E50#tab::id=0/tree::rel=33/filter::id=D4C820B246A64728B82CD9C700FE8E50/categorize::id=3EAF5398343949E1991A418728BA9E4F&vid=D4C820B246A64728B82CD9C700FE8E50&offset=0&limit=10"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
+    "menu": "НМЦК",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[2]",
+    "vitrina": "Все обращения",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[2]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=7&b=780B2CC740534059BDAE9751FCC85F82&a=C9089BED3F284D76B1D3D6B283661588#tab::id=0/tree::rel=7/filter::id=C9089BED3F284D76B1D3D6B283661588/vitrina::viewId=C9089BED3F284D76B1D3D6B283661588&offset=0&limit=50"
+  },
+  {
+    "razdel": "Экспертиза",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
+    "menu": "Обращения",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Дела в работу",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[3]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=5&b=A1932E4C4BF64D88AD17F604453AAF57&a=8532A25534BC44868977477C5A3A5873#tab::id=0/tree::rel=5/filter::id=8532A25534BC44868977477C5A3A5873/categorize::id=DF70A02C177E4781852A3A64DD459645&vid=8532A25534BC44868977477C5A3A5873&offset=0&limit=50"
+  },
+  {
+    "razdel": "Рабочий кабинет",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[1]",
+    "menu": "Мои поручения",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[3]",
+    "vitrina": "Предоставленные отчеты",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[3]/..//ul/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PRIVATEOFFICE&c=8&b=B3C488DF879D46E59833609EB91E9A2F&a=EAC62B2BEEBC493AB79908F904E9D140#tab::id=0/tree::rel=8/filter::id=EAC62B2BEEBC493AB79908F904E9D140/vitrina::viewId=EAC62B2BEEBC493AB79908F904E9D140&offset=0&limit=100"
+  },
+  {
     "razdel": "Экспертиза",
     "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[2]",
     "menu": "НМЦК",
@@ -8,5 +68,95 @@
     "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[2]/..//ul/li/a)[3]",
     "loginUser": "galactica_admin1",
     "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=EXPERT&c=9&b=86755C49F5D84A35B8492A020EA295F2&a=D337C63981CB4E9A890AD843DEA9CE8A#tab::id=0/tree::rel=9/filter::id=D337C63981CB4E9A890AD843DEA9CE8A/vitrina::viewId=D337C63981CB4E9A890AD843DEA9CE8A&offset=0&limit=50"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по договорам / По годам",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[1]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=A9C19749C07248E3BD0E5396FDA48393#/tree::rel=3/card::cardId=CARD$MGE$FIN_ACC_CONTR_BY_YEAR"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по договорам / По источнику финансирования",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[2]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=E0A28355C8744CDEB94871AB1D49A86B#/tree::rel=4/card::cardId=CARD$MGE$FIN_ACC_CONTR_FINSOURCE"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по договорам / Контроль за сроками",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[3]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=15E5B8315FB34D72B14EC8A885DAB227#/tree::rel=5/card::cardId=CARD$MGE$FIN_ACC_CONTR_TERMS_CONTROL"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по счетам / Счета по годам",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[4]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=C09123626A4E4806A70D09F6F4CFBE58#/tree::rel=6/card::cardId=CARD$MGE$FIN_ACC_ACCOUNTS_BY_YEAR"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по счетам / Счета по источнику финансирования",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[5]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=9985AB3E5C704C52969197D3E9273DAD#/tree::rel=7/card::cardId=CARD$MGE$FIN_ACC_ACCOUNTS_BY_FINS"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по актам / Выполнение по актам",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[6]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=633EEC8AF6EE464494E212A1FE3E930B#/tree::rel=8/card::cardId=CARD$MGE$FIN_ACC_COMPL_BY_ACTS"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Финансовая сводка по счетам-фактурам / Выполнение по счетам-фактурам",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[7]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=C3F8F04E9E504286AAA9BB35765FD5AC#/tree::rel=9/card::cardId=CARD$MGE$FIN_ACC_COMPL_BY_SCHETF"
+  },
+  {
+    "razdel": "Оплата",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[3]",
+    "menu": "Финансовая сводка",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Книга продаж",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[8]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=PAY&b=C9A5FA273E404A7AB80815566277A97E#/tree::rel=10/card::cardId=CARD$MGE$FIN_ACC_SCHETF_SALES_BOOK"
+  },
+  {
+    "razdel": "Аналитика",
+    "razdelXpath": "(//ul[@id=\"firstMenu\"]//a)[6]",
+    "menu": "Аналитика",
+    "menuXpath": "(//ul[@class=\"secondMenu\"]/li/a)[1]",
+    "vitrina": "Мониторинг ПГУ",
+    "vitrinaXpath": "((//ul[@class=\"secondMenu\"]/li/a)[1]/..//ul/li/a)[7]",
+    "loginUser": "galactica_admin1",
+    "baseUrl": "https://expertiza.mos.ru:8443/portal/tabInfo.action?tab=ANALYTICS&b=115135D8A93344FCB068923269259F10#/tree::rel=9/card::cardId=MGE$GU_MONITOR"
   }
 ]
