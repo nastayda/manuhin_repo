@@ -20,10 +20,14 @@ public class SessionHelper extends HelperBase {
     click(By.id("submitBtn"));
   }
 
-  public void loginProcess(String username, String password, String baseUrl) {
+  public void loginProcess(Boolean isProdServer, String username, String password, String baseUrl)
+          throws InterruptedException {
     wd.get(baseUrl);
+    waitElement(By.id("username"));
     type(By.id("username"), username);
+    waitElement(By.id("password"));
     type(By.id("password"), password);
+    waitElement(By.id("submitBtn"));
     click(By.id("submitBtn"));
   }
 

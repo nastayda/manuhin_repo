@@ -148,7 +148,7 @@ public class CardHelper extends HelperBase {
       }
       waitForDisplayed(element);
 
-      clickTabCardVkladka(element, isProdServer);
+      clickWithWaiting(element, isProdServer);
       s = wd.getCurrentUrl();
       tab2 = getTab2(s);
       System.out.println("Открыта вкладка (" + tab2 + ") карточки по ссылке : " + s + "\n");
@@ -237,21 +237,6 @@ public class CardHelper extends HelperBase {
     return elements;
   }
 
-  private Boolean isWebElements(Boolean isProdServer, By locator) throws InterruptedException {
-    Boolean isWebElements = false;
-    for (int ii = 1; ii < 20; ii++) {
-      waitLoadPage(isProdServer);
-      Thread.sleep(500);
-
-      List<WebElement> elements2 = wd.findElements(locator);
-      if (elements2.size() > 0) {
-        isWebElements = true;
-        break;
-      }
-    }
-    return isWebElements;
-  }
-
   private void failCardToJson(GeneratorData vitrina, String fileName) throws IOException {
     List<GeneratorData> vitrinas = vitrinasFromJson(fileName);
     vitrinas.add(vitrina);
@@ -298,7 +283,7 @@ public class CardHelper extends HelperBase {
     return isOpenWithoutMistakes;
   }
 
-  private Boolean checkCardMistakesSimple(String xPathBadText) throws InterruptedException {
+  public Boolean checkCardMistakesSimple(String xPathBadText) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
     Thread.sleep(500);
 
@@ -310,20 +295,5 @@ public class CardHelper extends HelperBase {
     }
 
     return isOpenWithoutMistakes;
-  }
-
-  private void clickTabCardVkladka(WebElement element, Boolean isProdServer) throws InterruptedException {
-    waitLoadPage(isProdServer);
-    Thread.sleep(500);
-
-    for (int i = 0; i < 10; i++) {
-      try {
-        element.click();
-        break;
-      } catch (Exception e) {
-        waitLoadPage(isProdServer);
-        Thread.sleep(500);
-      }
-    }
   }
 }

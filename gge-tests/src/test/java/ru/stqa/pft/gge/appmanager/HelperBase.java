@@ -171,4 +171,47 @@ public class HelperBase {
     type(By.id("password"), password);
     click(By.id("submitBtn"));
   }
+
+  public Boolean isWebElements(Boolean isProdServer, By locator) throws InterruptedException {
+    Boolean isWebElements = false;
+    for (int ii = 1; ii < 20; ii++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      List<WebElement> elements2 = wd.findElements(locator);
+      if (elements2.size() > 0) {
+        isWebElements = true;
+        break;
+      }
+    }
+    return isWebElements;
+  }
+
+  public void clickWithWaiting(WebElement element, Boolean isProdServer) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+
+    for (int i = 0; i < 10; i++) {
+      try {
+        element.click();
+        break;
+      } catch (Exception e) {
+        waitLoadPage(isProdServer);
+        Thread.sleep(500);
+      }
+    }
+  }
+
+  public void clickDifficalt(Boolean isProdServer, String xpath) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(1000);
+    isWebElements(isProdServer, By.xpath(xpath));
+    waitLoadPage(isProdServer);
+    WebElement element = wd.findElement(By.xpath(xpath));
+    if (element.isDisplayed()) {
+      clickWithWaiting(element,isProdServer);
+    }
+    waitLoadPage(isProdServer);
+    Thread.sleep(1000);
+  }
 }

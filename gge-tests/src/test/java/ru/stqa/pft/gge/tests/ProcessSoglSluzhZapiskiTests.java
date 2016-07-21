@@ -1,6 +1,5 @@
 package ru.stqa.pft.gge.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -29,10 +28,13 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     }
 
     assertThat(app.successInit, equalTo(true));
-    app.session().loginProcess(loginUser, password, baseUrl);
+    app.session().loginProcess(isProdServer, loginUser, password, baseUrl);
 
-    app.processGGE().razdel(isProdServer);
+//    app.processGGE().razdel(isProdServer, "//a[@href=\"tabInfo.action?tab=OFFICEWORK\"]");
 
+    assertThat(app.processGGE().razdel(isProdServer, "//a[@href=\"tabInfo.action?tab=OFFICEWORK\"]"),
+            equalTo(true));
+    app.processGGE().openListWithPatternForm(isProdServer);
 
   }
 }

@@ -72,6 +72,7 @@ public class ApplicationManager {
       generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
       cardHelper = new CardHelper(wd);
+      processHelperGGE = new ProcessHelperGGE(wd);
 
       successInit = true;
     } catch (Throwable e) {
@@ -105,7 +106,7 @@ public class ApplicationManager {
 //      generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
       cardHelper = new CardHelper(wd);
-      processHelperGGE = new ProcessHelperGGE(wd);
+
 
       successInit = true;
     } catch (Throwable e) {
