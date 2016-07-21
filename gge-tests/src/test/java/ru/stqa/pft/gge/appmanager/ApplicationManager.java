@@ -35,6 +35,8 @@ public class ApplicationManager {
   private GeneratorHelperUGD generatorHelperUGD;
   private VitrinaHelper vitrinaHelper;
   private CardHelper cardHelper;
+
+  private ProcessHelperGGE processHelperGGE;
   public boolean successInit = false;
 
   public ApplicationManager(String browser) {
@@ -103,6 +105,7 @@ public class ApplicationManager {
 //      generatorHelperUGD = new GeneratorHelperUGD(wd, properties);
       vitrinaHelper = new VitrinaHelper(wd);
       cardHelper = new CardHelper(wd);
+      processHelperGGE = new ProcessHelperGGE(wd);
 
       successInit = true;
     } catch (Throwable e) {
@@ -126,6 +129,10 @@ public class ApplicationManager {
 
   public CardHelper card() {
     return cardHelper;
+  }
+
+  public ProcessHelperGGE processGGE() {
+    return processHelperGGE;
   }
 
   public GeneratorHelperGGEMGE vitrinagenGGEMGE() {

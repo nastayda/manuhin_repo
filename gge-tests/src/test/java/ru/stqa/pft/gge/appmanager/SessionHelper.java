@@ -20,6 +20,13 @@ public class SessionHelper extends HelperBase {
     click(By.id("submitBtn"));
   }
 
+  public void loginProcess(String username, String password, String baseUrl) {
+    wd.get(baseUrl);
+    type(By.id("username"), username);
+    type(By.id("password"), password);
+    click(By.id("submitBtn"));
+  }
+
   public void loginUGD(String username, String password,
                        Boolean userIsChinovnik, String baseUrl,
                        String listVitrinasUrl) {
