@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.fail;
 
@@ -213,5 +214,33 @@ public class HelperBase {
     }
     waitLoadPage(isProdServer);
     Thread.sleep(1000);
+  }
+
+  public Boolean isUrlContainsText(String text) {
+    Boolean isCurrentUrlContainsAnyText = false;
+    String currentUrl = wd.getCurrentUrl();
+    if (currentUrl.contains(text)) {
+      isCurrentUrlContainsAnyText = true;
+    }
+
+    return isCurrentUrlContainsAnyText;
+  }
+
+  public String switchToNewWindow(Set<String> winOld) throws InterruptedException {
+    // Новое окно открыто, переход в него
+    Set<String> wNewSet = wd.getWindowHandles();
+    int attempt = 0;
+    while (wNewSet.size() < 2 && attempt < 15) {
+      Thread.sleep(1000);
+      wNewSet = wd.getWindowHandles();
+      attempt++;
+    }
+
+    wNewSet.removeAll(winOld);
+    String wNew = wNewSet.iterator().next();
+    wd.switchTo().window(wNew);
+    Thread.sleep(500);
+
+    return wNew;
   }
 }

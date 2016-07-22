@@ -29,12 +29,12 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     assertThat(app.successInit, equalTo(true));
     app.session().loginProcess(isProdServer, loginUser, password, baseUrl);
-
-//    app.processGGE().razdel(isProdServer, "//a[@href=\"tabInfo.action?tab=OFFICEWORK\"]");
-
     assertThat(app.processGGE().razdel(isProdServer, "//a[@href=\"tabInfo.action?tab=OFFICEWORK\"]"),
             equalTo(true));
-    app.processGGE().openListWithPatternForm(isProdServer);
+    assertThat(app.processGGE().selectTypeDoc(isProdServer), equalTo(true));
+
+    app.processGGE().fillForm(isProdServer);
+
 
   }
 }
