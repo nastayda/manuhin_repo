@@ -35,6 +35,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     app.processGGE().fillForm(isProdServer);
 
+    app.processGGE().fillForm(isProdServer);
 
   }
 }

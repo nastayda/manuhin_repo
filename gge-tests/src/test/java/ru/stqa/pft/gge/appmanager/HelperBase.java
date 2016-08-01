@@ -188,19 +188,24 @@ public class HelperBase {
     return isWebElements;
   }
 
-  public void clickWithWaiting(WebElement element, Boolean isProdServer) throws InterruptedException {
+  public boolean clickWithWaiting(WebElement element, Boolean isProdServer) throws InterruptedException {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
+    Boolean isClick = false;
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 20; i++) {
       try {
         element.click();
+        isClick = true;
         break;
       } catch (Exception e) {
+        isClick = false;
         waitLoadPage(isProdServer);
-        Thread.sleep(500);
+        Thread.sleep(1000);
       }
     }
+
+    return isClick;
   }
 
   public void clickDifficalt(Boolean isProdServer, String xpath) throws InterruptedException {
@@ -209,8 +214,9 @@ public class HelperBase {
     isWebElements(isProdServer, By.xpath(xpath));
     waitLoadPage(isProdServer);
     WebElement element = wd.findElement(By.xpath(xpath));
+    Boolean isClick = false;
     if (element.isDisplayed()) {
-      clickWithWaiting(element,isProdServer);
+      isClick = clickWithWaiting(element,isProdServer);
     }
     waitLoadPage(isProdServer);
     Thread.sleep(1000);

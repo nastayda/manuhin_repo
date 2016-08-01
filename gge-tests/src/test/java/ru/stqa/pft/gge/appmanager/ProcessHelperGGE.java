@@ -140,21 +140,17 @@ public class ProcessHelperGGE extends HelperBase {
       WebElement element = elements.iterator().next();
       fillFiltrCombobox(element);
 //      fillFiltrCheckbox(element);
-      fillFiltrType(element, 0, "ав");
-      fillFiltrType(element, 49, "ав");
-      fillFiltrType(element, 47, "ав");
-      fillFiltrType(element, 6, "01.04.2015");
-      fillFiltrType(element, 9, "01.04.2015");
+      fillFiltrTypeEdit(element, "Test_001");
+      fillFiltrTypeTextArea(element, "Test_001");
+      fillFiltrMultiSelect(element);
 //      fillFiltrReference(element, 16, isProdServer);
 //      fillFiltrReference(element, 15, isProdServer);
     }
   }
 
   private void fillFiltrCombobox(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//div[contains(@class,\"autoFormGROUP_VERTICALLY\")]" +
-            "[not(contains(@class,\"hide\"))]//span[contains(@class,\" autoFormCOMBOBOX\")]" +
-            "[not(contains(@class,\"hide\"))]//div[contains(@class,\"customSelect\")]" +
-            "[not(contains(@class,\"disabled\"))]//select";
+    String xpathlocator = ".//span[contains(@class,\"autoFormCOMBOBOX\")][not(contains(@class,\"hide\"))]" +
+            "//select[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0][not(@disabled=\"disabled\")]";
 
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
@@ -228,5 +224,80 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
+  private void fillFiltrTypeEdit(WebElement element, String text) throws InterruptedException {
+    String xpathlocator = ".//input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
+            "[not(@disabled=\"disabled\")][@typeview=\"EDIT\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isDisplayed()) {
+            type(w, text);
+          }
+        }
+      }
+    }
+  }
+
+  private void fillFiltrTypeTextArea(WebElement element, String text) throws InterruptedException {
+    String xpathlocator = ".//textarea[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
+            "[not(@disabled=\"disabled\")][@typeview=\"TEXTAREA\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isDisplayed()) {
+            type(w, text);
+          }
+        }
+      }
+    }
+  }
+
+  private void fillFiltrMultiSelect(WebElement element) throws InterruptedException {
+    String xpathlocator = ".//ul[@class=\"token-input-list\"]/li[@class=\"token-input-input-token\"]" +
+            "/input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0][not(@disabled=\"disabled\")]";
+
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      int ii = -1;
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+
+          // Если элемент видим, незадезейблен, без значения - тогда выставить последнее
+          String xPathValue = "../../li[@class=\"token-input-token\"]/p";
+          List<WebElement> valElements = w.findElements(By.xpath(xPathValue));
+          if (valElements.size() > 0) {
+            continue;
+          }
+          ii++;
+          multiSelect(ii);
+//          List<WebElement> elementsValue = w.findElements(By.xpath("./option[last()]"));
+//          if (elementsValue.size() == 1) {
+//            WebElement ww = elementsValue.iterator().next();
+//            String id = w.getAttribute("id");
+//            String jstriptString =
+//                    "$('select#" + id + "').find('option:last').attr('selected', 'selected').end().change()";
+//            ((JavascriptExecutor) wd).executeScript(jstriptString);
+//          }
+        }
+      }
+    }
+  }
+
+  private void multiSelect(int i) throws InterruptedException {
+    String jstriptString = "$('.autoFormMULTISELECT, .autoFormMULTISELECT_BTN')." +
+            "find('.token-input-list:visible .token-input-input-token:only-child').closest('.token-input-list').eq("
+            + i + ").click();";
+    ((JavascriptExecutor) wd).executeScript(jstriptString);
+
+    Thread.sleep(2000);
+
+    jstriptString = "$('.token-input-dropdown li').eq(1).mousedown();";
+    ((JavascriptExecutor) wd).executeScript(jstriptString);
+  }
 
 }
