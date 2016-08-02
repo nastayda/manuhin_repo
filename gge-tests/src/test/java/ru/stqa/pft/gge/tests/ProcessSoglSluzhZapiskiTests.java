@@ -1,6 +1,8 @@
 package ru.stqa.pft.gge.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.stqa.pft.gge.model.ProcessData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,6 +40,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
             equalTo(true));
     assertThat(app.processGGE().selectTypeDoc(isProdServer), equalTo(true));
     app.processGGE().fillForm(isProdServer);
+
+    ProcessData process = new ProcessData();
+
+    app.processGGE().openCardWithProcess(isProdServer, process);
 
   }
 }

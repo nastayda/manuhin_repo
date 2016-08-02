@@ -1,9 +1,7 @@
 package ru.stqa.pft.gge.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import ru.stqa.pft.gge.model.ProcessData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -359,5 +357,30 @@ public class ProcessHelperGGE extends HelperBase {
       jstriptString = "$('.token-input-dropdown li').eq(1).mousedown();";
       ((JavascriptExecutor) wd).executeScript(jstriptString);
     }
+  }
+
+  public Boolean openCardWithProcess(boolean isProdServer, ProcessData process) throws InterruptedException {
+    String xpathTypeDocument = "//span[contains(text(),'Служебные записки ЦА')]";
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathTypeDocument));
+
+    String xpathSecondTab = "(//ul[@id=\"tabs_group\"]//a)[2]";
+    waitLoadPage(isProdServer);
+    List<WebElement> elements = wd.findElements(By.xpath(xpathSecondTab));
+    if (elements.size() > 0) {
+      elements.iterator().next().click();
+      String xpathCardProcess = "//a[contains(@href,'tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD')]";
+      waitLoadPage(isProdServer);
+      Thread.sleep(200);
+      waitElement(By.xpath(xpathCardProcess));
+
+      List<WebElement> elementsProcess = wd.findElements(By.xpath(xpathCardProcess));
+      WebElement next = elementsProcess.iterator().next();
+      String href = next.getAttribute("href");
+
+      process.withUrlCardProcess(href);
+    }
+    return true;
   }
 }
