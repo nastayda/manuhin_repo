@@ -30,6 +30,9 @@ public class ProcessData {
   @Expose
   private String nameTask;
 
+  @Expose
+  private String actionTask;
+
   public String getUrlCardProcess() {
     return urlCardProcess;
   }
@@ -60,6 +63,10 @@ public class ProcessData {
 
   public String getNameTask() {
     return nameTask;
+  }
+
+  public String getActionTask() {
+    return actionTask;
   }
 
   public ProcessData withUrlCardProcess(String urlCardProcess) {
@@ -102,11 +109,17 @@ public class ProcessData {
     return this;
   }
 
+  public ProcessData withActionTask(String actionTask) {
+    this.actionTask = actionTask;
+    return this;
+  }
+
   @Override
   public String toString() {
     return numberTask + " / " +
            nameTask + " / " +
            login + " / " +
+           actionTask + " / " +
            urlCardTask + " / " +
            fio + " / " +
            numberProcess + " / " +
