@@ -5,7 +5,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,19 @@ public class ProcessHelperGGE extends HelperBase {
   public Boolean razdel(Boolean isProdServer, String xpathAD) throws InterruptedException {
     wd.manage().window().maximize();
     clickDifficalt(isProdServer, xpathAD);
+
+    String currentUrl = wd.getCurrentUrl();
+    boolean isAD = currentUrl.contains("OFFICEWORK");
+
+    return isAD;
+  }
+
+  public Boolean razdelUrl(Boolean isProdServer, String urlAD) throws InterruptedException {
+    wd.manage().window().maximize();
+    wd.get(urlAD);
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(1000);
 
     String currentUrl = wd.getCurrentUrl();
     boolean isAD = currentUrl.contains("OFFICEWORK");
@@ -80,35 +95,47 @@ public class ProcessHelperGGE extends HelperBase {
 
 
   public Boolean fillForm(boolean isProdServer) throws InterruptedException {
-    fillTab1(isProdServer);
-    fillTab2(isProdServer);
+    fillTab(isProdServer, 1);
+    clickDifficalt(isProdServer, "//a[@href=\"#tab_TAB_GROUP_02\"]");
+    fillTab(isProdServer, 2);
 
     // Нажать "Сохранить" (submit)
     String xpathSubmitButton = "//input[@type=\"submit\"][@value=\"Сохранить\"]";
     waitElement(By.xpath(xpathSubmitButton));
+
+    // Перечень окон до открытия нового
+    Set<String> winOld = wd.getWindowHandles();
+
+    // Нажать "Сохранить" (save)
+    waitElement(By.xpath(xpathSubmitButton));
     click(By.xpath(xpathSubmitButton));
+
+
+    Set<String> wNewSet = wd.getWindowHandles();
+    int attempt = 0;
+    while (wNewSet.size() > 1 && attempt < 15) {
+      Thread.sleep(1000);
+      wNewSet = wd.getWindowHandles();
+      attempt++;
+    }
+
+//    wNewSet.removeAll(winOld);
+    String wNew = wNewSet.iterator().next();
+    wd.switchTo().window(wNew);
+
 
     return true;
   }
 
-  private Boolean fillTab1(boolean isProdServer) throws InterruptedException {
-    // Проверяем что активна вкладка 01 ("Документ")
-//    "//li[@class=\"autoFormTabItem active\"]//a[contains(@href,\"TAB_GROUP_01\")]"
-
+  private Boolean fillTab(boolean isProdServer, int numTab) throws InterruptedException {
     Boolean isFillTab = false;
     if (!waitLoadForm(isProdServer, "//*[@class=\"header\"]")) {
       return isFillTab;
     }
 
-    fillAllFilters(isProdServer, ".//div[@id=\"tab_TAB_GROUP_01\"]");
-
+    fillAllFilters(isProdServer, ".//div[@id=\"tab_TAB_GROUP_0" + numTab + "\"]", numTab);
     isFillTab = true;
-
     return isFillTab;
-  }
-
-  private void fillTab2(boolean isProdServer) {
-
   }
 
   private Boolean waitLoadForm(Boolean isProdServer, String locator) throws InterruptedException {
@@ -132,19 +159,25 @@ public class ProcessHelperGGE extends HelperBase {
     return isWebElements;
   }
 
-  public void fillAllFilters(boolean isProdServer, String xpathAllElements) throws InterruptedException {
+  public void fillAllFilters(boolean isProdServer, String xpathAllElements, int numTab) throws InterruptedException {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
     List<WebElement> elements = wd.findElements(By.xpath(xpathAllElements));
     if (elements.size() == 1) {
       WebElement element = elements.iterator().next();
-      fillFiltrCombobox(element);
-//      fillFiltrCheckbox(element);
-      fillFiltrTypeEdit(element, "Test_001");
-      fillFiltrTypeTextArea(element, "Test_001");
-      fillFiltrMultiSelect(element);
+      if (numTab == 1) {
+        fillFiltrCombobox(element);
+        fillFiltrTypeEdit(element, "Test_001");
+        fillFiltrTypeTextArea(element, "Test_001");
+        fillFiltrMultiSelect(element);
+        fillFiltrTypeButtonGen(element, isProdServer);
+      } else {
+        fillFiltrTypeDate(element, "Test_001");
+      }
+
 //      fillFiltrReference(element, 16, isProdServer);
 //      fillFiltrReference(element, 15, isProdServer);
+//      fillFiltrCheckbox(element);
     }
   }
 
@@ -175,10 +208,6 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private boolean isVisibleEnabledWithoutValue(WebElement element) {
-//    if (!element.isDisplayed()) {
-//      return false;
-//    }
-
     if (!element.isEnabled()) {
       return false;
     }
@@ -209,8 +238,9 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  private void fillFiltrType(WebElement element, int attr, String text) throws InterruptedException {
-    String xpathlocator = ".//*[@type=\"text\" and @attr_type=\"" + attr + "\"]";
+  private void fillFiltrTypeEdit(WebElement element, String text) throws InterruptedException {
+    String xpathlocator = ".//input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
+            "[not(@disabled=\"disabled\")][@typeview=\"EDIT\"]";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
@@ -224,16 +254,28 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  private void fillFiltrTypeEdit(WebElement element, String text) throws InterruptedException {
-    String xpathlocator = ".//input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
-            "[not(@disabled=\"disabled\")][@typeview=\"EDIT\"]";
+  private void fillFiltrTypeDate(WebElement element, String text) throws InterruptedException {
+    String xpathlocator = ".//input[count(ancestor::span[contains(@class,\"autoFormDATE\")]" +
+            "[contains(@class,\"hide\")])=0]" +
+            "[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
+            "[not(@disabled=\"disabled\")][@typeview=\"DATE\"]";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date currentDate = new Date();
+        Long time = currentDate.getTime();
+        long anotherDate = 7;
+        time = time + (60*60*24*1000*anotherDate);
+        currentDate = new Date(time);
+        String dateString = sdf.format(currentDate);
+        System.out.println("currentDate = " + dateString);
+
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
-            type(w, text);
+            waitForDisplayed(w);
+            type(w, dateString);
           }
         }
       }
@@ -256,6 +298,26 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
+  private void fillFiltrTypeButtonGen(WebElement element, boolean isProdServer) throws InterruptedException {
+    String xpathlocator = ".//button[@class=\"numberGeneratorButton\"]";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isDisplayed()) {
+            String xPathValue = "../input[@disabled=\"disabled\"]";
+            List<WebElement> elementsDisabled = w.findElements(By.xpath(xPathValue));
+            // Если элемент ввода рег.номера задизейблен, то жмем на кнопку рег. номера
+            if (elementsDisabled.size() > 0) {
+              clickWithWaiting(w, isProdServer);
+            }
+          }
+        }
+      }
+    }
+  }
+
   private void fillFiltrMultiSelect(WebElement element) throws InterruptedException {
     String xpathlocator = ".//ul[@class=\"token-input-list\"]/li[@class=\"token-input-input-token\"]" +
             "/input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0][not(@disabled=\"disabled\")]";
@@ -263,7 +325,6 @@ public class ProcessHelperGGE extends HelperBase {
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
-      int ii = -1;
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
 
@@ -273,31 +334,30 @@ public class ProcessHelperGGE extends HelperBase {
           if (valElements.size() > 0) {
             continue;
           }
-          ii++;
-          multiSelect(ii);
-//          List<WebElement> elementsValue = w.findElements(By.xpath("./option[last()]"));
-//          if (elementsValue.size() == 1) {
-//            WebElement ww = elementsValue.iterator().next();
-//            String id = w.getAttribute("id");
-//            String jstriptString =
-//                    "$('select#" + id + "').find('option:last').attr('selected', 'selected').end().change()";
-//            ((JavascriptExecutor) wd).executeScript(jstriptString);
-//          }
+          multiSelect();
         }
       }
     }
   }
 
-  private void multiSelect(int i) throws InterruptedException {
-    String jstriptString = "$('.autoFormMULTISELECT, .autoFormMULTISELECT_BTN')." +
-            "find('.token-input-list:visible .token-input-input-token:only-child').closest('.token-input-list').eq("
-            + i + ").click();";
-    ((JavascriptExecutor) wd).executeScript(jstriptString);
+  private void multiSelect() throws InterruptedException {
+    String jstriptString;
+    int maxI = 10;
 
-    Thread.sleep(2000);
+    for (int i = 0; i < maxI; i++) {
+      jstriptString = "$('.autoFormMULTISELECT').find('.token-input-list:visible .token-input-input-token:only-child').closest('.token-input-list').eq(" + i + ").click();";
+      ((JavascriptExecutor) wd).executeScript(jstriptString);
+      Thread.sleep(200);
+      jstriptString = "$('.token-input-dropdown li').eq(1).mousedown();";
+      ((JavascriptExecutor) wd).executeScript(jstriptString);
+    }
 
-    jstriptString = "$('.token-input-dropdown li').eq(1).mousedown();";
-    ((JavascriptExecutor) wd).executeScript(jstriptString);
+    for (int i = 0; i < maxI; i++) {
+      jstriptString = "$('.autoFormMULTISELECT_BTN').find('.token-input-list:visible .token-input-input-token:only-child').closest('.token-input-list').eq(" + i + ").click();";
+      ((JavascriptExecutor) wd).executeScript(jstriptString);
+      Thread.sleep(200);
+      jstriptString = "$('.token-input-dropdown li').eq(1).mousedown();";
+      ((JavascriptExecutor) wd).executeScript(jstriptString);
+    }
   }
-
 }
