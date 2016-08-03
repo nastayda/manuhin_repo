@@ -1,9 +1,19 @@
 package ru.stqa.pft.gge.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.stqa.pft.gge.model.GeneratorData;
 import ru.stqa.pft.gge.model.TaskProcessData;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -55,4 +65,45 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask);
     app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
   }
+
+  @DataProvider
+  public Iterator<Object[]> processStepsFromJson() throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(
+            new File(fileName)))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<TaskProcessData> tasks = gson.fromJson(json, new TypeToken<List<TaskProcessData>>(){}.getType()); // List<GroupData>.class
+      return tasks.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
+  }
+
+  @Test(dataProvider = "processStepsFromJson", timeOut = 250000)
+  public void testProcessTaskGGE(TaskProcessData task) throws Exception {
+
+    boolean isProdServer = false;
+    boolean isContainsUrlProdServer =
+            task.getUrlCardProcess().contains("https://eis.gge.ru/");
+    if (isContainsUrlProdServer) {
+      isProdServer = true;
+    }
+
+    String loginUser = task.getLogin();
+
+    String password = "21";
+    if (isProdServer) {
+      password = "Ukfdujc21";
+    }
+
+    assertThat(app.successInit, equalTo(true));
+    app.session().loginProcess(isProdServer, loginUser, password, task.getUrlCardProcess());
+
+
+
+  }
+
 }

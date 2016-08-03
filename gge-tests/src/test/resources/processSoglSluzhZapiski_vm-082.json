@@ -8,5 +8,25 @@
     "urlCardTask": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=c55f202db8c14c19b6d0582a70be6d34&tab=PROCESSTASK_CARD&tab2=PROCESSTASK_CARD_TAB1",
     "numberTask": "25002",
     "nameTask": "Согласовать внутренний документ"
+  },
+  {
+    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=3FBC63170A422EC5F7141F02B983A46F",
+    "login": "e.mironova",
+    "actionWithTask": "Согласовать",
+    "fio": "Миронова Екатерина Владимировна",
+    "numberProcess": "ПРОЦЕСС № 4788 от 03.08.2016",
+    "urlCardTask": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=c55f202db8c14c19b6d0582a70be6d34&tab=PROCESSTASK_CARD&tab2=PROCESSTASK_CARD_TAB1",
+    "numberTask": "25002",
+    "nameTask": "Согласовать внутренний документ"
+  },
+  {
+    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=3FBC63170A422EC5F7141F02B983A46F",
+    "login": "e.mironova",
+    "actionWithTask": "Согласовать",
+    "fio": "Миронова Екатерина Владимировна",
+    "numberProcess": "ПРОЦЕСС № 4788 от 03.08.2016",
+    "urlCardTask": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?documentId=c55f202db8c14c19b6d0582a70be6d34&tab=PROCESSTASK_CARD&tab2=PROCESSTASK_CARD_TAB1",
+    "numberTask": "25002",
+    "nameTask": "Согласовать внутренний документ"
   }
 ]
