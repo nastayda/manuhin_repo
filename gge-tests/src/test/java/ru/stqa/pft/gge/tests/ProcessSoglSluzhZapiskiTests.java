@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.stqa.pft.gge.model.GeneratorData;
 import ru.stqa.pft.gge.model.TaskProcessData;
 
 import java.io.BufferedReader;
@@ -67,7 +66,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
   }
 
   @DataProvider
-  public Iterator<Object[]> processStepsFromJson() throws IOException {
+  public Iterator<Object[]> processTasksFromJson() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(
             new File(fileName)))) {
       String json = "";
@@ -82,7 +81,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "processStepsFromJson", timeOut = 250000)
+  @Test(dataProvider = "processTasksFromJson", timeOut = 250000)
   public void testProcessTaskGGE(TaskProcessData task) throws Exception {
 
     boolean isProdServer = false;
