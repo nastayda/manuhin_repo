@@ -5,12 +5,15 @@ import com.google.gson.annotations.Expose;
 /**
  * Created by manuhin on 02.08.2016.
  */
-public class ProcessData {
+public class TaskProcessData {
   @Expose
   private String urlCardProcess;
 
   @Expose
   private String login;
+
+  @Expose
+  private String actionWithTask;
 
   @Expose
   private String fio;
@@ -30,15 +33,16 @@ public class ProcessData {
   @Expose
   private String nameTask;
 
-  @Expose
-  private String actionTask;
-
   public String getUrlCardProcess() {
     return urlCardProcess;
   }
 
   public String getLogin() {
     return login;
+  }
+
+  public String getActionWithTask() {
+    return actionWithTask;
   }
 
   public String getFio() {
@@ -65,52 +69,48 @@ public class ProcessData {
     return nameTask;
   }
 
-  public String getActionTask() {
-    return actionTask;
-  }
-
-  public ProcessData withUrlCardProcess(String urlCardProcess) {
+  public TaskProcessData withUrlCardProcess(String urlCardProcess) {
     this.urlCardProcess = urlCardProcess;
     return this;
   }
 
-  public ProcessData withLogin(String login) {
+  public TaskProcessData withLogin(String login) {
     this.login = login;
     return this;
   }
 
-  public ProcessData setFio(String fio) {
+  public TaskProcessData withActionWithTask(String actionWithTask) {
+    this.actionWithTask = actionWithTask;
+    return this;
+  }
+
+  public TaskProcessData withFio(String fio) {
     this.fio = fio;
     return this;
   }
 
-  public ProcessData withNumberProcess(String numberProcess) {
+  public TaskProcessData withNumberProcess(String numberProcess) {
     this.numberProcess = numberProcess;
     return this;
   }
 
-  public ProcessData withDateProcess(String dateProcess) {
+  public TaskProcessData withDateProcess(String dateProcess) {
     this.dateProcess = dateProcess;
     return this;
   }
 
-  public ProcessData withUrlCardTask(String urlCardTask) {
+  public TaskProcessData withUrlCardTask(String urlCardTask) {
     this.urlCardTask = urlCardTask;
     return this;
   }
 
-  public ProcessData withNumberTask(String numberTask) {
+  public TaskProcessData withNumberTask(String numberTask) {
     this.numberTask = numberTask;
     return this;
   }
 
-  public ProcessData withNameTask(String nameTask) {
+  public TaskProcessData withNameTask(String nameTask) {
     this.nameTask = nameTask;
-    return this;
-  }
-
-  public ProcessData withActionTask(String actionTask) {
-    this.actionTask = actionTask;
     return this;
   }
 
@@ -119,7 +119,6 @@ public class ProcessData {
     return numberTask + " / " +
            nameTask + " / " +
            login + " / " +
-           actionTask + " / " +
            urlCardTask + " / " +
            fio + " / " +
            numberProcess + " / " +

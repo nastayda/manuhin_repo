@@ -1,8 +1,9 @@
 package ru.stqa.pft.gge.tests;
 
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.stqa.pft.gge.model.ProcessData;
+import ru.stqa.pft.gge.model.TaskProcessData;
+
+import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,8 +13,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
+  String fileName = "src/test/resources/processSoglSluzhZapiski_vm-082.json";
+
   @Test
-  public void testProcessSoglSluzhZapiski() throws InterruptedException {
+  public void testProcSoglSluzhZapCreateSlZap() throws InterruptedException, IOException {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
     String loginUser = "e.mironova";
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
@@ -41,9 +44,15 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.processGGE().selectTypeDoc(isProdServer), equalTo(true));
     app.processGGE().fillForm(isProdServer);
 
-    ProcessData process = new ProcessData();
+    TaskProcessData taskProcess = new TaskProcessData();
+    taskProcess.withLogin(loginUser);
 
-    app.processGGE().openCardWithProcess(isProdServer, process);
+    app.processGGE().openCardTabWithProcess(isProdServer, taskProcess);
+    app.processGGE().openCardProcess(isProdServer, taskProcess);
 
+    String actionWithTask = "Согласовать";
+
+    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask);
+    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
   }
 }

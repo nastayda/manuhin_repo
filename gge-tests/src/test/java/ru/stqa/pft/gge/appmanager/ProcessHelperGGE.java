@@ -1,8 +1,10 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
-import ru.stqa.pft.gge.model.ProcessData;
+import ru.stqa.pft.gge.model.TaskProcessData;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -359,7 +361,7 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  public Boolean openCardWithProcess(boolean isProdServer, ProcessData process) throws InterruptedException {
+  public Boolean openCardTabWithProcess(boolean isProdServer, TaskProcessData process) throws InterruptedException {
     String xpathTypeDocument = "//span[contains(text(),'Служебные записки ЦА')]";
     waitLoadPage(isProdServer);
     Thread.sleep(200);
@@ -369,7 +371,8 @@ public class ProcessHelperGGE extends HelperBase {
     waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(By.xpath(xpathSecondTab));
     if (elements.size() > 0) {
-      elements.iterator().next().click();
+      clickWithWaiting(elements.iterator().next(), isProdServer);
+//      elements.iterator().next().click();
       String xpathCardProcess = "//a[contains(@href,'tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD')]";
       waitLoadPage(isProdServer);
       Thread.sleep(200);
@@ -381,6 +384,84 @@ public class ProcessHelperGGE extends HelperBase {
 
       process.withUrlCardProcess(href);
     }
+    return true;
+  }
+
+  public Boolean openCardProcess(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    wd.get(taskProcess.getUrlCardProcess());
+    String xpathTypeDocument = "//table[@id=\"tabsWrap\"]//a[contains(@href,'tabInfo.action?documentId')]";
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathTypeDocument));
+
+    return true;
+  }
+
+  public Boolean readActiveTaskProcessData(boolean isProdServer,
+                                           TaskProcessData taskProcess,
+                                           String actionWithTask) throws InterruptedException {
+    String xpathTask = "//table[@id=\"tabsWrap\"]//a[contains(@href,'tabInfo.action?documentId')]";
+    String xpathTaskURL = xpathTask;
+    String xpathTaskNumber = xpathTask;
+    String xpathTaskName = xpathTask + "/../../td[@class='task']";
+    String xpathTaskExecutor = xpathTask + "/../../td[@class='executor']/div[1]";
+    String xpathProcessNumDate = "//div[@class=\"bold appeal\"]";
+    String xpathActionWithTask = "//div[contains(@class,\"assignResponsibleAction\")]" +
+            "//input[contains(@value, \"" + actionWithTask + "\")]";
+
+    waitElement(By.xpath(xpathTask));
+    waitElement(By.xpath(xpathTaskName));
+    waitElement(By.xpath(xpathTaskExecutor));
+
+    // Номер и ссылка на задачу
+    List<WebElement> elements = wd.findElements(By.xpath(xpathTask));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String href = element.getAttribute("href");
+      String numTask = element.getText();
+
+      taskProcess.withNumberTask(numTask).withUrlCardTask(href);
+    }
+
+    // Наименование задачи
+    elements = wd.findElements(By.xpath(xpathTaskName));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String nameTask = element.getText();
+
+      taskProcess.withNameTask(nameTask);
+    }
+
+    // Исполнитель (ФИО)
+    elements = wd.findElements(By.xpath(xpathTaskExecutor));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String taskExecutor = element.getText();
+
+      taskProcess.withFio(taskExecutor);
+    }
+
+    // Номер и дата процесса
+    elements = wd.findElements(By.xpath(xpathProcessNumDate));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String processNumberDate = element.getText();
+
+      taskProcess.withNumberProcess(processNumberDate);
+    }
+
+    taskProcess.withActionWithTask(actionWithTask);
+
+    return true;
+  }
+
+  public boolean writeActiveTaskProcessDataToJson(boolean isProdServer,
+                                                  TaskProcessData taskProcess,
+                                                  String fileName) throws IOException {
+    List<TaskProcessData> processTasks = new ArrayList<>();
+    processTasks.add(taskProcess);
+    saveAsJsonProcessTask(processTasks, new File(fileName));
+
     return true;
   }
 }

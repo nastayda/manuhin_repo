@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.gge.model.GeneratorData;
+import ru.stqa.pft.gge.model.TaskProcessData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -137,6 +138,15 @@ public class HelperBase {
     Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
             .excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(vitrinas);
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
+  }
+
+  public void saveAsJsonProcessTask(List<TaskProcessData> processTasks, File file) throws IOException {
+    Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting()
+            .excludeFieldsWithoutExposeAnnotation().create();
+    String json = gson.toJson(processTasks);
     try (Writer writer = new FileWriter(file)) {
       writer.write(json);
     }
