@@ -12,7 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -65,33 +64,63 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
   }
 
-  @DataProvider
-  public Iterator<Object[]> processTasksFromJson() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(
-            new File(fileName)))) {
-      String json = "";
-      String line = reader.readLine();
-      while (line != null) {
-        json += line;
-        line = reader.readLine();
+  class MyIterator implements Iterator<Object[]> {
+
+    private Object[] data;
+
+    private void readFile() throws IOException {
+      try (BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)))) {
+        String json = "";
+        String line = reader.readLine();
+        while (line != null) {
+          json += line;
+          line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<TaskProcessData> tasks = gson.fromJson(json, new TypeToken<List<TaskProcessData>>() {
+        }.getType()); // List<GroupData>.class
+
+        if (tasks.isEmpty())
+          data = null;
+        else
+          data = new Object[] {tasks.get(0)};
       }
-      Gson gson = new Gson();
-      List<TaskProcessData> tasks = gson.fromJson(json, new TypeToken<List<TaskProcessData>>(){}.getType()); // List<GroupData>.class
-      return tasks.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
+
+    @Override
+    public boolean hasNext() {
+      try {
+        readFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+        return false;
+      }
+
+      return data != null;
+    }
+
+    @Override
+    public Object[] next() {
+      return data;
     }
   }
 
+  @DataProvider
+  public Iterator<Object[]> processTasksFromJson() throws IOException {
+    return new MyIterator();
+  }
+
   @Test(dataProvider = "processTasksFromJson", timeOut = 250000)
-  public void testProcessTaskGGE(TaskProcessData task) throws Exception {
+  public void testProcessTaskGGE(TaskProcessData taskProcess) throws Exception {
 
     boolean isProdServer = false;
     boolean isContainsUrlProdServer =
-            task.getUrlCardProcess().contains("https://eis.gge.ru/");
+            taskProcess.getUrlCardProcess().contains("https://eis.gge.ru/");
     if (isContainsUrlProdServer) {
       isProdServer = true;
     }
 
-    String loginUser = task.getLogin();
+    String loginUser = taskProcess.getLogin();
 
     String password = "21";
     if (isProdServer) {
@@ -99,10 +128,16 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     }
 
     assertThat(app.successInit, equalTo(true));
-    app.session().loginProcess(isProdServer, loginUser, password, task.getUrlCardProcess());
+    app.session().loginProcess(isProdServer, loginUser, password, taskProcess.getUrlCardProcess());
 
+    app.processGGE().openCardTask(isProdServer, taskProcess);
+    app.processGGE().fillFormTask(isProdServer, taskProcess);
+    app.processGGE().openCardProcessNext(isProdServer, taskProcess);
 
+    String actionWithTask = "Согласовать";
 
+    app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess, actionWithTask);
+    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
   }
 
 }

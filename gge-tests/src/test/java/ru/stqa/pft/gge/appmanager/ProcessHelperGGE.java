@@ -44,14 +44,14 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean selectTypeDoc(boolean isProdServer) throws InterruptedException {
     // Клик по кнопке "Мои действия"
-    String xpath = "//div[contains(@class,\"singleButton\")][contains(text(),\"Мои действия\")]";
+    String xpath = "//div[contains(@class,'singleButton')][contains(text(),'Мои действия')]";
     clickDifficalt(isProdServer, xpath);
 
     // Перечень окон до открытия нового
     Set<String> winOld = wd.getWindowHandles();
 
     // Клик по кнопке "Создать документ"
-    xpath = "//ul[@class=\"notUgd HEADER showSubMenu showme\"]/li/a";
+    xpath = "//ul[@class='notUgd HEADER showSubMenu showme']/li/a";
     clickDifficalt(isProdServer, xpath);
 
     String newWindow = switchToNewWindow(winOld);
@@ -62,12 +62,12 @@ public class ProcessHelperGGE extends HelperBase {
     }
 
     // Выбор "Внутренние документы"
-    String xpathTypesDoc = "//span[contains(text(),\"Внутренние документы\")]";
+    String xpathTypesDoc = "//span[contains(text(),'Внутренние документы')]";
     waitElement(By.xpath(xpathTypesDoc));
     click(By.xpath(xpathTypesDoc));
 
     // Выбор "Служебная записка ЦА"
-    String xpathSlugZapRadioButton = "//label[@for=\"item_SLZP_2\"]/input";
+    String xpathSlugZapRadioButton = "//label[@for='item_SLZP_2']/input";
     waitElement(By.xpath(xpathSlugZapRadioButton));
     Thread.sleep(500);
     click(By.xpath(xpathSlugZapRadioButton));
@@ -76,7 +76,7 @@ public class ProcessHelperGGE extends HelperBase {
     Set<String> winOld2 = wd.getWindowHandles();
 
     // Нажать "Выбрать" (submit)
-    String xpathSubmitButton = "//input[@type=\"button\"][@value=\"Выбрать\"]";
+    String xpathSubmitButton = "//input[@type='button'][@value='Выбрать']";
     waitElement(By.xpath(xpathSubmitButton));
     click(By.xpath(xpathSubmitButton));
 
@@ -96,11 +96,11 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean fillForm(boolean isProdServer) throws InterruptedException {
     fillTab(isProdServer, 1);
-    clickDifficalt(isProdServer, "//a[@href=\"#tab_TAB_GROUP_02\"]");
+    clickDifficalt(isProdServer, "//a[@href='#tab_TAB_GROUP_02']");
     fillTab(isProdServer, 2);
 
     // Нажать "Сохранить" (submit)
-    String xpathSubmitButton = "//input[@type=\"submit\"][@value=\"Сохранить\"]";
+    String xpathSubmitButton = "//input[@type='submit'][@value='Сохранить']";
     waitElement(By.xpath(xpathSubmitButton));
 
     // Перечень окон до открытия нового
@@ -127,13 +127,59 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
+  public Boolean fillFormTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    String xpathTBody = "//tbody";
+    String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
+            "//input[contains(@value, '" + taskProcess.getActionWithTask() + "')]";
+
+
+    List<WebElement> elements = wd.findElements(By.xpath(xpathTBody));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      fillReportTextArea(element, "Test_001_report");
+
+//      fillFiltrCombobox(element);
+//      fillFiltrTypeEdit(element, "Test_001");
+//      fillFiltrTypeTextArea(element, "Test_001");
+//      fillFiltrMultiSelect(element);
+//      fillFiltrTypeButtonGen(element, isProdServer);
+//      fillFiltrTypeDate(element, "Test_001");
+    }
+
+    // Нажать кнопку согласования/на доработку (submit)
+    waitElement(By.xpath(xpathActionWithTask));
+    clickDifficalt(isProdServer, xpathActionWithTask);
+
+//    // Перечень окон до открытия нового
+//    Set<String> winOld = wd.getWindowHandles();
+//
+//    wd.get(taskProcess.getUrlCardProcess());
+//
+//    Set<String> wNewSet = wd.getWindowHandles();
+//    int attempt = 0;
+//    while (wNewSet.size() > 1 && attempt < 15) {
+//      Thread.sleep(1000);
+//      wNewSet = wd.getWindowHandles();
+//      attempt++;
+//    }
+//
+////    wNewSet.removeAll(winOld);
+//    String wNew = wNewSet.iterator().next();
+//    wd.switchTo().window(wNew);
+
+    return true;
+  }
+
   private Boolean fillTab(boolean isProdServer, int numTab) throws InterruptedException {
     Boolean isFillTab = false;
-    if (!waitLoadForm(isProdServer, "//*[@class=\"header\"]")) {
+    if (!waitLoadForm(isProdServer, "//*[@class='header']")) {
       return isFillTab;
     }
 
-    fillAllFilters(isProdServer, ".//div[@id=\"tab_TAB_GROUP_0" + numTab + "\"]", numTab);
+    fillAllFilters(isProdServer, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
     isFillTab = true;
     return isFillTab;
   }
@@ -147,7 +193,7 @@ public class ProcessHelperGGE extends HelperBase {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
-      elements = wd.findElements(By.xpath("//li[contains(@class,\"autoFormTabItem\")]//a[contains(@href,\"TAB_GROUP\")]"));
+      elements = wd.findElements(By.xpath("//li[contains(@class,'autoFormTabItem')]//a[contains(@href,'TAB_GROUP')]"));
       if (elements.size() > 0) {
         // Проверка элементов внутри вкладки
         isWebElements = isWebElements(isProdServer, By.xpath(locator));
@@ -182,8 +228,8 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrCombobox(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//span[contains(@class,\"autoFormCOMBOBOX\")][not(contains(@class,\"hide\"))]" +
-            "//select[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0][not(@disabled=\"disabled\")]";
+    String xpathlocator = ".//span[contains(@class,'autoFormCOMBOBOX')][not(contains(@class,'hide'))]" +
+            "//select[count(ancestor::div[@panel_id][contains(@class,'hide')])=0][not(@disabled='disabled')]";
 
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
@@ -221,7 +267,7 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrCheckbox(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//input[@type=\"checkbox\" and @class!=\"masked\"]";
+    String xpathlocator = ".//input[@type='checkbox' and @class!='masked']";
 
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
@@ -239,8 +285,8 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrTypeEdit(WebElement element, String text) throws InterruptedException {
-    String xpathlocator = ".//input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
-            "[not(@disabled=\"disabled\")][@typeview=\"EDIT\"]";
+    String xpathlocator = ".//input[count(ancestor::div[@panel_id][contains(@class,'hide')])=0]" +
+            "[not(@disabled='disabled')][@typeview='EDIT']";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
@@ -255,10 +301,10 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrTypeDate(WebElement element, String text) throws InterruptedException {
-    String xpathlocator = ".//input[count(ancestor::span[contains(@class,\"autoFormDATE\")]" +
-            "[contains(@class,\"hide\")])=0]" +
-            "[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
-            "[not(@disabled=\"disabled\")][@typeview=\"DATE\"]";
+    String xpathlocator = ".//input[count(ancestor::span[contains(@class,'autoFormDATE')]" +
+            "[contains(@class,'hide')])=0]" +
+            "[count(ancestor::div[@panel_id][contains(@class,'hide')])=0]" +
+            "[not(@disabled='disabled')][@typeview='DATE']";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
@@ -283,8 +329,23 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrTypeTextArea(WebElement element, String text) throws InterruptedException {
-    String xpathlocator = ".//textarea[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0]" +
-            "[not(@disabled=\"disabled\")][@typeview=\"TEXTAREA\"]";
+    String xpathlocator = ".//textarea[count(ancestor::div[@panel_id][contains(@class,'hide')])=0]" +
+            "[not(@disabled='disabled')][@typeview='TEXTAREA']";
+    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    if (elements.size() > 0) {
+      WebElement element2 = elements.iterator().next();
+      if (elements.size() >= 1) {
+        for (WebElement w : elements) {
+          if (w.isDisplayed()) {
+            type(w, text);
+          }
+        }
+      }
+    }
+  }
+
+  private void fillReportTextArea(WebElement element, String text) throws InterruptedException {
+    String xpathlocator = "//textarea[@id='reportText']";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
@@ -299,14 +360,14 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrTypeButtonGen(WebElement element, boolean isProdServer) throws InterruptedException {
-    String xpathlocator = ".//button[@class=\"numberGeneratorButton\"]";
+    String xpathlocator = ".//button[@class='numberGeneratorButton']";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           if (w.isDisplayed()) {
-            String xPathValue = "../input[@disabled=\"disabled\"]";
+            String xPathValue = "../input[@disabled='disabled']";
             List<WebElement> elementsDisabled = w.findElements(By.xpath(xPathValue));
             // Если элемент ввода рег.номера задизейблен, то жмем на кнопку рег. номера
             if (elementsDisabled.size() > 0) {
@@ -319,8 +380,8 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   private void fillFiltrMultiSelect(WebElement element) throws InterruptedException {
-    String xpathlocator = ".//ul[@class=\"token-input-list\"]/li[@class=\"token-input-input-token\"]" +
-            "/input[count(ancestor::div[@panel_id][contains(@class,\"hide\")])=0][not(@disabled=\"disabled\")]";
+    String xpathlocator = ".//ul[@class='token-input-list']/li[@class='token-input-input-token']" +
+            "/input[count(ancestor::div[@panel_id][contains(@class,'hide')])=0][not(@disabled='disabled')]";
 
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
@@ -329,7 +390,7 @@ public class ProcessHelperGGE extends HelperBase {
         for (WebElement w : elements) {
 
           // Если элемент видим, незадезейблен, без значения - тогда выставить последнее
-          String xPathValue = "../../li[@class=\"token-input-token\"]/p";
+          String xPathValue = "../../li[@class='token-input-token']/p";
           List<WebElement> valElements = w.findElements(By.xpath(xPathValue));
           if (valElements.size() > 0) {
             continue;
@@ -367,12 +428,11 @@ public class ProcessHelperGGE extends HelperBase {
     Thread.sleep(200);
     waitElement(By.xpath(xpathTypeDocument));
 
-    String xpathSecondTab = "(//ul[@id=\"tabs_group\"]//a)[2]";
+    String xpathSecondTab = "(//ul[@id='tabs_group']//a)[2]";
     waitLoadPage(isProdServer);
     List<WebElement> elements = wd.findElements(By.xpath(xpathSecondTab));
     if (elements.size() > 0) {
       clickWithWaiting(elements.iterator().next(), isProdServer);
-//      elements.iterator().next().click();
       String xpathCardProcess = "//a[contains(@href,'tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD')]";
       waitLoadPage(isProdServer);
       Thread.sleep(200);
@@ -389,7 +449,18 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean openCardProcess(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
     wd.get(taskProcess.getUrlCardProcess());
-    String xpathTypeDocument = "//table[@id=\"tabsWrap\"]//a[contains(@href,'tabInfo.action?documentId')]";
+    String xpathTypeDocument = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathTypeDocument));
+
+    return true;
+  }
+
+  public Boolean openCardProcessNext(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    wd.manage().window().maximize();
+    wd.get(taskProcess.getUrlCardProcess());
+    String xpathTypeDocument = "//td[@class='type']//img[contains(@src,'Cube.png')]";
     waitLoadPage(isProdServer);
     Thread.sleep(200);
     waitElement(By.xpath(xpathTypeDocument));
@@ -400,14 +471,14 @@ public class ProcessHelperGGE extends HelperBase {
   public Boolean readActiveTaskProcessData(boolean isProdServer,
                                            TaskProcessData taskProcess,
                                            String actionWithTask) throws InterruptedException {
-    String xpathTask = "//table[@id=\"tabsWrap\"]//a[contains(@href,'tabInfo.action?documentId')]";
+    String xpathTask = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
     String xpathTaskURL = xpathTask;
     String xpathTaskNumber = xpathTask;
     String xpathTaskName = xpathTask + "/../../td[@class='task']";
     String xpathTaskExecutor = xpathTask + "/../../td[@class='executor']/div[1]";
-    String xpathProcessNumDate = "//div[@class=\"bold appeal\"]";
-    String xpathActionWithTask = "//div[contains(@class,\"assignResponsibleAction\")]" +
-            "//input[contains(@value, \"" + actionWithTask + "\")]";
+    String xpathProcessNumDate = "//div[@class='bold appeal']";
+    String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
+            "//input[contains(@value, '" + actionWithTask + "')]";
 
     waitElement(By.xpath(xpathTask));
     waitElement(By.xpath(xpathTaskName));
@@ -417,10 +488,10 @@ public class ProcessHelperGGE extends HelperBase {
     List<WebElement> elements = wd.findElements(By.xpath(xpathTask));
     if (elements.size() > 0) {
       WebElement element = elements.iterator().next();
-      String href = element.getAttribute("href");
+//      String href = element.getAttribute("href");
       String numTask = element.getText();
 
-      taskProcess.withNumberTask(numTask).withUrlCardTask(href);
+      taskProcess.withNumberTask(numTask).withUrlCardTask(xpathTaskNumber);
     }
 
     // Наименование задачи
@@ -455,12 +526,119 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
+  public Boolean readActiveTaskProcessDataNext(boolean isProdServer,
+                                               TaskProcessData taskProcess,
+                                               String actionWithTask) throws InterruptedException {
+    String xpathCheckActiveTask = "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]";
+
+    String xpathTaskNumber = xpathCheckActiveTask + "/../../td[@class='number']/a";
+    String xpathTaskName = xpathCheckActiveTask + "/../../td[@class='task']";
+    String xpathTaskExecutor = xpathCheckActiveTask + "/../../td[@class='executor']/div[1]";
+    String xpathProcessNumDate = "//div[@class='bold appeal']";
+    String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
+            "//input[contains(@value, '" + actionWithTask + "')]";
+
+    waitElement(By.xpath(xpathCheckActiveTask));
+    waitElement(By.xpath(xpathTaskNumber));
+    waitElement(By.xpath(xpathTaskName));
+    waitElement(By.xpath(xpathTaskExecutor));
+
+    // Номер и ссылка на задачу
+    List<WebElement> elements = wd.findElements(By.xpath(xpathTaskNumber));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String numTask = element.getText();
+
+      taskProcess.withNumberTask(numTask).withUrlCardTask(xpathTaskNumber);
+    }
+
+    // Наименование задачи
+    elements = wd.findElements(By.xpath(xpathTaskName));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String nameTask = element.getText();
+
+      taskProcess.withNameTask(nameTask);
+    }
+
+    // Исполнитель (ФИО)
+    elements = wd.findElements(By.xpath(xpathTaskExecutor));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String taskExecutor = element.getText();
+
+      taskProcess.withFio(taskExecutor);
+    }
+
+    // Вычисляем логин (лучше через БД)
+    getLogin(isProdServer, taskProcess);
+
+    // Номер и дата процесса
+    elements = wd.findElements(By.xpath(xpathProcessNumDate));
+    if (elements.size() > 0) {
+      WebElement element = elements.iterator().next();
+      String processNumberDate = element.getText();
+
+      taskProcess.withNumberProcess(processNumberDate);
+    }
+
+    taskProcess.withActionWithTask(actionWithTask);
+
+    return true;
+  }
+
+  private boolean getLogin(boolean isProdServer, TaskProcessData taskProcess) {
+
+    if (taskProcess.getFio().equals("Андропов Вадим Владимирович")) {
+      taskProcess.withLogin("v.andropov");
+    } else if (taskProcess.getFio().equals("Калюжный Михаил Викторович")) {
+      taskProcess.withLogin("m.kalyuzhny");
+    } else if (taskProcess.getFio().equals("Миронова Екатерина Владимировна")) {
+      taskProcess.withLogin("e.mironova");
+    } else if (taskProcess.getFio().equals("test test test")) {
+      taskProcess.withLogin("test");
+    } else {
+
+    }
+
+    return true;
+  }
+
   public boolean writeActiveTaskProcessDataToJson(boolean isProdServer,
                                                   TaskProcessData taskProcess,
                                                   String fileName) throws IOException {
     List<TaskProcessData> processTasks = new ArrayList<>();
     processTasks.add(taskProcess);
     saveAsJsonProcessTask(processTasks, new File(fileName));
+
+    return true;
+  }
+
+  public boolean openCardTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    String xpathNameCard = "//div[@class='nameObj']";
+    String xpathSections = "//p[@class='sectionTitle']";
+
+    wd.manage().window().maximize();
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(taskProcess.getUrlCardTask()));
+    clickDifficalt(isProdServer, taskProcess.getUrlCardTask());
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathNameCard));
+
+    for (int i = 1; i < 20; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      // Проверка на загрузку заголовков
+      Boolean isWebElements = isWebElements(isProdServer, By.xpath(xpathSections));
+      if (isWebElements) {
+        break;
+      }
+    }
 
     return true;
   }
