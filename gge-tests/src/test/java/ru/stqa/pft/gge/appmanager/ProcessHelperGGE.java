@@ -94,10 +94,29 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
 
-  public Boolean fillForm(boolean isProdServer) throws InterruptedException {
+  public Boolean fillForm(boolean isProdServer, String typeDoc) throws InterruptedException {
     fillTab(isProdServer, 1);
     clickDifficalt(isProdServer, "//a[@href='#tab_TAB_GROUP_02']");
     fillTab(isProdServer, 2);
+
+    if (typeDoc.equals("SlZap")) {
+      // Получить ФИО утверждающего
+      String xpathFIOUtv = "//div[@class='curSelect']/span[contains(text(),'Утверждение')]/../../../../..//p";
+      waitElement(By.xpath(xpathFIOUtv));
+      WebElement element = wd.findElement(By.xpath(xpathFIOUtv));
+      String fioUtv = element.getText();
+
+      // Перейти на вкладку 01
+      clickDifficalt(isProdServer, "//a[@href='#tab_TAB_GROUP_01']");
+
+      // Заполнить поле "Кому" значением ФИО утверждающего
+      String xpathKomu = "//div[@class='curSelect']/span[contains(text(),'Утверждение')]/../../../../..//p";
+      waitElement(By.xpath(xpathKomu));
+      fioUtv = fioUtv.substring(0, 20);
+      multiSelectString(fioUtv);
+
+//      waitLoadPage(isProdServer);
+    }
 
     // Нажать "Сохранить" (submit)
     String xpathSubmitButton = "//input[@type='submit'][@value='Сохранить']";
@@ -129,6 +148,7 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean fillFormTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
     String xpathTBody = "//tbody";
+    String xpathActionWithTaskAllButton = "//div[contains(@class,'assignResponsibleAction')]//input";
     String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
             "//input[contains(@value, '" + taskProcess.getActionWithTask() + "')]";
 
@@ -152,25 +172,34 @@ public class ProcessHelperGGE extends HelperBase {
     // Нажать кнопку согласования/на доработку (submit)
     waitLoadPage(isProdServer);
     Thread.sleep(500);
-    waitElement(By.xpath(xpathActionWithTask));
-    clickDifficalt(isProdServer, xpathActionWithTask);
 
-//    // Перечень окон до открытия нового
-//    Set<String> winOld = wd.getWindowHandles();
-//
-//    wd.get(taskProcess.getUrlCardProcess());
-//
-//    Set<String> wNewSet = wd.getWindowHandles();
-//    int attempt = 0;
-//    while (wNewSet.size() > 1 && attempt < 15) {
-//      Thread.sleep(1000);
-//      wNewSet = wd.getWindowHandles();
-//      attempt++;
-//    }
-//
-////    wNewSet.removeAll(winOld);
-//    String wNew = wNewSet.iterator().next();
-//    wd.switchTo().window(wNew);
+    String xpathActionButton = "";
+    List<WebElement> allButtons = wd.findElements(By.xpath(xpathActionWithTaskAllButton));
+    if (allButtons.size() == 1) {
+      xpathActionButton = xpathActionWithTaskAllButton;
+    } else if (allButtons.size() > 1) {
+      xpathActionButton = xpathActionWithTask;
+    }
+
+    // Перечень окон до открытия нового
+    Set<String> winOld = wd.getWindowHandles();
+
+    // Нажать кнопку согласовать/на доработку/.. и т.д
+    if (allButtons.size() >= 1) {
+      waitElement(By.xpath(xpathActionButton));
+      clickDifficalt(isProdServer, xpathActionButton);
+    }
+
+    Set<String> wNewSet = wd.getWindowHandles();
+    int attempt = 0;
+    while (wNewSet.size() > 1 && attempt < 15) {
+      Thread.sleep(1000);
+      wNewSet = wd.getWindowHandles();
+      attempt++;
+    }
+
+    String wNew = wNewSet.iterator().next();
+    wd.switchTo().window(wNew);
 
     waitLoadPage(isProdServer);
     Thread.sleep(10000);
@@ -436,6 +465,18 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
+  private void multiSelectString(String stringValue) throws InterruptedException {
+    String jstriptString;
+
+    jstriptString = "$('[nick=\"RECIPIENT_GROUP_2\"]').find('.token-input-input-token input[type=\"text\"]')" +
+            ".click().val('" + stringValue + "')";
+    ((JavascriptExecutor) wd).executeScript(jstriptString);
+    Thread.sleep(500);
+    jstriptString = "$('.token-input-dropdown li').eq(0).mousedown();";
+    ((JavascriptExecutor) wd).executeScript(jstriptString);
+    Thread.sleep(200);
+  }
+
   public Boolean openCardTabWithProcess(boolean isProdServer, TaskProcessData process) throws InterruptedException {
     String xpathTypeDocument = "//span[contains(text(),'Служебные записки ЦА')]";
     waitLoadPage(isProdServer);
@@ -554,51 +595,60 @@ public class ProcessHelperGGE extends HelperBase {
     String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
             "//input[contains(@value, '" + actionWithTask + "')]";
 
-    waitElement(By.xpath(xpathCheckActiveTask));
-    waitElement(By.xpath(xpathTaskNumber));
-    waitElement(By.xpath(xpathTaskName));
-    waitElement(By.xpath(xpathTaskExecutor));
+    for (int i = 0; i < 10; i++) {
+      List<WebElement> whiteCubeElements = wd.findElements(By.xpath(xpathCheckActiveTask));
+      if (whiteCubeElements.size() == 0) {
+        Thread.sleep(500);
+      } else {
+        waitElement(By.xpath(xpathCheckActiveTask));
+        waitElement(By.xpath(xpathTaskNumber));
+        waitElement(By.xpath(xpathTaskName));
+        waitElement(By.xpath(xpathTaskExecutor));
 
-    // Номер и ссылка на задачу
-    List<WebElement> elements = wd.findElements(By.xpath(xpathTaskNumber));
-    if (elements.size() > 0) {
-      WebElement element = elements.iterator().next();
-      String numTask = element.getText();
+        // Номер и ссылка на задачу
+        List<WebElement> elements = wd.findElements(By.xpath(xpathTaskNumber));
+        if (elements.size() > 0) {
+          WebElement element = elements.iterator().next();
+          String numTask = element.getText();
 
-      taskProcess.withNumberTask(numTask).withUrlCardTask(xpathTaskNumber);
+          taskProcess.withNumberTask(numTask).withUrlCardTask(xpathTaskNumber);
+        }
+
+        // Наименование задачи
+        elements = wd.findElements(By.xpath(xpathTaskName));
+        if (elements.size() > 0) {
+          WebElement element = elements.iterator().next();
+          String nameTask = element.getText();
+
+          taskProcess.withNameTask(nameTask);
+        }
+
+        // Исполнитель (ФИО)
+        elements = wd.findElements(By.xpath(xpathTaskExecutor));
+        if (elements.size() > 0) {
+          WebElement element = elements.iterator().next();
+          String taskExecutor = element.getText();
+
+          taskProcess.withFio(taskExecutor);
+        }
+
+        // Вычисляем логин (лучше через БД)
+        getLogin(isProdServer, taskProcess);
+
+        // Номер и дата процесса
+        elements = wd.findElements(By.xpath(xpathProcessNumDate));
+        if (elements.size() > 0) {
+          WebElement element = elements.iterator().next();
+          String processNumberDate = element.getText();
+
+          taskProcess.withNumberProcess(processNumberDate);
+        }
+
+        taskProcess.withActionWithTask(actionWithTask);
+
+        return false;
+      }
     }
-
-    // Наименование задачи
-    elements = wd.findElements(By.xpath(xpathTaskName));
-    if (elements.size() > 0) {
-      WebElement element = elements.iterator().next();
-      String nameTask = element.getText();
-
-      taskProcess.withNameTask(nameTask);
-    }
-
-    // Исполнитель (ФИО)
-    elements = wd.findElements(By.xpath(xpathTaskExecutor));
-    if (elements.size() > 0) {
-      WebElement element = elements.iterator().next();
-      String taskExecutor = element.getText();
-
-      taskProcess.withFio(taskExecutor);
-    }
-
-    // Вычисляем логин (лучше через БД)
-    getLogin(isProdServer, taskProcess);
-
-    // Номер и дата процесса
-    elements = wd.findElements(By.xpath(xpathProcessNumDate));
-    if (elements.size() > 0) {
-      WebElement element = elements.iterator().next();
-      String processNumberDate = element.getText();
-
-      taskProcess.withNumberProcess(processNumberDate);
-    }
-
-    taskProcess.withActionWithTask(actionWithTask);
 
     return true;
   }
@@ -676,6 +726,12 @@ public class ProcessHelperGGE extends HelperBase {
       }
     }
 
+    return true;
+  }
+
+  public boolean deleteJsonZapis(String fileName) throws IOException {
+    List<TaskProcessData> processTasks = new ArrayList<TaskProcessData>();
+    saveAsJsonProcessTask(processTasks, new File(fileName));
     return true;
   }
 }

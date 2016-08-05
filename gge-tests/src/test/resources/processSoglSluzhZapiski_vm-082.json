@@ -1,12 +1,1 @@
-[
-  {
-    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=E244DF87BE72FADAF0BAC678C3AD4C9A",
-    "login": "test",
-    "actionWithTask": "Согласовать",
-    "fio": "Test Test Test",
-    "numberProcess": "ПРОЦЕСС № 4840 от 05.08.2016",
-    "urlCardTask": "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]/../../td[@class='number']/a",
-    "numberTask": "25379",
-    "nameTask": "Рассмотреть служебную записку"
-  }
-]
+[]

@@ -50,7 +50,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.processGGE().razdelUrl(isProdServer, urlAD),
             equalTo(true));
     assertThat(app.processGGE().selectTypeDoc(isProdServer), equalTo(true));
-    app.processGGE().fillForm(isProdServer);
+    app.processGGE().fillForm(isProdServer, "SlZap");
 
     TaskProcessData taskProcess = new TaskProcessData();
     taskProcess.withLogin(loginUser);
@@ -112,7 +112,6 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
   @Test(dataProvider = "processTasksFromJson", timeOut = 250000)
   public void testProcessTaskGGE(TaskProcessData taskProcess) throws Exception {
-
     boolean isProdServer = false;
     boolean isContainsUrlProdServer =
             taskProcess.getUrlCardProcess().contains("https://eis.gge.ru/");
@@ -130,6 +129,8 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.successInit, equalTo(true));
     app.session().loginProcess(isProdServer, loginUser, password, taskProcess.getUrlCardProcess());
 
+    app.processGGE().deleteJsonZapis(fileName);
+
     app.processGGE().openCardTask(isProdServer, taskProcess);
     app.processGGE().fillFormTask(isProdServer, taskProcess);
     app.processGGE().waitingOpenCardTask(isProdServer, taskProcess);
@@ -137,8 +138,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     String actionWithTask = "Согласовать";
 
-    app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess, actionWithTask);
-    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
+    Boolean isProcessEnd = app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess, actionWithTask);
+    if (!isProcessEnd) {
+      app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
+    }
   }
 
 }
