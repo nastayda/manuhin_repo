@@ -1,12 +1,12 @@
 [
   {
-    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=02E68F2CAB9EF6A58667AA7F5BCF7D63",
-    "login": "m.kalyuzhny",
+    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=E244DF87BE72FADAF0BAC678C3AD4C9A",
+    "login": "test",
     "actionWithTask": "Согласовать",
-    "fio": "Калюжный Михаил Викторович",
-    "numberProcess": "ПРОЦЕСС № 4819 от 04.08.2016",
+    "fio": "Test Test Test",
+    "numberProcess": "ПРОЦЕСС № 4840 от 05.08.2016",
     "urlCardTask": "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]/../../td[@class='number']/a",
-    "numberTask": "25221",
-    "nameTask": "Согласовать внутренний документ"
+    "numberTask": "25379",
+    "nameTask": "Рассмотреть служебную записку"
   }
 ]

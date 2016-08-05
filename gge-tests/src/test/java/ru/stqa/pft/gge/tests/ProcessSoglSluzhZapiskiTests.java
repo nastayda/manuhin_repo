@@ -132,6 +132,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     app.processGGE().openCardTask(isProdServer, taskProcess);
     app.processGGE().fillFormTask(isProdServer, taskProcess);
+    app.processGGE().waitingOpenCardTask(isProdServer, taskProcess);
     app.processGGE().openCardProcessNext(isProdServer, taskProcess);
 
     String actionWithTask = "Согласовать";

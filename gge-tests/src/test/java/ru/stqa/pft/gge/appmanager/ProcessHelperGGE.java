@@ -139,7 +139,7 @@ public class ProcessHelperGGE extends HelperBase {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
-      fillReportTextArea(element, "Test_001_report");
+      fillReportTextArea(element, "замечания от " + taskProcess.getFio());
 
 //      fillFiltrCombobox(element);
 //      fillFiltrTypeEdit(element, "Test_001");
@@ -150,6 +150,8 @@ public class ProcessHelperGGE extends HelperBase {
     }
 
     // Нажать кнопку согласования/на доработку (submit)
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
     waitElement(By.xpath(xpathActionWithTask));
     clickDifficalt(isProdServer, xpathActionWithTask);
 
@@ -170,6 +172,8 @@ public class ProcessHelperGGE extends HelperBase {
 //    String wNew = wNewSet.iterator().next();
 //    wd.switchTo().window(wNew);
 
+    waitLoadPage(isProdServer);
+    Thread.sleep(10000);
     return true;
   }
 
@@ -344,13 +348,23 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  private void fillReportTextArea(WebElement element, String text) throws InterruptedException {
+  private void fillReportTextArea(WebElement baseElement, String text) throws InterruptedException {
     String xpathlocator = "//textarea[@id='reportText']";
-    List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
+    List<WebElement> elements = new ArrayList<>();
+
+    for (int i = 0; i < 20; i++) {
+      elements = baseElement.findElements(By.xpath(xpathlocator));
+      if (elements.size() == 0) {
+        Thread.sleep(500);
+      } else {
+        break;
+      }
+    }
     if (elements.size() > 0) {
       WebElement element2 = elements.iterator().next();
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
+          waitForDisplayed(w);
           if (w.isDisplayed()) {
             type(w, text);
           }
@@ -459,6 +473,8 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean openCardProcessNext(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
     wd.manage().window().maximize();
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
     wd.get(taskProcess.getUrlCardProcess());
     String xpathTypeDocument = "//td[@class='type']//img[contains(@src,'Cube.png')]";
     waitLoadPage(isProdServer);
@@ -595,10 +611,8 @@ public class ProcessHelperGGE extends HelperBase {
       taskProcess.withLogin("m.kalyuzhny");
     } else if (taskProcess.getFio().equals("Миронова Екатерина Владимировна")) {
       taskProcess.withLogin("e.mironova");
-    } else if (taskProcess.getFio().equals("test test test")) {
-      taskProcess.withLogin("test");
     } else {
-
+      taskProcess.withLogin("test");
     }
 
     return true;
@@ -624,6 +638,28 @@ public class ProcessHelperGGE extends HelperBase {
     Thread.sleep(200);
     waitElement(By.xpath(taskProcess.getUrlCardTask()));
     clickDifficalt(isProdServer, taskProcess.getUrlCardTask());
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathNameCard));
+
+    for (int i = 1; i < 20; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      // Проверка на загрузку заголовков
+      Boolean isWebElements = isWebElements(isProdServer, By.xpath(xpathSections));
+      if (isWebElements) {
+        break;
+      }
+    }
+
+    return true;
+  }
+
+  public boolean waitingOpenCardTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    String xpathNameCard = "//div[@class='nameObj']";
+    String xpathSections = "//p[@class='sectionTitle']";
 
     waitLoadPage(isProdServer);
     Thread.sleep(200);
