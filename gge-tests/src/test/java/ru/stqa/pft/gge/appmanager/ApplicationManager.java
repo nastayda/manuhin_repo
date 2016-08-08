@@ -74,6 +74,7 @@ public class ApplicationManager {
       cardHelper = new CardHelper(wd);
       processHelperGGE = new ProcessHelperGGE(wd);
 
+
       successInit = true;
     } catch (Throwable e) {
       e.printStackTrace();
@@ -118,6 +119,10 @@ public class ApplicationManager {
     if (wd != null) {
       wd.quit();
     }
+  }
+
+  public HttpHelper http(){
+    return new HttpHelper(this);
   }
 
   public SessionHelper session() {

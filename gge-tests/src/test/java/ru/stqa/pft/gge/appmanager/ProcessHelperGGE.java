@@ -43,6 +43,7 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   public Boolean selectTypeDoc(boolean isProdServer) throws InterruptedException {
+
     // Клик по кнопке "Мои действия"
     String xpath = "//div[contains(@class,'singleButton')][contains(text(),'Мои действия')]";
     clickDifficalt(isProdServer, xpath);
@@ -93,6 +94,11 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
+  public Set<Cookie> getCookies() {
+    Set<Cookie> cookies = wd.manage().getCookies();
+    return cookies;
+  }
+
 
   public Boolean fillForm(boolean isProdServer, String typeDoc) throws InterruptedException {
     fillTab(isProdServer, 1);
@@ -118,6 +124,11 @@ public class ProcessHelperGGE extends HelperBase {
 //      waitLoadPage(isProdServer);
     }
 
+
+    return true;
+  }
+
+  public Boolean submitForm() throws InterruptedException {
     // Нажать "Сохранить" (submit)
     String xpathSubmitButton = "//input[@type='submit'][@value='Сохранить']";
     waitElement(By.xpath(xpathSubmitButton));
@@ -141,7 +152,6 @@ public class ProcessHelperGGE extends HelperBase {
 //    wNewSet.removeAll(winOld);
     String wNew = wNewSet.iterator().next();
     wd.switchTo().window(wNew);
-
 
     return true;
   }
@@ -213,6 +223,8 @@ public class ProcessHelperGGE extends HelperBase {
     }
 
     fillAllFilters(isProdServer, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
+
+
     isFillTab = true;
     return isFillTab;
   }
