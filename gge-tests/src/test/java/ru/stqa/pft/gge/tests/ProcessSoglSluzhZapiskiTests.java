@@ -8,6 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.appmanager.HttpHelper;
 import ru.stqa.pft.gge.model.TaskProcessData;
+import ru.stqa.pft.gge.model.UpLoadFileData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,6 +36,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
             "filter::id=E93EC358A69745469F6266C0275F7907/vitrina::viewId=E93EC358A69745469F6266C0275F7907" +
             "&offset=0&limit=50";
+    String fileAttach = "c:/Users/manuhin/Downloads/30.docx";
 
     boolean isProdServer = false;
     boolean isContainsUrlProdServer =
@@ -61,9 +63,16 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     HttpHelper session = app.http();
     app.processGGE().fillForm(isProdServer, "SlZap");
 
-    String fileAttach = "c:/Users/manuhin/Downloads/30.docx";
+    // Прикрепление файла к форме (через elib)
+    UpLoadFileData upLoadFileDataBefore = new UpLoadFileData();
+    upLoadFileDataBefore.withFilePath(fileAttach);
+    UpLoadFileData upLoadFileDataAfter = app.http().upLoadFile(cookies, upLoadFileDataBefore);
+    assertThat(upLoadFileDataAfter.getId().equals(""), equalTo(false));
 
-    app.http().upLoadFile(cookies, fileAttach);
+    //Вызов js-script для показа загруженного файла на форме
+    app.processGGE().showFile(isProdServer, upLoadFileDataAfter);
+
+    app.processGGE().checkUpLoadFile(isProdServer);
     app.processGGE().submitForm();
 
     TaskProcessData taskProcess = new TaskProcessData();

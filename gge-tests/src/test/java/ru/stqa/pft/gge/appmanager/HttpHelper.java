@@ -1,22 +1,17 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.Cookie;
+import ru.stqa.pft.gge.model.UpLoadFileData;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,8 +19,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -40,8 +33,9 @@ public class HttpHelper {
     this.httpClient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
 
-  public boolean upLoadFile (Set<Cookie> cookies, String fileName) throws IOException, URISyntaxException {
-    File file = new File(fileName);
+  public UpLoadFileData upLoadFile (Set<Cookie> cookies, UpLoadFileData upLoadFileData)
+          throws IOException, URISyntaxException {
+    File file = new File(upLoadFileData.getFilePath());
 
     String auth = "";
     for (Cookie c : cookies) {
@@ -70,15 +64,25 @@ public class HttpHelper {
 
 //    {"id":"19CC55C0579B4562B228AB960E727F7F","errors":"","name":"30.docx","isSigned":"false","detached":"unknown","success":"true","size":"18.0 КБ"}
 
-    return true;
+    String id = getValueJson("\"id\":\"", "\"", responseString);
+    String name = getValueJson("\"name\":\"", "\"", responseString);
+    String size = getValueJson("\"size\":\"", "\"", responseString);
+
+    upLoadFileData.withId(id).withName(name).withSize(size);
+
+    return upLoadFileData;
   }
 
-  private String getTextFrom(CloseableHttpResponse response) throws IOException {
-    try {
-      return EntityUtils.toString(response.getEntity());
+  public String getValueJson(String startOut, String finishOut, String responseString) {
+    if (responseString.contains(startOut)) {
+      int indexOf = responseString.indexOf(startOut);
+      int startIndex = indexOf + startOut.length();
+      String ss = responseString.substring(startIndex);
+      int finishIndex = ss.indexOf(finishOut);// indexOf + startOut.length();
+      String substring = ss.substring(0, finishIndex);
+      return substring;
     }
-    finally {
-      response.close();
-    }
+
+    return "";
   }
 }

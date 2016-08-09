@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
 import ru.stqa.pft.gge.model.TaskProcessData;
+import ru.stqa.pft.gge.model.UpLoadFileData;
 
 import java.io.File;
 import java.io.IOException;
@@ -744,6 +745,68 @@ public class ProcessHelperGGE extends HelperBase {
   public boolean deleteJsonZapis(String fileName) throws IOException {
     List<TaskProcessData> processTasks = new ArrayList<TaskProcessData>();
     saveAsJsonProcessTask(processTasks, new File(fileName));
+    return true;
+  }
+
+  public boolean checkUpLoadFile(boolean isProdServer) throws InterruptedException {
+    String locator = "//span[contains(@class,'file_name_js')][contains(@class,'AttachmentFileName')]";
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(locator));
+
+    for (int i = 1; i < 20; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      // Проверка на загрузку ссылки на файл
+      Boolean isWebElements = isWebElements(isProdServer, By.xpath(locator));
+      if (isWebElements) {
+        break;
+      }
+    }
+
+    return true;
+  }
+
+  public boolean showFile(boolean isProdServer, UpLoadFileData upLoadFileData) throws InterruptedException {
+    String fieldIdString = "//span[@nick='SYS_FILE']";
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(fieldIdString));
+
+    String field_id = "";
+    // Найти секцию, в которой расположена инфа про файл
+    List<WebElement> elements = wd.findElements(By.xpath(fieldIdString));
+    if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
+      field_id = element.getAttribute("field_id");
+    }
+
+    String jstriptString = String.format("var fileId='%s',\n" +
+            "fileSize='%s',\n" +
+            "fileName='%s',\n" +
+            "fieldId = '%s',\n" +
+            "fileNameArr = fileName.split('.'),\n" +
+            "fileItem= '<span class=\"file_name_js AttachmentFileName\"></span>' +\n" +
+            "                                '<span class=\"file_input_js\"></span>' +\n" +
+            "                                '<span class=\"fileSize\"></span>' +\n" +
+            "                                '<span class=\"file_delete_js deleteElem\"><a href=\"#\">&times;</a></span>' +\n" +
+            "                                '<span class=\"checkSign\"></span>';\n" +
+            "\n" +
+            "var fileRow = $('<li/>').addClass('attachmentFileRow').attr('id', fileId).append(fileItem);\n" +
+            "fileRow.find('.AttachmentFileName').attr('title', fileName).html('<span class=\"limitedName\">'+fileNameArr[0]+'</span>.'+fileNameArr[1]);\n" +
+            "fileRow.find('.fileSize').html('('+fileSize+')');\n" +
+            "$('[field_id=\"'+fieldId+'\"] ul.attachmentsTable ').append(fileRow);"
+            ,upLoadFileData.getId()
+            ,upLoadFileData.getSize()
+            ,upLoadFileData.getName()
+            ,field_id);
+
+    ((JavascriptExecutor) wd).executeScript(jstriptString);
+    Thread.sleep(200);
+
     return true;
   }
 }
