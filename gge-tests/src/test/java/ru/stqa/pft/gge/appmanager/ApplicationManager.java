@@ -51,11 +51,11 @@ public class ApplicationManager {
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
       if ("".equals(properties.getProperty("selenium.server"))) {
         if (browser.equals(BrowserType.FIREFOX)) {
-//          FirefoxProfile ffProf =
-//                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/w0ybnn3f.default"));
-//          wd = new FirefoxDriver(ffProf);
+          FirefoxProfile ffProf =
+                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/vzovm275.ep"));
+          wd = new FirefoxDriver(ffProf);
 //          wd2 = new HighlightingWrapper(new FirefoxDriver(), 200).getDriver();
-          wd = new FirefoxDriver();
+//          wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
           wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {

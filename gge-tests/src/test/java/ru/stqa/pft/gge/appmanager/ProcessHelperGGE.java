@@ -819,6 +819,13 @@ public class ProcessHelperGGE extends HelperBase {
       clickWithWaiting(element, isProdServer);
     }
 
+    locator = "//a[@class='changeCertificateLinkName'][contains(text(),'Куликов Петр Александрович')]";
+    elements = wd.findElements(By.xpath(locator));
+    if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
+      clickWithWaiting(element, isProdServer);
+    }
+
 
     return true;
   }

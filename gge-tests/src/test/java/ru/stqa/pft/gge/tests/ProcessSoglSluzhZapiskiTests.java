@@ -73,7 +73,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     app.processGGE().checkUpLoadFile(isProdServer);
 
     // Наложение ЭП
-//    app.processGGE().writeEP(isProdServer);
+    app.processGGE().writeEP(isProdServer);
 
     app.processGGE().submitForm();
 
