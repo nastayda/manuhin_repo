@@ -2,7 +2,6 @@ package ru.stqa.pft.gge.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -71,8 +70,11 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     //Вызов js-script для показа загруженного файла на форме
     app.processGGE().showFile(isProdServer, upLoadFileDataAfter);
-
     app.processGGE().checkUpLoadFile(isProdServer);
+
+    // Наложение ЭП
+//    app.processGGE().writeEP(isProdServer);
+
     app.processGGE().submitForm();
 
     TaskProcessData taskProcess = new TaskProcessData();

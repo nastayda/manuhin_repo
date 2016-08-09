@@ -31,7 +31,6 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   public Boolean razdelUrl(Boolean isProdServer, String urlAD) throws InterruptedException {
-    wd.manage().window().maximize();
     wd.get(urlAD);
 
     waitLoadPage(isProdServer);
@@ -40,6 +39,7 @@ public class ProcessHelperGGE extends HelperBase {
     String currentUrl = wd.getCurrentUrl();
     boolean isAD = currentUrl.contains("OFFICEWORK");
 
+    wd.manage().window().maximize();
     return isAD;
   }
 
@@ -806,6 +806,19 @@ public class ProcessHelperGGE extends HelperBase {
 
     ((JavascriptExecutor) wd).executeScript(jstriptString);
     Thread.sleep(200);
+
+    return true;
+  }
+
+  public boolean writeEP(boolean isProdServer) throws InterruptedException {
+    String locator = "//span[@class='sign sign_js']";
+
+    List<WebElement> elements = wd.findElements(By.xpath(locator));
+    if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
+      clickWithWaiting(element, isProdServer);
+    }
+
 
     return true;
   }

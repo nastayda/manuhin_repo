@@ -6,6 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -50,8 +51,11 @@ public class ApplicationManager {
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
       if ("".equals(properties.getProperty("selenium.server"))) {
         if (browser.equals(BrowserType.FIREFOX)) {
-          wd = new FirefoxDriver();
+//          FirefoxProfile ffProf =
+//                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/w0ybnn3f.default"));
+//          wd = new FirefoxDriver(ffProf);
 //          wd2 = new HighlightingWrapper(new FirefoxDriver(), 200).getDriver();
+          wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
           wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {
