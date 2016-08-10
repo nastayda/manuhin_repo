@@ -824,8 +824,14 @@ public class ProcessHelperGGE extends HelperBase {
     if (elements.size() == 1) {
       WebElement element = elements.iterator().next();
       clickWithWaiting(element, isProdServer);
-    }
 
+      locator = "//input[@class='button OK']";
+      elements = wd.findElements(By.xpath(locator));
+      if (elements.size() == 1) {
+        element = elements.iterator().next();
+        clickWithWaiting(element, isProdServer);
+      }
+    }
 
     return true;
   }
