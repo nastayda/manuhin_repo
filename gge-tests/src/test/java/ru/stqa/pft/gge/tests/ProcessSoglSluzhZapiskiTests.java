@@ -75,7 +75,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     // Наложение ЭП
     app.processGGE().writeEP(isProdServer);
 
-    app.processGGE().submitForm();
+    // Проверка подписи
+    assertThat(app.processGGE().checkEP(isProdServer), equalTo(true));
+
+    app.processGGE().submitForm(isProdServer);
 
     TaskProcessData taskProcess = new TaskProcessData();
     taskProcess.withLogin(loginUser);

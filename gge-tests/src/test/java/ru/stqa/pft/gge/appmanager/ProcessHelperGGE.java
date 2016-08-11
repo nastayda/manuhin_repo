@@ -129,7 +129,7 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
-  public Boolean submitForm() throws InterruptedException {
+  public Boolean submitForm(boolean isProdServer) throws InterruptedException {
     // Нажать "Сохранить" (submit)
     String xpathSubmitButton = "//input[@type='submit'][@value='Сохранить']";
     waitElement(By.xpath(xpathSubmitButton));
@@ -139,8 +139,7 @@ public class ProcessHelperGGE extends HelperBase {
 
     // Нажать "Сохранить" (save)
     waitElement(By.xpath(xpathSubmitButton));
-    click(By.xpath(xpathSubmitButton));
-
+    clickDifficalt(isProdServer, xpathSubmitButton);
 
     Set<String> wNewSet = wd.getWindowHandles();
     int attempt = 0;
@@ -819,9 +818,9 @@ public class ProcessHelperGGE extends HelperBase {
       clickWithWaiting(element, isProdServer);
     }
 
-    locator = "//a[@class='changeCertificateLinkName'][contains(text(),'Куликов Петр Александрович')]";
+    locator = "//a[@class='changeCertificateLinkName'][contains(text(),'Егор Юрьевич')]";
     elements = wd.findElements(By.xpath(locator));
-    if (elements.size() == 1) {
+    if (elements.size() >= 1) {
       WebElement element = elements.iterator().next();
       clickWithWaiting(element, isProdServer);
 
@@ -834,5 +833,47 @@ public class ProcessHelperGGE extends HelperBase {
     }
 
     return true;
+  }
+
+  public boolean checkEP(boolean isProdServer) throws InterruptedException {
+    String locator = "//span[contains(@class,'file_name_js')][contains(@class,'AttachmentFileName')]";
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(locator));
+
+    List<WebElement> elements = wd.findElements(By.xpath(locator));
+    if (elements.size() >= 1) {
+      WebElement element = elements.iterator().next();
+      clickWithWaiting(element, isProdServer);
+    }
+
+    locator = "//a[@class='fileBaloonBtn baloonCkeckECP']";
+    elements = wd.findElements(By.xpath(locator));
+    if (elements.size() >= 1) {
+      WebElement element = elements.iterator().next();
+      clickWithWaiting(element, isProdServer);
+    }
+
+    Thread.sleep(500);
+    locator = "//p[@class='status']";
+    elements = wd.findElements(By.xpath(locator));
+    if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
+      String text = element.getText();
+      if (text.equals("ЭЛЕКТРОННАЯ ПОДПИСЬ ДЕЙСТВИТЕЛЬНА")) {
+        Thread.sleep(500);
+        locator = "//div[@class='alertButtonBar center']/button";
+        elements = wd.findElements(By.xpath(locator));
+        if (elements.size() >= 1) {
+          element = elements.iterator().next();
+          waitForDisplayed(element);
+          element.click();
+        }
+        return true;
+      }
+    }
+
+    return false;
   }
 }
