@@ -91,6 +91,22 @@ task testGGEcards(type: Test) {
     systemProperty "file.encoding", "utf-8"
 }
 
+task testGGProcessSoglSlZap(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-process-SoglSlZap-GGE.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    systemProperty "file.encoding", "utf-8"
+}
+
 testMGE.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
@@ -100,6 +116,10 @@ testGGEvitrinas.doFirst {
 }
 
 testGGEcards.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+testGGProcessSoglSlZap.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 

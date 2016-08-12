@@ -52,35 +52,19 @@ public class ApplicationManager {
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
       if ("".equals(properties.getProperty("selenium.server"))) {
         if (browser.equals(BrowserType.FIREFOX)) {
-          // Рабочий комп
-//          File file = new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/*.ep");
-//          String absolutePath = file.getAbsolutePath();
-//          System.out.println();
-
-          //
           String folderString = "c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles";
           File folder = new File(folderString);
-
           String[] files = folder.list(new FilenameFilter() {
-
             @Override public boolean accept(File folder, String name) {
               return name.endsWith(".ep");
             }
-
           });
-
           for ( String fileName : files ) {
             System.out.println("File: " + fileName);
 
           }
-
           String profile = folderString + "/" + files[0].toString();
-
-
           FirefoxProfile ffProf = new FirefoxProfile(new File(profile));
-          // vm-080-pewertest
-//          FirefoxProfile ffProf =
-//                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/br4u1gfk.ep"));
 
           wd = new FirefoxDriver(ffProf);
 //          wd2 = new HighlightingWrapper(new FirefoxDriver(), 200).getDriver();
