@@ -13,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +28,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
   String fileName = "src/test/resources/processSoglSluzhZapiski_vm-082.json";
 
   @Test
-  public void testProcSoglSluzhZapCreateSlZap() throws InterruptedException, IOException, URISyntaxException {
+  public void testProcSoglSluzhZapCreateSlZap() throws Exception {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
     String loginUser = "e.mironova";
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
@@ -75,13 +74,12 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     // Наложение ЭП
     app.processGGE().writeEP(isProdServer);
 
-    // Проверка подписи
+    // Проверка ЭП
     assertThat(app.processGGE().checkEP(isProdServer), equalTo(true));
 
     app.processGGE().submitForm(isProdServer);
 
     TaskProcessData taskProcess = new TaskProcessData();
-    taskProcess.withLogin(loginUser);
 
     app.processGGE().openCardTabWithProcess(isProdServer, taskProcess);
     app.processGGE().openCardProcess(isProdServer, taskProcess);

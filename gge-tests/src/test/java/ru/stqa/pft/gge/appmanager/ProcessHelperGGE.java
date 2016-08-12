@@ -6,6 +6,7 @@ import ru.stqa.pft.gge.model.UpLoadFileData;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -539,7 +540,7 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessData(boolean isProdServer,
                                            TaskProcessData taskProcess,
-                                           String actionWithTask) throws InterruptedException {
+                                           String actionWithTask) throws Exception {
     String xpathTask = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
     String xpathTaskURL = xpathTask;
     String xpathTaskNumber = xpathTask;
@@ -557,7 +558,6 @@ public class ProcessHelperGGE extends HelperBase {
     List<WebElement> elements = wd.findElements(By.xpath(xpathTask));
     if (elements.size() > 0) {
       WebElement element = elements.iterator().next();
-//      String href = element.getAttribute("href");
       String numTask = element.getText();
 
       taskProcess.withNumberTask(numTask).withUrlCardTask(xpathTaskNumber);
@@ -579,6 +579,8 @@ public class ProcessHelperGGE extends HelperBase {
       String taskExecutor = element.getText();
 
       taskProcess.withFio(taskExecutor);
+      String loginFromBD = getLoginFromBD(taskProcess);
+      taskProcess.withLogin(loginFromBD);
     }
 
     // Номер и дата процесса
@@ -597,7 +599,7 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessDataNext(boolean isProdServer,
                                                TaskProcessData taskProcess,
-                                               String actionWithTask) throws InterruptedException {
+                                               String actionWithTask) throws Exception {
     String xpathCheckActiveTask = "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]";
 
     String xpathTaskNumber = xpathCheckActiveTask + "/../../td[@class='number']/a";
@@ -645,7 +647,8 @@ public class ProcessHelperGGE extends HelperBase {
         }
 
         // Вычисляем логин (лучше через БД)
-        getLogin(isProdServer, taskProcess);
+        String login = getLoginFromBD(taskProcess);
+        taskProcess.withLogin(login);
 
         // Номер и дата процесса
         elements = wd.findElements(By.xpath(xpathProcessNumDate));
@@ -665,19 +668,58 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
-  private boolean getLogin(boolean isProdServer, TaskProcessData taskProcess) {
+  private String getLoginFromBD(TaskProcessData taskProcess) throws Exception {
+    String login = "";
 
-    if (taskProcess.getFio().equals("Андропов Вадим Владимирович")) {
-      taskProcess.withLogin("v.andropov");
-    } else if (taskProcess.getFio().equals("Калюжный Михаил Викторович")) {
-      taskProcess.withLogin("m.kalyuzhny");
-    } else if (taskProcess.getFio().equals("Миронова Екатерина Владимировна")) {
-      taskProcess.withLogin("e.mironova");
-    } else {
-      taskProcess.withLogin("test");
+    String dbserver = "vm-082-oradb-gge.mdi.ru";
+    String port = "1521";
+    String sid = "db";
+
+    String user = "galactica";
+    String password = "galactica";
+
+    String dbConnUrl = "jdbc:oracle:thin:@" + dbserver + ":" + port + "/" + sid;
+
+    try {
+      Class.forName("oracle.jdbc.driver.OracleDriver");
+    } catch (Exception exc) {
+      throw new RuntimeException("Couldn't load Oracle JDBC driver", exc);
     }
 
-    return true;
+    System.out.println("Connecting to: SERVER=" + dbConnUrl + ", USER=" + user + ", PASSWORD=" + password + " ...");
+
+    Connection conn = DriverManager.getConnection(dbConnUrl, user, password);
+    String sql = String.format("select u.username\n" +
+            "from galactica.userinfo u\n" +
+            "where u.fio = '%s'\n" +
+            "  and HIDE=0", taskProcess.getFio());
+
+    Statement stmt = conn.createStatement();
+    ResultSet rs;
+    String res = "";
+    try {
+      stmt = conn.createStatement();
+      stmt.execute(sql);
+
+      rs = stmt.getResultSet();
+      if (rs.next()) {
+        res = rs.getString(1);
+      } else {
+        throw new Exception("Object not found");
+      }
+
+      rs.close();
+
+      login = res;
+    } catch (SQLException e) {
+      final String err = "Failed to execute sql:\n" + sql;
+      throw new Exception(err, e);
+    } catch (Throwable e) {
+      final String err = "Error at function";
+      throw new Exception(err, e);
+    } finally {
+    }
+    return login;
   }
 
   public boolean writeActiveTaskProcessDataToJson(boolean isProdServer,
