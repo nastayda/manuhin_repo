@@ -35,7 +35,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
             "filter::id=E93EC358A69745469F6266C0275F7907/vitrina::viewId=E93EC358A69745469F6266C0275F7907" +
             "&offset=0&limit=50";
-    String fileAttach = "c:/Users/manuhin/Downloads/30.docx";
+    String fileAttach = "c:/Downloads/30.docx";
 
     boolean isProdServer = false;
     boolean isContainsUrlProdServer =

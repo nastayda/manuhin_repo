@@ -51,8 +51,13 @@ public class ApplicationManager {
       properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
       if ("".equals(properties.getProperty("selenium.server"))) {
         if (browser.equals(BrowserType.FIREFOX)) {
+          // Рабочий комп
+//          FirefoxProfile ffProf =
+//                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/vzovm275.ep"));
+          // vm-080-pewertest
           FirefoxProfile ffProf =
-                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/71sb043g.ep"));
+                  new FirefoxProfile(new File("c:/Users/manuhin/AppData/Roaming/Mozilla/Firefox/Profiles/br4u1gfk.ep"));
+
           wd = new FirefoxDriver(ffProf);
 //          wd2 = new HighlightingWrapper(new FirefoxDriver(), 200).getDriver();
 //          wd = new FirefoxDriver();
