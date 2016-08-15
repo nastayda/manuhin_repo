@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=B46EB5AEE8B75D38547221DA369D5C8E",
+    "login": "m.kalyuzhny",
+    "actionWithTask": "Согласовать",
+    "fio": "Калюжный Михаил Викторович",
+    "numberProcess": "ПРОЦЕСС № 4944 от 15.08.2016",
+    "urlCardTask": "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]/../../td[@class='number']/a",
+    "numberTask": "26035",
+    "nameTask": "Согласовать внутренний документ"
+  }
+]
