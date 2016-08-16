@@ -1,6 +1,7 @@
 package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
+import ru.stqa.pft.gge.model.DbConnect;
 import ru.stqa.pft.gge.model.TaskProcessData;
 import ru.stqa.pft.gge.model.UpLoadFileData;
 
@@ -120,10 +121,7 @@ public class ProcessHelperGGE extends HelperBase {
       waitElement(By.xpath(xpathKomu));
       fioUtv = fioUtv.substring(0, 20);
       multiSelectString(fioUtv);
-
-//      waitLoadPage(isProdServer);
     }
-
 
     return true;
   }
@@ -196,6 +194,8 @@ public class ProcessHelperGGE extends HelperBase {
 
 //    Конкретное задание кнопки
 //      xpathActionButton = xpathActionWithTask;
+    } else {
+      return false;
     }
 
     // Перечень окон до открытия нового
@@ -497,6 +497,14 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   public Boolean openCardTabWithProcess(boolean isProdServer, TaskProcessData process) throws InterruptedException {
+    Boolean isOpenWithoutMistakes = false;
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+
+    if (!isOpenWithoutMistakes) {
+      return false;
+    }
+
     String xpathTypeDocument = "//span[contains(text(),'Служебные записки ЦА')]";
     waitLoadPage(isProdServer);
     Thread.sleep(200);
@@ -517,12 +525,25 @@ public class ProcessHelperGGE extends HelperBase {
       String href = next.getAttribute("href");
 
       process.withUrlCardProcess(href);
+      return true;
     }
-    return true;
+    return false;
   }
 
   public Boolean openCardProcess(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
-    wd.get(taskProcess.getUrlCardProcess());
+    String ss = taskProcess.getUrlCardProcess();
+//    ss = ss + "2";
+
+    wd.get(ss);
+
+    Boolean isOpenWithoutMistakes = false;
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+
+    if (!isOpenWithoutMistakes) {
+      return false;
+    }
+
     String xpathTypeDocument = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
     waitLoadPage(isProdServer);
     Thread.sleep(200);
@@ -536,6 +557,15 @@ public class ProcessHelperGGE extends HelperBase {
     waitLoadPage(isProdServer);
     Thread.sleep(200);
     wd.get(taskProcess.getUrlCardProcess());
+
+    Boolean isOpenWithoutMistakes = false;
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+
+    if (!isOpenWithoutMistakes) {
+      return false;
+    }
+
     String xpathTypeDocument = "//td[@class='type']//img[contains(@src,'Cube.png')]";
     waitLoadPage(isProdServer);
     Thread.sleep(200);
@@ -546,7 +576,8 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessData(boolean isProdServer,
                                            TaskProcessData taskProcess,
-                                           String actionWithTask) throws Exception {
+                                           String actionWithTask,
+                                           DbConnect dbConnect) throws Exception {
     String xpathTask = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
     String xpathTaskURL = xpathTask;
     String xpathTaskNumber = xpathTask;
@@ -585,7 +616,7 @@ public class ProcessHelperGGE extends HelperBase {
       String taskExecutor = element.getText();
 
       taskProcess.withFio(taskExecutor);
-      String loginFromBD = getLoginFromBD(taskProcess);
+      String loginFromBD = getLoginFromBD(taskProcess, dbConnect);
       taskProcess.withLogin(loginFromBD);
     }
 
@@ -605,7 +636,8 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessDataNext(boolean isProdServer,
                                                TaskProcessData taskProcess,
-                                               String actionWithTask) throws Exception {
+                                               String actionWithTask,
+                                               DbConnect dbConnect) throws Exception {
     String xpathCheckActiveTask = "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]";
 
     String xpathTaskNumber = xpathCheckActiveTask + "/../../td[@class='number']/a";
@@ -653,7 +685,7 @@ public class ProcessHelperGGE extends HelperBase {
         }
 
         // Вычисляем логин (лучше через БД)
-        String login = getLoginFromBD(taskProcess);
+        String login = getLoginFromBD(taskProcess, dbConnect);
         taskProcess.withLogin(login);
 
         // Номер и дата процесса
@@ -674,15 +706,15 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
-  private String getLoginFromBD(TaskProcessData taskProcess) throws Exception {
+  private String getLoginFromBD(TaskProcessData taskProcess, DbConnect dbConnect) throws Exception {
     String login = "";
 
-    String dbserver = "vm-082-oradb-gge.mdi.ru";
-    String port = "1521";
-    String sid = "db";
+    String dbserver = dbConnect.getDbserver();//"vm-082-oradb-gge.mdi.ru";
+    String port = dbConnect.getPort();//"1521";
+    String sid = dbConnect.getSid();//"db";
 
-    String user = "galactica";
-    String password = "galactica";
+    String user = dbConnect.getUser();//"galactica";
+    String password = dbConnect.getPassword();//"galactica";
 
     String dbConnUrl = "jdbc:oracle:thin:@" + dbserver + ":" + port + "/" + sid;
 
@@ -760,14 +792,23 @@ public class ProcessHelperGGE extends HelperBase {
       // Проверка на загрузку заголовков
       Boolean isWebElements = isWebElements(isProdServer, By.xpath(xpathSections));
       if (isWebElements) {
-        break;
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   public boolean waitingOpenCardTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    Boolean isOpenWithoutMistakes = false;
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+
+    if (!isOpenWithoutMistakes) {
+      return false;
+    }
+
+
     String xpathNameCard = "//div[@class='nameObj']";
     String xpathSections = "//p[@class='sectionTitle']";
 
@@ -809,11 +850,11 @@ public class ProcessHelperGGE extends HelperBase {
       // Проверка на загрузку ссылки на файл
       Boolean isWebElements = isWebElements(isProdServer, By.xpath(locator));
       if (isWebElements) {
-        break;
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   public boolean showFile(boolean isProdServer, UpLoadFileData upLoadFileData) throws InterruptedException {
@@ -877,10 +918,11 @@ public class ProcessHelperGGE extends HelperBase {
       if (elements.size() == 1) {
         element = elements.iterator().next();
         clickWithWaiting(element, isProdServer);
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   public boolean checkEP(boolean isProdServer) throws InterruptedException {

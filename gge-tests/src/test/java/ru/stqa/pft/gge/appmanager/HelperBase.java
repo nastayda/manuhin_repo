@@ -259,4 +259,20 @@ public class HelperBase {
 
     return wNew;
   }
+
+  public Boolean checkCardMistakes(Boolean isProdServer, String xPathBadText) throws InterruptedException {
+    Boolean isOpenWithoutMistakes = false;
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+
+    String xPathForBadCard = xPathBadText;
+    List<WebElement> elements = wd.findElements(By.xpath(xPathForBadCard));
+
+    if (elements.size() == 0) {
+      isOpenWithoutMistakes = true;
+    }
+
+    return isOpenWithoutMistakes;
+  }
 }

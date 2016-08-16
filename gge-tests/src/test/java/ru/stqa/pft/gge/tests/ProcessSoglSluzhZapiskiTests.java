@@ -6,8 +6,7 @@ import org.openqa.selenium.Cookie;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.appmanager.HttpHelper;
-import ru.stqa.pft.gge.model.TaskProcessData;
-import ru.stqa.pft.gge.model.UpLoadFileData;
+import ru.stqa.pft.gge.model.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,7 +26,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
   String fileName = "src/test/resources/processSoglSluzhZapiski_vm-082.json";
+  String dbserver = "vm-082-oradb-gge.mdi.ru";
+  String port = "1521";
+  String sid = "db";
+  String userDB = "galactica";
+  String passwordDB = "galactica";
 
+//  @DataProvider
+//  public Iterator<Object[]> testCasesProcessFromJson() throws IOException {
+//    try (BufferedReader reader = new BufferedReader(new FileReader(
+//            new File("src/test/resources/processSoglSluzhZapiski_test-cases_vm-082.json")))) {
+//      String json = "";
+//      String line = reader.readLine();
+//      while (line != null) {
+//        json += line;
+//        line = reader.readLine();
+//      }
+//      Gson gson = new Gson();
+//      List<ProcessTestCases> processTestCases = gson.fromJson(json, new TypeToken<List<ProcessTestCases>>(){}.getType()); // List<ProcessTestCases>.class
+//      return processTestCases.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+//    }
+//  }
+//
+//  @Test(dataProvider = "testCasesProcessFromJson")
   @Test
   public void testProcSoglSluzhZapCreateSlZap() throws Exception {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
@@ -54,6 +76,8 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 //            equalTo(true));
     Set<Cookie> cookies = app.processGGE().getCookies();
 
+    assertThat(cookies.size() > 0, equalTo(true));
+
     assertThat(app.processGGE().razdelUrl(isProdServer, urlAD),
             equalTo(true));
     assertThat(app.processGGE().selectTypeDoc(isProdServer), equalTo(true));
@@ -69,10 +93,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     //Вызов js-script для показа загруженного файла на форме
     app.processGGE().showFile(isProdServer, upLoadFileDataAfter);
-    app.processGGE().checkUpLoadFile(isProdServer);
+    assertThat(app.processGGE().checkUpLoadFile(isProdServer), equalTo(true));
 
     // Наложение ЭП
-    app.processGGE().writeEP(isProdServer);
+    assertThat(app.processGGE().writeEP(isProdServer), equalTo(true));
 
     // Проверка ЭП
     assertThat(app.processGGE().checkEP(isProdServer), equalTo(true));
@@ -81,12 +105,18 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     TaskProcessData taskProcess = new TaskProcessData();
 
-    app.processGGE().openCardTabWithProcess(isProdServer, taskProcess);
-    app.processGGE().openCardProcess(isProdServer, taskProcess);
+    assertThat(app.processGGE().openCardTabWithProcess(isProdServer, taskProcess), equalTo(true));
+    assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
 
     String actionWithTask = "Согласовать";
 
-    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask);
+    DbConnect dbConnect = new DbConnect()
+            .withDbserver(dbserver)
+            .withPort(port)
+            .withSid(sid)
+            .withUser(userDB)
+            .withPassword(passwordDB);
+    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask, dbConnect);
     app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
   }
 
@@ -157,15 +187,22 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     app.processGGE().deleteJsonZapis(fileName);
 
-    app.processGGE().openCardTask(isProdServer, taskProcess);
+    assertThat(app.processGGE().openCardTask(isProdServer, taskProcess), equalTo(true));
 
-    app.processGGE().fillFormTask(isProdServer, taskProcess);
-    app.processGGE().waitingOpenCardTask(isProdServer, taskProcess);
-    app.processGGE().openCardProcessNext(isProdServer, taskProcess);
+    assertThat(app.processGGE().fillFormTask(isProdServer, taskProcess), equalTo(true));
+    assertThat(app.processGGE().waitingOpenCardTask(isProdServer, taskProcess), equalTo(true));
+    assertThat(app.processGGE().openCardProcessNext(isProdServer, taskProcess), equalTo(true));
 
     String actionWithTask = "Согласовать";
 
-    Boolean isProcessEnd = app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess, actionWithTask);
+    DbConnect dbConnect = new DbConnect()
+            .withDbserver(dbserver)
+            .withPort(port)
+            .withSid(sid)
+            .withUser(userDB)
+            .withPassword(passwordDB);
+    Boolean isProcessEnd = app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess,
+            actionWithTask, dbConnect);
     if (!isProcessEnd) {
       app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
     }
