@@ -8,10 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by manuhin on 21.07.2016.
@@ -189,7 +187,15 @@ public class ProcessHelperGGE extends HelperBase {
     if (allButtons.size() == 1) {
       xpathActionButton = xpathActionWithTaskAllButton;
     } else if (allButtons.size() > 1) {
-      xpathActionButton = xpathActionWithTask;
+      Random random = new Random();
+
+      int ii = random.nextInt(allButtons.size()) + 1;
+
+//    Рандомное нажатие на кнопки
+      xpathActionButton = "(" + xpathActionWithTaskAllButton + ")[" + ii + "]";
+
+//    Конкретное задание кнопки
+//      xpathActionButton = xpathActionWithTask;
     }
 
     // Перечень окон до открытия нового

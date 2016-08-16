@@ -119,9 +119,9 @@ public class TaskProcessData {
     return numberTask + " / " +
            nameTask + " / " +
            login + " / " +
-           urlCardTask + " / " +
-           fio + " / " +
            numberProcess + " / " +
+           fio + " / " +
+           urlCardTask + " / " +
            dateProcess + " / " +
            urlCardProcess;
   }
