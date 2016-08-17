@@ -60,7 +60,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
   public void testVitrinaOpenAndFindMGE(GeneratorData vitrina) throws Exception {
 
     boolean isProdServer = false;
-    String password = "123456";
+    String password = "Htytufn6*6";
     if (isProdServer) {
       password = "Htytufn6*6";
     }
