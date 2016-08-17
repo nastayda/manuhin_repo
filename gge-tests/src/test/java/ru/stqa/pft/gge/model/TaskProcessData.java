@@ -7,6 +7,9 @@ import com.google.gson.annotations.Expose;
  */
 public class TaskProcessData {
   @Expose
+  private String processTestCase;
+
+  @Expose
   private String urlCardProcess;
 
   @Expose
@@ -32,6 +35,10 @@ public class TaskProcessData {
 
   @Expose
   private String nameTask;
+
+  public String getProcessTestCase() {
+    return processTestCase;
+  }
 
   public String getUrlCardProcess() {
     return urlCardProcess;
@@ -67,6 +74,11 @@ public class TaskProcessData {
 
   public String getNameTask() {
     return nameTask;
+  }
+
+  public TaskProcessData withProcessTestCase(String processTestCase) {
+    this.processTestCase = processTestCase;
+    return this;
   }
 
   public TaskProcessData withUrlCardProcess(String urlCardProcess) {
@@ -116,7 +128,8 @@ public class TaskProcessData {
 
   @Override
   public String toString() {
-    return numberTask + " / " +
+    return processTestCase + " / " +
+           numberTask + " / " +
            nameTask + " / " +
            login + " / " +
            numberProcess + " / " +

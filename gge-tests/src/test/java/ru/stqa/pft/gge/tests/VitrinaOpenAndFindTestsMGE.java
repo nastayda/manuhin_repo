@@ -62,7 +62,7 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     boolean isProdServer = false;
     String password = "123456";
     if (isProdServer) {
-      password = "123456";
+      password = "Htytufn6*6";
     }
 
 //    assertThat(app.successInit, equalTo(true));

@@ -2,6 +2,7 @@ package ru.stqa.pft.gge.appmanager;
 
 import org.openqa.selenium.*;
 import ru.stqa.pft.gge.model.DbConnect;
+import ru.stqa.pft.gge.model.ProcessTestCases;
 import ru.stqa.pft.gge.model.TaskProcessData;
 import ru.stqa.pft.gge.model.UpLoadFileData;
 
@@ -153,7 +154,9 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
-  public Boolean fillFormTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+  public Boolean fillFormTask(boolean isProdServer,
+                              TaskProcessData taskProcess,
+                              int numberActiveTaskFromProcessCard) throws InterruptedException {
     String xpathTBody = "//tbody";
     String xpathActionWithTaskAllButton = "//div[contains(@class,'assignResponsibleAction')]//input";
     String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
@@ -185,15 +188,21 @@ public class ProcessHelperGGE extends HelperBase {
     if (allButtons.size() == 1) {
       xpathActionButton = xpathActionWithTaskAllButton;
     } else if (allButtons.size() > 1) {
-      Random random = new Random();
-
-      int ii = random.nextInt(allButtons.size()) + 1;
+//      Random random = new Random();
+//
+//      int ii = random.nextInt(allButtons.size()) + 1;
 
 //    Рандомное нажатие на кнопки
-      xpathActionButton = "(" + xpathActionWithTaskAllButton + ")[" + ii + "]";
+//      xpathActionButton = "(" + xpathActionWithTaskAllButton + ")[" + ii + "]";
 
-//    Конкретное задание кнопки
-//      xpathActionButton = xpathActionWithTask;
+//    Конкретное задание кнопки - из файла fileProcessTestCase
+//    Из файла fileProcessTestCase (это 1 строка из цифр) получить значение символа с номером numberActiveTask
+//    Это будет номер для xpath кнопок
+
+      String substring = taskProcess.getProcessTestCase()
+              .substring(numberActiveTaskFromProcessCard, numberActiveTaskFromProcessCard + 1);
+      int ii = Integer.parseInt(substring);
+      xpathActionButton = "(" + xpathActionWithTaskAllButton + ")[" + ii + "]";
     } else {
       return false;
     }
@@ -770,6 +779,16 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
+  public boolean writeActiveProcessDataToJson(boolean isProdServer,
+                                              ProcessTestCases processTestCase,
+                                              String fileName) throws IOException {
+    List<ProcessTestCases> processTestCases = new ArrayList<>();
+    processTestCases.add(processTestCase);
+    saveAsJsonProcessTestCase(processTestCases, new File(fileName));
+
+    return true;
+  }
+
   public boolean openCardTask(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
     String xpathNameCard = "//div[@class='nameObj']";
     String xpathSections = "//p[@class='sectionTitle']";
@@ -965,5 +984,23 @@ public class ProcessHelperGGE extends HelperBase {
     }
 
     return false;
+  }
+
+  public int getNumberActiveTask(boolean isProdServer) throws InterruptedException {
+    String xpathCheckResolvedTasks = "//td[@class='type']//img[contains(@src,'greenCube.png')]";
+
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    List<WebElement> elements = new ArrayList<WebElement>();
+
+    for (int i = 1; i < 10; i++) {
+      elements = wd.findElements(By.xpath(xpathCheckResolvedTasks));
+      if (elements.size() == 0) {
+        Thread.sleep(500);
+      } else {
+        return elements.size();
+      }
+    }
+    return elements.size();
   }
 }

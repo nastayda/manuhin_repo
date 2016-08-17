@@ -26,39 +26,43 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
   String fileName = "src/test/resources/processSoglSluzhZapiski_vm-082.json";
+  String fileProcessTestCases = "src/test/resources/processSoglSluzhZapiski_test-cases_vm-082.json";
+  String fileProcessTestCase = "src/test/resources/processSoglSluzhZapiski_actite-test-case_vm-082.json";
   String dbserver = "vm-082-oradb-gge.mdi.ru";
   String port = "1521";
   String sid = "db";
   String userDB = "galactica";
   String passwordDB = "galactica";
 
-//  @DataProvider
-//  public Iterator<Object[]> testCasesProcessFromJson() throws IOException {
-//    try (BufferedReader reader = new BufferedReader(new FileReader(
-//            new File("src/test/resources/processSoglSluzhZapiski_test-cases_vm-082.json")))) {
-//      String json = "";
-//      String line = reader.readLine();
-//      while (line != null) {
-//        json += line;
-//        line = reader.readLine();
-//      }
-//      Gson gson = new Gson();
-//      List<ProcessTestCases> processTestCases = gson.fromJson(json, new TypeToken<List<ProcessTestCases>>(){}.getType()); // List<ProcessTestCases>.class
-//      return processTestCases.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
-//    }
-//  }
-//
-//  @Test(dataProvider = "testCasesProcessFromJson")
-  @Test
-  public void testProcSoglSluzhZapCreateSlZap() throws Exception {
+  @DataProvider
+  public Iterator<Object[]> testCasesProcessFromJson() throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(
+            new File(fileProcessTestCases)))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<ProcessTestCases> processTestCases = gson.fromJson(json, new TypeToken<List<ProcessTestCases>>(){}.getType()); // List<ProcessTestCases>.class
+      return processTestCases.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
+  }
+
+  @Test(dataProvider = "testCasesProcessFromJson")
+  public void testProcSoglSluzhZapCreateSlZap(ProcessTestCases processTestCase) throws Exception {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
     String loginUser = "e.mironova";
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
             "filter::id=E93EC358A69745469F6266C0275F7907/vitrina::viewId=E93EC358A69745469F6266C0275F7907" +
             "&offset=0&limit=50";
     String fileAttach = "c:/Downloads/30.docx";
-
     boolean isProdServer = false;
+
+    // Запись тест-кейса прохождения БП в спец файл
+    app.processGGE().writeActiveProcessDataToJson(isProdServer, processTestCase, fileProcessTestCase);
+
     boolean isContainsUrlProdServer =
             baseUrl.contains("https://eis.gge.ru/");
     if (isContainsUrlProdServer) {
@@ -104,6 +108,9 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     app.processGGE().submitForm(isProdServer);
 
     TaskProcessData taskProcess = new TaskProcessData();
+
+    // В задачу процесса вносим вариант прохождения процесса
+    taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
 
     assertThat(app.processGGE().openCardTabWithProcess(isProdServer, taskProcess), equalTo(true));
     assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
@@ -187,9 +194,11 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
 
     app.processGGE().deleteJsonZapis(fileName);
 
+    int numberActiveTaskFromProcessCard = app.processGGE().getNumberActiveTask(isProdServer);
     assertThat(app.processGGE().openCardTask(isProdServer, taskProcess), equalTo(true));
 
-    assertThat(app.processGGE().fillFormTask(isProdServer, taskProcess), equalTo(true));
+    assertThat(app.processGGE().fillFormTask(isProdServer, taskProcess, numberActiveTaskFromProcessCard)
+            , equalTo(true));
     assertThat(app.processGGE().waitingOpenCardTask(isProdServer, taskProcess), equalTo(true));
     assertThat(app.processGGE().openCardProcessNext(isProdServer, taskProcess), equalTo(true));
 
