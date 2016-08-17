@@ -124,7 +124,8 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
             .withUser(userDB)
             .withPassword(passwordDB);
     app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask, dbConnect);
-    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
+    List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
+    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcessDatas, taskProcess, fileName);
   }
 
   class MyIterator implements Iterator<Object[]> {
@@ -192,7 +193,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.successInit, equalTo(true));
     app.session().loginProcess(isProdServer, loginUser, password, taskProcess.getUrlCardProcess());
 
-    app.processGGE().deleteJsonZapis(fileName);
+//    app.processGGE().deleteJsonZapis(fileName);
 
     int numberActiveTaskFromProcessCard = app.processGGE().getNumberActiveTask(isProdServer);
     assertThat(app.processGGE().openCardTask(isProdServer, taskProcess), equalTo(true));
@@ -202,8 +203,6 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.processGGE().waitingOpenCardTask(isProdServer, taskProcess), equalTo(true));
     assertThat(app.processGGE().openCardProcessNext(isProdServer, taskProcess), equalTo(true));
 
-    String actionWithTask = "Согласовать";
-
     DbConnect dbConnect = new DbConnect()
             .withDbserver(dbserver)
             .withPort(port)
@@ -211,10 +210,12 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
             .withUser(userDB)
             .withPassword(passwordDB);
     Boolean isProcessEnd = app.processGGE().readActiveTaskProcessDataNext(isProdServer, taskProcess,
-            actionWithTask, dbConnect);
-    if (!isProcessEnd) {
-      app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcess, fileName);
+            dbConnect);
+    List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
+    if (isProcessEnd) {
+      app.processGGE().deleteFirstTaskProcessDataInJson(isProdServer, taskProcessDatas, fileName);
+    } else {
+      app.processGGE().changeFirstTaskProcessDataInJson(isProdServer, taskProcessDatas, taskProcess, fileName);
     }
   }
-
 }

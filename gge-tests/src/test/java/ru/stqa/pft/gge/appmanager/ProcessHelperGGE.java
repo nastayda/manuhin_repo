@@ -1,17 +1,22 @@
 package ru.stqa.pft.gge.appmanager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.openqa.selenium.*;
 import ru.stqa.pft.gge.model.DbConnect;
 import ru.stqa.pft.gge.model.ProcessTestCases;
 import ru.stqa.pft.gge.model.TaskProcessData;
 import ru.stqa.pft.gge.model.UpLoadFileData;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 /**
  * Created by manuhin on 21.07.2016.
@@ -645,7 +650,6 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessDataNext(boolean isProdServer,
                                                TaskProcessData taskProcess,
-                                               String actionWithTask,
                                                DbConnect dbConnect) throws Exception {
     String xpathCheckActiveTask = "(//td[@class='type']//img[contains(@src,'whiteCube.png')])[1]";
 
@@ -653,8 +657,6 @@ public class ProcessHelperGGE extends HelperBase {
     String xpathTaskName = xpathCheckActiveTask + "/../../td[@class='task']";
     String xpathTaskExecutor = xpathCheckActiveTask + "/../../td[@class='executor']/div[1]";
     String xpathProcessNumDate = "//div[@class='bold appeal']";
-    String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
-            "//input[contains(@value, '" + actionWithTask + "')]";
 
     for (int i = 0; i < 10; i++) {
       List<WebElement> whiteCubeElements = wd.findElements(By.xpath(xpathCheckActiveTask));
@@ -705,8 +707,6 @@ public class ProcessHelperGGE extends HelperBase {
 
           taskProcess.withNumberProcess(processNumberDate);
         }
-
-        taskProcess.withActionWithTask(actionWithTask);
 
         return false;
       }
@@ -770,13 +770,60 @@ public class ProcessHelperGGE extends HelperBase {
   }
 
   public boolean writeActiveTaskProcessDataToJson(boolean isProdServer,
+                                                  List<TaskProcessData> taskProcessDatas,
                                                   TaskProcessData taskProcess,
                                                   String fileName) throws IOException {
-    List<TaskProcessData> processTasks = new ArrayList<>();
-    processTasks.add(taskProcess);
-    saveAsJsonProcessTask(processTasks, new File(fileName));
+    taskProcessDatas.add(taskProcess);
+    saveAsJsonProcessTask(taskProcessDatas, new File(fileName));
 
     return true;
+  }
+
+  public boolean changeFirstTaskProcessDataInJson(boolean isProdServer,
+                                                  List<TaskProcessData> taskProcessDatas,
+                                                  TaskProcessData taskProcess,
+                                                  String fileName) throws IOException {
+    List<TaskProcessData> taskProcessDatasNew = new ArrayList<>();
+
+    // Добавляем текущую инфу по задаче
+    taskProcessDatasNew.add(taskProcess);
+
+    // Удаляем первый элемент списка (замена)
+    taskProcessDatas.remove(0);
+
+    // Дописываем в список задач остальные
+    for (TaskProcessData tpd : taskProcessDatas) {
+      taskProcessDatasNew.add(tpd);
+    }
+
+    saveAsJsonProcessTask(taskProcessDatasNew, new File(fileName));
+
+    return true;
+  }
+
+  public boolean deleteFirstTaskProcessDataInJson(boolean isProdServer,
+                                                  List<TaskProcessData> taskProcessDatas,
+                                                  String fileName) throws IOException {
+    // Удаляем первый элемент списка
+    taskProcessDatas.remove(0);
+    saveAsJsonProcessTask(taskProcessDatas, new File(fileName));
+
+    return true;
+  }
+
+  public List<TaskProcessData> readActiveTaskProcessDataFromJson(String fileProcessTestCases) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(
+            new File(fileProcessTestCases)))) {
+      String json = "";
+      String line = reader.readLine();
+      while (line != null) {
+        json += line;
+        line = reader.readLine();
+      }
+      Gson gson = new Gson();
+      List<TaskProcessData> taskProcessDatas = gson.fromJson(json, new TypeToken<List<TaskProcessData>>(){}.getType()); // List<ProcessTestCases>.class
+      return taskProcessDatas;
+    }
   }
 
   public boolean writeActiveProcessDataToJson(boolean isProdServer,
