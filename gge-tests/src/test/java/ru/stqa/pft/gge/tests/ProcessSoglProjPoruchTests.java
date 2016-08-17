@@ -6,7 +6,10 @@ import org.openqa.selenium.Cookie;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.gge.appmanager.HttpHelper;
-import ru.stqa.pft.gge.model.*;
+import ru.stqa.pft.gge.model.DbConnect;
+import ru.stqa.pft.gge.model.ProcessTestCases;
+import ru.stqa.pft.gge.model.TaskProcessData;
+import ru.stqa.pft.gge.model.UpLoadFileData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,13 +24,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * Created by manuhin on 21.07.2016.
+ * Created by manuhin on 17.08.2016.
  */
-public class ProcessSoglSluzhZapiskiTests extends TestBase {
+public class ProcessSoglProjPoruchTests extends TestBase {
 
-  String fileName = "src/test/resources/processSoglSluzhZapiski_vm-082.json";
-  String fileProcessTestCases = "src/test/resources/processSoglSluzhZapiski_test-cases_vm-082.json";
-  String fileProcessTestCase = "src/test/resources/processSoglSluzhZapiski_actite-test-case_vm-082.json";
+  String fileName = "src/test/resources/processSoglProjPoruch_vm-082.json";
+  String fileProcessTestCases = "src/test/resources/processSoglProjPoruch_test-cases_vm-082.json";
+  String fileProcessTestCase = "src/test/resources/processSoglProjPoruch_actite-test-case_vm-082.json";
   String dbserver = "vm-082-oradb-gge.mdi.ru";
   String port = "1521";
   String sid = "db";
@@ -51,7 +54,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
   }
 
   @Test(dataProvider = "testCasesProcessFromJson")
-  public void testProcSoglSluzhZapCreateSlZap(ProcessTestCases processTestCase) throws Exception {
+  public void testProcSoglProjPoruchCreate__(ProcessTestCases processTestCase) throws Exception {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
     String loginUser = "e.mironova";
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
@@ -85,10 +88,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     assertThat(app.processGGE().razdelUrl(isProdServer, urlAD),
             equalTo(true));
     assertThat(app.processGGE().selectTypeDoc(isProdServer,
-            "//span[contains(text(),'Внутренние документы')]",
-            "//label[@for='item_SLZP_2']/input",
+            "//span[contains(text(),'Обращения граждан')]",
+            "//label[@for='item_PSMG_3']/input",
             "CREST_CORR_LIST",
-            "formId=ADM_INNER"), equalTo(true));
+            "formId=ADM_DOC_GIO3"), equalTo(true));
 
     HttpHelper session = app.http();
     app.processGGE().fillForm(isProdServer, "SlZap");

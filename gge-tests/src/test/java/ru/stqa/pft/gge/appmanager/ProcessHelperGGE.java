@@ -16,7 +16,6 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 /**
  * Created by manuhin on 21.07.2016.
@@ -49,7 +48,10 @@ public class ProcessHelperGGE extends HelperBase {
     return isAD;
   }
 
-  public Boolean selectTypeDoc(boolean isProdServer) throws InterruptedException {
+  public Boolean selectTypeDoc(boolean isProdServer,
+                               String typeGroupDoc,
+                               String typeDoc,
+                               String checkTypeDoc, String checkTypeForm) throws InterruptedException {
 
     // Клик по кнопке "Мои действия"
     String xpath = "//div[contains(@class,'singleButton')][contains(text(),'Мои действия')]";
@@ -65,17 +67,17 @@ public class ProcessHelperGGE extends HelperBase {
     String newWindow = switchToNewWindow(winOld);
 
     // Проверка, что мы в том окне, куда и надо
-    if (!isUrlContainsText("CREST_CORR_LIST")) {
+    if (!isUrlContainsText(checkTypeDoc)) {
       return false;
     }
 
-    // Выбор "Внутренние документы"
-    String xpathTypesDoc = "//span[contains(text(),'Внутренние документы')]";
+    // Выбор типа группы документов (например, "Внутренние документы")
+    String xpathTypesDoc = typeGroupDoc;
     waitElement(By.xpath(xpathTypesDoc));
     click(By.xpath(xpathTypesDoc));
 
-    // Выбор "Служебная записка ЦА"
-    String xpathSlugZapRadioButton = "//label[@for='item_SLZP_2']/input";
+    // Выбор конкретного типа документа (например, "Служебная записка ЦА")
+    String xpathSlugZapRadioButton = typeDoc;
     waitElement(By.xpath(xpathSlugZapRadioButton));
     Thread.sleep(500);
     click(By.xpath(xpathSlugZapRadioButton));
@@ -91,7 +93,7 @@ public class ProcessHelperGGE extends HelperBase {
     String newWindow2 = switchToNewWindow(winOld2);
 
     // Проверка, что мы в том окне, куда и надо
-    if (!isUrlContainsText("formId=ADM_INNER")) {
+    if (!isUrlContainsText(checkTypeForm)) {
       return false;
     }
 
