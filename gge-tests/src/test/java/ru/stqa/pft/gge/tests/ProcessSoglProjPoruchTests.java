@@ -54,7 +54,7 @@ public class ProcessSoglProjPoruchTests extends TestBase {
   }
 
   @Test(dataProvider = "testCasesProcessFromJson")
-  public void testProcSoglProjPoruchCreate__(ProcessTestCases processTestCase) throws Exception {
+  public void testProcSoglProjPoruchCreateDocs(ProcessTestCases processTestCase) throws Exception {
     String baseUrl = "https://vm-082-as-gge.mdi.ru/";
     String loginUser = "e.mironova";
     String urlAD = baseUrl + "portal/tabInfo.action?tab=OFFICEWORK#/tree::rel=4/" +
@@ -94,7 +94,10 @@ public class ProcessSoglProjPoruchTests extends TestBase {
             "formId=ADM_DOC_GIO3"), equalTo(true));
 
     HttpHelper session = app.http();
-    app.processGGE().fillForm(isProdServer, "SlZap");
+    app.processGGE().fillForm(isProdServer, "SitizenLetter");
+
+    // Проверка, что кнопка загрузки видима и активна
+    assertThat(app.processGGE().checkEnableButtonUpLoad(), equalTo(true));
 
     // Прикрепление файла к форме (через elib)
     UpLoadFileData upLoadFileDataBefore = new UpLoadFileData();
@@ -119,10 +122,14 @@ public class ProcessSoglProjPoruchTests extends TestBase {
     // В задачу процесса вносим вариант прохождения процесса
     taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
 
+    // Дальше нужно создавать Проект поручения!!!
+//
+//
+//
+//
+
     assertThat(app.processGGE().openCardTabWithProcess(isProdServer, taskProcess), equalTo(true));
     assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
-
-    String actionWithTask = "Согласовать";
 
     DbConnect dbConnect = new DbConnect()
             .withDbserver(dbserver)
@@ -130,7 +137,7 @@ public class ProcessSoglProjPoruchTests extends TestBase {
             .withSid(sid)
             .withUser(userDB)
             .withPassword(passwordDB);
-    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask, dbConnect);
+    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, dbConnect);
     List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
     app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcessDatas, taskProcess, fileName);
   }

@@ -44,6 +44,7 @@ public class ProcessHelperGGE extends HelperBase {
     String currentUrl = wd.getCurrentUrl();
     boolean isAD = currentUrl.contains("OFFICEWORK");
 
+    Thread.sleep(200);
     wd.manage().window().maximize();
     return isAD;
   }
@@ -110,9 +111,15 @@ public class ProcessHelperGGE extends HelperBase {
 
 
   public Boolean fillForm(boolean isProdServer, String typeDoc) throws InterruptedException {
-    fillTab(isProdServer, 1);
+    fillTab(isProdServer, typeDoc, 1);
+
+    if (typeDoc.equals("SitizenLetter")) {
+
+      return true;
+    }
+
     clickDifficalt(isProdServer, "//a[@href='#tab_TAB_GROUP_02']");
-    fillTab(isProdServer, 2);
+    fillTab(isProdServer, typeDoc, 2);
 
     if (typeDoc.equals("SlZap")) {
       // Получить ФИО утверждающего
@@ -239,13 +246,13 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
-  private Boolean fillTab(boolean isProdServer, int numTab) throws InterruptedException {
+  private Boolean fillTab(boolean isProdServer, String typeDoc, int numTab) throws InterruptedException {
     Boolean isFillTab = false;
     if (!waitLoadForm(isProdServer, "//*[@class='header']")) {
       return isFillTab;
     }
 
-    fillAllFilters(isProdServer, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
+    fillAllFilters(isProdServer, typeDoc, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
 
 
     isFillTab = true;
@@ -273,7 +280,7 @@ public class ProcessHelperGGE extends HelperBase {
     return isWebElements;
   }
 
-  public void fillAllFilters(boolean isProdServer, String xpathAllElements, int numTab) throws InterruptedException {
+  public void fillAllFilters(boolean isProdServer, String typeDoc, String xpathAllElements, int numTab) throws InterruptedException {
     waitLoadPage(isProdServer);
     Thread.sleep(500);
     List<WebElement> elements = wd.findElements(By.xpath(xpathAllElements));
@@ -284,9 +291,14 @@ public class ProcessHelperGGE extends HelperBase {
         fillFiltrTypeEdit(element, "Test_001");
         fillFiltrTypeTextArea(element, "Test_001");
         fillFiltrMultiSelect(element);
-        fillFiltrTypeButtonGen(element, isProdServer);
+        if (!fillFiltrTypeButtonGen(element, isProdServer)) {
+          fillFiltrGenEdit(element, "Test_001");
+        }
+        if (typeDoc.equals("SitizenLetter")) {
+          fillFiltrTypeDate(element, "Test_001", 0);
+        }
       } else {
-        fillFiltrTypeDate(element, "Test_001");
+        fillFiltrTypeDate(element, "Test_001", 7);
       }
 
 //      fillFiltrReference(element, 16, isProdServer);
@@ -305,7 +317,7 @@ public class ProcessHelperGGE extends HelperBase {
       if (elements.size() >= 1) {
         for (WebElement w : elements) {
           // Если элемент видим, незадезейблен, без значения - тогда выставить последнее
-          if (!isVisibleEnabledWithoutValue(w)) {
+          if (isVisibleEnabledWithoutValue(w)) {
             continue;
           }
           List<WebElement> elementsValue = w.findElements(By.xpath("./option[last()]"));
@@ -333,6 +345,23 @@ public class ProcessHelperGGE extends HelperBase {
 
     return true;
   }
+
+  public Boolean checkEnableButtonUpLoad() throws InterruptedException {
+    String xpathlocator =
+            "//div[@nick='FILE_GROUP']//span[contains(@class,'last')]//div[@class='qq-upload-button']/input";
+
+    List<WebElement> elements = wd.findElements(By.xpath(xpathlocator));
+    if (elements.size() >= 1) {
+      WebElement w = elements.iterator().next();
+      // Если элемент видим, незадезейблен то все ок
+      if (w.isEnabled()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
 
   private void fillFiltrCheckbox(WebElement element) throws InterruptedException {
     String xpathlocator = ".//input[@type='checkbox' and @class!='masked']";
@@ -368,7 +397,9 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  private void fillFiltrTypeDate(WebElement element, String text) throws InterruptedException {
+  private void fillFiltrTypeDate(WebElement element,
+                                 String text,
+                                 long anotherDate) throws InterruptedException {
     String xpathlocator = ".//input[count(ancestor::span[contains(@class,'autoFormDATE')]" +
             "[contains(@class,'hide')])=0]" +
             "[count(ancestor::div[@panel_id][contains(@class,'hide')])=0]" +
@@ -380,7 +411,6 @@ public class ProcessHelperGGE extends HelperBase {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         Date currentDate = new Date();
         Long time = currentDate.getTime();
-        long anotherDate = 7;
         time = time + (60*60*24*1000*anotherDate);
         currentDate = new Date(time);
         String dateString = sdf.format(currentDate);
@@ -437,7 +467,7 @@ public class ProcessHelperGGE extends HelperBase {
     }
   }
 
-  private void fillFiltrTypeButtonGen(WebElement element, boolean isProdServer) throws InterruptedException {
+  private Boolean fillFiltrTypeButtonGen(WebElement element, boolean isProdServer) throws InterruptedException {
     String xpathlocator = ".//button[@class='numberGeneratorButton']";
     List<WebElement> elements = element.findElements(By.xpath(xpathlocator));
     if (elements.size() > 0) {
@@ -450,9 +480,22 @@ public class ProcessHelperGGE extends HelperBase {
             // Если элемент ввода рег.номера задизейблен, то жмем на кнопку рег. номера
             if (elementsDisabled.size() > 0) {
               clickWithWaiting(w, isProdServer);
+              return true;
             }
           }
         }
+      }
+    }
+    return false;
+  }
+
+  private void fillFiltrGenEdit(WebElement element, String text) {
+    String xpathGenNumber = "//input[contains(@class,'generatorInput')]";
+    List<WebElement> elements2 = element.findElements(By.xpath(xpathGenNumber));
+    if (elements2.size() == 1) {
+      WebElement ww = elements2.iterator().next();
+      if (ww.isEnabled()) {
+        type(ww, text);
       }
     }
   }
@@ -592,7 +635,6 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean readActiveTaskProcessData(boolean isProdServer,
                                            TaskProcessData taskProcess,
-                                           String actionWithTask,
                                            DbConnect dbConnect) throws Exception {
     String xpathTask = "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]";
     String xpathTaskURL = xpathTask;
@@ -600,8 +642,6 @@ public class ProcessHelperGGE extends HelperBase {
     String xpathTaskName = xpathTask + "/../../td[@class='task']";
     String xpathTaskExecutor = xpathTask + "/../../td[@class='executor']/div[1]";
     String xpathProcessNumDate = "//div[@class='bold appeal']";
-    String xpathActionWithTask = "//div[contains(@class,'assignResponsibleAction')]" +
-            "//input[contains(@value, '" + actionWithTask + "')]";
 
     waitElement(By.xpath(xpathTask));
     waitElement(By.xpath(xpathTaskName));
@@ -644,8 +684,6 @@ public class ProcessHelperGGE extends HelperBase {
 
       taskProcess.withNumberProcess(processNumberDate);
     }
-
-    taskProcess.withActionWithTask(actionWithTask);
 
     return true;
   }
@@ -954,7 +992,8 @@ public class ProcessHelperGGE extends HelperBase {
             "var fileRow = $('<li/>').addClass('attachmentFileRow').attr('id', fileId).append(fileItem);\n" +
             "fileRow.find('.AttachmentFileName').attr('title', fileName).html('<span class=\"limitedName\">'+fileNameArr[0]+'</span>.'+fileNameArr[1]);\n" +
             "fileRow.find('.fileSize').html('('+fileSize+')');\n" +
-            "$('[field_id=\"'+fieldId+'\"] ul.attachmentsTable ').append(fileRow);"
+            "$('[field_id=\"'+fieldId+'\"] ul.attachmentsTable ').append(fileRow);\n" +
+            "fileRow.closest('.attachmentsTableWrapper').siblings('.fileSign').removeClass('disabled');"
             ,upLoadFileData.getId()
             ,upLoadFileData.getSize()
             ,upLoadFileData.getName()

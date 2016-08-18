@@ -93,6 +93,9 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     HttpHelper session = app.http();
     app.processGGE().fillForm(isProdServer, "SlZap");
 
+    // Проверка, что кнопка загрузки видима и активна
+    assertThat(app.processGGE().checkEnableButtonUpLoad(), equalTo(true));
+
     // Прикрепление файла к форме (через elib)
     UpLoadFileData upLoadFileDataBefore = new UpLoadFileData();
     upLoadFileDataBefore.withFilePath(fileAttach);
@@ -127,7 +130,7 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
             .withSid(sid)
             .withUser(userDB)
             .withPassword(passwordDB);
-    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, actionWithTask, dbConnect);
+    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, dbConnect);
     List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
     app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcessDatas, taskProcess, fileName);
   }
