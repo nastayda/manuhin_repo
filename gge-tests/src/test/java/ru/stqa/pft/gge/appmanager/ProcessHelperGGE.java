@@ -104,6 +104,55 @@ public class ProcessHelperGGE extends HelperBase {
     return true;
   }
 
+  public Boolean initFormDoc(boolean isProdServer,
+                             String typeDoc,
+                             String checkTypeDoc, String checkTypeForm) throws InterruptedException {
+
+    // Клик по кнопке "Мои действия"
+    String xpath = "//div[contains(@class,'singleButton')][contains(text(),'Мои действия')]";
+    clickDifficalt(isProdServer, xpath);
+
+    // Перечень окон до открытия нового
+    Set<String> winOld = wd.getWindowHandles();
+
+    // Клик по кнопке "Создать документ"
+    xpath = "//ul[@class='notUgd HEADER showSubMenu showme']/li/a";
+    clickDifficalt(isProdServer, xpath);
+
+    String newWindow = switchToNewWindow(winOld);
+
+    // Проверка, что мы в том окне, куда и надо
+    if (!isUrlContainsText(checkTypeDoc)) {
+      return false;
+    }
+
+    // Выбор конкретного типа документа (например, "Проект поручения")
+    String xpathTypeDocButton = typeDoc;
+    waitElement(By.xpath(xpathTypeDocButton));
+    Thread.sleep(500);
+    click(By.xpath(xpathTypeDocButton));
+
+    // Перечень окон до открытия нового
+    Set<String> winOld2 = wd.getWindowHandles();
+
+    // Нажать "Выбрать" (submit)
+    String xpathSubmitButton = "//input[@type='button'][@value='Выбрать']";
+    waitElement(By.xpath(xpathSubmitButton));
+    click(By.xpath(xpathSubmitButton));
+
+    String newWindow2 = switchToNewWindow(winOld2);
+
+    // Проверка, что мы в том окне, куда и надо
+    if (!isUrlContainsText(checkTypeForm)) {
+      return false;
+    }
+
+    wd.manage().window().maximize();
+    waitLoadPage(isProdServer);
+
+    return true;
+  }
+
   public Set<Cookie> getCookies() {
     Set<Cookie> cookies = wd.manage().getCookies();
     return cookies;

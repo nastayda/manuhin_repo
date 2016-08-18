@@ -123,7 +123,7 @@ public class ProcessSoglProjPoruchTests extends TestBase {
     taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
 
     // Дальше нужно создавать Проект поручения!!!
-//
+    // Вызов формы Проекта поручения
 //
 //
 //

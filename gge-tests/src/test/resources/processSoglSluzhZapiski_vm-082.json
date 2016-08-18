@@ -1,12 +1,1 @@
-[
-  {
-    "processTestCase": "1111",
-    "urlCardProcess": "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD&documentId=D2DB336E13593ECD376E1042059789D7",
-    "login": "e.mironova",
-    "fio": "Миронова Екатерина Владимировна",
-    "numberProcess": "ПРОЦЕСС № 5031 от 18.08.2016",
-    "urlCardTask": "//table[@id='tabsWrap']//a[contains(@href,'tabInfo.action?documentId')]",
-    "numberTask": "26640",
-    "nameTask": "Согласовать внутренний документ"
-  }
-]
+[]
