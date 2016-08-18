@@ -18,4 +18,9 @@ public class ProcessTestCases {
     this.processTestCase = processTestCase;
     return this;
   }
+
+  @Override
+  public String toString() {
+    return "processTestCase = " + processTestCase;
+  }
 }
