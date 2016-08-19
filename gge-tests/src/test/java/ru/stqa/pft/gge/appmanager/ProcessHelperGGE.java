@@ -106,7 +106,8 @@ public class ProcessHelperGGE extends HelperBase {
 
   public Boolean initFormDoc(boolean isProdServer,
                              String typeDoc,
-                             String checkTypeDoc, String checkTypeForm) throws InterruptedException {
+                             String checkTypeDoc
+                             ) throws InterruptedException {
 
     // Клик по кнопке "Мои действия"
     String xpath = "//div[contains(@class,'singleButton')][contains(text(),'Мои действия')]";
@@ -116,34 +117,13 @@ public class ProcessHelperGGE extends HelperBase {
     Set<String> winOld = wd.getWindowHandles();
 
     // Клик по кнопке "Создать документ"
-    xpath = "//ul[@class='notUgd HEADER showSubMenu showme']/li/a";
+    xpath = "//ul[@class='notUgd HEADER showSubMenu showme']/li/a[contains(text(),'" + typeDoc + "')]";
     clickDifficalt(isProdServer, xpath);
 
     String newWindow = switchToNewWindow(winOld);
 
     // Проверка, что мы в том окне, куда и надо
     if (!isUrlContainsText(checkTypeDoc)) {
-      return false;
-    }
-
-    // Выбор конкретного типа документа (например, "Проект поручения")
-    String xpathTypeDocButton = typeDoc;
-    waitElement(By.xpath(xpathTypeDocButton));
-    Thread.sleep(500);
-    click(By.xpath(xpathTypeDocButton));
-
-    // Перечень окон до открытия нового
-    Set<String> winOld2 = wd.getWindowHandles();
-
-    // Нажать "Выбрать" (submit)
-    String xpathSubmitButton = "//input[@type='button'][@value='Выбрать']";
-    waitElement(By.xpath(xpathSubmitButton));
-    click(By.xpath(xpathSubmitButton));
-
-    String newWindow2 = switchToNewWindow(winOld2);
-
-    // Проверка, что мы в том окне, куда и надо
-    if (!isUrlContainsText(checkTypeForm)) {
       return false;
     }
 
@@ -162,7 +142,7 @@ public class ProcessHelperGGE extends HelperBase {
   public Boolean fillForm(boolean isProdServer, String typeDoc) throws InterruptedException {
     fillTab(isProdServer, typeDoc, 1);
 
-    if (typeDoc.equals("SitizenLetter")) {
+    if (typeDoc.equals("SitizenLetter") || typeDoc.equals("ADM_REZOL_PROJ")) {
 
       return true;
     }
@@ -297,18 +277,70 @@ public class ProcessHelperGGE extends HelperBase {
 
   private Boolean fillTab(boolean isProdServer, String typeDoc, int numTab) throws InterruptedException {
     Boolean isFillTab = false;
-    if (!waitLoadForm(isProdServer, "//*[@class='header']")) {
+    String xpathTabGroup = "//body";
+
+    if (!typeDoc.equals("ADM_REZOL_PROJ")) {
+      xpathTabGroup = "//li[contains(@class,'autoFormTabItem')]//a[contains(@href,'TAB_GROUP')]";
+    }
+
+
+    if (!waitLoadForm(isProdServer,
+            "//*[@class='header']",
+            xpathTabGroup)) {
       return isFillTab;
     }
 
-    fillAllFilters(isProdServer, typeDoc, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
+    addMultiSections(isProdServer);
 
+    fillAllFilters(isProdServer, typeDoc, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
 
     isFillTab = true;
     return isFillTab;
   }
 
-  private Boolean waitLoadForm(Boolean isProdServer, String locator) throws InterruptedException {
+  public Boolean fillFormWithoutTab(boolean isProdServer,
+                                     String typeDoc) throws InterruptedException {
+    Boolean isFillTab = false;
+    String xpathTabGroup = "//body";
+
+    if (!waitLoadForm(isProdServer,
+            "//*[@class='header']",
+            xpathTabGroup)) {
+      return isFillTab;
+    }
+
+    addMultiSections(isProdServer);
+
+    fillAllFilters2(isProdServer, typeDoc, "//body");
+
+    isFillTab = true;
+    return isFillTab;
+  }
+
+  private void addMultiSections(Boolean isProdServer) throws InterruptedException {
+    String locatorPlus = "//span[@class='addRem add']";
+    String locatorAddTask = "//div[contains(@class,'addSection')][contains(text(),'Добавить задачу')]";
+
+    waitLoadPage(isProdServer);
+    List<WebElement> elements = wd.findElements(By.xpath(locatorAddTask));
+    for (WebElement w : elements) {
+      if (w.isDisplayed()) {
+        clickWithWaiting(w, isProdServer);
+        waitLoadPage(isProdServer);
+      }
+    }
+
+    waitLoadPage(isProdServer);
+    elements = wd.findElements(By.xpath(locatorPlus));
+    for (WebElement w : elements) {
+      if (w.isDisplayed()) {
+        clickWithWaiting(w, isProdServer);
+        waitLoadPage(isProdServer);
+      }
+    }
+  }
+
+  private Boolean waitLoadForm(Boolean isProdServer, String locator, String xpathTabs) throws InterruptedException {
     Boolean isWebElements = false;
     List<WebElement> elements = new ArrayList<WebElement>();
 
@@ -317,7 +349,7 @@ public class ProcessHelperGGE extends HelperBase {
       waitLoadPage(isProdServer);
       Thread.sleep(500);
 
-      elements = wd.findElements(By.xpath("//li[contains(@class,'autoFormTabItem')]//a[contains(@href,'TAB_GROUP')]"));
+      elements = wd.findElements(By.xpath(xpathTabs));
       if (elements.size() > 0) {
         // Проверка элементов внутри вкладки
         isWebElements = isWebElements(isProdServer, By.xpath(locator));
@@ -353,6 +385,22 @@ public class ProcessHelperGGE extends HelperBase {
 //      fillFiltrReference(element, 16, isProdServer);
 //      fillFiltrReference(element, 15, isProdServer);
 //      fillFiltrCheckbox(element);
+    }
+  }
+
+  public void fillAllFilters2(boolean isProdServer,
+                              String typeDoc,
+                              String xpathAllElements) throws InterruptedException {
+    waitLoadPage(isProdServer);
+    Thread.sleep(500);
+    List<WebElement> elements = wd.findElements(By.xpath(xpathAllElements));
+    if (elements.size() == 1) {
+      WebElement element = elements.iterator().next();
+      fillFiltrCombobox(element);
+      fillFiltrTypeEdit(element, "Test_001");
+      fillFiltrTypeTextArea(element, "Test_001");
+      fillFiltrMultiSelect(element);
+//      fillFiltrTypeDate(element, "Test_001", 0);
     }
   }
 
@@ -604,7 +652,10 @@ public class ProcessHelperGGE extends HelperBase {
     Thread.sleep(200);
   }
 
-  public Boolean openCardTabWithProcess(boolean isProdServer, TaskProcessData process) throws InterruptedException {
+  public Boolean openCardTabWithProcess(boolean isProdServer,
+                                        TaskProcessData process,
+                                        String xpathTypeDoc,
+                                        String xpathNumTab) throws InterruptedException {
     Boolean isOpenWithoutMistakes = false;
     // Проверка на реальные баги
     isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
@@ -613,14 +664,15 @@ public class ProcessHelperGGE extends HelperBase {
       return false;
     }
 
-    String xpathTypeDocument = "//span[contains(text(),'Служебные записки ЦА')]";
+    String xpathTypeDocument = xpathTypeDoc;
     waitLoadPage(isProdServer);
     Thread.sleep(200);
     waitElement(By.xpath(xpathTypeDocument));
 
-    String xpathSecondTab = "(//ul[@id='tabs_group']//a)[2]";
+    String xpathNumberTab = xpathNumTab;
+    waitElement(By.xpath(xpathNumTab));
     waitLoadPage(isProdServer);
-    List<WebElement> elements = wd.findElements(By.xpath(xpathSecondTab));
+    List<WebElement> elements = wd.findElements(By.xpath(xpathNumberTab));
     if (elements.size() > 0) {
       clickWithWaiting(elements.iterator().next(), isProdServer);
       String xpathCardProcess = "//a[contains(@href,'tabInfo.action?tab=PROCESS_CARD&tab2=PROCESS_CARD')]";
@@ -638,6 +690,46 @@ public class ProcessHelperGGE extends HelperBase {
     return false;
   }
 
+  public Boolean openCard(boolean isProdServer,
+                          TaskProcessData process,
+                          final String nameTypeDoc) throws InterruptedException {
+    Boolean isOpenWithoutMistakes = false;
+    String xpathSections = "//p[@class='sectionTitle']";
+
+    // Проверка на реальные баги
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer,
+            "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+
+    if (!isOpenWithoutMistakes) {
+      return false;
+    }
+
+    String xpathTypeDocument = "//span[contains(text()," + nameTypeDoc + ")]";
+    waitLoadPage(isProdServer);
+    Thread.sleep(200);
+    waitElement(By.xpath(xpathTypeDocument));
+
+
+    for (int i = 1; i < 20; i++) {
+      waitLoadPage(isProdServer);
+      Thread.sleep(500);
+
+      // Проверка на загрузку заголовков
+      Boolean isWebElements = isWebElements(isProdServer, By.xpath(xpathSections));
+      if (isWebElements) {
+        break;
+      }
+    }
+
+//    String xpathLabelProject = "//span[contains(@style,'color: orangered')]";
+//    List<WebElement> elements = wd.findElements(By.xpath(xpathLabelProject));
+//    if (elements.size() == 0) {
+//      return false;
+//    }
+
+    return true;
+  }
+
   public Boolean openCardProcess(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
     String ss = taskProcess.getUrlCardProcess();
 //    ss = ss + "2";
@@ -646,7 +738,8 @@ public class ProcessHelperGGE extends HelperBase {
 
     Boolean isOpenWithoutMistakes = false;
     // Проверка на реальные баги
-    isOpenWithoutMistakes = checkCardMistakes(isProdServer, "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
+    isOpenWithoutMistakes = checkCardMistakes(isProdServer,
+            "//*[contains(text(),\"Faled\") or contains(text(),\"xception\")]");
 
     if (!isOpenWithoutMistakes) {
       return false;
@@ -1139,5 +1232,9 @@ public class ProcessHelperGGE extends HelperBase {
       }
     }
     return elements.size();
+  }
+
+  public void openLink(String s) {
+    wd.get(s);
   }
 }

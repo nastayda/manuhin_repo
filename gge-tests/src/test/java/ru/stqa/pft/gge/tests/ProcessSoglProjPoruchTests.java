@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,11 @@ public class ProcessSoglProjPoruchTests extends TestBase {
   String sid = "db";
   String userDB = "galactica";
   String passwordDB = "galactica";
+
+  @Test
+  public void testInitFile() throws IOException {
+    app.processGGE().deleteJsonZapis(fileName);
+  }
 
   @DataProvider
   public Iterator<Object[]> testCasesProcessFromJson() throws IOException {
@@ -79,8 +85,55 @@ public class ProcessSoglProjPoruchTests extends TestBase {
 
     assertThat(app.successInit, equalTo(true));
     app.session().loginProcess(isProdServer, loginUser, password, baseUrl);
+
 //    assertThat(app.processGGE().razdel(isProdServer, "//a[@href=\"tabInfo.action?tab=OFFICEWORK\"]"),
 //            equalTo(true));
+    // Создание служебной записки
+    createCitizenLetter(urlAD, fileAttach, isProdServer);
+
+//    app.processGGE().openLink(
+//            "https://vm-082-as-gge.mdi.ru/portal/tabInfo.action?tab=PCARDGIO3_CARD&tab2=PCARDGIO3_CARD&" +
+//                    "fromFilter=E93EC358A69745469F6266C0275F7907&fromVitrina=E93EC358A69745469F6266C0275F7907&" +
+//                    "documentId=CF26D0172F9E455FB4FAC7296F55EDD6#tab::id=0/card::cardId=CARD$PCARDGIO3$BODY");
+
+    TaskProcessData taskProcess = new TaskProcessData();
+
+    // В задачу процесса вносим вариант прохождения процесса
+    taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
+
+    // Создание Проекта поручения
+    createProjPoruch(isProdServer, taskProcess);
+
+    assertThat(app.processGGE().openCardTabWithProcess(isProdServer,
+            taskProcess,
+            "//span[contains(text(),'Письмо гражданина')]",
+            "(//ul[@id='tabs_group']//a)[3]"), equalTo(true));
+    assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
+
+    DbConnect dbConnect = new DbConnect()
+            .withDbserver(dbserver)
+            .withPort(port)
+            .withSid(sid)
+            .withUser(userDB)
+            .withPassword(passwordDB);
+    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, dbConnect);
+    List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
+    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcessDatas, taskProcess, fileName);
+  }
+
+  public void createProjPoruch(boolean isProdServer, TaskProcessData taskProcess) throws InterruptedException {
+    // Вызов формы Проекта поручения
+    assertThat(app.processGGE().openCard(isProdServer, taskProcess, "'Письмо гражданина'"), equalTo(true));
+
+    assertThat(app.processGGE().initFormDoc(isProdServer,
+            "Создать проект поручения",
+            "type=REZOL_PRJ&formId=ADM_REZOL_PROJ"), equalTo(true));
+
+    app.processGGE().fillFormWithoutTab(isProdServer, "ADM_REZOL_PROJ");
+    app.processGGE().submitForm(isProdServer);
+  }
+
+  public void createCitizenLetter(String urlAD, String fileAttach, boolean isProdServer) throws InterruptedException, IOException, URISyntaxException {
     Set<Cookie> cookies = app.processGGE().getCookies();
 
     assertThat(cookies.size() > 0, equalTo(true));
@@ -116,30 +169,6 @@ public class ProcessSoglProjPoruchTests extends TestBase {
     assertThat(app.processGGE().checkEP(isProdServer), equalTo(true));
 
     app.processGGE().submitForm(isProdServer);
-
-    TaskProcessData taskProcess = new TaskProcessData();
-
-    // В задачу процесса вносим вариант прохождения процесса
-    taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
-
-    // Дальше нужно создавать Проект поручения!!!
-    // Вызов формы Проекта поручения
-//
-//
-//
-
-    assertThat(app.processGGE().openCardTabWithProcess(isProdServer, taskProcess), equalTo(true));
-    assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
-
-    DbConnect dbConnect = new DbConnect()
-            .withDbserver(dbserver)
-            .withPort(port)
-            .withSid(sid)
-            .withUser(userDB)
-            .withPassword(passwordDB);
-    app.processGGE().readActiveTaskProcessData(isProdServer, taskProcess, dbConnect);
-    List<TaskProcessData> taskProcessDatas = app.processGGE().readActiveTaskProcessDataFromJson(fileName);
-    app.processGGE().writeActiveTaskProcessDataToJson(isProdServer, taskProcessDatas, taskProcess, fileName);
   }
 
   class MyIterator implements Iterator<Object[]> {

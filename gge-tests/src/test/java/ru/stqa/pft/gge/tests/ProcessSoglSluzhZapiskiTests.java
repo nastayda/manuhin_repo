@@ -34,6 +34,11 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
   String userDB = "galactica";
   String passwordDB = "galactica";
 
+  @Test
+  public void testInitFile() throws IOException {
+    app.processGGE().deleteJsonZapis(fileName);
+  }
+
   @DataProvider
   public Iterator<Object[]> testCasesProcessFromJson() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(
@@ -119,7 +124,10 @@ public class ProcessSoglSluzhZapiskiTests extends TestBase {
     // В задачу процесса вносим вариант прохождения процесса
     taskProcess.withProcessTestCase(processTestCase.getProcessTestCase());
 
-    assertThat(app.processGGE().openCardTabWithProcess(isProdServer, taskProcess), equalTo(true));
+    assertThat(app.processGGE().openCardTabWithProcess(isProdServer,
+            taskProcess,
+            "//span[contains(text(),'Служебные записки ЦА')]",
+            "(//ul[@id='tabs_group']//a)[2]"), equalTo(true));
     assertThat(app.processGGE().openCardProcess(isProdServer, taskProcess), equalTo(true));
 
     String actionWithTask = "Согласовать";

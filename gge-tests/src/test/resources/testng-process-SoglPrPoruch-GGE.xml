@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1">
-    <test name="SoglSlZap-GGE" >
+    <test name="SoglPrPoruch-GGE" >
         <classes>
-            <class name="ru.stqa.pft.gge.tests.ProcessSoglSluzhZapiskiTests" />
+            <class name="ru.stqa.pft.gge.tests.ProcessSoglProjPoruchTests" />
         </classes>
     </test>
 </suite>
