@@ -290,7 +290,9 @@ public class ProcessHelperGGE extends HelperBase {
       return isFillTab;
     }
 
-    addMultiSections(isProdServer);
+    if (numTab == 1) {
+      addMultiSections(isProdServer);
+    }
 
     fillAllFilters(isProdServer, typeDoc, ".//div[@id='tab_TAB_GROUP_0" + numTab + "']", numTab);
 
