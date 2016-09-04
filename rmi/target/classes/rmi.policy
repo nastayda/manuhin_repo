@@ -1,0 +1,13 @@
+grant {
+  // The simplest (but uncarefull) policy is allow everything:
+  //	permission java.security.AllPermission;
+  // More secure policy is the following.
+  //
+  // jupiter.scs.ryerson.ca   This is the rmihost - RMI registry and the server
+  // www.scs.ryerson.ca       This is webhost - HTTP server for stub classes
+  permission java.net.SocketPermission 
+    "jupiter.scs.ryerson.ca:1024-65535", "connect,accept";
+  permission java.net.SocketPermission 
+    "www.scs.ryerson.ca:80", "connect";
+
+};
