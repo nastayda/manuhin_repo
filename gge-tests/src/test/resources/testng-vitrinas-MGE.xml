@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="1">
     <test name="Vitrinas-MGE" >
         <classes>
-            <class name="ru.stqa.pft.gge.tests.VitrinaOpenAndFindTestsMGE" />
+            <class name="ru.stqa.pft.gge.tests.VitrinaOpenTestsMGE" />
         </classes>
     </test>
 </suite>
