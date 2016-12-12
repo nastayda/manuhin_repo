@@ -59,7 +59,7 @@ public class GenVitrinasMGE extends TestBase {
     //generator.setUpGGEMGE("i.manylov", "Ukfdujc21", "https://vm-085-as-gge.mdi.ru/auth/login.action");
 //    generator.setUpGGEMGE("galactica_admin1", "21", "https://vm-097-tomcat-mge.mdi.ru:8443/auth/login.action");
 //    generator.setUpGGEMGE("galactica_admin1", "21", "https://vm-086-as-mge.mdi.ru:8443/auth/login.action");
-    generator.setUpMGE("galactica_admin1", "123456", "https://expertiza.mos.ru:8443/auth/login.action");
+    generator.setUpMGE("adminMGE", "Qwerty391628", "https://expertiza.mos.ru/authS1/login.action");
     generator.run(project);
     generator.tearDown();
   }

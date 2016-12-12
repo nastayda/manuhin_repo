@@ -85,9 +85,9 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     assertThat(app.vitrina().selectVitrinaMGE(vitrina, isProdServer), equalTo(true));
     assertThat(app.vitrina().isMistakesMGE(isProdServer), equalTo(false));
 
-    app.vitrina().vizovRasshPoiskMGE(isProdServer);
-    app.vitrina().fillAllFilters(isProdServer);
-    app.vitrina().buttonFind(isProdServer);
+    app.vitrina().vizovRasshPoiskMGE(isProdServer); //вызов формы поиска.
+    app.vitrina().fillAllFilters(isProdServer); // заполнение полей формы поиска.
+    app.vitrina().buttonFind(isProdServer); // клик на кнопку поиска.
     assertThat(app.vitrina().isMistakesMGE(isProdServer), equalTo(false));
   }
 }
