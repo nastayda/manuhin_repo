@@ -32,7 +32,8 @@ public class SessionHelper extends HelperBase {
   }
   public void logout() {
     //waitElement(By.id("logoutMethod"));
-    click(By.id("logoutMethod"));
+    //click(By.id("logoutMethod"));
+    wd.get("https://expertiza-test.mos.ru/portal/logout.action");
   }
   public void loginUGD(String username, String password,
                        Boolean userIsChinovnik, String baseUrl,
