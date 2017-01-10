@@ -30,7 +30,10 @@ public class SessionHelper extends HelperBase {
     waitElement(By.id("submitBtn"));
     click(By.id("submitBtn"));
   }
-
+  public void logout() {
+    //waitElement(By.id("logoutMethod"));
+    click(By.id("logoutMethod"));
+  }
   public void loginUGD(String username, String password,
                        Boolean userIsChinovnik, String baseUrl,
                        String listVitrinasUrl) {
