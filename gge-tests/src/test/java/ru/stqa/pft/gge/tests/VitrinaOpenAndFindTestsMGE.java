@@ -64,7 +64,9 @@ public class VitrinaOpenAndFindTestsMGE extends TestBase{
     if (isProdServer) {
       password = "Htytufn6*6";
     }
-
+    //BEG Переменные для теста. Для предбоя:
+    String domen = "https://expertiza-tech.mos.ru";
+    String userlogout = "VASILENKORN";
 //    assertThat(app.successInit, equalTo(true));
 //    app.session().loginGGEMGE(vitrina.getLoginUser(), password, vitrina.getBaseUrl());
 //

@@ -12,19 +12,25 @@ public class SessionHelper extends HelperBase {
     super(wd);
   }
 
-  public void loginGGEMGE(String username, String password, String baseUrl) {
+
+  public void logout(String domen, String password, String userlogout, String username) {
     //подключение и отключение админа
-
-//    wd.get("https://expertiza-test.mos.ru/portal/logout.action");
-//    click(By.id("content"));
-//    type(By.id("username"), "VASILENKORN");
-//    type(By.id("password"), password);
-//    click(By.id("submitBtn"));
-//    wd.get("https://expertiza-test.mos.ru/portal/activeUsers.action?logoutUser=SADOVIN_AL"); // на разработческом
-//    //wd.get("https://expertiza-tech.mos.ru/portal/activeUsers.action?logoutUser=AdminMGE");  //на предбое
-//    wd.get("https://expertiza-test.mos.ru/portal/logout.action");
-
+    String authS1 = domen + "/authS1/login.action";
+    wd.get(authS1);
+    click(By.id("content"));
+    type(By.id("username"), userlogout); //"VASILENKORN" админ разлогинивающий пользователя, который будет тестировать
+    type(By.id("password"), password);
+    click(By.id("submitBtn"));
+//    wd.get(domen +"/portal/activeUsers.action?logoutUser=SADOVIN_AL"); // на разработческом
+    String logoutUser = domen+"/portal/activeUsers.action?logoutUser="+username;
+    wd.get(logoutUser);  //на предбое
+    String logouturl = domen +"/portal/logout.action";
+    wd.get(logouturl);
     //завершение отключения админа
+  }
+
+
+  public void loginGGEMGE(String username, String password, String baseUrl) {
 
     wd.get(baseUrl);
     click(By.id("content"));
@@ -43,7 +49,7 @@ public class SessionHelper extends HelperBase {
     waitElement(By.id("submitBtn"));
     click(By.id("submitBtn"));
   }
-  public void logout() {
+  public void logoutold() {
     //waitElement(By.id("logoutMethod"));
     //click(By.id("logoutMethod"));
     wd.get("/portal/logout.action");
